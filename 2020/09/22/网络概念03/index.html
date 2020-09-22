@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>自顶向下-第三章复习知识点 | WenZhao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、 传输层的目的与提供的服务 1.在运行不同主机上应用进程之间提供逻辑通信 2.运输协议运行在端系统中  应用程序可供使用的运输协议不止一个  提供的服务：可靠的、按序的交付 (TCP) 不可靠、无序的交付: UDP  二、多路复用与多路分解；端口号；标识UDP套接字的二元组、标识TCP套接字的四元组。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自顶向下-第三章复习知识点">
+<meta property="og:url" content="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/index.html">
+<meta property="og:site_name" content="WenZhao">
+<meta property="og:description" content="一、 传输层的目的与提供的服务 1.在运行不同主机上应用进程之间提供逻辑通信 2.运输协议运行在端系统中  应用程序可供使用的运输协议不止一个  提供的服务：可靠的、按序的交付 (TCP) 不可靠、无序的交付: UDP  二、多路复用与多路分解；端口号；标识UDP套接字的二元组、标识TCP套接字的四元组。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/images/1.png">
+<meta property="og:image" content="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/images/2.png">
+<meta property="og:image" content="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/images/3.png">
+<meta property="og:image" content="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/images/4.png">
+<meta property="og:image" content="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/images/5.png">
+<meta property="og:image" content="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/images/6.png">
+<meta property="og:image" content="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/images/7.png">
+<meta property="article:published_time" content="2020-09-22T12:50:38.000Z">
+<meta property="article:modified_time" content="2020-09-22T15:02:48.112Z">
+<meta property="article:author" content="niewenzhao">
+<meta property="article:tag" content="面试">
+<meta property="article:tag" content="网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/images/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="WenZhao" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">WenZhao</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+          <a class="main-nav-link" href="/sitemap.xml">网站地图</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-网络概念03" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/" class="article-date">
+  <time datetime="2020-09-22T12:50:38.000Z" itemprop="datePublished">2020-09-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      自顶向下-第三章复习知识点
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>一、</strong> <strong>传输层的目的与提供的服务</strong></p>
+<p>1.在运行不同主机上应用进程之间提供逻辑通信</p>
+<p>2.运输协议运行在端系统中</p>
+<ol start="3">
+<li>应用程序可供使用的运输协议不止一个</li>
+</ol>
+<p>提供的服务：可靠的、按序的交付 (TCP) 不可靠、无序的交付: UDP </p>
+<p><strong>二、多路复用与多路分解；端口号；标识UDP套接字的二元组、标识TCP套接字的四元组。</strong></p>
+<a id="more"></a>  
+
+<p>多路分解：将运输层报文段中的数据交付到正确的套接字的工作</p>
+<p>多路复用：在源主机从不同的套接字中收集数据块，并为每个数据块封装上首部信息从而生成报文段，然后将报文段传递到网络层。</p>
+<p>端口号是一个16比特的数</p>
+<p>标识TCP的四元组：源IP，源端口，目标IP，目标端口</p>
+<p>标识UDP的二元组：目的IP地址、目的端口号 </p>
+<p><strong>三、**</strong>TCP与UDP比较**</p>
+<p>1.TCP面向连接，即客户端需要通过三次握手才能和服务端建立起连接，在这个连接的基础上才可以进行数据传输；而UDP是无连接的，发送数据之前不需要建立连接。因此，TCP需要在端系统中维护连接状态，而UDP则不需要维护连接状态</p>
+<p>2.TCP提供可靠的服务，即通过TCP连接传输的数据能确保无差错、不丢失、无重复且按序到达；UDP不提供可靠的传输服务，传输过程有可能出现丢包，同时也不保证数据报的到达顺序</p>
+<p>3.TCP面向字节流，实际上TCP把数据看作是一连串无结构的字节流；UDP则是面向报文传输</p>
+<p>4.TCP有拥塞控制机制，当源主机和目的主机间的一条或者多条链路变得极度拥塞时来遏制运输层TCP发送方，而UDP没有拥塞控制机制，相比之下，在出现拥塞的情况下，UDP不会降低源主机发送数据的速率，更适合用于支撑部分实时应用如IP电话、实时视频会议等</p>
+<p>5.TCP连接是点对点的，而UDP支持一对一、一对多、多对一和多对多的交互通信</p>
+<p>6.从报文段结构上考虑，每个TCP报文段都有20字节的首部开销，而UDP仅有8字节的开销 </p>
+<p><strong>四、不同信道特点下的可靠数据传输原理，各种可靠数据传输机制及作用；rdt1.0、rdt2.0、rdt3.0有限状态机；停等协议及效率。</strong></p>
+<p>Rdt1.0:经完全可靠信道的可靠数据传输（底层信号非常可靠，无比特差错，无分组丢失）</p>
+<p><img src="images/1.png" alt="1"></p>
+<p>Rdt2.0:经具有比特差错信道的可靠数据传输（肯定确认、否定确认）</p>
+<p>这种基于重传机制的可靠数据传输协议被称为自动重传请求（ARQ）协议</p>
+<p>在ARQ协议中有三种协议功能来处理比特差错的情况：1.差错检测 2.接收方反馈 3.重传</p>
+<p>发送方将不会发送一块新数据，除非发送方确信接收方已正确接收当前分组。因此Rdt2.0这样的协议被称为停等协议。</p>
+<p><img src="images/2.png" alt="2"></p>
+<p>Rdt2.1：如果ACK\NAK受损 可能导致冗余 为了处理冗余发送方对每个分组增加序列号 如果ACK\NAK受损，发送方重传当前分组，接收方丢弃冗余分组。</p>
+<p> <img src="images/3.png" alt="3"></p>
+<p>Rdt2.2 无NAK协议，代替NAK，接收方对最后正确接收的分组发送ACK。</p>
+<p> <img src="images/4.png" alt="4"></p>
+<p>Rat3.0:具有比特差错和丢包信道的可靠数据传输 为解决丢包问题，发送方等待ACK一段合理的时间，需要倒数计时器来解决这个问题。</p>
+<p> <img src="images/5.png" alt="5"></p>
+<p>接收方同Rdt2.2相同。</p>
+<p>流水线协议：发送方允许发送多个、“传输中的”、还没有应答的报文段（序号范围必须增加，发送方和接收方没有缓冲）有两种形式：回退N步GBN 选择重传SR</p>
+<p>回退N步：对失序的分组丢弃，不缓存，没有接收缓存区，；重新确认具有按序的分组</p>
+<p>选择重传：通过让发送方仅重传那些他怀疑在接收方出错的分组而避免了不必要的重传。</p>
+<p>其中窗口长度必须小于或者等于序号空间的一半。</p>
+<p>利用率/效率：发送方实际忙于将发送比特送进通道的那部分时间与发送时间之比。</p>
+<p>U = （L/R）/（RTT+L/R） RTT：往返时间可用流水线的方式提高效率。 </p>
+<p><strong>五、流量控制和拥塞控制；TCP连接的建立(三次握手)原理； TCP的序号与确认号的使用方法。TCP的可靠数据传输机制</strong></p>
+<p>流量控制：发送方不能发送太多、太快的数据让接收方缓存溢出。</p>
+<p>拥塞控制：拥塞（太多的源发送太多太多的数据，使网络来不及处理），表现为丢包和长延时。拥塞控制的两种方法：端到端的拥塞控制和网络辅助的拥塞控制。</p>
+<p>端到端拥塞控制：</p>
+<p>1.不能从网络得到明确的反馈</p>
+<p>2.从端系统根据观察到的时延和丢失现象推断出拥塞</p>
+<p>3这是TCP所采用的方法</p>
+<p>网络辅助的拥塞控制:</p>
+<p>1.路由器为端系统提供反馈</p>
+<p>2.一个bit指示一条链路出现拥塞(SNA,DECnet,TCP/IP ECN, ATM)</p>
+<p>3.指示发送方按照一定速率发送</p>
+<p>TCP拥塞控制：端到端控制。三个机制（AIMD加增倍减算法、慢启动和超时事件后的保守机制）。慢启动：当连接开始时，速率呈指数上升，直到第一次报文丢失事件发生为止或到达阙值。</p>
+<p>TCP可靠数据传输机制：TCP在IP不可靠服务的基础上创建可靠数据传输服务</p>
+<p>可靠传输的措施：1.错包：流水线发送报文段、累积确认。2.丢包：TCP使用单个重传计时器，重传超时事件和重复ACK事件。</p>
+<p>TCP连接管理-三次握手</p>
+<ol>
+<li><p>客户机向服务器发送TCP SYN报文段，指定初始序号//随意选择，没有数据</p>
+</li>
+<li><p>服务器收到SYN报文段，用SYN ACK报文段回复。服务器为该连接分配缓冲区和变量，同时指定服务器初始序号</p>
+</li>
+<li><p>客户机收到SYNACK，用ACK报文段回复，可能包含数据</p>
+<p><img src="images/6.png" alt="6"></p>
+</li>
+</ol>
+<p>TCP连接管理-关闭连接</p>
+<p>步骤 1: 客户机向服务器发送TCP FIN控制报文段</p>
+<p>步骤 2: 服务器收到FIN，用ACK回答。关闭连接，发送FIN</p>
+<p>步骤 3: 客户机收到FIN, 用ACK回答</p>
+<p>进入 “超时等待” – 将对接收到的FIN进行确认</p>
+<p>步骤 4: 服务器接收ACK，连接关闭</p>
+<p> <img src="images/7.png" alt="7"></p>
+<p><strong>六、作业补充</strong></p>
+<p>1.UDP应用</p>
+<p>.应用程序开发者可能不想其应用程序使用TCP的拥塞控制，因为这会在出现拥塞时降低应用程序的传输速率。通常，IP电话和IP视频会议应用程序的设计者选择让他们的应用程序运行在UDP上，因为他们想要避免TCP的拥塞控制。还有，一些应用不需要TCP提供的可靠数据传输。 (特定服务需要UDP的理由：a应用层能更好的控制要发送的数据和发送时间b无需连接建立c无连接状态d分组首部开销小)</p>
+<p>2.处理多个客户机请求</p>
+<p>对于每个持久连接，Web服务器创建一个单独的“连接套接字”，每个连接套接字由一个四元组（源IP地址，源端口号，目的IP地址，目的端口号）识别。当作为Web服务器的主机C接收到IP数据报时，检查数据报里相应的四元组字段决定导向到哪个套接字。虽然目的IP和目的端口号一样，但主机A和主机B的源IP地址不一样，所以主机C不能用相同的套接字与A、B两台不同主机进行通信。两个套接字都可以是80，区分它们的元组可以是不同的源IP地址。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/" data-id="ckfe397or0000ecva68gu79wl" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B502/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          自顶向下-第二章复习知识点
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B501/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">自顶向下-第一章复习知识点</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/javase/">-javase</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">-前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/" rel="tag">表单验证</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A1%A8%E6%A0%BC/" rel="tag">表格</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/jQuery/" style="font-size: 13.33px;">jQuery</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 16.67px;">网络</a> <a href="/tags/%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/" style="font-size: 10px;">表单验证</a> <a href="/tags/%E8%A1%A8%E6%A0%BC/" style="font-size: 13.33px;">表格</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 20px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B502/">自顶向下-第二章复习知识点</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/">自顶向下-第三章复习知识点</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B501/">自顶向下-第一章复习知识点</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/22/index%20-%20%E5%89%AF%E6%9C%AC%20(3)/">11</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/22/index%20-%20%E5%89%AF%E6%9C%AC%20(2)/">javase</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 niewenzhao<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+    <a href="/sitemap.xml" class="mobile-nav-link">网站地图</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
