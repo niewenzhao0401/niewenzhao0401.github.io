@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>自顶向下-第四章复习知识点 | WenZhao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、 传输层的目的与提供的服务 1.在运行不同主机上应用进程之间提供逻辑通信 2.运输协议运行在端系统中  应用程序可供使用的运输协议不止一个  提供的服务：可靠的、按序的交付 (TCP) 不可靠、无序的交付: UDP  二、多路复用与多路分解；端口号；标识UDP套接字的二元组、标识TCP套接字的四元组。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自顶向下-第四章复习知识点">
+<meta property="og:url" content="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B504/index.html">
+<meta property="og:site_name" content="WenZhao">
+<meta property="og:description" content="一、 传输层的目的与提供的服务 1.在运行不同主机上应用进程之间提供逻辑通信 2.运输协议运行在端系统中  应用程序可供使用的运输协议不止一个  提供的服务：可靠的、按序的交付 (TCP) 不可靠、无序的交付: UDP  二、多路复用与多路分解；端口号；标识UDP套接字的二元组、标识TCP套接字的四元组。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B504/1.png">
+<meta property="og:image" content="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B504/2.png">
+<meta property="og:image" content="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B504/3.png">
+<meta property="article:published_time" content="2020-09-22T12:50:38.000Z">
+<meta property="article:modified_time" content="2020-09-23T04:32:34.049Z">
+<meta property="article:author" content="niewenzhao">
+<meta property="article:tag" content="面试">
+<meta property="article:tag" content="网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B504/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="WenZhao" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">WenZhao</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+          <a class="main-nav-link" href="/sitemap.xml">网站地图</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-网络概念04" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B504/" class="article-date">
+  <time datetime="2020-09-22T12:50:38.000Z" itemprop="datePublished">2020-09-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      自顶向下-第四章复习知识点
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>一、</strong> <strong>传输层的目的与提供的服务</strong></p>
+<p>1.在运行不同主机上应用进程之间提供逻辑通信</p>
+<p>2.运输协议运行在端系统中</p>
+<ol start="3">
+<li>应用程序可供使用的运输协议不止一个</li>
+</ol>
+<p>提供的服务：可靠的、按序的交付 (TCP) 不可靠、无序的交付: UDP </p>
+<p><strong>二、多路复用与多路分解；端口号；标识UDP套接字的二元组、标识TCP套接字的四元组。</strong></p>
+<a id="more"></a>  
+
+<p><strong>计算机网络自顶向下-第四章复习知识点</strong></p>
+<p><strong>一、转发与选路，建立连接；网络层的服务与功能，因特网网络服务模型。</strong> <strong>路由器的基本功能与组成。</strong></p>
+<p>转发：将分组从路由器的输入移动到适当的路由器输出</p>
+<p>选路：决定分组从源到目的地所采取的路由</p>
+<p>连接建立：要求从源到目的地沿着所选择的路径彼此握手，以便在给定源到目的地连接中的网络层数据分组能够开始流动之前建立起状态。</p>
+<p>网络层连接和无连接服务：数据报网络提供网络层无连接服务，虚电路网络提供网络层连接服务</p>
+<p>网络服务模型：定义了分组在发送与接收端系统之间的端到端运输特性。</p>
+<p>能由网络层提供的服务：1.确保交付 2.具有时延上界的确保交付 3.有序分组交付 4.确保最小带宽 5.确保最大时延抖动 6.安全性服务</p>
+<p>因特网的网络层提供了单一的服务，称为尽力而为的服务。</p>
+<p>路由器的基本功能和组成：</p>
+<p>1.输入端口:</p>
+<p>1）执行一条输入的物理链路与路由器相连接的物理层功能</p>
+<p>2）执行需要与位于入链路远端的数据链路层交互的数据链路层功能.</p>
+<p>3）完成查找功能</p>
+<p>2.交换结构：交换结构将路由器的输入端口和输出端口相连接</p>
+<p>3.输出端口：储存从交换结构接收的分组，并通过执行必要的链路层和物理层功能在输入链路上传输这些分组。</p>
+<p>4.路由选择处理器：</p>
+<p>1）执行路由选择协议</p>
+<p>2）维护路由选择表以及连接的链路状态信息，并为路由器计算转发表</p>
+<p>3）执行网络管理功能。</p>
+<p><strong>二、虚电路网络和数据报网络</strong></p>
+<p>其他网络体系结构：ATM、帧中继等为虚电路网络，在网络层中使用连接。</p>
+<p>虚电路的组成如下：</p>
+<p>1）源和目的主机之间的路径（即一系列链路和路由器）</p>
+<p>2）VC号，沿着该路径的每段链路的一个号码</p>
+<p>3）沿着该路径的每台路由器中的转发表表项。</p>
+<p>网路的路由器必须为进行中的连接维持连接状态信息，特别是每当跨越一台路由器创建一个新连接，必须在该路由器的转发表中增加一个新的连接项，每当释放一个连接，必须从该表中删除此项。</p>
+<p>数据报网络：</p>
+<p>在数据报网络中，每当一个端系统要发送分组，它就为该分组加上目的端系统的地址，然后将分组推进网络中。无需建立任何虚电路，路由器不维护任何虚电路的状态信息。</p>
+<p>最长前缀匹配原则：在转发表中寻找最长的匹配项，并向最长前缀匹配相关联的链路接口转发分组。</p>
+<p><strong>三、IP网际协议</strong></p>
+<p>网络层有三个主要组件：</p>
+<p>\1. IP协议</p>
+<p>\2. 路由选择部分 决定数据报到源目的地所流经的路径</p>
+<p>\3. 报告数据报中的差错和对某些网路层信息请求进行响应的设施。（ICMP）</p>
+<p>互联网服务被定义成不可靠的、尽力而为、无连接分组交付系统。</p>
+<p>1.服务是不可靠的，因为分组可能丢失、重复、延迟或不按序交付等，但服务不检测这些情况，也不提醒发送方和接收方。</p>
+<p>2.服务是尽力而为的，互联网并不随意地丢弃分组；只有当资源用完或底层网络出现故障时才可能出现不可靠性。</p>
+<p>3.服务是无连接的，因为每个分组都是独立对待的。分组序列可能经过不同的传输路径或者有的丢失有的到达。</p>
+<p><strong>IP编址</strong></p>
+<p>1.IP地址</p>
+<p>主机接口的32-bit 标识符</p>
+<p>点分十进制数</p>
+<ol start="2">
+<li>接口:</li>
+</ol>
+<p>在主机/路由器和物理链路之间的连接</p>
+<p>路由器通常具有多个接口</p>
+<p>主机可能具有多个接口</p>
+<p>IP编址与每个接口相联系</p>
+<p>Classfull IP Addressing</p>
+<p>(分类IP编址)</p>
+<p>A类地址：</p>
+<p>⑴ A类地址第1字节为网络地址，其它3个字节为主机地址。</p>
+<p>⑵ A类地址范围：1.0.0.0—127.255.255.255</p>
+<p>⑶ A类地址中的私有地址和保留地址：</p>
+<p>① 10.X.X.X是私有地址（所谓的私有地址就是在互联网上不使用，而被用在局域网络中的地址）。</p>
+<p>范围（10.0.0.0.0-10.255.255.255）</p>
+<p>② 127.X.X.X是保留地址，用做循环测试用的。</p>
+<p>B类地址：</p>
+<p>⑴ B类地址第1字节和第2字节为网络地址，其它2个字节为主机地址。</p>
+<p>⑵ B类地址范围：128.0.0.0—191.255.255.255。</p>
+<p>⑶ B类地址的私有地址和保留地址</p>
+<p> 172.16.0.0—172.31.255.255是私有地址</p>
+<p>② 169.254.X.X是保留地址。如果你的IP地址是自动获取IP地址，而你在网络上又没有找到可用的DHCP服务器。就会得到其中一个IP。</p>
+<p>C类地址：</p>
+<p>⑴ C类地址第1字节、第2字节和第3个字节为网络地址，第4个字节为主机地址。另外第1个字节的前三位固定为110。</p>
+<p>⑵ C类地址范围：192.0.0.0—223.255.255.255。</p>
+<p>⑶ C类地址中的私有地址：</p>
+<p>192.168.X.X是私有地址。(192.168.0.0-192.168.255.255)</p>
+<p>D类地址：</p>
+<p> D类地址不分网络地址和主机地址，它的第1个字节的前四位固定为1110。</p>
+<p>⑵ D类地址范围：224.0.0.0—239.255.255.255</p>
+<p>E类地址：</p>
+<p> E类地址也不分网络地址和主机地址，它的第1个字节的前五位固定为11110。</p>
+<p>⑵ E类地址范围：240.0.0.0—247.255.255.255</p>
+<p><img src="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B504/1.png" alt="1"></p>
+<p>子网：</p>
+<p>定义：</p>
+<p>1.无需通过路由器就能够物理上互相到达，在路由器同一侧（接入路由器同一接口），一般处于同一局域网</p>
+<p>2.设备接口被配置的IP地址具有相同的网络地址（即共同的IP地址前缀）</p>
+<p>子网的表示方法：</p>
+<p>1、子网掩码：用从最高位开始的连续1表示IP地址中的子网号部分  255.255.255.0</p>
+<p>2、前缀/长度：223.1.1.0/24，表示前24位为子网号部分</p>
+<p>CIDR（无类别域间选路，Classless Inter-Domain Routing）</p>
+<p>“无类别”指不考虑IP地址所属的类别</p>
+<p>不严格区分A类、B类和C类地址，CIDR用前缀取代了过去地址类型对地址网络部分的限制（3类地址的网络部分分别被限制为8位、16位和24位）。</p>
+<p>比如，4个C类网段192.168.0.0/24， 192.168.1.0/24, 192.168.2.0/24, 192.168.3.0/24汇聚成一条路由192.168.0.0/22.这样ISP路由器只向Internet通告192.168.0.0/22这一条路由,大大减少了路由表的数目.从而为网络路由器节省出了存储空间。</p>
+<p>选路策略，基于整个32bit IP地址的掩码来操作，即基于子网号选路。</p>
+<p><strong>怎样主机指定**</strong>IP地址?**</p>
+<p>1.由系统管理员在文件中的硬编码</p>
+<p>Wintel: 控制面板-&gt;网络-&gt;配置-&gt;TCP/IP-&gt;性质</p>
+<p>UNIX: /etc/rc.config</p>
+<p>2.动态主机配置协议(Dynamic Host Configuration Protocol DHCP): 动态地从服务器得到地址。亦被称为即插即用协议。</p>
+<p>NAT(Network Address Translation): 网络地址转换</p>
+<p>NAT路由器上有一张NAT转换表，并且在表项中包含端口号及其IP地址</p>
+<p> <img src="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B504/2.png" alt="2"></p>
+<p> <img src="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B504/3.png" alt="3"></p>
+<p>ICMP: 互联网控制报文协议</p>
+<p>用于主机和路由器彼此交互网络信息，功能为：差错报告、回声请求。</p>
+<p><strong>IPv4与IPv6</strong></p>
+<p>32比特的IP地址空间即将耗尽，应对大IP地址空间的要求，开发新的IP协议即IPv6</p>
+<p>区别：</p>
+<p>1.扩大地址容量 从32比特到128比特。</p>
+<p>2.除单播和多播外加入任播地址。这种地址可以使数据报交付给一组主机中的任意一个</p>
+<p>3.简单高效的40字节首部</p>
+<p>4.留标签和优先级</p>
+<p>5.IPV6不允许在中间路由器上进行分片组装，只能在源和目的地上进行</p>
+<p>6.去除首部检验和</p>
+<p>7.选项不再是标准IP首部一部分。</p>
+<p>选路的角度来说，处于一个管理机构控制之下的网络和路由器群组称为一个自治系统(autonomous system，AS)</p>
+<p>AS可能有复杂结构，该独立机构要负责保证其内部的路由信息的一致性和可用性</p>
+<p>在AS内的路由器，可以自由地选择寻找路由、广播路由、确认路由以及检测路由的一致性的机制</p>
+<p>可安排R3通告网络2、3和4(R1知道网络1)</p>
+<p>核心路由器自己也构成一个自治系统</p>
+<p>RIP（选路信息协议）：距离矢量算法，每30秒在邻居之间经响应报文交换，每个通道在AS中包括多达24个目的网络的列表</p>
+<p>OS-PF（开放最短路优先）：使用链路状态算法，公共可用，OSPF携带每个邻居路由器的一个项，通告散步到整个AS</p>
+<p>BGP（边界网关协议）：为每个AS提供一种手段，从相邻AS获得子网可达性信息，向AS内部的所有路由器传播可达性信息，基于可达信息和策略决定到子网的好路由。</p>
+<p><strong>四、作业补充</strong></p>
+<p>1.数据报网络中网络层两个最重要的功能是:转发,选路.虚电路网络层最重要的三个功能是:转发,选路,和呼叫建立。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B504/" data-id="ckfew6z490018bovaby3ygxym" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          自顶向下-第三章复习知识点
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B501/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">自顶向下-第一章复习知识点</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/javase/">-javase</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">-前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/" rel="tag">表单验证</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A1%A8%E6%A0%BC/" rel="tag">表格</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/jQuery/" style="font-size: 13.33px;">jQuery</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 16.67px;">网络</a> <a href="/tags/%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/" style="font-size: 10px;">表单验证</a> <a href="/tags/%E8%A1%A8%E6%A0%BC/" style="font-size: 13.33px;">表格</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 20px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B502/">自顶向下-第二章复习知识点</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/">自顶向下-第三章复习知识点</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B504/">自顶向下-第四章复习知识点</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B501/">自顶向下-第一章复习知识点</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/22/index/">javase</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 niewenzhao<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+    <a href="/sitemap.xml" class="mobile-nav-link">网站地图</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
