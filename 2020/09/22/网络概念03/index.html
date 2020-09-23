@@ -14,20 +14,20 @@
 <meta property="og:site_name" content="WenZhao">
 <meta property="og:description" content="一、 传输层的目的与提供的服务 1.在运行不同主机上应用进程之间提供逻辑通信 2.运输协议运行在端系统中  应用程序可供使用的运输协议不止一个  提供的服务：可靠的、按序的交付 (TCP) 不可靠、无序的交付: UDP  二、多路复用与多路分解；端口号；标识UDP套接字的二元组、标识TCP套接字的四元组。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2020/09/22/images/1.png">
-<meta property="og:image" content="http://example.com/2020/09/22/images/2.png">
-<meta property="og:image" content="http://example.com/2020/09/22/images/3.png">
-<meta property="og:image" content="http://example.com/2020/09/22/images/4.png">
-<meta property="og:image" content="http://example.com/2020/09/22/images/5.png">
-<meta property="og:image" content="http://example.com/2020/09/22/images/6.png">
-<meta property="og:image" content="http://example.com/2020/09/22/images/7.png">
+<meta property="og:image" content="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/1.png">
+<meta property="og:image" content="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/2.png">
+<meta property="og:image" content="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/3.png">
+<meta property="og:image" content="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/4.png">
+<meta property="og:image" content="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/5.png">
+<meta property="og:image" content="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/6.png">
+<meta property="og:image" content="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/7.png">
 <meta property="article:published_time" content="2020-09-22T12:50:38.000Z">
-<meta property="article:modified_time" content="2020-09-23T01:49:11.064Z">
+<meta property="article:modified_time" content="2020-09-23T02:07:45.798Z">
 <meta property="article:author" content="niewenzhao">
 <meta property="article:tag" content="面试">
 <meta property="article:tag" content="网络">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2020/09/22/images/1.png">
+<meta name="twitter:image" content="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/1.png">
   
     <link rel="alternate" href="/atom.xml" title="WenZhao" type="application/atom+xml">
   
@@ -130,18 +130,18 @@
 <p>6.从报文段结构上考虑，每个TCP报文段都有20字节的首部开销，而UDP仅有8字节的开销 </p>
 <p><strong>四、不同信道特点下的可靠数据传输原理，各种可靠数据传输机制及作用；rdt1.0、rdt2.0、rdt3.0有限状态机；停等协议及效率。</strong></p>
 <p>Rdt1.0:经完全可靠信道的可靠数据传输（底层信号非常可靠，无比特差错，无分组丢失）</p>
-<p><img src="../images/1.png" alt="1"></p>
+<p> <img src="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/1.png" alt="1"></p>
 <p>Rdt2.0:经具有比特差错信道的可靠数据传输（肯定确认、否定确认）</p>
 <p>这种基于重传机制的可靠数据传输协议被称为自动重传请求（ARQ）协议</p>
 <p>在ARQ协议中有三种协议功能来处理比特差错的情况：1.差错检测 2.接收方反馈 3.重传</p>
 <p>发送方将不会发送一块新数据，除非发送方确信接收方已正确接收当前分组。因此Rdt2.0这样的协议被称为停等协议。</p>
-<p><img src="../images/2.png" alt="2"></p>
+<p><img src="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/2.png" alt="2"></p>
 <p>Rdt2.1：如果ACK\NAK受损 可能导致冗余 为了处理冗余发送方对每个分组增加序列号 如果ACK\NAK受损，发送方重传当前分组，接收方丢弃冗余分组。</p>
-<p><img src="../images/3.png" alt="3"></p>
+<p><img src="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/3.png" alt="3"></p>
 <p>Rdt2.2 无NAK协议，代替NAK，接收方对最后正确接收的分组发送ACK。</p>
-<p><img src="../images/4.png" alt="4"></p>
+<p><img src="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/4.png" alt="4"></p>
 <p>Rat3.0:具有比特差错和丢包信道的可靠数据传输 为解决丢包问题，发送方等待ACK一段合理的时间，需要倒数计时器来解决这个问题。</p>
-<p><img src="../images/5.png" alt="5"></p>
+<p><img src="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/5.png" alt="5"></p>
 <p>接收方同Rdt2.2相同。</p>
 <p>流水线协议：发送方允许发送多个、“传输中的”、还没有应答的报文段（序号范围必须增加，发送方和接收方没有缓冲）有两种形式：回退N步GBN 选择重传SR</p>
 <p>回退N步：对失序的分组丢弃，不缓存，没有接收缓存区，；重新确认具有按序的分组</p>
@@ -172,14 +172,14 @@
 <li><p>客户机收到SYNACK，用ACK报文段回复，可能包含数据</p>
 </li>
 </ol>
-<p><img src="../images/6.png" alt="6"></p>
+<p><img src="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/6.png" alt="6"></p>
 <p>TCP连接管理-关闭连接</p>
 <p>步骤 1: 客户机向服务器发送TCP FIN控制报文段</p>
 <p>步骤 2: 服务器收到FIN，用ACK回答。关闭连接，发送FIN</p>
 <p>步骤 3: 客户机收到FIN, 用ACK回答</p>
 <p>进入 “超时等待” – 将对接收到的FIN进行确认</p>
 <p>步骤 4: 服务器接收ACK，连接关闭</p>
-<p><img src="../images/7.png" alt="7"></p>
+<p><img src="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/7.png" alt="7"></p>
 <p><strong>六、作业补充</strong></p>
 <p>1.UDP应用</p>
 <p>.应用程序开发者可能不想其应用程序使用TCP的拥塞控制，因为这会在出现拥塞时降低应用程序的传输速率。通常，IP电话和IP视频会议应用程序的设计者选择让他们的应用程序运行在UDP上，因为他们想要避免TCP的拥塞控制。还有，一些应用不需要TCP提供的可靠数据传输。 (特定服务需要UDP的理由：a应用层能更好的控制要发送的数据和发送时间b无需连接建立c无连接状态d分组首部开销小)</p>
@@ -189,7 +189,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/" data-id="ckfeqdnqh000sh0va6o7wf9qh" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/" data-id="ckfer0aqk0018fcva6gva804y" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -200,10 +200,19 @@
     
 <nav id="article-nav">
   
+    <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B502/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          自顶向下-第二章复习知识点
+        
+      </div>
+    </a>
   
-    <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B502/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B501/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">自顶向下-第二章复习知识点</div>
+      <div class="article-nav-title">自顶向下-第一章复习知识点</div>
     </a>
   
 </nav>
@@ -261,11 +270,11 @@
       <ul>
         
           <li>
-            <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/">自顶向下-第三章复习知识点</a>
+            <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B502/">自顶向下-第二章复习知识点</a>
           </li>
         
           <li>
-            <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B502/">自顶向下-第二章复习知识点</a>
+            <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/">自顶向下-第三章复习知识点</a>
           </li>
         
           <li>
