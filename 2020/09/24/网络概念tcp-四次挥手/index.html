@@ -5,21 +5,25 @@
   
 
   
-  <title>自顶向下-第五章复习知识点 | WenZhao</title>
+  <title>计算机网络——TCP 四次挥手过程详解 | WenZhao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="计算机网络自顶向下-第五章复习知识点 一、比较集中式与分散式选路算法；了解链路状态算法和距离向量算法的特点。 集中式路由选择算法：用完整的、全局性的网络制式计算出从源到目的地之间的最低开销路径。该算法必须知道网络中每条链路的开销。（链路状态算法） 分散式路由选择算法：路由器以迭代、分布式的计算方式计算出最低开销路径。每个节点仅有与其直接相连链路的开销，然后通过迭代计算过程以及与相邻节点的信息交换。">
+  <meta name="description" content="计算机网络——TCP 四次挥手过程详解​       TCP 是面向连接的，连接的建立过程被称为“三次握手”，天下没有不散的宴席，有了连接的建立，就会有连接的断开， TCP 断开的过程通常被称为“四次挥手”。​       首先要明确一点，断开 TCP 请求既可以由客户端发起也可以由服务端发起。这里讨论客户端发起断开连接请求的情况。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="自顶向下-第五章复习知识点">
-<meta property="og:url" content="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B506/index.html">
+<meta property="og:title" content="计算机网络——TCP 四次挥手过程详解">
+<meta property="og:url" content="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/index.html">
 <meta property="og:site_name" content="WenZhao">
-<meta property="og:description" content="计算机网络自顶向下-第五章复习知识点 一、比较集中式与分散式选路算法；了解链路状态算法和距离向量算法的特点。 集中式路由选择算法：用完整的、全局性的网络制式计算出从源到目的地之间的最低开销路径。该算法必须知道网络中每条链路的开销。（链路状态算法） 分散式路由选择算法：路由器以迭代、分布式的计算方式计算出最低开销路径。每个节点仅有与其直接相连链路的开销，然后通过迭代计算过程以及与相邻节点的信息交换。">
+<meta property="og:description" content="计算机网络——TCP 四次挥手过程详解​       TCP 是面向连接的，连接的建立过程被称为“三次握手”，天下没有不散的宴席，有了连接的建立，就会有连接的断开， TCP 断开的过程通常被称为“四次挥手”。​       首先要明确一点，断开 TCP 请求既可以由客户端发起也可以由服务端发起。这里讨论客户端发起断开连接请求的情况。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-09-24T00:30:21.000Z">
-<meta property="article:modified_time" content="2020-09-24T00:34:27.748Z">
+<meta property="og:image" content="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/1.png">
+<meta property="og:image" content="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/2.png">
+<meta property="og:image" content="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/3.png">
+<meta property="article:published_time" content="2020-09-24T00:40:13.000Z">
+<meta property="article:modified_time" content="2020-09-24T00:48:23.716Z">
 <meta property="article:author" content="niewenzhao">
 <meta property="article:tag" content="面试">
 <meta property="article:tag" content="网络">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/1.png">
   
     <link rel="alternate" href="/atom.xml" title="WenZhao" type="application/atom+xml">
   
@@ -72,16 +76,12 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-网络概念06" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-网络概念tcp-四次挥手" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B506/" class="article-date">
-  <time datetime="2020-09-24T00:30:21.000Z" itemprop="datePublished">2020-09-24</time>
+    <a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" class="article-date">
+  <time datetime="2020-09-24T00:40:13.000Z" itemprop="datePublished">2020-09-24</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
@@ -90,7 +90,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      自顶向下-第五章复习知识点
+      计算机网络——TCP 四次挥手过程详解
     </h1>
   
 
@@ -98,30 +98,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>计算机网络自顶向下-第五章复习知识点</strong></p>
-<p><strong>一、比较集中式与分散式选路算法；了解链路状态算法和距离向量算法的特点。</strong></p>
-<p>集中式路由选择算法：用完整的、全局性的网络制式计算出从源到目的地之间的最低开销路径。该算法必须知道网络中每条链路的开销。（链路状态算法）</p>
-<p>分散式路由选择算法：路由器以迭代、分布式的计算方式计算出最低开销路径。每个节点仅有与其直接相连链路的开销，然后通过迭代计算过程以及与相邻节点的信息交换。（距离向量算法）</p>
- <a id="more"></a>  
+        <h2 id="计算机网络——TCP-四次挥手过程详解"><a href="#计算机网络——TCP-四次挥手过程详解" class="headerlink" title="计算机网络——TCP 四次挥手过程详解"></a>计算机网络——TCP 四次挥手过程详解</h2><p>​       TCP 是面向连接的，连接的建立过程被称为“三次握手”，天下没有不散的宴席，有了连接的建立，就会有连接的断开， TCP 断开的过程通常被称为“四次挥手”。<br>​       首先要明确一点，断开 TCP 请求既可以由客户端发起也可以由服务端发起。这里讨论客户端发起断开连接请求的情况。</p>
+<a id="more"></a>  
 
-<p>链路状态算法：网络拓扑和所有的链路开销都是已知的，是一种使用全局信息的、集中式的算法。实践中通过让每个节点向网络中所有其他节点广播链路状态分组来完成，其中每个链路状态分组包含它所连接的链路的标识和开销。</p>
-<p>距离向量算法：一种迭代的、异步的和分布式的算法。<strong>当遇到路由选择环路的时候可能会产生无穷计数的问题。</strong></p>
-<p><strong>二、了解AS，了解RIP、OSPF、BGP的作用。</strong></p>
-<p>**AS:**每个AS由一组通常处在相同管理控制下的路由器组成(autonomous system)。通常在一个ISP中的路由器以及互联它们的链路构成一个AS。</p>
-<p>AS可能有复杂结构，该独立机构要负责保证其内部的路由信息的一致性和可用性在AS内的路由器，可以自由地选择寻找路由、广播路由、确认路由以及检测路由的一致性的机制。</p>
-<p>每个AS使用相同的AS内部路由选择算法是必要的。</p>
-<p><strong>RIP</strong>（选路信息协议）：距离矢量算法，每30秒在邻居之间经响应报文交换，每个通道在AS中包括多达24个目的网络的列表。</p>
-<p><strong>OSPF</strong>（开放最短路优先）：作为一种AS内部路由选择协议，运行于IP协议上，是一种链路状态协议，使用洪泛链路状态信息和Dijkstra最低开销路径算法。</p>
-<p>使用OSPF时，路由器向自治系统内所有其他路由器广播路由选择信息，而不仅仅是向其相邻路由器广播。</p>
-<p>每当链路状态改变时，路由器就会广播链路状态信息；即使链路状态未变化也会周期性地（至少每隔30min一次）广播链路状态。</p>
-<p><strong>BGP</strong>（边界网关协议）：作为一种AS间路由选择协议，运行于TCP上。为每个AS提供一种手段：</p>
-<p>从邻居AS获得前缀地可达性信息。BGP允许每个子网向因特网地其余部分通告他的存在。</p>
-<p>确定到该前缀地“最好的”路由。一台路由器可能知道两条或更多条特定前缀地不同路由，通过BGP路由选择过程来确定最好的路由。</p>
+<p>过程如下：（可以先看文末的通俗对话模拟）</p>
+<p><img src="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/1.png" alt="1"></p>
+<p>(1) 客户端 A 发出一个关闭连接的命令，这会使得客户端的 TCP 发送一个特殊的 TCP 报文段给服务器 B，这个报文段的 FIN 标记位（finish 的缩写，表示结束）被置为 1。此时 A 由 ESTABLISHED 状态转为 FIN_WAIT_1 状态，等待来自 B 的 ACK 报文。<br>(2) B 收到这个报文段，检测到这是请求关闭连接的报文，发送一个确认报文段（ACK 字段为 1）给 A，表示收到，通知 A 可以释放连接了。 A 收到这个ACK 报文时，单方面释放了与 B 的连接，此时他不能再向 B 发送应用层数据了，但由于 B 可能还有数据没有发送完，所以此时 A 还可以接收来自 B 的报文段。此时 A 进入 FIN_WAIT_2 状态，等待来自 B 的 FIN 报文。 B 由ESTABLISHED 状态进入 CLOSE_WAIT 状态。<br>(3) 当 B 向 A 发送完所有数据之后，也向 A 发送一个关闭连接的报文段，FIN 和 ACK 都为 1 的报文段（还没有搞清楚为什么 ACK 也是 1，但估计是为了与第一次的请求关闭报文段区分开），并等待来自 A 的确认报文段。此时 B进入 LAST_ACK 状态。<br>(4) A 接收到 B 的关闭连接请求后，给 B 发一个确认报文段，通知 B 可以释放连接了。 B 收到之后，释放所有连接资源，进入 CLOSED 状态。而 A 并没有马上释放资源，而是进入 TIME_WAIT 状态，等待一段时间（自定义，通常为 30sec、 1min 或 2min），使得可以在 ACK 报文段丢失的情况下进行重传。在等待时间结束之后，连接正式关闭，客户端的所有资源也被释放，进入CLOSED 状态。以下分别为客户端和服务端的 TCP 连接状态转换（结合 TCP 的三次握手）：</p>
+<p><img src="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/2.png" alt="2"></p>
+<p><img src="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/3.png" alt="3"></p>
+<p>由上述的讨论可知，之所以需要进行四次挥手，在于某一方发起关闭连接的请求时，可以保证自己不再需要发送数据，但并不能猜测到对方是否已经发送完数据了，所以只是先通知对方我要断开连接了，你也差不多可以断开了，<br>对方可以断开的时候则又会发一个断开连接的报文段。而额外的两个的 ACK 报文是确保两个 FIN 报文都被接收到。</p>
+<h3 id="模拟成一段对话就是："><a href="#模拟成一段对话就是：" class="headerlink" title="模拟成一段对话就是："></a>模拟成一段对话就是：</h3><p>◆ A： “我发完数据了，不发了，要断开连接啦！ ”（FIN 报文）<br>◆ B： “好啊，你不发就不发，但先收完我发给你的数据好吗，很快就发完<br>了。 ”（ACK 报文）<br>◆ （A 继续接收来自 B 的数据）<br>◆ B（发完数据）： “好了，我也发完数据了，可以断开连接了！ ”（FIN/ACK<br>报文）<br>◆ A： “好，断开吧！ ”（ACK 报文）<br>◆ （B 收到后马上断开并释放资源，而 A 还要再等一会，万一这条消息丢失<br>了， B 还会再催促。等够一段时间， A 就默认 B 已经收到确认消息了，于<br>是也断开连接，释放资源） </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B506/" data-id="ckfg4baco001mugva2nye36z0" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" data-id="ckfg4bacq001ougva8oyshdfi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -132,19 +123,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/09/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94Tcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%AF%A6%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          自顶向下-第六章复习知识点
+          计算机网络——Tcp三次握手详解
         
       </div>
     </a>
   
   
-    <a href="/2020/09/23/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B504/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">自顶向下-第四章复习知识点</div>
+      <div class="article-nav-title">自顶向下-第六章复习知识点</div>
     </a>
   
 </nav>
