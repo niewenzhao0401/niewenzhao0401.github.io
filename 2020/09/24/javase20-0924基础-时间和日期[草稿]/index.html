@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>java中的时间和日期 | WenZhao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="如何取得年月日、小时分钟秒？ 1. public class DateTimeTest &amp;#123; 2. public static void main(String[] args) &amp;#123; 3. Calendar cal &#x3D; Calendar.getInstance(); 4. System.out.println(cal.get(Calendar.YEAR)); 5. System.o">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java中的时间和日期">
+<meta property="og:url" content="http://example.com/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-%E6%97%B6%E9%97%B4%E5%92%8C%E6%97%A5%E6%9C%9F[%E8%8D%89%E7%A8%BF]/index.html">
+<meta property="og:site_name" content="WenZhao">
+<meta property="og:description" content="如何取得年月日、小时分钟秒？ 1. public class DateTimeTest &amp;#123; 2. public static void main(String[] args) &amp;#123; 3. Calendar cal &#x3D; Calendar.getInstance(); 4. System.out.println(cal.get(Calendar.YEAR)); 5. System.o">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-24T07:40:18.000Z">
+<meta property="article:modified_time" content="2020-09-24T07:56:31.352Z">
+<meta property="article:author" content="niewenzhao">
+<meta property="article:tag" content="面试">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="WenZhao" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">WenZhao</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+          <a class="main-nav-link" href="/sitemap.xml">网站地图</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-javase20-0924基础-时间和日期[草稿]" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-%E6%97%B6%E9%97%B4%E5%92%8C%E6%97%A5%E6%9C%9F%5B%E8%8D%89%E7%A8%BF%5D/" class="article-date">
+  <time datetime="2020-09-24T07:40:18.000Z" itemprop="datePublished">2020-09-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javase/">-javase</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      java中的时间和日期
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="如何取得年月日、小时分钟秒？"><a href="#如何取得年月日、小时分钟秒？" class="headerlink" title="如何取得年月日、小时分钟秒？"></a>如何取得年月日、小时分钟秒？</h4><ol>
+<li><pre><code class="java">1. public class DateTimeTest &#123;
+2. public static void main(String[] args) &#123;
+3. Calendar cal = Calendar.getInstance();
+4. System.out.println(cal.get(Calendar.YEAR));
+5. System.out.println(cal.get(Calendar.MONTH)); // 0 - 11
+6. System.out.println(cal.get(Calendar.DATE));
+7. System.out.println(cal.get(Calendar.HOUR_OF_DAY));
+8. System.out.println(cal.get(Calendar.MINUTE));
+9. System.out.println(cal.get(Calendar.SECOND));
+10. // Java 8
+11. LocalDateTime dt = LocalDateTime.now();
+12. System.out.println(dt.getYear());
+13. System.out.println(dt.getMonthValue()); // 1 - 12
+14. System.out.println(dt.getDayOfMonth());
+15. System.out.println(dt.getHour());
+16. System.out.println(dt.getMinute());
+17. System.out.println(dt.getSecond());
+18. &#125;
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   &lt;!--more--&gt;  </span><br><span class="line"></span><br><span class="line">#### 如何取得从 1970 年 1 月 1 日 0 时 0 分 0 秒到现在的毫秒数？ </span><br><span class="line"></span><br><span class="line">1. &#96;&#96;&#96;java</span><br><span class="line">   1. Calendar.getInstance().getTimeInMillis(); &#x2F;&#x2F;第一种方式</span><br><span class="line">   2. System.currentTimeMillis(); &#x2F;&#x2F;第二种方式</span><br><span class="line">   3. &#x2F;&#x2F; Java 8</span><br><span class="line">   4. Clock.systemDefaultZone().millis()</span><br></pre></td></tr></table></figure>
+
+
+</code></pre>
+</li>
+</ol>
+<h4 id="如何取得某月的最后一天？"><a href="#如何取得某月的最后一天？" class="headerlink" title="如何取得某月的最后一天？"></a>如何取得某月的最后一天？</h4><p>获取当前月第一天： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> Calendar c = Calendar.getInstance();</span><br><span class="line"><span class="number">2.</span> c.add(Calendar.MONTH, <span class="number">0</span>);</span><br><span class="line"><span class="number">3.</span> c.set(Calendar.DAY_OF_MONTH,<span class="number">1</span>);<span class="comment">//设置为 1 号,当前日期既为本月第一天</span></span><br><span class="line"><span class="number">4.</span> String first = format.format(c.getTime());</span><br><span class="line"><span class="number">5.</span> System.out.println(<span class="string">&quot;===============first:&quot;</span>+first);</span><br></pre></td></tr></table></figure>
+
+<p>获取当前月最后一天 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> Calendar ca = Calendar.getInstance();</span><br><span class="line"><span class="number">2.</span> ca.set(Calendar.DAY_OF_MONTH, ca.getActualMaximum(Calendar.DAY_OF_MONTH));</span><br><span class="line"><span class="number">3.</span> String last = format.format(ca.getTime());</span><br><span class="line"><span class="number">4.</span> System.out.println(<span class="string">&quot;===============last:&quot;</span>+last); </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">15.</span> LocalDate today = LocalDate.now();</span><br><span class="line"><span class="number">16.</span> <span class="comment">//本月的第一天</span></span><br><span class="line"><span class="number">17.</span> LocalDate firstday = LocalDate.of(today.getYear(),today.getMonth(),<span class="number">1</span>);</span><br><span class="line"><span class="number">18.</span> <span class="comment">//本月的最后一天</span></span><br><span class="line"><span class="number">19.</span> LocalDate lastDay =today.with(TemporalAdjusters.lastDayOfMonth());</span><br><span class="line"><span class="number">20.</span> System.out.println(<span class="string">&quot;本月的第一天&quot;</span>+firstday);</span><br><span class="line"><span class="number">21.</span> System.out.println(<span class="string">&quot;本月的最后一天&quot;</span>+lastDay); </span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="如何格式化日期？"><a href="#如何格式化日期？" class="headerlink" title="如何格式化日期？"></a>如何格式化日期？</h4><ul>
+<li><p>Java.text.DataFormat 的子类（如 SimpleDateFormat 类）中的 format(Date)方法可将日期格式化。</p>
+</li>
+<li><p>Java 8 中可以用 java.time.format.DateTimeFormatter 来格式化时间日期，代码如下所示： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> <span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="number">2.</span> <span class="keyword">import</span> java.time.LocalDate;</span><br><span class="line"><span class="number">3.</span> <span class="keyword">import</span> java.time.format.DateTimeFormatter;</span><br><span class="line"><span class="number">4.</span> <span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="number">5.</span> <span class="class"><span class="keyword">class</span> <span class="title">DateFormatTest</span></span></span><br><span class="line"><span class="class">   </span>&#123; <span class="number">6.</span></span><br><span class="line"><span class="number">6.</span> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"><span class="number">7.</span> SimpleDateFormat oldFormatter = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy/MM/dd&quot;</span>);</span><br><span class="line"><span class="number">8.</span> Date date1 = <span class="keyword">new</span> Date();</span><br><span class="line"><span class="number">9.</span> System.out.println(oldFormatter.format(date1));</span><br><span class="line">   <span class="number">11.</span></span><br><span class="line"><span class="number">10.</span> <span class="comment">// Java 8</span></span><br><span class="line"><span class="number">11.</span> DateTimeFormatter newFormatter = DateTimeFormatter.ofPattern(<span class="string">&quot;yyyy/MM/dd&quot;</span>);</span><br><span class="line"><span class="number">12.</span> LocalDate date2 = LocalDate.now();</span><br><span class="line"><span class="number">13.</span> System.out.println(date2.format(newFormatter));</span><br><span class="line"><span class="number">14.</span> &#125;</span><br><span class="line"><span class="number">15.</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>​         <strong>补充：</strong> Java 的时间日期 API 一直以来都是被诟病的东西，为了解决这一问题， Java 8 中引入了新的时间日期 API，其中包括 LocalDate、 LocalTime、 LocalDateTime、 Clock、 Instant 等类，这些的类的设计都使用了不变模式，因此是线程安全的设计。 </p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-%E6%97%B6%E9%97%B4%E5%92%8C%E6%97%A5%E6%9C%9F[%E8%8D%89%E7%A8%BF]/" data-id="ckfgj49af000h8sva7n9jekv0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-intern/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">javase-intern（）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/javase/">-javase</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">-前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/" rel="tag">表单验证</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A1%A8%E6%A0%BC/" rel="tag">表格</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/jQuery/" style="font-size: 13.33px;">jQuery</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">基础</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 16.67px;">网络</a> <a href="/tags/%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/" style="font-size: 10px;">表单验证</a> <a href="/tags/%E8%A1%A8%E6%A0%BC/" style="font-size: 13.33px;">表格</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 20px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-%E6%97%B6%E9%97%B4%E5%92%8C%E6%97%A5%E6%9C%9F%5B%E8%8D%89%E7%A8%BF%5D/">java中的时间和日期</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-intern/">javase-intern（）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94Tcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%AF%A6%E8%A7%A3/">计算机网络——Tcp三次握手详解</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/">计算机网络——TCP 四次挥手过程详解</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/">自顶向下-第六章复习知识点</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 niewenzhao<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+    <a href="/sitemap.xml" class="mobile-nav-link">网站地图</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
