@@ -5,14 +5,20 @@
   
 
   
-  <title>WenZhao</title>
+  <title>javase-intern（） | WenZhao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="WenZhao">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="Java intern() 方法intern() 方法返回字符串对象的规范化表示形式。 它遵循以下规则：对于任意两个字符串 s 和 t，当且仅当 s.equals(t) 为 true 时，s.intern() &#x3D;&#x3D; t.intern() 才为 true。 语法1public String intern()  参数 无  返回值一个字符串，内容与此字符串相同，但一定取自具有唯一字符串的池。 实例12">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javase-intern（）">
+<meta property="og:url" content="http://example.com/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-intern/index.html">
 <meta property="og:site_name" content="WenZhao">
+<meta property="og:description" content="Java intern() 方法intern() 方法返回字符串对象的规范化表示形式。 它遵循以下规则：对于任意两个字符串 s 和 t，当且仅当 s.equals(t) 为 true 时，s.intern() &#x3D;&#x3D; t.intern() 才为 true。 语法1public String intern()  参数 无  返回值一个字符串，内容与此字符串相同，但一定取自具有唯一字符串的池。 实例12">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-24T06:49:58.000Z">
+<meta property="article:modified_time" content="2020-09-24T07:17:28.726Z">
 <meta property="article:author" content="niewenzhao">
+<meta property="article:tag" content="面试">
+<meta property="article:tag" content="基础">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="WenZhao" type="application/atom+xml">
@@ -66,9 +72,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-javase20-0924基础-intern" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-javase20-0924基础-intern" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-intern/" class="article-date">
   <time datetime="2020-09-24T06:49:58.000Z" itemprop="datePublished">2020-09-24</time>
@@ -85,8 +89,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-intern/">javase-intern（）</a>
+    <h1 class="article-title" itemprop="name">
+      javase-intern（）
     </h1>
   
 
@@ -155,477 +159,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-计算机网络——Tcp三次握手详解" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94Tcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%AF%A6%E8%A7%A3/" class="article-date">
-  <time datetime="2020-09-24T00:54:02.000Z" itemprop="datePublished">2020-09-24</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94Tcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%AF%A6%E8%A7%A3/">计算机网络——Tcp三次握手详解</a>
-    </h1>
+    <a href="/2020/09/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94Tcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%AF%A6%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">计算机网络——Tcp三次握手详解</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="计算机网络——TCP-三次握手详解"><a href="#计算机网络——TCP-三次握手详解" class="headerlink" title="计算机网络——TCP 三次握手详解"></a>计算机网络——TCP 三次握手详解</h2><p><strong>重点内容：</strong></p>
-<ol>
-<li><p>TCP 报文段结构</p>
-</li>
-<li><p>三次握手</p>
-</li>
-<li><p>SYN 洪泛攻击</p>
-</li>
-<li><p>为什么是“三次”</p>
-<p> TCP 是面向连接的(connection-oriented)，即收发双方在发送数据之前，必须首先建立一个连接，这样在连接断开之前，就一直使用这个连接传输数据。建立连接包括参数的设置、内存空间的分配，收发双方参数的协商等，这一过程需要经过三次成功的沟通，一般叫做“三次握手” (a three-way handshake)。用通俗的话来讲，这三次沟通就是：</p></li></ol>
-        
-          <p class="article-more-link">
-            <a href="/2020/09/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94Tcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%AF%A6%E8%A7%A3/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94Tcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%AF%A6%E8%A7%A3/" data-id="ckfghien2000wpcvadw3ebrnu" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-网络概念tcp-四次挥手" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" class="article-date">
-  <time datetime="2020-09-24T00:40:13.000Z" itemprop="datePublished">2020-09-24</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/">计算机网络——TCP 四次挥手过程详解</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="计算机网络——TCP-四次挥手过程详解"><a href="#计算机网络——TCP-四次挥手过程详解" class="headerlink" title="计算机网络——TCP 四次挥手过程详解"></a>计算机网络——TCP 四次挥手过程详解</h2><p>​       TCP 是面向连接的，连接的建立过程被称为“三次握手”，天下没有不散的宴席，有了连接的建立，就会有连接的断开， TCP 断开的过程通常被称为“四次挥手”。<br>​       首先要明确一点，断开 TCP 请求既可以由客户端发起也可以由服务端发起。这里讨论客户端发起断开连接请求的情况。</p>
-        
-          <p class="article-more-link">
-            <a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" data-id="ckfghien3000ypcva216j2fgy" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-网络概念05" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/" class="article-date">
-  <time datetime="2020-09-24T00:37:34.000Z" itemprop="datePublished">2020-09-24</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/">自顶向下-第六章复习知识点</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>计算机网络自顶向下-第六章复习知识点</strong></p>
-<p><strong>1.数据链路层提供的服务。</strong></p>
-<ol>
-<li><p>成帧。 （网络层数据报经链路传送前，链路层协议将其用链路层帧封装起来）</p>
-</li>
-<li><p>链路接入。 （MAC协议规定了帧在链路传输的规则。链路的一段仅有一个发送方，另一端只有一个接收方的点对点链路）</p>
-</li>
-<li><p>可靠交付。 （保证无差错地经链路层移动每个网络数据报）</p>
-</li>
-<li><p>差错检验和纠正。</p></li></ol>
-        
-          <p class="article-more-link">
-            <a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/" data-id="ckfghiemy000ppcvaep9rdqjg" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-网络概念06" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B506/" class="article-date">
-  <time datetime="2020-09-24T00:30:21.000Z" itemprop="datePublished">2020-09-24</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B506/">自顶向下-第五章复习知识点</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>计算机网络自顶向下-第五章复习知识点</strong></p>
-<p><strong>一、比较集中式与分散式选路算法；了解链路状态算法和距离向量算法的特点。</strong></p>
-<p>集中式路由选择算法：用完整的、全局性的网络制式计算出从源到目的地之间的最低开销路径。该算法必须知道网络中每条链路的开销。（链路状态算法）</p>
-<p>分散式路由选择算法：路由器以迭代、分布式的计算方式计算出最低开销路径。每个节点仅有与其直接相连链路的开销，然后通过迭代计算过程以及与相邻节点的信息交换。（距离向量算法）</p>
-        
-          <p class="article-more-link">
-            <a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B506/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B506/" data-id="ckfghien0000rpcva0b43aizd" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-网络概念04" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/23/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B504/" class="article-date">
-  <time datetime="2020-09-23T04:23:38.000Z" itemprop="datePublished">2020-09-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/23/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B504/">自顶向下-第四章复习知识点</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>计算机网络自顶向下-第四章复习知识点</strong></p>
-<p><strong>一、转发与选路，建立连接；网络层的服务与功能，因特网网络服务模型。</strong> <strong>路由器的基本功能与组成。</strong></p>
-<p>转发：将分组从路由器的输入移动到适当的路由器输出</p>
-<p>选路：决定分组从源到目的地所采取的路由</p>
-<p>连接建立：要求从源到目的地沿着所选择的路径彼此握手，以便在给定源到目的地连接中的网络层数据分组能够开始流动之前建立起状态。</p>
-<p>网络层连接和无连接服务：数据报网络提供网络层无连接服务，虚电路网络提供网络层连接服务</p>
-        
-          <p class="article-more-link">
-            <a href="/2020/09/23/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B504/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/23/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B504/" data-id="ckfghiemw000lpcva96sb37zh" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-网络概念02" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B502/" class="article-date">
-  <time datetime="2020-09-22T12:50:38.000Z" itemprop="datePublished">2020-09-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B502/">自顶向下-第二章复习知识点</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>一、</strong> <strong>网络应用程序体系结构（客户机/服务器和P2P）及其特点；套接字；进程标示与寻址；因特网运输协议提供的服务。</strong></p>
-<p>客户机/服务器：</p>
-<p>有一个总是打开的主机称为服务器，他总是服务于来自许多其他称为客户的主机的请求。</p>
-<ol>
-<li><p>客户相互之间不能直接通信</p>
-</li>
-<li><p>服务器具有固定的、周知的地址、该地址称为IP地址。客户总能通过向该服务器的IP地址发送分组来与其联系。</p></li></ol>
-        
-          <p class="article-more-link">
-            <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B502/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B502/" data-id="ckfghiemr000fpcvacpdv505q" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-网络概念03" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/" class="article-date">
-  <time datetime="2020-09-22T12:50:38.000Z" itemprop="datePublished">2020-09-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/">自顶向下-第三章复习知识点</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>一、</strong> <strong>传输层的目的与提供的服务</strong></p>
-<p>1.在运行不同主机上应用进程之间提供逻辑通信</p>
-<p>2.运输协议运行在端系统中</p>
-<ol start="3">
-<li>应用程序可供使用的运输协议不止一个</li>
-</ol>
-<p>提供的服务：可靠的、按序的交付 (TCP) 不可靠、无序的交付: UDP </p>
-<p><strong>二、多路复用与多路分解；端口号；标识UDP套接字的二元组、标识TCP套接字的四元组。</strong></p>
-        
-          <p class="article-more-link">
-            <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/" data-id="ckfghiemv000kpcvaaq9vcva8" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-网络概念01" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B501/" class="article-date">
-  <time datetime="2020-09-22T11:05:38.000Z" itemprop="datePublished">2020-09-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B501/">自顶向下-第一章复习知识点</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>一、什么是因特网？</strong></p>
-<p>因特网是一个世界范围内的计算机网络，即它是一个互联了遍及全世界的数以亿计的计算设备的系统。</p>
-<p>可通过基本硬件和软件设备组件（端系统、通信链路、运行网络应用）以及分布式应用提供服务的联网基础设施(通信基础设施使能分布式应用，提供给应用通信服务)来描述。</p>
-        
-          <p class="article-more-link">
-            <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B501/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B501/" data-id="ckfghiems000gpcva8ohiga86" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-index - 副本" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/22/index%20-%20%E5%89%AF%E6%9C%AC/" class="article-date">
-  <time datetime="2020-09-22T05:05:38.000Z" itemprop="datePublished">2020-09-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/22/index%20-%20%E5%89%AF%E6%9C%AC/">javase</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>士大夫山豆根萨格11</p>
-<p>1fsdfsdgsdgsdds</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/22/index%20-%20%E5%89%AF%E6%9C%AC/" data-id="ckfghiemi0005pcva7kta0snt" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/" rel="tag">表单验证</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%A1%A8%E6%A0%BC/" rel="tag">表格</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
-  </nav>
 
 </section>
         
