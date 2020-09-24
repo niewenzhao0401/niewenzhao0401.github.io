@@ -94,60 +94,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Java-intern-方法"><a href="#Java-intern-方法" class="headerlink" title="Java intern() 方法"></a>Java intern() 方法</h1><h5 id><a href="#" class="headerlink" title></a></h5><p>intern() 方法返回字符串对象的规范化表示形式。</p>
+        <h1 id="Java-intern-方法"><a href="#Java-intern-方法" class="headerlink" title="Java intern() 方法"></a>Java intern() 方法</h1><p>intern() 方法返回字符串对象的规范化表示形式。</p>
 <p>它遵循以下规则：对于任意两个字符串 s 和 t，当且仅当 s.equals(t) 为 true 时，s.intern() == t.intern() 才为 true。</p>
 <h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">intern</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
-
-<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><ul>
-<li>无</li>
-</ul>
-<h3 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h3><p>一个字符串，内容与此字符串相同，但一定取自具有唯一字符串的池。</p>
-<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">        String Str1 = <span class="keyword">new</span> String(<span class="string">&quot;www.runoob.com&quot;</span>);</span><br><span class="line">        String Str2 = <span class="keyword">new</span> String(<span class="string">&quot;WWW.RUNOOB.COM&quot;</span>);</span><br><span class="line"></span><br><span class="line">        System.out.print(<span class="string">&quot;规范表示:&quot;</span> );</span><br><span class="line">        System.out.println(Str1.intern());</span><br><span class="line"></span><br><span class="line">        System.out.print(<span class="string">&quot;规范表示:&quot;</span> );</span><br><span class="line">        System.out.println(Str2.intern());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>以上程序执行结果为：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">规范表示:www.runoob.com</span><br><span class="line">规范表示:WWW.RUNOOB.COM</span><br></pre></td></tr></table></figure>
-
-<h3 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h3><p>尽管在输出中调用intern方法并没有什么效果，但是实际上后台这个方法会做一系列的动作和操作。在调<strong>用”ab”.intern()方法的时候会返回”ab”</strong>，但是这个方法<strong>会首先检查字符串池中是否有</strong>”ab”这个字符串，如果存在则返回这个字符串的引用，否则就将这个字符串添加到字符串池中，然会返回这个字符串的引用。</p>
-<p>可以看下面一个范例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="string">&quot;a&quot;</span>;</span><br><span class="line">String str2 = <span class="string">&quot;b&quot;</span>;</span><br><span class="line">String str3 = <span class="string">&quot;ab&quot;</span>;</span><br><span class="line">String str4 = str1 + str2;</span><br><span class="line">String str5 = <span class="keyword">new</span> String(<span class="string">&quot;ab&quot;</span>);</span><br><span class="line"> </span><br><span class="line">System.out.println(str5.equals(str3));</span><br><span class="line">System.out.println(str5 == str3);</span><br><span class="line">System.out.println(str5.intern() == str3);</span><br><span class="line">System.out.println(str5.intern() == str4);</span><br></pre></td></tr></table></figure>
-
-<p>得到的结果：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">true</span></span><br><span class="line"><span class="keyword">false</span></span><br><span class="line"><span class="keyword">true</span></span><br><span class="line"><span class="keyword">false</span></span><br></pre></td></tr></table></figure>
-
-<p>为什么会得到这样的一个结果呢？我们一步一步的分析。</p>
-<ul>
-<li>第一、str5.equals(str3)这个结果为true，不用太多的解释，因为字符串的值的内容相同。</li>
-<li>第二、<strong>str5 == str3对比的是引用的地址是否相同</strong>，由于str5采用new String方式定义的，所以地址引用一定不相等。所以结果为false。</li>
-<li>第三、当str5调用intern的时候，会检查字符串池中是否含有该字符串。由于之前定义的str3已经进入字符串池中，所以会得到相同的引用。</li>
-<li>第四，当str4 = str1 + str2后，str4的值也为”ab”，但是为什么这个结果会是false呢？先看下面代码：</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">String a = <span class="keyword">new</span> String(<span class="string">&quot;ab&quot;</span>);</span><br><span class="line">String b = <span class="keyword">new</span> String(<span class="string">&quot;ab&quot;</span>);</span><br><span class="line">String c = <span class="string">&quot;ab&quot;</span>;</span><br><span class="line">String d = <span class="string">&quot;a&quot;</span> + <span class="string">&quot;b&quot;</span>;</span><br><span class="line">String e = <span class="string">&quot;b&quot;</span>;</span><br><span class="line">String f = <span class="string">&quot;a&quot;</span> + e;</span><br><span class="line"></span><br><span class="line">System.out.println(b.intern() == a);</span><br><span class="line">System.out.println(b.intern() == c);</span><br><span class="line">System.out.println(b.intern() == d);</span><br><span class="line">System.out.println(b.intern() == f);</span><br><span class="line">System.out.println(b.intern() == a.intern());</span><br></pre></td></tr></table></figure>
-
-<p>运行结果：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">false</span></span><br><span class="line"><span class="keyword">true</span></span><br><span class="line"><span class="keyword">true</span></span><br><span class="line"><span class="keyword">false</span></span><br><span class="line"><span class="keyword">true</span></span><br></pre></td></tr></table></figure>
-
-<p>由运行结果可以看出来，b.intern() == a和b.intern() == c可知，<strong>采用new 创建的字符串对象不进入字符串池</strong>，并且通过b.intern() == d和b.intern() == f可知，字符串相加的时候，都是<strong>静态字符串的结果会添加到字符串</strong>池，如果其中含有变量（<strong>如f中的e）则不会进入字符串池中</strong>。但是字符串一旦进入字符串池中，就会先查找池中有无此对象。如果有此对象，则让对象引用指向此对象。如果无此对象，则先创建此对象，再让对象引用指向此对象。</p>
-<p>当研究到这个地方的时候，突然想起来经常遇到的一个比较经典的Java问题，就是对比equal和==的区别，当时记得老师只是说“==”判断的是“地址”，但是并没说清楚什么时候会有地址相等的情况。现在看来，在定义变量的时候赋值，如果赋值的是静态的字符串，就会执行进入字符串池的操作，如果池中含有该字符串，则返回引用。</p>
-<p>执行下面的代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">String a = <span class="string">&quot;abc&quot;</span>;</span><br><span class="line">String b = <span class="string">&quot;abc&quot;</span>;</span><br><span class="line">String c = <span class="string">&quot;a&quot;</span> + <span class="string">&quot;b&quot;</span> + <span class="string">&quot;c&quot;</span>;</span><br><span class="line">String d = <span class="string">&quot;a&quot;</span> + <span class="string">&quot;bc&quot;</span>;</span><br><span class="line">String e = <span class="string">&quot;ab&quot;</span> + <span class="string">&quot;c&quot;</span>;</span><br><span class="line">        </span><br><span class="line">System.out.println(a == b);</span><br><span class="line">System.out.println(a == c);</span><br><span class="line">System.out.println(a == d);</span><br><span class="line">System.out.println(a == e);</span><br><span class="line">System.out.println(c == d);</span><br><span class="line">System.out.println(c == e);</span><br></pre></td></tr></table></figure>
-
-<p>运行的结果：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">true</span></span><br><span class="line"><span class="keyword">true</span></span><br><span class="line"><span class="keyword">true</span></span><br><span class="line"><span class="keyword">true</span></span><br><span class="line"><span class="keyword">true</span></span><br><span class="line"><span class="keyword">true</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="相关面试题："><a href="#相关面试题：" class="headerlink" title="相关面试题："></a>相关面试题：</h5><p>请说出下面程序的输</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="number">1.</span> <span class="class"><span class="keyword">class</span> <span class="title">StringEqualTest</span> </span>&#123;</span><br><span class="line"><span class="number">2.</span> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"><span class="number">3.</span> String s1 = <span class="string">&quot;Programming&quot;</span>;</span><br><span class="line"><span class="number">4.</span> String s2 = <span class="keyword">new</span> String(<span class="string">&quot;Programming&quot;</span>);</span><br><span class="line"><span class="number">5.</span> String s3 = <span class="string">&quot;Program&quot;</span>;</span><br><span class="line"><span class="number">6.</span> String s4 = <span class="string">&quot;ming&quot;</span>;</span><br><span class="line"><span class="number">7.</span> String s5 = <span class="string">&quot;Program&quot;</span> + <span class="string">&quot;ming&quot;</span>;</span><br><span class="line"><span class="number">8.</span> String s6 = s3 + s4;</span><br><span class="line"><span class="number">9.</span> System.out.println(s1 == s2);            <span class="comment">//false</span></span><br><span class="line"><span class="number">10.</span> System.out.println(s1 == s5);            <span class="comment">//true</span></span><br><span class="line"><span class="number">11.</span> System.out.println(s1 == s6);           <span class="comment">//false</span></span><br><span class="line"><span class="number">12.</span> System.out.println(s1 == s6.intern());  <span class="comment">//true</span></span><br><span class="line"><span class="number">13.</span> System.out.println(s2 == s2.intern());   <span class="comment">//false</span></span><br><span class="line"><span class="number">14.</span> &#125;</span><br><span class="line"><span class="number">15.</span> &#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="补充：解答上面的面试题需要知道如下两个知识点："><a href="#补充：解答上面的面试题需要知道如下两个知识点：" class="headerlink" title="补充：解答上面的面试题需要知道如下两个知识点："></a><strong>补充：解答上面的面试题需要知道如下两个知识点：</strong></h5><ol>
-<li>String 对象的 intern（） 方法会得到字符串对象在常量池中对应的版本的引用（如果常量池中有一个字符串与String 对象的 equals 结果是 true） ，如果<strong>常量池中没有对应的字符串，则该字符串将被添加到常量池中，然后返回常量池中字符串的引用；</strong></li>
-<li><strong>字符串的+操作其本质是创建了 StringBuilder 对象进行 append 操作</strong>， 然后将拼接后的 StringBuilder 对<br>象 用 toString 方法处理成 String 对象，这一点可以用 javap -c StringEqualTest.class 命令获得 class 文件对应的 JVM 字节码指令就可以看出来。</li>
-</ol>
-
+        
+          <p class="article-more-link">
+            <a href="/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-intern/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-intern/" data-id="ckfghiemo000bpcva3mvz2jof" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-intern/" data-id="ckfghloon000c5cva5djcetfz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -203,7 +161,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94Tcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%AF%A6%E8%A7%A3/" data-id="ckfghien2000wpcvadw3ebrnu" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94Tcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%AF%A6%E8%A7%A3/" data-id="ckfghlopb00245cvaeipjd61l" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -250,7 +208,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" data-id="ckfghien3000ypcva216j2fgy" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" data-id="ckfghlopa00235cvac06d9lza" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -306,7 +264,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/" data-id="ckfghiemy000ppcvaep9rdqjg" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/" data-id="ckfghloov000p5cva90kv70o1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -356,7 +314,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B506/" data-id="ckfghien0000rpcva0b43aizd" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B506/" data-id="ckfghloow000r5cvadp820gyo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -408,7 +366,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/23/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B504/" data-id="ckfghiemw000lpcva96sb37zh" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/23/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B504/" data-id="ckfghloos000m5cvaar423qsh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -461,7 +419,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B502/" data-id="ckfghiemr000fpcvacpdv505q" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B502/" data-id="ckfghlooq000g5cva7upt5daj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -515,7 +473,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/" data-id="ckfghiemv000kpcvaaq9vcva8" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/" data-id="ckfghloor000j5cva1fip7psr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -564,7 +522,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B501/" data-id="ckfghiems000gpcva8ohiga86" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B501/" data-id="ckfghloop000e5cvaf14p1ngp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -576,14 +534,14 @@
 
 
   
-    <article id="post-index - 副本" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-index - 副本 (2)" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/09/22/index%20-%20%E5%89%AF%E6%9C%AC/" class="article-date">
+    <a href="/2020/09/22/index%20-%20%E5%89%AF%E6%9C%AC%20(2)/" class="article-date">
   <time datetime="2020-09-22T05:05:38.000Z" itemprop="datePublished">2020-09-22</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
+    <a class="article-category-link" href="/categories/javase/">-javase</a>
   </div>
 
   </div>
@@ -594,7 +552,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/22/index%20-%20%E5%89%AF%E6%9C%AC/">javase</a>
+      <a class="article-title" href="/2020/09/22/index%20-%20%E5%89%AF%E6%9C%AC%20(2)/">javase</a>
     </h1>
   
 
@@ -608,11 +566,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/22/index%20-%20%E5%89%AF%E6%9C%AC/" data-id="ckfghiemi0005pcva7kta0snt" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/22/index%20-%20%E5%89%AF%E6%9C%AC%20(2)/" data-id="ckfghloo800055cvabjkgadvm" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/" rel="tag">表单验证</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%A1%A8%E6%A0%BC/" rel="tag">表格</a></li></ul>
-
     </footer>
   </div>
   

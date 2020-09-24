@@ -7,15 +7,15 @@
   
   <title>javase-intern（） | WenZhao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Java intern() 方法intern() 方法返回字符串对象的规范化表示形式。 它遵循以下规则：对于任意两个字符串 s 和 t，当且仅当 s.equals(t) 为 true 时，s.intern() &#x3D;&#x3D; t.intern() 才为 true。 语法1public String intern()  参数 无  返回值一个字符串，内容与此字符串相同，但一定取自具有唯一字符串的池。 实例12">
+  <meta name="description" content="Java intern() 方法intern() 方法返回字符串对象的规范化表示形式。 它遵循以下规则：对于任意两个字符串 s 和 t，当且仅当 s.equals(t) 为 true 时，s.intern() &#x3D;&#x3D; t.intern() 才为 true。 语法1public String intern()">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javase-intern（）">
 <meta property="og:url" content="http://example.com/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-intern/index.html">
 <meta property="og:site_name" content="WenZhao">
-<meta property="og:description" content="Java intern() 方法intern() 方法返回字符串对象的规范化表示形式。 它遵循以下规则：对于任意两个字符串 s 和 t，当且仅当 s.equals(t) 为 true 时，s.intern() &#x3D;&#x3D; t.intern() 才为 true。 语法1public String intern()  参数 无  返回值一个字符串，内容与此字符串相同，但一定取自具有唯一字符串的池。 实例12">
+<meta property="og:description" content="Java intern() 方法intern() 方法返回字符串对象的规范化表示形式。 它遵循以下规则：对于任意两个字符串 s 和 t，当且仅当 s.equals(t) 为 true 时，s.intern() &#x3D;&#x3D; t.intern() 才为 true。 语法1public String intern()">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-09-24T06:49:58.000Z">
-<meta property="article:modified_time" content="2020-09-24T07:17:28.726Z">
+<meta property="article:modified_time" content="2020-09-24T07:19:55.547Z">
 <meta property="article:author" content="niewenzhao">
 <meta property="article:tag" content="面试">
 <meta property="article:tag" content="基础">
@@ -98,9 +98,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Java-intern-方法"><a href="#Java-intern-方法" class="headerlink" title="Java intern() 方法"></a>Java intern() 方法</h1><h5 id><a href="#" class="headerlink" title></a></h5><p>intern() 方法返回字符串对象的规范化表示形式。</p>
+        <h1 id="Java-intern-方法"><a href="#Java-intern-方法" class="headerlink" title="Java intern() 方法"></a>Java intern() 方法</h1><p>intern() 方法返回字符串对象的规范化表示形式。</p>
 <p>它遵循以下规则：对于任意两个字符串 s 和 t，当且仅当 s.equals(t) 为 true 时，s.intern() == t.intern() 才为 true。</p>
 <h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">intern</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>  
 
 <h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><ul>
 <li>无</li>
@@ -145,13 +147,13 @@
 
 <h5 id="补充：解答上面的面试题需要知道如下两个知识点："><a href="#补充：解答上面的面试题需要知道如下两个知识点：" class="headerlink" title="补充：解答上面的面试题需要知道如下两个知识点："></a><strong>补充：解答上面的面试题需要知道如下两个知识点：</strong></h5><ol>
 <li>String 对象的 intern（） 方法会得到字符串对象在常量池中对应的版本的引用（如果常量池中有一个字符串与String 对象的 equals 结果是 true） ，如果<strong>常量池中没有对应的字符串，则该字符串将被添加到常量池中，然后返回常量池中字符串的引用；</strong></li>
-<li><strong>字符串的+操作其本质是创建了 StringBuilder 对象进行 append 操作</strong>， 然后将拼接后的 StringBuilder 对<br>象 用 toString 方法处理成 String 对象，这一点可以用 javap -c StringEqualTest.class 命令获得 class 文件对应的 JVM 字节码指令就可以看出来。</li>
+<li><strong>字符串的+操作其本质是创建了 StringBuilder 对象进行 append 操作</strong>， 然后将拼接后的 StringBuilder 对<br> 象 用 toString 方法处理成 String 对象，这一点可以用 javap -c StringEqualTest.class 命令获得 class 文件对应的 JVM 字节码指令就可以看出来。</li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-intern/" data-id="ckfghiemo000bpcva3mvz2jof" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-intern/" data-id="ckfghloon000c5cva5djcetfz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
