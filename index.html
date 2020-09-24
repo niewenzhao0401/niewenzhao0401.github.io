@@ -113,9 +113,7 @@
 16. System.out.println(dt.getMinute());
 17. System.out.println(dt.getSecond());
 18. &#125;
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--more--&gt;  </span><br><span class="line"></span><br><span class="line">#### 如何取得从 1970 年 1 月 1 日 0 时 0 分 0 秒到现在的毫秒数？ </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">1. &#96;&#96;&#96;java</span><br><span class="line">   1. Calendar.getInstance().getTimeInMillis(); &#x2F;&#x2F;第一种方式</span><br><span class="line">   2. System.currentTimeMillis(); &#x2F;&#x2F;第二种方式</span><br><span class="line">   3. &#x2F;&#x2F; Java 8</span><br><span class="line">   4. Clock.systemDefaultZone().millis()</span><br></pre></td></tr></table></figure>
-
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--more--&gt;  </span><br><span class="line"></span><br><span class="line">#### 如何取得从 1970 年 1 月 1 日 0 时 0 分 0 秒到现在的毫秒数？ </span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;java</span><br><span class="line">1. Calendar.getInstance().getTimeInMillis(); &#x2F;&#x2F;第一种方式</span><br><span class="line">2. System.currentTimeMillis(); &#x2F;&#x2F;第二种方式</span><br><span class="line">3. &#x2F;&#x2F; Java 8</span><br><span class="line">4. Clock.systemDefaultZone().millis()</span><br></pre></td></tr></table></figure>
 </code></pre>
 </li>
 </ol>
@@ -134,7 +132,6 @@
 </li>
 <li><p>Java 8 中可以用 java.time.format.DateTimeFormatter 来格式化时间日期，代码如下所示： </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> <span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="number">2.</span> <span class="keyword">import</span> java.time.LocalDate;</span><br><span class="line"><span class="number">3.</span> <span class="keyword">import</span> java.time.format.DateTimeFormatter;</span><br><span class="line"><span class="number">4.</span> <span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="number">5.</span> <span class="class"><span class="keyword">class</span> <span class="title">DateFormatTest</span></span></span><br><span class="line"><span class="class">   </span>&#123; <span class="number">6.</span></span><br><span class="line"><span class="number">6.</span> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"><span class="number">7.</span> SimpleDateFormat oldFormatter = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy/MM/dd&quot;</span>);</span><br><span class="line"><span class="number">8.</span> Date date1 = <span class="keyword">new</span> Date();</span><br><span class="line"><span class="number">9.</span> System.out.println(oldFormatter.format(date1));</span><br><span class="line">   <span class="number">11.</span></span><br><span class="line"><span class="number">10.</span> <span class="comment">// Java 8</span></span><br><span class="line"><span class="number">11.</span> DateTimeFormatter newFormatter = DateTimeFormatter.ofPattern(<span class="string">&quot;yyyy/MM/dd&quot;</span>);</span><br><span class="line"><span class="number">12.</span> LocalDate date2 = LocalDate.now();</span><br><span class="line"><span class="number">13.</span> System.out.println(date2.format(newFormatter));</span><br><span class="line"><span class="number">14.</span> &#125;</span><br><span class="line"><span class="number">15.</span> &#125;</span><br></pre></td></tr></table></figure>
-
 <p>​         <strong>补充：</strong> Java 的时间日期 API 一直以来都是被诟病的东西，为了解决这一问题， Java 8 中引入了新的时间日期 API，其中包括 LocalDate、 LocalTime、 LocalDateTime、 Clock、 Instant 等类，这些的类的设计都使用了不变模式，因此是线程安全的设计。 </p>
 </li>
 </ul>
@@ -142,7 +139,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-%E6%97%B6%E9%97%B4%E5%92%8C%E6%97%A5%E6%9C%9F[%E8%8D%89%E7%A8%BF]/" data-id="ckfgjaweu000g08vagyl56ult" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-%E6%97%B6%E9%97%B4%E5%92%8C%E6%97%A5%E6%9C%9F[%E8%8D%89%E7%A8%BF]/" data-id="ckfgjf13x000io0vadoryhx40" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -191,7 +188,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-intern/" data-id="ckfgjaweq000c08vahxdt0ov7" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-intern/" data-id="ckfgjf13t000do0va4zvw5e7f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -247,7 +244,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94Tcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%AF%A6%E8%A7%A3/" data-id="ckfgjawfz002a08vaefj1gm5c" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94Tcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%AF%A6%E8%A7%A3/" data-id="ckfgjf14k0022o0vaaj776kbe" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -294,7 +291,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" data-id="ckfgjawf7000z08va92ld2bxf" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" data-id="ckfgjf14j0020o0va1d4lee5f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -350,7 +347,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/" data-id="ckfgjawf3000s08va2qbog9dp" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/" data-id="ckfgjf145000to0vadcz4dqm0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -400,7 +397,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B506/" data-id="ckfgjawf5000w08va0skqbd77" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B506/" data-id="ckfgjf14j001zo0va2rom73vd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -452,7 +449,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/23/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B504/" data-id="ckfgjawf1000p08va0yp0g2n6" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/23/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B504/" data-id="ckfgjf143000po0va0t5f2rqy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -505,7 +502,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B502/" data-id="ckfgjawev000j08va0dpn78ki" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B502/" data-id="ckfgjf13z000jo0va756yg27g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -559,7 +556,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/" data-id="ckfgjawex000m08vady6q803t" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/" data-id="ckfgjf141000no0vafj5v6exv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -608,7 +605,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B501/" data-id="ckfgjawet000e08vag4buhbku" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B501/" data-id="ckfgjf13u000eo0va3qpb34qs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
