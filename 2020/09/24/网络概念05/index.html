@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>网络自顶向下-第六章复习知识点 | WenZhao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="计算机网络自顶向下-第六章复习知识点 1.数据链路层提供的服务。  成帧。 （网络层数据报经链路传送前，链路层协议将其用链路层帧封装起来）  链路接入。 （MAC协议规定了帧在链路传输的规则。链路的一段仅有一个发送方，另一端只有一个接收方的点对点链路）  可靠交付。 （保证无差错地经链路层移动每个网络数据报）  差错检验和纠正。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络自顶向下-第六章复习知识点">
+<meta property="og:url" content="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/index.html">
+<meta property="og:site_name" content="WenZhao">
+<meta property="og:description" content="计算机网络自顶向下-第六章复习知识点 1.数据链路层提供的服务。  成帧。 （网络层数据报经链路传送前，链路层协议将其用链路层帧封装起来）  链路接入。 （MAC协议规定了帧在链路传输的规则。链路的一段仅有一个发送方，另一端只有一个接收方的点对点链路）  可靠交付。 （保证无差错地经链路层移动每个网络数据报）  差错检验和纠正。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/1.png">
+<meta property="article:published_time" content="2020-09-24T00:23:34.000Z">
+<meta property="article:modified_time" content="2020-09-24T00:28:48.932Z">
+<meta property="article:author" content="niewenzhao">
+<meta property="article:tag" content="面试">
+<meta property="article:tag" content="网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="WenZhao" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">WenZhao</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+          <a class="main-nav-link" href="/sitemap.xml">网站地图</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-网络概念05" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/" class="article-date">
+  <time datetime="2020-09-24T00:23:34.000Z" itemprop="datePublished">2020-09-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      网络自顶向下-第六章复习知识点
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>计算机网络自顶向下-第六章复习知识点</strong></p>
+<p><strong>1.数据链路层提供的服务。</strong></p>
+<ol>
+<li><p>成帧。 （网络层数据报经链路传送前，链路层协议将其用链路层帧封装起来）</p>
+</li>
+<li><p>链路接入。 （MAC协议规定了帧在链路传输的规则。链路的一段仅有一个发送方，另一端只有一个接收方的点对点链路）</p>
+</li>
+<li><p>可靠交付。 （保证无差错地经链路层移动每个网络数据报）</p>
+</li>
+<li><p>差错检验和纠正。</p>
+<a id="more"></a>  
+
+</li>
+</ol>
+<p><strong>2.多路访问协议作用及分类；理想的多路访问协议；纯ALOHA和时隙ALOHA效率如何？</strong></p>
+<p>多路访问协议：</p>
+<p>作用：节点通过这些协议来规范它们在共享的广播信道上的传输行为。</p>
+<p>分类：信道划分协议、随机接入协议和轮流协议。</p>
+<p>理想的多路访问协议：</p>
+<p>（1）当仅有一个节点发送数据时，该节点具有R bps的吞吐量；</p>
+<p>（2）当有M个节点发送数据时，每个节点吞吐量为R/M bps；（每个节点在一定时间间隔内应有R/M的平均速率）</p>
+<p>（3）协议是分散的；（不会因某个主节点故障而使整个系统崩溃）</p>
+<p>（4）协议是简单的，实现不昂贵。</p>
+<p>纯ALOHA（非时隙、高度分散）：</p>
+<p>最大效率为 1/(2e)=0.185。</p>
+<p>时隙ALOHA（高度分散的）：</p>
+<p>当只有一个节点时可以全速R连续传输；</p>
+<p>一个给定节点传输的概率为p，节点成功传送的概率为 p(1-p)^(N-1)，N个节点任意一个发送成功的概率 Np(1-p)^(N-1)。（这个协议最大效率为 1/e=0.37，是纯ALOHA两倍）</p>
+<p><strong>3.CSMA协议原理；局域网及拓扑结构；以太网；以太网的MAC协议CSMA/CD、CSMA/CA。</strong></p>
+<p>载波侦听多路访问（CSMA）：</p>
+<p>说话之前先听。（这被称为 载波侦听 ，即一个节点在传输前先听信道）</p>
+<p>如果与他人同事开始说话，停止说话。（这称为 碰撞检测 ，即当一个传输节点在传输时一直在侦听此信道）</p>
+<p>具有碰撞检测的载波侦听多路访问（CSMA/CD）：（CSMA/CA为无线的协议）</p>
+<p>（1）适配器从网络层一条活的数据报，准备链路层帧，并将其放入帧适配器缓存中。</p>
+<p>（2）如果适配器真听到信道空闲，它开始传输帧。如果听到信道正在忙，它将等待，直到侦听到没有信号能量时才开始传输帧。</p>
+<p>（3）在传输过程中，适配器监视来自其他使用该广播信道的适配器的信号能量的存在。</p>
+<p>（4）如果适配器传输整个帧而未检测到来自其他适配器的信号能量，该适配器就完成了该帧；若检测到其他适配器的信号能量，将终止传输。</p>
+<p>（5）终止传输后，适配器等待一个随机量，然后返回步骤2。</p>
+<p>当传输一个特定帧时，在该帧经历n次碰撞后，节点随机地从｛0，1，2，…，2^(n-1)｝中选择一个K值。（经历的碰撞越多，K选择的间隔越大）对于以太网，一个节点等待的实际时间量是 K*512 比特时间（即发送512比特进入以太网所需时间量的K倍），n的最大值在10以内。</p>
+<p><strong>4.链路层编址；MAC地址；ARP的工作原理与作用。</strong></p>
+<p>链路层地址有三种称呼：LAN地址、物理地址、MAC地址。</p>
+<p>MAC地址：</p>
+<p>不是主机或路由器具有链路层地址，而是它们的适配器（即网络接口）具有链路层地址。</p>
+<p>MAC地址长度为6字节，共有2^48可能的MAC地址。</p>
+<p>MAC地址通常被设计为永久。</p>
+<p>MAC广播地址为 FF-FF-FF-FF-FF-FF。</p>
+<p>ARP（地址解析协议）：</p>
+<p>作用：将一个IP地址解析为一个MAC地址。</p>
+<p>工作方式：每台主机和路由器在其内存中具有一个ARP表，这张表包含IP地址到MAC地址的映射关系。</p>
+<p>ARP分组有四个字段：源IP、MAC，目的IP、MAC。</p>
+<p>查询ARP报文在广播帧中发送，而响应ARP报文在一个标准帧中发送。</p>
+<p>ARP表是自动建立的，不需要管理员配置。</p>
+<p><strong>5.集线器、交换机、路由器的功能和特点。</strong></p>
+<p>集线器：是一种物理层设备，它作用于各个比特而不是作用于帧。当一个比特到达一个接口时，重新生成该比特，将其 能量强度 放大后向其他所有接口传输出去。（若同时从两个不同的接口接收到帧，将出现一次碰撞，生成该帧的节点必须重新传输该帧）</p>
+<p>交换机：是第二层的分组交换机，使用MAC地址转发分组的存储转发分组交换机。是即插即用的；交换机对于广播风暴不提供任何保护措施，即如果某主机出了故障并传输出没完没了的以太网广播帧，该交换机将转发所有这些帧，是以太网崩溃。</p>
+<p>路由器：第三层的分组交换机，使用网络层IP地址转发分组的存储转发分组交换机。不是即插即用的；对第二层的广播风暴提供防火墙保护。</p>
+<p><strong>补充知识：</strong></p>
+<p><strong>单工，半双工和全双工有何区别：</strong></p>
+<p> <img src="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/1.png" alt="1"></p>
+<p>单工数据传输只支持数据在一个方向上传输；在同一时间只有一方能接受或发送信息，不能实现双向通信，举例：电视，广播。</p>
+<p>半双工数据传输允许数据在两个方向上传输,但是,在某一时刻,只允许数据在一个方向上传输,它实际上是一种切换方向的单工通信；在同一时间只可以有一方接受或发送信息，可以实现双向通信。举例：对讲机。</p>
+<p>全双工数据通信允许数据同时在两个方向上传输,因此,全双工通信是两个单工通信方式的结合,它要求发送设备和接收设备都有独立的接收和发送能力；在同一时间可以同时接受和发送信息，实现双向通信，举例：电话通信。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/" data-id="ckfg3184s000qyovadr9jhifm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B506/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          自顶向下-第五章复习知识点
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/23/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B504/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">自顶向下-第四章复习知识点</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/javase/">-javase</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">-前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/" rel="tag">表单验证</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A1%A8%E6%A0%BC/" rel="tag">表格</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/jQuery/" style="font-size: 13.33px;">jQuery</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 16.67px;">网络</a> <a href="/tags/%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/" style="font-size: 10px;">表单验证</a> <a href="/tags/%E8%A1%A8%E6%A0%BC/" style="font-size: 13.33px;">表格</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 20px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B506/">自顶向下-第五章复习知识点</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/">网络自顶向下-第六章复习知识点</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/23/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B504/">自顶向下-第四章复习知识点</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B502/">自顶向下-第二章复习知识点</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/">自顶向下-第三章复习知识点</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 niewenzhao<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+    <a href="/sitemap.xml" class="mobile-nav-link">网站地图</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
