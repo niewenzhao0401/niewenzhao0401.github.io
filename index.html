@@ -68,6 +68,73 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-LC-1005-TwoSum" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/05/LC-1005-TwoSum/" class="article-date">
+  <time datetime="2020-10-05T15:58:57.000Z" itemprop="datePublished">2020-10-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/05/LC-1005-TwoSum/">LC-1005-TwoSum</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="两数之和-0001"><a href="#两数之和-0001" class="headerlink" title="两数之和-0001"></a>两数之和-0001</h4><p>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。</p>
+<p>你可以假设每种输入只会对应一个答案。但是，数组中同一个元素不能使用两遍。</p>
+<p><strong>示例:</strong></p>
+<p>给定 nums = [2, 7, 11, 15], target = 9</p>
+<p>因为 nums[0] + nums[1] = 2 + 7 = 9<br>所以返回 [0, 1]</p>
+<p><strong>方法一:暴力枚举</strong></p>
+<p>选择两个数,又两个循环,第一个for循环确定一个数nums[i],里面在嵌套一个for循环选出一个数num[j],第二个数只需要在第一个确定数的后面进行选择.就不会选择从重复的数.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.length ; i++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> j =i+<span class="number">1</span>;j&lt;nums.length;i++)</span><br><span class="line">          <span class="keyword">if</span>(target==nums[i]+nums[j])</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;i ,j&#125;;</span><br><span class="line">          &#125;</span><br><span class="line">    &#125;</span><br><span class="line">   	<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>复杂度分析:</p>
+<ul>
+<li>时间复杂度：O(N^2)，其中 N<em>N</em> 是数组中的元素数量。最坏情况下数组中任意两个数都要被匹配一次。</li>
+<li>空间复杂度：O(1)。</li>
+</ul>
+<p>方法二:</p>
+<p>方法一的时间复杂度较高的原因是寻找数的时间复杂度过高。使用哈希表，可以将寻找 的时间复杂度降低到从 O(N)降低到 O(1).<strong>hashmap的key值不能重复</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        Map&lt;Integer,Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)  </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> num=target-nums[i];</span><br><span class="line">            <span class="keyword">if</span>(map.containsKey(num))&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;map.get(num),i&#125;;</span><br><span class="line">                &#125;</span><br><span class="line">                map.put(nums[i], i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>复杂度分析</p>
+<ul>
+<li>时间复杂度：O(N)其中 NN 是数组中的元素数量。</li>
+</ul>
+<ul>
+<li>空间复杂度：O(N)，其中 NN 是数组中的元素数量。主要为哈希表的开销。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/10/05/LC-1005-TwoSum/" data-id="ckfwq4xko000o7ovad1rv8z24" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-CSS-04" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/10/05/CSS-04/" class="article-date">
@@ -105,7 +172,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/05/CSS-04/" data-id="ckfwf9q8o0007iwvacd97b4z5" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/10/05/CSS-04/" data-id="ckfwq4xk100037ovaeogt3uyn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li></ul>
@@ -152,7 +219,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/05/CSS-03/" data-id="ckfwf9q8r0009iwva56g3a48m" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/10/05/CSS-03/" data-id="ckfwq4xk700077ovacjjt6bjk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li></ul>
@@ -211,7 +278,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/05/CSS-02/" data-id="ckfwf9q8h0003iwva3qbc0hqf" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/10/05/CSS-02/" data-id="ckfwq4xka00097ovaddcm5nbj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li></ul>
@@ -267,7 +334,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/05/CSS-01/" data-id="ckfwf9q8b0001iwva8gyn3p8u" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/10/05/CSS-01/" data-id="ckfwq4xjv00017ova2pksbz4l" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li></ul>
@@ -318,7 +385,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/29/HTML-03/" data-id="ckfwf9q90000giwva81arfvq5" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/29/HTML-03/" data-id="ckfwq4xki000g7ovabmmxgv2t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li></ul>
@@ -371,7 +438,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/28/HTML-02/" data-id="ckfwf9q8x000eiwvafe6018mg" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/28/HTML-02/" data-id="ckfwq4xkg000e7ova1exkffvc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li></ul>
@@ -423,7 +490,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/26/HTML-01/" data-id="ckfwf9q8t000aiwvaasho4gpp" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/26/HTML-01/" data-id="ckfwq4xkc000a7ova2nb56qkq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li></ul>
@@ -471,7 +538,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/24/%E7%AE%97%E6%B3%95-%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95001-%E4%BA%8C%E5%88%86/" data-id="ckfwf9q9p001diwvaa151164p" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/24/%E7%AE%97%E6%B3%95-%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95001-%E4%BA%8C%E5%88%86/" data-id="ckfwq4xl8001e7ova77ykclzv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95/" rel="tag">常用10种算法</a></li></ul>
@@ -518,59 +585,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-%E6%97%B6%E9%97%B4%E5%92%8C%E6%97%A5%E6%9C%9F[%E8%8D%89%E7%A8%BF]/" data-id="ckfwf9q9l0016iwvabm7y1gkn" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-%E6%97%B6%E9%97%B4%E5%92%8C%E6%97%A5%E6%9C%9F[%E8%8D%89%E7%A8%BF]/" data-id="ckfwq4xl4001b7ovae71l0ets" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-javase20-0924基础-intern" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-intern/" class="article-date">
-  <time datetime="2020-09-24T06:49:58.000Z" itemprop="datePublished">2020-09-24</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/javase/">-javase</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-intern/">javase-intern（）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Java-intern-方法"><a href="#Java-intern-方法" class="headerlink" title="Java intern() 方法"></a>Java intern() 方法</h1><p>intern() 方法返回字符串对象的规范化表示形式。</p>
-<p>它遵循以下规则：对于任意两个字符串 s 和 t，当且仅当 s.equals(t) 为 true 时，s.intern() == t.intern() 才为 true。</p>
-<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">intern</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
-        
-          <p class="article-more-link">
-            <a href="/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-intern/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-intern/" data-id="ckfwf9q9j0014iwvadgn7c6kt" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
 
     </footer>
   </div>
@@ -604,7 +622,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95/" rel="tag">常用10种算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/" rel="tag">表单验证</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A1%A8%E6%A0%BC/" rel="tag">表格</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95/" rel="tag">常用10种算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/" rel="tag">表单验证</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A1%A8%E6%A0%BC/" rel="tag">表格</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
     </div>
   </div>
 
@@ -614,7 +632,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS/" style="font-size: 14px;">CSS</a> <a href="/tags/HTML/" style="font-size: 16px;">HTML</a> <a href="/tags/jQuery/" style="font-size: 12px;">jQuery</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">基础</a> <a href="/tags/%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95/" style="font-size: 10px;">常用10种算法</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 18px;">网络</a> <a href="/tags/%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/" style="font-size: 10px;">表单验证</a> <a href="/tags/%E8%A1%A8%E6%A0%BC/" style="font-size: 12px;">表格</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 20px;">面试</a>
+      <a href="/tags/CSS/" style="font-size: 14px;">CSS</a> <a href="/tags/HTML/" style="font-size: 16px;">HTML</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/jQuery/" style="font-size: 12px;">jQuery</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">基础</a> <a href="/tags/%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95/" style="font-size: 10px;">常用10种算法</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 18px;">网络</a> <a href="/tags/%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/" style="font-size: 10px;">表单验证</a> <a href="/tags/%E8%A1%A8%E6%A0%BC/" style="font-size: 12px;">表格</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 20px;">面试</a>
     </div>
   </div>
 
@@ -636,6 +654,10 @@
       <ul>
         
           <li>
+            <a href="/2020/10/05/LC-1005-TwoSum/">LC-1005-TwoSum</a>
+          </li>
+        
+          <li>
             <a href="/2020/10/05/CSS-04/">CSS-04-伪类,透明,块级,行级,行级块标签</a>
           </li>
         
@@ -649,10 +671,6 @@
         
           <li>
             <a href="/2020/10/05/CSS-01/">CSS-01-概论</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/29/HTML-03/">HTML -03-概论</a>
           </li>
         
       </ul>
