@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>CSS-04-伪类,透明,块级,行级,行级块标签 | WenZhao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="CSS–伪类,透明,块级,行级,行级块标签CSS伪类专门用来表示标签的一种的特殊的状态，当我们需要为处在这些特殊状态的标签设置样式时，就可以使用伪类 。 伪类的语法：:link表示普通的链接（没访问过的链接）:visited表示访问过的链接        浏览器是通过历史记录来判断一个链接是否访问过        使用visited伪类只能设置字体的颜色   :hover伪类表示鼠标移入的状态:a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS-04-伪类,透明,块级,行级,行级块标签">
+<meta property="og:url" content="http://example.com/2020/10/05/CSS-04/index.html">
+<meta property="og:site_name" content="WenZhao">
+<meta property="og:description" content="CSS–伪类,透明,块级,行级,行级块标签CSS伪类专门用来表示标签的一种的特殊的状态，当我们需要为处在这些特殊状态的标签设置样式时，就可以使用伪类 。 伪类的语法：:link表示普通的链接（没访问过的链接）:visited表示访问过的链接        浏览器是通过历史记录来判断一个链接是否访问过        使用visited伪类只能设置字体的颜色   :hover伪类表示鼠标移入的状态:a">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-10-05T10:53:38.000Z">
+<meta property="article:modified_time" content="2020-10-05T10:58:57.666Z">
+<meta property="article:author" content="niewenzhao">
+<meta property="article:tag" content="HTML">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="WenZhao" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">WenZhao</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+          <a class="main-nav-link" href="/sitemap.xml">网站地图</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-CSS-04" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/05/CSS-04/" class="article-date">
+  <time datetime="2020-10-05T10:53:38.000Z" itemprop="datePublished">2020-10-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">-前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CSS-04-伪类,透明,块级,行级,行级块标签
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="CSS–伪类-透明-块级-行级-行级块标签"><a href="#CSS–伪类-透明-块级-行级-行级块标签" class="headerlink" title="CSS–伪类,透明,块级,行级,行级块标签"></a>CSS–伪类,透明,块级,行级,行级块标签</h1><p><strong>CSS伪类专门用来表示标签的一种的特殊的状态，当我们需要为处在这些特殊状态的标签设置样式时，就可以使用伪类 。</strong></p>
+<p>伪类的语法：<br>:link表示普通的链接（没访问过的链接）<br>:visited表示访问过的链接<br>        浏览器是通过历史记录来判断一个链接是否访问过<br>        使用visited伪类只能设置字体的颜色  </p>
+<p><strong>:hover伪类表示鼠标移入的状态</strong><br><strong>:active表示的是被点击的状态</strong></p>
+<a id="more"></a> 
+
+<p><strong>注意：</strong></p>
+<p>:visited放在:hover之前<br> <strong>:active 必须被置于 :hover 之后，才是有效的</strong><br> :hover和:active也可以为其他标签设置<br>**:focus向拥有键盘输入焦点的标签添加样式。**</p>
+<p><strong>定义透明效果的属性是 opacity。</strong><br>opacity 属性设置标签的不透明级别 值为1。<br>规定不透明度：从 0.0 （完全透明）到 1.0（完全不透明）。</p>
+<hr>
+
+<h2 id="块级-行级-行级块标签"><a href="#块级-行级-行级块标签" class="headerlink" title="块级,行级,行级块标签"></a>块级,行级,行级块标签</h2><ul>
+<li><p>什么是块级标签？            </p>
+<pre><code>块级标签：无论内容多少 都会独自占据一行的。
+例如&lt;p&gt;、&lt;h1&gt;、&lt;ul&gt;、&lt;ol&gt;、&lt;hr/&gt;等。</code></pre>
+</li>
+<li><p>什么是行级标签？</p>
+<pre><code>行级标签：只占自身大小的标签，不会占一行。
+例如&lt;font&gt;、&lt;b&gt;、&lt;i&gt;、&lt;a&gt;等。</code></pre>
+</li>
+<li><p>什么是行级块标签？</p>
+<pre><code>例如 &lt;input/&gt; &lt;img&gt;等</code></pre>
+</li>
+</ul>
+<p><strong>注意：</strong> </p>
+<p>一般情况下使用块级标签包含行级标签，不使用行级标签包含块标签。<br> a可以包含任何标签，除去a本身；<br> p标签不可以包含任何的块标签。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">块级标签</span><br><span class="line">		     无论内容有多少,都会占据一行</span><br><span class="line">			 默认宽:与父级标签一致</span><br><span class="line">			 默认高:0  或者与内容高度一致</span><br><span class="line">			 </span><br><span class="line">			 还可以通过 width和height设置标签的宽 高</span><br><span class="line">			 </span><br><span class="line">行级标签:</span><br><span class="line">		         只占自身大小,不会占一行</span><br><span class="line">				 即使设置宽 高也是无效的.</span><br><span class="line">				 a</span><br><span class="line">				 </span><br><span class="line"> 行级块标签</span><br><span class="line">		可以设置大小,不会占一行</span><br><span class="line">		img <span class="tag">&lt;<span class="name">input</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"> 一般使用块级标签 包含 行级标签</span><br><span class="line">		a可以包含任何标签，除去a本身；</span><br><span class="line">		p标签不能包含任何块级标签</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="通过display样式可以修改标签的类型。"><a href="#通过display样式可以修改标签的类型。" class="headerlink" title="通过display样式可以修改标签的类型。"></a>通过display样式可以修改标签的类型。</h4><p>可选值：<br>    block ：设置标签为块标签<br>    inline ：设置标签为行级标签<br>    inline-block ：设置标签为行级块标签<br>    none ：隐藏标签（标签将在页面中完全消失） </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">		 display可以改变标签的类型</span></span><br><span class="line"><span class="comment">		 display: inline; 设置标签为行级标签</span></span><br><span class="line"><span class="comment">		 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">h4</span> <span class="attr">style</span>=<span class="string">&quot;display: inline; width: 500px;&quot;</span>&gt;</span>4级标题标签<span class="tag">&lt;/<span class="name">h4</span>&gt;</span>aaaaaaaaaaaaa</span><br><span class="line">		<span class="tag">&lt;<span class="name">hr</span>/&gt;</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">		display: block; 设置标签为块级标签 </span></span><br><span class="line"><span class="comment">		 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&quot;</span> <span class="attr">style</span>=<span class="string">&quot;display: block; width: 500px;&quot;</span>&gt;</span>百度<span class="tag">&lt;/<span class="name">a</span>&gt;</span>bbbbbbbbbbbbbbbbb</span><br><span class="line">		</span><br><span class="line">		<span class="tag">&lt;<span class="name">hr</span>/&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">		 display:inline-block 设置标签为行级块标签</span></span><br><span class="line"><span class="comment">		 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&quot;</span> <span class="attr">style</span>=<span class="string">&quot;display:inline-block; width: 500px;&quot;</span>&gt;</span>百度<span class="tag">&lt;/<span class="name">a</span>&gt;</span>bbbbbbbbbbbbbbbbb</span><br><span class="line">		</span><br><span class="line">		<span class="tag">&lt;<span class="name">hr</span>/&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- display: none; 让标签在网页上消失  不占用网页空间 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;img/bg.jpg&quot;</span> <span class="attr">style</span>=<span class="string">&quot;display: none;&quot;</span> &gt;</span>CCCCCCCCCCCCCC</span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="div和span"><a href="#div和span" class="headerlink" title="div和span"></a>div和span</h4><p><strong>div标签</strong><br>  div是块级标签，可以放置任何标签。<br>  div没有任何附加功能，给了什么属性就能变成什么样。<br>  div主要的作用是被用来布局网页。</p>
+<p><strong>span标签</strong><br>   span是行级标签<br>   span 没有任何附加功能，给了什么属性就能变成什么样。<br>   span标签被用来选中文档中的文字。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">		   因为h1 p ....这些标签都有默认的样式,在网页布局时使用比较麻烦</span></span><br><span class="line"><span class="comment">		   </span></span><br><span class="line"><span class="comment">		   div是一个纯净版的块级标签.(没有任何附加样式)</span></span><br><span class="line"><span class="comment">		   可以包含任何标签,</span></span><br><span class="line"><span class="comment">		   主要用来网页布局</span></span><br><span class="line"><span class="comment">		 --&gt;</span></span><br><span class="line">		 <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 500px; height: 300px; background-color: #008000;&quot;</span>&gt;</span></span><br><span class="line">			 div是一个纯净版的块级标签</span><br><span class="line">		 <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		 aaaaaa</span><br><span class="line">		 </span><br><span class="line">		 <span class="tag">&lt;<span class="name">hr</span>/&gt;</span></span><br><span class="line">		 </span><br><span class="line">		 <span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">		     span是行级标签</span></span><br><span class="line"><span class="comment">			 span是一个纯净版的行级标签</span></span><br><span class="line"><span class="comment">		 --&gt;</span></span><br><span class="line">		 <span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">&quot;color: #FF0000;&quot;</span>&gt;</span>span是一个纯净版的行级标签<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">		 <span class="tag">&lt;<span class="name">span</span>&gt;</span>span是一个纯净版的行级标签<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/10/05/CSS-04/" data-id="ckfwf9q8o0007iwvacd97b4z5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/10/05/CSS-03/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CSS-03-文本,背景,表格</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/javase/">-javase</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">-前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95/" rel="tag">常用10种算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/" rel="tag">表单验证</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A1%A8%E6%A0%BC/" rel="tag">表格</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS/" style="font-size: 14px;">CSS</a> <a href="/tags/HTML/" style="font-size: 16px;">HTML</a> <a href="/tags/jQuery/" style="font-size: 12px;">jQuery</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">基础</a> <a href="/tags/%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95/" style="font-size: 10px;">常用10种算法</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 18px;">网络</a> <a href="/tags/%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/" style="font-size: 10px;">表单验证</a> <a href="/tags/%E8%A1%A8%E6%A0%BC/" style="font-size: 12px;">表格</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 20px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/05/CSS-04/">CSS-04-伪类,透明,块级,行级,行级块标签</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/05/CSS-03/">CSS-03-文本,背景,表格</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/05/CSS-02/">CSS-02-选择器</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/05/CSS-01/">CSS-01-概论</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/29/HTML-03/">HTML -03-概论</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 niewenzhao<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+    <a href="/sitemap.xml" class="mobile-nav-link">网站地图</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

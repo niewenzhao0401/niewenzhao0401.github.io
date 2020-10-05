@@ -5,18 +5,19 @@
   
 
   
-  <title>javase | WenZhao</title>
+  <title>CSS-01-概论 | WenZhao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="士大夫山豆根萨格11 1fsdfsdgsdgsdds">
+  <meta name="description" content="css概述 CSS是Cascading Style Sheets（级联样式表）。   CSS是一种样式表语言，用于为HTML文档控制外观，定义布局。例如，CSS涉及字体、颜色、边距、高度、宽度、背景图像、高级定位等方面 。   可将页面的内容与表现形式分离，页面内容存放在HTML文档中，而用于定义表现形式的CSS在一个.css文件中或HTML文档的某一部分。  CSS与HTML的关系:HTML是网">
 <meta property="og:type" content="article">
-<meta property="og:title" content="javase">
-<meta property="og:url" content="http://example.com/2020/09/22/index/index.html">
+<meta property="og:title" content="CSS-01-概论">
+<meta property="og:url" content="http://example.com/2020/10/05/CSS-01/index.html">
 <meta property="og:site_name" content="WenZhao">
-<meta property="og:description" content="士大夫山豆根萨格11 1fsdfsdgsdgsdds">
+<meta property="og:description" content="css概述 CSS是Cascading Style Sheets（级联样式表）。   CSS是一种样式表语言，用于为HTML文档控制外观，定义布局。例如，CSS涉及字体、颜色、边距、高度、宽度、背景图像、高级定位等方面 。   可将页面的内容与表现形式分离，页面内容存放在HTML文档中，而用于定义表现形式的CSS在一个.css文件中或HTML文档的某一部分。  CSS与HTML的关系:HTML是网">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-09-22T05:05:38.000Z">
-<meta property="article:modified_time" content="2020-09-22T02:47:46.114Z">
+<meta property="article:published_time" content="2020-10-05T10:53:12.000Z">
+<meta property="article:modified_time" content="2020-10-05T10:54:52.851Z">
 <meta property="article:author" content="niewenzhao">
+<meta property="article:tag" content="CSS">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="WenZhao" type="application/atom+xml">
@@ -70,10 +71,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-index" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-CSS-01" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/09/22/index/" class="article-date">
-  <time datetime="2020-09-22T05:05:38.000Z" itemprop="datePublished">2020-09-22</time>
+    <a href="/2020/10/05/CSS-01/" class="article-date">
+  <time datetime="2020-10-05T10:53:12.000Z" itemprop="datePublished">2020-10-05</time>
 </a>
     
   <div class="article-category">
@@ -88,7 +89,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      javase
+      CSS-01-概论
     </h1>
   
 
@@ -96,34 +97,75 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>士大夫山豆根萨格11</p>
-<p>1fsdfsdgsdgsdds</p>
+        <h1 id="css概述"><a href="#css概述" class="headerlink" title="css概述"></a>css概述</h1><ul>
+<li>CSS是Cascading Style Sheets（级联样式表）。</li>
+</ul>
+<ul>
+<li>CSS是一种样式表语言，用于为HTML文档控制外观，定义布局。例如，CSS涉及字体、颜色、边距、高度、宽度、背景图像、高级定位等方面 。</li>
+</ul>
+<ul>
+<li>可将页面的内容与表现形式分离，页面内容存放在HTML文档中，而用于定义表现形式的CSS在一个.css文件中或HTML文档的某一部分。</li>
+</ul>
+<p>CSS与HTML的关系:HTML是网页的内容,CSS定义页面的样式</p>
+<a id="more"></a>  
+
+<h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><ul>
+<li><p>行内样式表</p>
+<p>行内样式表,又有人称内联样式、行间样式、内嵌样式。是通过标签的style属性来设置元素的样式，其基本语法格式如下：</p>
+<pre><code> &lt;标签名 style=&quot;属性1:属性值1; 属性2:属性值2; 属性3:属性值3;&quot;&gt; 内容 &lt;/标签名&gt;</code></pre>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span> = <span class="string">&quot;color:red;font-size:30px;font-family:隶书;&quot;</span>&gt;</span> </span><br><span class="line">这个段落应用了样式</span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">本段<span class="tag">&lt;<span class="name">p</span>&gt;</span>标签采用了行级样式   为标签p指定样式</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>内嵌式</p>
+<p>将CSS代码集中写在HTML文档的head头部标签中，并且用style标签定义</p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>样式规则<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>  <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span></span><br><span class="line"><span class="css"> <span class="selector-tag">p</span> &#123; <span class="attribute">color</span>:red; <span class="attribute">font-family</span>:<span class="string">&quot;隶书&quot;</span>; <span class="attribute">font-size</span>:<span class="number">24px</span>;&#125;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>外部样式</p>
+<p>外部样式表是将所有的样式放在一个或多个以.CSS为扩展名的外部样式表文件中，通过link标签将外部样式表文件链接到HTML文档中.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">使用link（链接）标签 :</span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">&quot;newstyle.css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><em>rel = relationship   关系；关联</em></strong></p>
+</li>
+</ul>
+<hr>
+
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/22/index/" data-id="ckfwf9q9g0010iwva62em87f4" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/10/05/CSS-01/" data-id="ckfwf9q8b0001iwva8gyn3p8u" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2020/09/22/index%20-%20%E5%89%AF%E6%9C%AC/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/10/05/CSS-02/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          javase
+          CSS-02-选择器
         
       </div>
     </a>
   
   
-    <a href="/2020/09/21/hhhhh%E4%BD%A0%E9%AA%84%E5%82%B2/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/09/29/HTML-03/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title"></div>
+      <div class="article-nav-title">HTML -03-概论</div>
     </a>
   
 </nav>
