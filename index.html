@@ -146,6 +146,270 @@
     
     
     <article
+  id="post-javaSE02"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/10/10/javaSE02/"
+    >javaSE-02-基础语法</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/10/10/javaSE02/" class="article-date">
+  <time datetime="2020-10-09T16:50:02.000Z" itemprop="datePublished">2020-10-10</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javase/">-javase</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="java基础语法"><a href="#java基础语法" class="headerlink" title="java基础语法"></a>java基础语法</h1><p><strong>IDE的使用</strong></p>
+<p>IDE(Integrated Development Environment )集成开发环境</p>
+<p>包含<strong>编辑器,编译器,调试图形界面</strong></p>
+<ul>
+<li>IntelliJ IDEA  捷克的一家公司    收费的</li>
+<li>Eclipse  IBM公司开发的  现在捐献给eclipse基金会</li>
+</ul>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>对程序功能的说明,以某种特定符号作为标记,程序在运行过程中不会执行注释.</p>
+<h3 id="Java语言有三种注释方式："><a href="#Java语言有三种注释方式：" class="headerlink" title="Java语言有三种注释方式："></a>Java语言有三种注释方式：</h3><ul>
+<li>//  用于单行注释,   快捷键ctrl+/    </li>
+<li>/*<br>  用于多行注释,快捷键ctrl+shift+/   ctrl+shift+\ 取消注释<br>*/</li>
+<li>/**<ul>
+<li>文档注释，用于为类,方法(函数),属性 功能进行说明,可在<strong>调用时提示</strong><br>*/</li>
+</ul>
+</li>
+</ul>
+<h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h2><p>关键字的定义和特点<br>定义：被Java语言赋予了特殊含义，用做专门用途的字符串（单词）<br>特点：关键字中所有<strong>字母都为小写</strong></p>
+<table>
+<thead>
+<tr>
+<th>用于定义数据类型的关键字</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>class</td>
+<td>interface</td>
+<td>enum</td>
+<td>byte</td>
+<td>short</td>
+</tr>
+<tr>
+<td>int</td>
+<td>long</td>
+<td>float</td>
+<td>double</td>
+<td>char</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>void</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>用于定义数据类型值的关键字</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>true</td>
+<td>false</td>
+<td>null</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>用于定义流程控制的关键字</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>if</td>
+<td>else</td>
+<td>switch</td>
+<td>case</td>
+<td>default</td>
+</tr>
+<tr>
+<td>while</td>
+<td>do</td>
+<td>for</td>
+<td>break</td>
+<td>continue</td>
+</tr>
+<tr>
+<td>return</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>用于定义访问权限修饰符的关键字</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>private</td>
+<td>protected</td>
+<td>public</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>用于定义类，函数，变量修饰符的关键字</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>abstract</td>
+<td>final</td>
+<td>static</td>
+<td>synchronized</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>用于定义类与类之间关系的关键字</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>extends</td>
+<td>implements</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>用于定义建立实例及引用实例，判断实例的关键字</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>new</td>
+<td>this</td>
+<td>super</td>
+<td>instanceof</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>用于异常处理的关键字</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>try</td>
+<td>catch</td>
+<td>finally</td>
+<td>throw</td>
+<td>throws</td>
+</tr>
+<tr>
+<td><strong>用于包的关键字</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>package</td>
+<td>import</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>其他修饰符关键字</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>native</td>
+<td>strictfp</td>
+<td>transient</td>
+<td>volatile</td>
+<td>assert</td>
+</tr>
+</tbody></table>
+<h2 id="保留字"><a href="#保留字" class="headerlink" title="保留字"></a><strong>保留字</strong></h2><p>在java语言中未被使用的关键字,预留的,<strong>命名时不能使用</strong></p>
+<p> goto 、const</p>
+<h2 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h2><p><strong>标识符</strong>：<br>Java 对各种变量、方法和类等要素命名时使用的字符序列称为标识符.</p>
+<p><strong>通俗讲:自己可以命名的名称</strong></p>
+<h3 id="合法标识符规则"><a href="#合法标识符规则" class="headerlink" title="合法标识符规则"></a><strong>合法标识符规则</strong></h3><ol>
+<li>由26个英文字母大小写，0-9 ，_或 $ 组成  </li>
+<li>数字不可以开头。</li>
+<li>不可以使用关键字和保留字，但<strong>能包含关键字和保留字。tint</strong></li>
+<li>Java中严格区分大小写，长度无限制。 A  a </li>
+<li>标识符不能包含空格</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//约定俗成   见名知意  驼峰   类名首字母大小  </span></span><br><span class="line">user_nameint age  = <span class="number">10</span>;String userName = <span class="string">&quot;jim&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Java中的名称命名规范"><a href="#Java中的名称命名规范" class="headerlink" title="Java中的名称命名规范"></a>Java中的名称命名规范</h3><ol>
+<li>包名：多单词组成时所有字母都小写：xxxyyyzzz</li>
+<li>类名、接口名：多单词组成时，所有单词的首字母大写：XxxYyyZzz</li>
+<li>变量名、方法名：多单词组成时，第一个单词首字母小写，第二个单词开始每个单词首字母大写：xxxYyyZzz</li>
+<li>常量名：所有字母都大写。多单词时每个单词用下划线连接：XXX_YYY_ZZZ</li>
+</ol>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-javaSE01"
   class="article article-type-post"
   itemscope
@@ -158,7 +422,7 @@
        
 <h2 itemprop="name">
   <a class="article-title" href="/2020/10/09/javaSE01/"
-    >javaSE01概述与第一个程序</a> 
+    >javaSE-01-概述与第一个程序</a> 
 </h2>
  
 
@@ -203,7 +467,7 @@
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
 
     </footer>
   </div>
@@ -693,78 +957,13 @@
 </article>
 
     
-    <article
-  id="post-CSS-01"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/10/05/CSS-01/"
-    >CSS-01-概论</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/10/05/CSS-01/" class="article-date">
-  <time datetime="2020-10-05T10:53:12.000Z" itemprop="datePublished">2020-10-05</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">-前端</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="css概述"><a href="#css概述" class="headerlink" title="css概述"></a>css概述</h1><ul>
-<li>CSS是Cascading Style Sheets（级联样式表）。</li>
-</ul>
-<ul>
-<li>CSS是一种样式表语言，用于为HTML文档控制外观，定义布局。例如，CSS涉及字体、颜色、边距、高度、宽度、背景图像、高级定位等方面 。</li>
-</ul>
-<ul>
-<li>可将页面的内容与表现形式分离，页面内容存放在HTML文档中，而用于定义表现形式的CSS在一个.css文件中或HTML文档的某一部分。</li>
-</ul>
-<p>CSS与HTML的关系:HTML是网页的内容,CSS定义页面的样式</p> 
-      <a class="article-more-link" href="/2020/10/05/CSS-01/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
   </nav>
   
 </section>
