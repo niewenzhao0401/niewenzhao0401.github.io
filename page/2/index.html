@@ -1,400 +1,536 @@
 <!DOCTYPE html>
-<html>
+
+
+<html lang="en">
+
+
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="当咸鱼,不存在!!!" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+     当咸鱼,不存在!!!
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
   
 
   
-  <title>WenZhao</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="WenZhao">
-<meta property="og:url" content="http://example.com/page/2/index.html">
-<meta property="og:site_name" content="WenZhao">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="niewenzhao">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="WenZhao" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
 
-<meta name="generator" content="Hexo 5.2.0"></head>
+</head>
+
+</html>
 
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">WenZhao</a>
-      </h1>
+  <div id="app">
+    
       
+    <main class="content on">
+      
+<section class="cover">
+    
+      
+      <a class="forkMe" href="https://github.com/Shen-Yu/hexo-theme-ayer"
+        target="_blank"><img width="149" height="149" src="/images/forkme.png"
+          class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/cover1.jpg" alt="image frame" />
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">WenZhao</a></h1>
+      <div id="subtitle-box">
         
-          <a class="main-nav-link" href="/">首页</a>
+        <span id="subtitle"></span>
         
-          <a class="main-nav-link" href="/archives">文章列表</a>
+      </div>
+      <div>
         
-          <a class="main-nav-link" href="/sitemap.xml">网站地图</a>
-        
-          <a class="main-nav-link" href="/about">关于</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
       </div>
     </div>
   </div>
-</header>
-      <div class="outer">
-        <section id="main">
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+
+
+<!-- Subtitle -->
+
+  <script>
+    try {
+      var typed = new Typed("#subtitle", {
+        strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+        startDelay: 0,
+        typeSpeed: 200,
+        loop: true,
+        backSpeed: 100,
+        showCursor: true
+      });
+    } catch (err) {
+      console.log(err)
+    }
+  </script>
   
-    <article id="post-HTML-03" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/29/HTML-03/" class="article-date">
-  <time datetime="2020-09-29T07:34:46.000Z" itemprop="datePublished">2020-09-29</time>
-</a>
+<div id="main">
+  <section class="outer">
+  
+  
+
+<div class="notice" style="margin-top:50px">
+    <i class="ri-heart-fill"></i>
+    <div class="notice-content" id="broad"></div>
+</div>
+<script type="text/javascript">
+    fetch('https://v1.hitokoto.cn')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("broad").innerHTML = data.hitokoto;
+        })
+        .catch(console.error)
+</script>
+
+<style>
+    .notice {
+        padding: 20px;
+        border: 1px dashed #e6e6e6;
+        color: #969696;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        background: #fbfbfb50;
+        border-radius: 10px;
+    }
+
+    .notice i {
+        float: left;
+        color: #999;
+        font-size: 16px;
+        padding-right: 10px;
+        vertical-align: middle;
+        margin-top: -2px;
+    }
+
+    .notice-content {
+        display: initial;
+        vertical-align: middle;
+    }
+</style>
+  
+  <article class="articles">
     
+    
+    
+    
+    <article
+  id="post-HTML-03"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/09/29/HTML-03/"
+    >HTML -03-概论</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/09/29/HTML-03/" class="article-date">
+  <time datetime="2020-09-29T07:34:46.000Z" itemprop="datePublished">2020-09-29</time>
+</a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">-前端</a>
   </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/29/HTML-03/">HTML -03-概论</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
+   
+    </div>
       
-        <h1 id="HTML-03概论"><a href="#HTML-03概论" class="headerlink" title="HTML -03概论"></a>HTML -03概论</h1><p><strong>内联框架</strong></p>
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="HTML-03概论"><a href="#HTML-03概论" class="headerlink" title="HTML -03概论"></a>HTML -03概论</h1><p><strong>内联框架</strong></p>
 <p>内联框架可以在一个窗口内嵌入一个子窗口,从而在子窗口中引入一个外部的页面**                                           </p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span>  <span class="attr">src</span>=<span class="string">#</span> 初始页面的<span class="attr">url</span>  <span class="attr">name</span>=<span class="string">#</span> 框架名字   <span class="attr">width</span>=<span class="string">#</span>  宽度   <span class="attr">height</span>=<span class="string">#</span>  高度  <span class="attr">frameborder</span>=<span class="string">#</span> 是否存在边&gt;</span> ... <span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>​         target=”_self” 在当前窗口打开新页面<br>​         target=”_blank” 在新窗口打开新面<br>​         target=”aa” 在指定名称的窗口打开新页面</p>
-        
-          <p class="article-more-link">
-            <a href="/2020/09/29/HTML-03/#more">Read More</a>
-          </p>
-        
+<p>​         target=”_self” 在当前窗口打开新页面<br>​         target=”_blank” 在新窗口打开新面<br>​         target=”aa” 在指定名称的窗口打开新页面</p> 
+      <a class="article-more-link" href="/2020/09/29/HTML-03/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
       
     </div>
+    
+
+    <!-- copyright -->
+    
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/29/HTML-03/" data-id="ckg1z8dr0000oasva8as09a8m" class="article-share-link">Share</a>
-      
-      
+       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li></ul>
 
     </footer>
   </div>
-  
+
+    
+ 
+   
 </article>
 
-
-  
-    <article id="post-HTML-02" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/28/HTML-02/" class="article-date">
-  <time datetime="2020-09-28T00:06:34.000Z" itemprop="datePublished">2020-09-28</time>
-</a>
     
+    <article
+  id="post-HTML-02"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/09/28/HTML-02/"
+    >HTML-02-概论</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/09/28/HTML-02/" class="article-date">
+  <time datetime="2020-09-28T00:06:34.000Z" itemprop="datePublished">2020-09-28</time>
+</a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">-前端</a>
   </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/28/HTML-02/">HTML-02-概论</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
+   
+    </div>
       
-        <h1 id="HTML-02概论"><a href="#HTML-02概论" class="headerlink" title="HTML -02概论"></a>HTML -02概论</h1><h4 id="表格"><a href="#表格" class="headerlink" title="表格:"></a>表格:</h4><ul>
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="HTML-02概论"><a href="#HTML-02概论" class="headerlink" title="HTML -02概论"></a>HTML -02概论</h1><h4 id="表格"><a href="#表格" class="headerlink" title="表格:"></a>表格:</h4><ul>
 <li>tableb标签:表格标签</li>
 <li>tr标签:表格中的行</li>
 <li>th标签:表格的表头</li>
 <li>td标签:表格单元格</li>
 </ul>
-<p><strong>表格的基本概念</strong></p>
-        
-          <p class="article-more-link">
-            <a href="/2020/09/28/HTML-02/#more">Read More</a>
-          </p>
-        
+<p><strong>表格的基本概念</strong></p> 
+      <a class="article-more-link" href="/2020/09/28/HTML-02/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
       
     </div>
+    
+
+    <!-- copyright -->
+    
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/28/HTML-02/" data-id="ckg1z8dqy000lasvaa9ju7j7d" class="article-share-link">Share</a>
-      
-      
+       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li></ul>
 
     </footer>
   </div>
-  
+
+    
+ 
+   
 </article>
 
-
-  
-    <article id="post-HTML-01" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/26/HTML-01/" class="article-date">
-  <time datetime="2020-09-26T15:13:26.000Z" itemprop="datePublished">2020-09-26</time>
-</a>
     
+    <article
+  id="post-HTML-01"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/09/26/HTML-01/"
+    >HTML-01-概述</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/09/26/HTML-01/" class="article-date">
+  <time datetime="2020-09-26T15:13:26.000Z" itemprop="datePublished">2020-09-26</time>
+</a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">-前端</a>
   </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/26/HTML-01/">HTML-01-概述</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
+   
+    </div>
       
-        <h1 id="HTML概述"><a href="#HTML概述" class="headerlink" title="HTML概述"></a>HTML概述</h1><p>HTML指的是超文本标记语言</p>
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="HTML概述"><a href="#HTML概述" class="headerlink" title="HTML概述"></a>HTML概述</h1><p>HTML指的是超文本标记语言</p>
 <ul>
 <li>超文本：指的是页面内可以包含图片，连接，声音，视频等内容</li>
 <li>标记：标签（告诉网页该显示什么内容） 如下所示</li>
 </ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">“keywords”</span> <span class="attr">content</span>=<span class="string">“手机,家电</span>&quot;&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;description&quot;</span> <span class="attr">content</span>=<span class="string">&quot;免费 Web &amp; 编程 教程&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;author&quot;</span> <span class="attr">content</span>=<span class="string">“jim</span>&quot;&gt;</span></span><br></pre></td></tr></table></figure>
-        
-          <p class="article-more-link">
-            <a href="/2020/09/26/HTML-01/#more">Read More</a>
-          </p>
-        
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">“keywords”</span> <span class="attr">content</span>=<span class="string">“手机,家电</span>&quot;&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;description&quot;</span> <span class="attr">content</span>=<span class="string">&quot;免费 Web &amp; 编程 教程&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;author&quot;</span> <span class="attr">content</span>=<span class="string">“jim</span>&quot;&gt;</span></span><br></pre></td></tr></table></figure> 
+      <a class="article-more-link" href="/2020/09/26/HTML-01/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
       
     </div>
+    
+
+    <!-- copyright -->
+    
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/26/HTML-01/" data-id="ckg1z8dqv000gasva20zuasg3" class="article-share-link">Share</a>
-      
-      
+       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li></ul>
 
     </footer>
   </div>
-  
+
+    
+ 
+   
 </article>
 
-
-  
-    <article id="post-算法-常用10种算法001-二分" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/24/%E7%AE%97%E6%B3%95-%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95001-%E4%BA%8C%E5%88%86/" class="article-date">
-  <time datetime="2020-09-24T11:23:21.000Z" itemprop="datePublished">2020-09-24</time>
-</a>
     
+    <article
+  id="post-算法-常用10种算法001-二分"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/09/24/%E7%AE%97%E6%B3%95-%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95001-%E4%BA%8C%E5%88%86/"
+    >十大算法——二分查找算法</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/09/24/%E7%AE%97%E6%B3%95-%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95001-%E4%BA%8C%E5%88%86/" class="article-date">
+  <time datetime="2020-09-24T11:23:21.000Z" itemprop="datePublished">2020-09-24</time>
+</a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
   </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/24/%E7%AE%97%E6%B3%95-%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95001-%E4%BA%8C%E5%88%86/">十大算法——二分查找算法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
+   
+    </div>
       
-        <h3 id="二分查找算法"><a href="#二分查找算法" class="headerlink" title="二分查找算法"></a>二分查找算法</h3><h4 id="二分查找算法-非递归-介绍"><a href="#二分查找算法-非递归-介绍" class="headerlink" title="二分查找算法(非递归)介绍"></a>二分查找算法(非递归)介绍</h4><p>二分查找法只适用于从有序的数列中进行查找(比如数字和字母等)，将<strong>数列排序</strong>后再进行查找</p>
-<p>二分查找法的运行时间为<strong>对数时间 O(㏒₂n)</strong>  ，即查找到需要的目标位置<strong>最多只需要㏒₂n 步</strong>，假设从[0,99]的队列(100 个数，即 n=100)中寻到目标数 30，则需要查找步数为㏒₂100 ,  即最多需要查找 7 次( 2^6 &lt; 100 &lt; 2^7)<br>14.1.2  二分查找算法(非递归)代码实现数组 {1,3, 8, 10, 11, 67, 100},  编程实现二分查找， 要求使用非递归的方式完成.</p>
-        
-          <p class="article-more-link">
-            <a href="/2020/09/24/%E7%AE%97%E6%B3%95-%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95001-%E4%BA%8C%E5%88%86/#more">Read More</a>
-          </p>
-        
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="二分查找算法"><a href="#二分查找算法" class="headerlink" title="二分查找算法"></a>二分查找算法</h3><h4 id="二分查找算法-非递归-介绍"><a href="#二分查找算法-非递归-介绍" class="headerlink" title="二分查找算法(非递归)介绍"></a>二分查找算法(非递归)介绍</h4><p>二分查找法只适用于从有序的数列中进行查找(比如数字和字母等)，将<strong>数列排序</strong>后再进行查找</p>
+<p>二分查找法的运行时间为<strong>对数时间 O(㏒₂n)</strong>  ，即查找到需要的目标位置<strong>最多只需要㏒₂n 步</strong>，假设从[0,99]的队列(100 个数，即 n=100)中寻到目标数 30，则需要查找步数为㏒₂100 ,  即最多需要查找 7 次( 2^6 &lt; 100 &lt; 2^7)<br>14.1.2  二分查找算法(非递归)代码实现数组 {1,3, 8, 10, 11, 67, 100},  编程实现二分查找， 要求使用非递归的方式完成.</p> 
+      <a class="article-more-link" href="/2020/09/24/%E7%AE%97%E6%B3%95-%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95001-%E4%BA%8C%E5%88%86/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
       
     </div>
+    
+
+    <!-- copyright -->
+    
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/24/%E7%AE%97%E6%B3%95-%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95001-%E4%BA%8C%E5%88%86/" data-id="ckg1z8ds10022asva8fjx09m4" class="article-share-link">Share</a>
-      
-      
+       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95/" rel="tag">常用10种算法</a></li></ul>
 
     </footer>
   </div>
-  
+
+    
+ 
+   
 </article>
 
-
-  
-    <article id="post-javase20-0924基础-时间和日期[草稿]" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-%E6%97%B6%E9%97%B4%E5%92%8C%E6%97%A5%E6%9C%9F%5B%E8%8D%89%E7%A8%BF%5D/" class="article-date">
-  <time datetime="2020-09-24T07:40:18.000Z" itemprop="datePublished">2020-09-24</time>
-</a>
     
+    <article
+  id="post-javase20-0924基础-时间和日期[草稿]"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-%E6%97%B6%E9%97%B4%E5%92%8C%E6%97%A5%E6%9C%9F%5B%E8%8D%89%E7%A8%BF%5D/"
+    >java中的时间和日期</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-%E6%97%B6%E9%97%B4%E5%92%8C%E6%97%A5%E6%9C%9F%5B%E8%8D%89%E7%A8%BF%5D/" class="article-date">
+  <time datetime="2020-09-24T07:40:18.000Z" itemprop="datePublished">2020-09-24</time>
+</a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/javase/">-javase</a>
   </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-%E6%97%B6%E9%97%B4%E5%92%8C%E6%97%A5%E6%9C%9F%5B%E8%8D%89%E7%A8%BF%5D/">java中的时间和日期</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
+   
+    </div>
       
-        <h4 id="如何取得年月日、小时分钟秒？"><a href="#如何取得年月日、小时分钟秒？" class="headerlink" title="如何取得年月日、小时分钟秒？"></a>如何取得年月日、小时分钟秒？</h4>
-        
-          <p class="article-more-link">
-            <a href="/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-%E6%97%B6%E9%97%B4%E5%92%8C%E6%97%A5%E6%9C%9F%5B%E8%8D%89%E7%A8%BF%5D/#more">Read More</a>
-          </p>
-        
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h4 id="如何取得年月日、小时分钟秒？"><a href="#如何取得年月日、小时分钟秒？" class="headerlink" title="如何取得年月日、小时分钟秒？"></a>如何取得年月日、小时分钟秒？</h4> 
+      <a class="article-more-link" href="/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-%E6%97%B6%E9%97%B4%E5%92%8C%E6%97%A5%E6%9C%9F%5B%E8%8D%89%E7%A8%BF%5D/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
       
     </div>
+    
+
+    <!-- copyright -->
+    
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-%E6%97%B6%E9%97%B4%E5%92%8C%E6%97%A5%E6%9C%9F[%E8%8D%89%E7%A8%BF]/" data-id="ckg1z8drv001uasva4v4f3u1y" class="article-share-link">Share</a>
-      
-      
+       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
 
     </footer>
   </div>
-  
+
+    
+ 
+   
 </article>
 
-
-  
-    <article id="post-javase20-0924基础-intern" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-intern/" class="article-date">
-  <time datetime="2020-09-24T06:49:58.000Z" itemprop="datePublished">2020-09-24</time>
-</a>
     
+    <article
+  id="post-javase20-0924基础-intern"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-intern/"
+    >javase-intern（）</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-intern/" class="article-date">
+  <time datetime="2020-09-24T06:49:58.000Z" itemprop="datePublished">2020-09-24</time>
+</a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/javase/">-javase</a>
   </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-intern/">javase-intern（）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
+   
+    </div>
       
-        <h1 id="Java-intern-方法"><a href="#Java-intern-方法" class="headerlink" title="Java intern() 方法"></a>Java intern() 方法</h1><p>intern() 方法返回字符串对象的规范化表示形式。</p>
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="Java-intern-方法"><a href="#Java-intern-方法" class="headerlink" title="Java intern() 方法"></a>Java intern() 方法</h1><p>intern() 方法返回字符串对象的规范化表示形式。</p>
 <p>它遵循以下规则：对于任意两个字符串 s 和 t，当且仅当 s.equals(t) 为 true 时，s.intern() == t.intern() 才为 true。</p>
-<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">intern</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
-        
-          <p class="article-more-link">
-            <a href="/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-intern/#more">Read More</a>
-          </p>
-        
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">intern</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure> 
+      <a class="article-more-link" href="/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-intern/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
       
     </div>
+    
+
+    <!-- copyright -->
+    
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-intern/" data-id="ckg1z8drs001qasvaflwb1027" class="article-share-link">Share</a>
-      
-      
+       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
 
     </footer>
   </div>
-  
+
+    
+ 
+   
 </article>
 
-
-  
-    <article id="post-计算机网络——Tcp三次握手详解" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94Tcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%AF%A6%E8%A7%A3/" class="article-date">
-  <time datetime="2020-09-24T00:54:02.000Z" itemprop="datePublished">2020-09-24</time>
-</a>
     
+    <article
+  id="post-计算机网络——Tcp三次握手详解"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/09/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94Tcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%AF%A6%E8%A7%A3/"
+    >计算机网络——Tcp三次握手详解</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/09/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94Tcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%AF%A6%E8%A7%A3/" class="article-date">
+  <time datetime="2020-09-24T00:54:02.000Z" itemprop="datePublished">2020-09-24</time>
+</a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a>
   </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94Tcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%AF%A6%E8%A7%A3/">计算机网络——Tcp三次握手详解</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
+   
+    </div>
       
-        <h2 id="计算机网络——TCP-三次握手详解"><a href="#计算机网络——TCP-三次握手详解" class="headerlink" title="计算机网络——TCP 三次握手详解"></a>计算机网络——TCP 三次握手详解</h2><p><strong>重点内容：</strong></p>
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="计算机网络——TCP-三次握手详解"><a href="#计算机网络——TCP-三次握手详解" class="headerlink" title="计算机网络——TCP 三次握手详解"></a>计算机网络——TCP 三次握手详解</h2><p><strong>重点内容：</strong></p>
 <ol>
 <li><p>TCP 报文段结构</p>
 </li>
@@ -403,101 +539,119 @@
 <li><p>SYN 洪泛攻击</p>
 </li>
 <li><p>为什么是“三次”</p>
-<p> TCP 是面向连接的(connection-oriented)，即收发双方在发送数据之前，必须首先建立一个连接，这样在连接断开之前，就一直使用这个连接传输数据。建立连接包括参数的设置、内存空间的分配，收发双方参数的协商等，这一过程需要经过三次成功的沟通，一般叫做“三次握手” (a three-way handshake)。用通俗的话来讲，这三次沟通就是：</p></li></ol>
-        
-          <p class="article-more-link">
-            <a href="/2020/09/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94Tcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%AF%A6%E8%A7%A3/#more">Read More</a>
-          </p>
-        
+<p> TCP 是面向连接的(connection-oriented)，即收发双方在发送数据之前，必须首先建立一个连接，这样在连接断开之前，就一直使用这个连接传输数据。建立连接包括参数的设置、内存空间的分配，收发双方参数的协商等，这一过程需要经过三次成功的沟通，一般叫做“三次握手” (a three-way handshake)。用通俗的话来讲，这三次沟通就是：</p></li></ol> 
+      <a class="article-more-link" href="/2020/09/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94Tcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%AF%A6%E8%A7%A3/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
       
     </div>
+    
+
+    <!-- copyright -->
+    
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94Tcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%AF%A6%E8%A7%A3/" data-id="ckg1z8dsx003iasva9az30xfc" class="article-share-link">Share</a>
-      
-      
+       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
 
     </footer>
   </div>
-  
+
+    
+ 
+   
 </article>
 
+    
+    <article
+  id="post-网络概念tcp-四次挥手"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/"
+    >计算机网络——TCP 四次挥手过程详解</a> 
+</h2>
+ 
 
-  
-    <article id="post-网络概念tcp-四次挥手" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" class="article-date">
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" class="article-date">
   <time datetime="2020-09-24T00:40:13.000Z" itemprop="datePublished">2020-09-24</time>
-</a>
-    
+</a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a>
   </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/">计算机网络——TCP 四次挥手过程详解</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
+   
+    </div>
       
-        <h2 id="计算机网络——TCP-四次挥手过程详解"><a href="#计算机网络——TCP-四次挥手过程详解" class="headerlink" title="计算机网络——TCP 四次挥手过程详解"></a>计算机网络——TCP 四次挥手过程详解</h2><p>​       TCP 是面向连接的，连接的建立过程被称为“三次握手”，天下没有不散的宴席，有了连接的建立，就会有连接的断开， TCP 断开的过程通常被称为“四次挥手”。<br>​       首先要明确一点，断开 TCP 请求既可以由客户端发起也可以由服务端发起。这里讨论客户端发起断开连接请求的情况。</p>
-        
-          <p class="article-more-link">
-            <a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/#more">Read More</a>
-          </p>
-        
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="计算机网络——TCP-四次挥手过程详解"><a href="#计算机网络——TCP-四次挥手过程详解" class="headerlink" title="计算机网络——TCP 四次挥手过程详解"></a>计算机网络——TCP 四次挥手过程详解</h2><p>​       TCP 是面向连接的，连接的建立过程被称为“三次握手”，天下没有不散的宴席，有了连接的建立，就会有连接的断开， TCP 断开的过程通常被称为“四次挥手”。<br>​       首先要明确一点，断开 TCP 请求既可以由客户端发起也可以由服务端发起。这里讨论客户端发起断开连接请求的情况。</p> 
+      <a class="article-more-link" href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
       
     </div>
+    
+
+    <!-- copyright -->
+    
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" data-id="ckg1z8dsv003gasva0qtwdkay" class="article-share-link">Share</a>
-      
-      
+       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
 
     </footer>
   </div>
-  
+
+    
+ 
+   
 </article>
 
-
-  
-    <article id="post-网络概念05" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/" class="article-date">
-  <time datetime="2020-09-24T00:37:34.000Z" itemprop="datePublished">2020-09-24</time>
-</a>
     
+    <article
+  id="post-网络概念05"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/"
+    >自顶向下-第六章复习知识点</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/" class="article-date">
+  <time datetime="2020-09-24T00:37:34.000Z" itemprop="datePublished">2020-09-24</time>
+</a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a>
   </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/">自顶向下-第六章复习知识点</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
+   
+    </div>
       
-        <p><strong>计算机网络自顶向下-第六章复习知识点</strong></p>
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><strong>计算机网络自顶向下-第六章复习知识点</strong></p>
 <p><strong>1.数据链路层提供的服务。</strong></p>
 <ol>
 <li><p>成帧。 （网络层数据报经链路传送前，链路层协议将其用链路层帧封装起来）</p>
@@ -506,204 +660,456 @@
 </li>
 <li><p>可靠交付。 （保证无差错地经链路层移动每个网络数据报）</p>
 </li>
-<li><p>差错检验和纠正。</p></li></ol>
-        
-          <p class="article-more-link">
-            <a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/#more">Read More</a>
-          </p>
-        
+<li><p>差错检验和纠正。</p></li></ol> 
+      <a class="article-more-link" href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
       
     </div>
+    
+
+    <!-- copyright -->
+    
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/" data-id="ckg1z8dst003easvad9lncki7" class="article-share-link">Share</a>
-      
-      
+       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
 
     </footer>
   </div>
-  
+
+    
+ 
+   
 </article>
 
-
-  
-    <article id="post-网络概念06" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B506/" class="article-date">
-  <time datetime="2020-09-24T00:30:21.000Z" itemprop="datePublished">2020-09-24</time>
-</a>
     
+    <article
+  id="post-网络概念06"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B506/"
+    >自顶向下-第五章复习知识点</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B506/" class="article-date">
+  <time datetime="2020-09-24T00:30:21.000Z" itemprop="datePublished">2020-09-24</time>
+</a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a>
   </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B506/">自顶向下-第五章复习知识点</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
+   
+    </div>
       
-        <p><strong>计算机网络自顶向下-第五章复习知识点</strong></p>
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><strong>计算机网络自顶向下-第五章复习知识点</strong></p>
 <p><strong>一、比较集中式与分散式选路算法；了解链路状态算法和距离向量算法的特点。</strong></p>
 <p>集中式路由选择算法：用完整的、全局性的网络制式计算出从源到目的地之间的最低开销路径。该算法必须知道网络中每条链路的开销。（链路状态算法）</p>
-<p>分散式路由选择算法：路由器以迭代、分布式的计算方式计算出最低开销路径。每个节点仅有与其直接相连链路的开销，然后通过迭代计算过程以及与相邻节点的信息交换。（距离向量算法）</p>
-        
-          <p class="article-more-link">
-            <a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B506/#more">Read More</a>
-          </p>
-        
+<p>分散式路由选择算法：路由器以迭代、分布式的计算方式计算出最低开销路径。每个节点仅有与其直接相连链路的开销，然后通过迭代计算过程以及与相邻节点的信息交换。（距离向量算法）</p> 
+      <a class="article-more-link" href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B506/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
       
     </div>
+    
+
+    <!-- copyright -->
+    
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B506/" data-id="ckg1z8dss003dasvachwwc88l" class="article-share-link">Share</a>
-      
-      
+       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
 
     </footer>
   </div>
-  
+
+    
+ 
+   
 </article>
 
-
+    
+  </article>
   
 
-
-  <nav id="page-nav">
+  
+  <nav class="page-nav">
     
     <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
   </nav>
-
+  
 </section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/javase/">-javase</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">-前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a></li></ul>
-    </div>
-  </div>
+</div>
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95/" rel="tag">常用10种算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/" rel="tag">表单验证</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A1%A8%E6%A0%BC/" rel="tag">表格</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/CSS/" style="font-size: 16.67px;">CSS</a> <a href="/tags/HTML/" style="font-size: 15px;">HTML</a> <a href="/tags/LeetCode/" style="font-size: 13.33px;">LeetCode</a> <a href="/tags/jQuery/" style="font-size: 11.67px;">jQuery</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 11.67px;">基础</a> <a href="/tags/%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95/" style="font-size: 10px;">常用10种算法</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 18.33px;">网络</a> <a href="/tags/%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/" style="font-size: 10px;">表单验证</a> <a href="/tags/%E8%A1%A8%E6%A0%BC/" style="font-size: 11.67px;">表格</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 20px;">面试</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/10/09/javaSE01/">javaSE01概述与第一个程序</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/08/LC015-1007-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/">LC015-1007-三数之和</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/07/CSS-06-%E6%B5%AE%E5%8A%A8-%E7%9B%B8%E5%AF%B9-%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D/">CSS-06-浮动,相对,绝对定位</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/06/LC03-1006-%20%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/">无重复字符的最长子串-0003</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/06/CSS-05-%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B/">CSS-05-盒子模型</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
-
-  
+      <footer class="footer">
   <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 niewenzhao<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2020
+        <i class="ri-heart-fill heart_icon"></i> niewenzhao
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
   </div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
   
-    <a href="/" class="mobile-nav-link">首页</a>
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="WenZhao"></a>
+  </div>
   
-    <a href="/archives" class="mobile-nav-link">文章列表</a>
-  
-    <a href="/sitemap.xml" class="mobile-nav-link">网站地图</a>
-  
-    <a href="/about" class="mobile-nav-link">关于</a>
-  
-</nav>
+  <ul class="nav nav-main">
     
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" target="_blank" rel="noopener" href="http://shenyu-vip.lofter.com">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
 
 
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+<script src="/js/lazyload.min.js"></script>
 
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<!-- Tocbot -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
 
 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
 
 
-<script src="/js/script.js"></script>
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
 
 
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
 
 
+<!-- CanvasBackground -->
+
+
+    
   </div>
 </body>
+
 </html>
