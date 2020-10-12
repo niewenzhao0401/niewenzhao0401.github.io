@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-     当咸鱼,不存在!!!
+    十大算法——分治算法 |  当咸鱼,不存在!!!
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -46,24 +46,37 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-hhhhh你骄傲"
+  id="post-算法-常用10种算法002-分治算法"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
   data-scroll-reveal
 >
   <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  十大算法——分治算法
+</h1>
+ 
+
+    </header>
      
     <div class="article-meta">
-      <a href="/2020/09/21/hhhhh%E4%BD%A0%E9%AA%84%E5%82%B2/" class="article-date">
-  <time datetime="2020-09-21T13:36:08.243Z" itemprop="datePublished">2020-09-21</time>
-</a>   
+      <a href="/2020/10/12/%E7%AE%97%E6%B3%95-%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95002-%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95/" class="article-date">
+  <time datetime="2020-10-12T08:49:43.000Z" itemprop="datePublished">2020-10-12</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
+  </div>
+  
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">374</span>
+            <span class="post-count">861</span>
         </span>
     </span>
 
@@ -72,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">3 min</span>
         </span>
     </span>
 </div>
@@ -87,71 +100,23 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>title: 常用工具<br>date: 2017-12-14 13:05:38<br>type: “resources”</p>
-<h1 id="Lesson-2"><a href="#Lesson-2" class="headerlink" title="Lesson_2"></a>Lesson_2</h1><h2 id="MySql-2"><a href="#MySql-2" class="headerlink" title="MySql-2"></a>MySql-2</h2><h3 id="2-校对集"><a href="#2-校对集" class="headerlink" title="2.校对集"></a>2.校对集</h3><p>在某种字符集下，字符和字符的关系称为校对集。比如(ASCII)a和B的大小关系，如果区分大小写a&gt;B，如果不区分大小写a&lt;B</p>
-<p>不同的校对集的比较规则不一样。</p>
-<p>在定义表的时候可以指定校对集</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--more--&gt;</span></span><br></pre></td></tr></table></figure>
+  <h2 id="分治算法介绍"><a href="#分治算法介绍" class="headerlink" title="分治算法介绍"></a>分治算法介绍</h2><p>分治法是一种很重要的算法.由他的字面就可以得到”分而治之”,就是把一个复杂的问题,拆分为若干个子的问题.逐一进行解析.,在把若干个简单的子问题,继续拆分,直到不能拆分为止.</p>
+<p>技巧是很多高效算法的基础，如排序算法(快速排序，归并排序)，傅立叶变换(快速傅立叶变换)……</p>
+<p>可以解决的问题有:</p>
+<p>二分搜索,大整数乘法,棋盘覆盖,合并排序,快速排序,线性时间选择,最近近点对问题,循环赛日程表. <strong>汉诺塔.</strong></p>
+<a id="more"></a>  
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#utf8_general_ci  使用_ci这种校对集不区分大小写</span><br><span class="line">create table t1(</span><br><span class="line">name char(1)</span><br><span class="line">)charset&#x3D;utf8 collate&#x3D;utf8_general_ci;</span><br><span class="line"></span><br><span class="line">create table t2(</span><br><span class="line">name char(1)</span><br><span class="line">)charset&#x3D;utf8 collate&#x3D;utf8_bin;</span><br><span class="line"></span><br><span class="line">insert into t1 values (&#39;a&#39;),(&#39;B&#39;);</span><br><span class="line">insert into t2 values (&#39;a&#39;),(&#39;B&#39;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="分治算法的基本步骤"><a href="#分治算法的基本步骤" class="headerlink" title="分治算法的基本步骤"></a><strong>分治算法的基本步骤</strong></h3><p>分治法在每一层递归上都有三个步骤：<br>1)分解：将原问题分解为若干个规模较小，相互独立，与原问题形式相同的子问题</p>
+<p>2)解决：若子问题规模较小而容易被解决则直接解，否则递归地解各个子问题</p>
+<p>3)合并：将各个子问题的解合并为原问题的解。</p>
+<h3 id="分治算法最佳实践-汉诺塔"><a href="#分治算法最佳实践-汉诺塔" class="headerlink" title="分治算法最佳实践-汉诺塔"></a>分治算法最佳实践-汉诺塔</h3><p>汉诺塔的传说</p>
+<p>​        汉诺塔：汉诺塔（又称河内塔）问题是源于印度一个古老传说的益智玩具。大梵天创造世界的时候做了三根金刚石柱子，在一根柱子上从下往上按照大小顺序摞着64片黄金圆盘。大梵天命令婆罗门把圆盘从下面开始按大小<br>顺序重新摆放在另一根柱子上。并且规定，在小圆盘上不能放大圆盘，在三根柱子之间一次只能移动一个圆盘。</p>
+<p>​        假如每秒钟一次，共需多长时间呢？移完这些金片需要5845.54亿年以上，太阳系的预期寿命据说也就是数百<br>亿年。真的过了5845.54亿年，地球上的一切生命，连同梵塔、庙宇等，都早已经灰飞烟灭。</p>
+<h4 id="汉诺塔游戏的演示和思路分析"><a href="#汉诺塔游戏的演示和思路分析" class="headerlink" title="汉诺塔游戏的演示和思路分析:"></a>汉诺塔游戏的演示和思路分析:</h4><p><strong>1)如果是有一个盘，A-&gt;C</strong><br><strong>如果我们有n&gt;=2情况，我们总是可以看做是两个盘1.最下边的盘2.上面的盘</strong><br><strong>2)先把最上面的盘A-&gt;B</strong><br><strong>3)把最下边的盘A-&gt;C</strong><br><strong>4)把B塔的所有盘从B-&gt;C</strong></p>
+<h4 id="汉诺塔游戏的代码实现"><a href="#汉诺塔游戏的代码实现" class="headerlink" title="汉诺塔游戏的代码实现:"></a>汉诺塔游戏的代码实现:</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.atguigu.dac;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hanoitower</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		hanoiTower(<span class="number">3</span>, <span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;C&#x27;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//汉诺塔的移动的方法</span></span><br><span class="line">	<span class="comment">//使用分治算法</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">hanoiTower</span><span class="params">(<span class="keyword">int</span> num, <span class="keyword">char</span> a, <span class="keyword">char</span> b, <span class="keyword">char</span> c)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//如果只有一个盘</span></span><br><span class="line">		<span class="keyword">if</span>(num == <span class="number">1</span>) &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;第1个盘从 &quot;</span> + a + <span class="string">&quot;-&gt;&quot;</span> + c);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="comment">//如果我们有 n &gt;= 2 情况，我们总是可以看做是两个盘 1.最下边的一个盘 2. 上面的所有盘</span></span><br><span class="line">			<span class="comment">//1. 先把 最上面的所有盘 A-&gt;B， 移动过程会使用到 c</span></span><br><span class="line">			hanoiTower(num - <span class="number">1</span>, a, c, b);</span><br><span class="line">			<span class="comment">//2. 把最下边的盘 A-&gt;C</span></span><br><span class="line">			System.out.println(<span class="string">&quot;第&quot;</span> + num + <span class="string">&quot;个盘从 &quot;</span> + a + <span class="string">&quot;-&gt;&quot;</span> + c);</span><br><span class="line">			<span class="comment">//3. 把B塔的所有盘 从 B-&gt;C , 移动过程使用到 a塔  </span></span><br><span class="line">			hanoiTower(num - <span class="number">1</span>, b, a, c);</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from t1 order by name;</span><br><span class="line">+------+</span><br><span class="line">| name |</span><br><span class="line">+------+</span><br><span class="line">| a    |</span><br><span class="line">| B    |</span><br><span class="line">+------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">#排序查询以后没有区分大小写说明a和b不区分大小写;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from t2 order by name;</span><br><span class="line">+------+</span><br><span class="line">| name |</span><br><span class="line">+------+</span><br><span class="line">| B    |</span><br><span class="line">| a    |</span><br><span class="line">+------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">#按照正序排列,对照ASCLL编码,B&lt;a,B在a前面那么这种二进制校对集区分大小写;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">牢记:</span><br><span class="line">_bin：按二进制编码比较</span><br><span class="line">_ci：不区分大小写比较</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<table>
-<thead>
-<tr>
-<th align="left"></th>
-<th></th>
-<th align="left"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"></td>
-<td></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"></td>
-<td></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"></td>
-<td></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"></td>
-<td></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"></td>
-<td></td>
-<td align="left"></td>
-</tr>
-</tbody></table>
-<h4 id="2-unsigned-无符号"><a href="#2-unsigned-无符号" class="headerlink" title="(2)unsigned  (无符号)"></a>(2)unsigned  (无符号)</h4><p>一个数是无符号数，那么这个数肯定是非负数</p>
-<p><code>数据库mysql第一条记录一定是1(起码是),绝对不能是0</code></p>
-<p><code>tinyint unsigned   2^8-1</code></p>
-<p>无符号数的范围相当于是有符号数的两倍。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table test1(</span><br><span class="line">    -&gt; age tinyint unsigned</span><br><span class="line">    -&gt; );</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; insert into test1 values (128);</span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
+<p><strong>输出</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">第1个盘从 A-&gt;C</span><br><span class="line">第2个盘从 A-&gt;B</span><br><span class="line">第1个盘从 C-&gt;B</span><br><span class="line">第3个盘从 A-&gt;C</span><br><span class="line">第1个盘从 B-&gt;A</span><br><span class="line">第2个盘从 B-&gt;C</span><br><span class="line">第1个盘从 A-&gt;C</span><br></pre></td></tr></table></figure>
 
  
       <!-- reward -->
@@ -223,30 +188,23 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2020/09/21/hhhhh%E4%BD%A0%E9%AA%84%E5%82%B2/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2020/10/12/%E7%AE%97%E6%B3%95-%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95002-%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95/" rel="tag">常用10种算法</a></li></ul>
+
     </footer>
   </div>
 
    
   <nav class="article-nav">
     
-      <a href="/2020/09/22/index/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            javase
-          
-        </div>
-      </a>
     
-    
-      <a href="/2017/12/14/hhhhh%E4%BD%A0%E9%AA%84%E5%82%B2%20-%20%E5%89%AF%E6%9C%AC/" class="article-nav-link">
+      <a href="/2020/10/11/javaSE04/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">常用工具</div>
+        <div class="article-nav-title">javaSE-04-运算符</div>
       </a>
     
   </nav>
