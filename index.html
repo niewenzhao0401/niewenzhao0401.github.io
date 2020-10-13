@@ -141,6 +141,67 @@
     
     
     <article
+  id="post-算法-常用10种算法004-KMP算法"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/10/13/%E7%AE%97%E6%B3%95-%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95004-KMP%E7%AE%97%E6%B3%95/"
+    >算法-常用10种算法004-KMP算法</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/10/13/%E7%AE%97%E6%B3%95-%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95004-KMP%E7%AE%97%E6%B3%95/" class="article-date">
+  <time datetime="2020-10-13T11:39:59.000Z" itemprop="datePublished">2020-10-13</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="KMP-算法"><a href="#KMP-算法" class="headerlink" title="KMP 算法"></a>KMP 算法</h1><h2 id="应用场景-字符串匹配问题"><a href="#应用场景-字符串匹配问题" class="headerlink" title="应用场景-字符串匹配问题"></a>应用场景-字符串匹配问题</h2><p> 字符串匹配问题:</p>
+<ol>
+<li>有一个字符串 str1=”BBCABCDABABCDABCDABDE”，和一个子串 str2=”ABCDABD”</li>
+<li>现在要判断 str1 是否含有 str2, 如果存在，就返回第一次出现的位置, 如果没有，则返回-1</li>
+</ol>
+<h3 id="暴力匹配算法"><a href="#暴力匹配算法" class="headerlink" title="暴力匹配算法"></a>暴力匹配算法</h3><p>如果用暴力匹配的思路，并假设现在 str1 匹配到 i 位置，子串 str2 匹配到 j 位置，则有:</p> 
+      <a class="article-more-link" href="/2020/10/13/%E7%AE%97%E6%B3%95-%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95004-KMP%E7%AE%97%E6%B3%95/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95/" rel="tag">常用10种算法</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-操作系统00-2"
   class="article article-type-post"
   itemscope
@@ -679,62 +740,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-CSS-06-浮动-相对-绝对定位"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/10/07/CSS-06-%E6%B5%AE%E5%8A%A8-%E7%9B%B8%E5%AF%B9-%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D/"
-    >CSS-06-浮动,相对,绝对定位</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/10/07/CSS-06-%E6%B5%AE%E5%8A%A8-%E7%9B%B8%E5%AF%B9-%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D/" class="article-date">
-  <time datetime="2020-10-06T16:40:36.000Z" itemprop="datePublished">2020-10-07</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">-前端</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="css-06-浮动"><a href="#css-06-浮动" class="headerlink" title="css-06-浮动"></a>css-06-浮动</h1><h2 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h2><p><strong>所谓浮动指的是使标签脱离原来的文档流，在父标签中浮动起来。</strong><br>浮动使用float属性。<br>可选值：<br>        none ：不浮动<br>         left ：向左浮动<br>         right ：向右浮动<br>块级标签和行级标签都可以浮动，当一个行级标签浮动以后将会自动变为一 个块级标签。当一个块级标签浮动以后，宽度会默认是内容的宽度，所以当漂浮一个块级标签时我们   都会为其指定一个宽度。</p> 
-      <a class="article-more-link" href="/2020/10/07/CSS-06-%E6%B5%AE%E5%8A%A8-%E7%9B%B8%E5%AF%B9-%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li></ul>
 
     </footer>
   </div>
