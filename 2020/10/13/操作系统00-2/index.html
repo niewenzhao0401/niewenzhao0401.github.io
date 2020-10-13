@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    11 |  当咸鱼,不存在!!!
+    操作系统00-程序如何执行 |  当咸鱼,不存在!!!
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -46,7 +46,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-index - 副本 (3)"
+  id="post-操作系统00-2"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -57,18 +57,18 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  11
+  操作系统00-程序如何执行
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2020/09/22/index%20-%20%E5%89%AF%E6%9C%AC%20(3)/" class="article-date">
-  <time datetime="2020-09-22T05:05:38.000Z" itemprop="datePublished">2020-09-22</time>
+      <a href="/2020/10/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F00-2/" class="article-date">
+  <time datetime="2020-10-13T08:02:08.000Z" itemprop="datePublished">2020-10-13</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/javase/">-javase</a>
+    <a class="article-category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">-操作系统</a>
   </div>
   
 <div class="word_count">
@@ -76,7 +76,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">10</span>
+            <span class="post-count">1.8k</span>
         </span>
     </span>
 
@@ -85,21 +85,126 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">6 min</span>
         </span>
     </span>
 </div>
  
     </div>
       
+    <div class="tocbot"></div>
+
 
 
 
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>士大夫山豆根萨格11</p>
-<p>1fsdfsdgsdgsdds</p>
+  <h1 id="操作系统–前言02"><a href="#操作系统–前言02" class="headerlink" title="操作系统–前言02"></a>操作系统–前言02</h1><h2 id="程序是如何执行的？"><a href="#程序是如何执行的？" class="headerlink" title="程序是如何执行的？"></a>程序是如何执行的？</h2><p>我们先来看一道常规的面试题：相比 32 位，64 位的优势是什么？</p>
+<ul>
+<li>如果是软件，那么我们的数据库有 32 位和 64 位版本；</li>
+<li>如果是操作系统，那么在阿里云上选择 Centos 和 Debian 版本的时候，也会有 32/64 版本；</li>
+<li>如果是 CPU，那么有 32 位 CPU，也有 64 位 CPU。</li>
+</ul>
+<a id="more"></a>  
+
+<h2 id="图灵机的构造"><a href="#图灵机的构造" class="headerlink" title="图灵机的构造"></a>图灵机的构造</h2><h4 id="计算机科学方面有两个巨大的贡献："><a href="#计算机科学方面有两个巨大的贡献：" class="headerlink" title="计算机科学方面有两个巨大的贡献："></a>计算机科学方面有两个巨大的贡献：</h4><ul>
+<li>清楚的定义了计算机能力的边界,也就是可计算理论</li>
+<li>定义了计算机由哪些部分组成,程序又是如何让执行的</li>
+</ul>
+<h4 id="图灵机的内部构造"><a href="#图灵机的内部构造" class="headerlink" title="图灵机的内部构造"></a>图灵机的内部构造</h4><ul>
+<li>图灵机拥有一条无限长的纸带,纸带上是一个格子挨着一个格子,格子中可以写字符,你可以把纸带看成内存,而这些字符可以看作是内存中的数据或者程序.</li>
+<li>图灵机有一个读写头,读写头可以读取任意格子上的字符,也可以改写任意格子的字符.</li>
+<li>读写头上面的盒子里面是一些精密的零件,包括图灵机的储存,控制单元和运算单元.</li>
+</ul>
+<h4 id="图灵机如何执行程序"><a href="#图灵机如何执行程序" class="headerlink" title="图灵机如何执行程序"></a>图灵机如何执行程序</h4><p>​        下面我们来举一个例子，让大家弄清楚图灵机是如何工作的，比如我们要计算 11 + 15 的值，具体的运算步骤如下：</p>
+<ul>
+<li><p>首先，我们将“11、15、+” 分别写入纸带上的 3 个格子（现在纸带上的字符串是11、15、 +)，然后将读写头先停在 11 对应的格子上。</p>
+</li>
+<li><p>接下来，图灵机通过读写头读入 11 到它的存储设备中（这个存储设备也叫作图灵机的状态）。图灵机没有说读写头为什么可以识别纸带上的字符，而是假定读写头可以做到这点。</p>
+</li>
+<li><p>然后读写头向右移动一个格，用同样的方法将 15 读入图灵机的状态中。现在图灵机的状态中有两个连续的数字，11 和 15。</p>
+</li>
+</ul>
+<p><img src="/2020/10/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F00-2/1.png" alt="1"></p>
+<p><img src="/2020/10/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F00-2/2.png" alt="2"></p>
+<p>运算流程是:</p>
+<ul>
+<li>读写到一个加号</li>
+<li>然后将+号传输控制单元</li>
+<li>由于控制单元发现其为一个+号,所以没有存入状态,因为原来就一定预定了+号为一个指令,目的就是加和当前的状态,因此,控制单元识别出控制符,病通知单元工作.</li>
+<li>运算单元从状态中读入 11、15 并进行计算，将结果 26 存储到状态</li>
+<li>运算单元将结果回传给控制单元；</li>
+<li>控制单元将结果传输给读写头.</li>
+</ul>
+<p><img src="/2020/10/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F00-2/3.png" alt="3"></p>
+<ul>
+<li>读写头向右移动，将结果 26 写入纸带。<img src="/2020/10/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F00-2/4.png" alt="4"></li>
+</ul>
+<p>图灵机构造的这一台机器，主要功能就是读写纸带然后计算；纸带中有数据、也有控制字符（也就是指令）</p>
+<h2 id="冯诺依曼模型"><a href="#冯诺依曼模型" class="headerlink" title="冯诺依曼模型"></a>冯诺依曼模型</h2><p><img src="/2020/10/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F00-2/5.png" alt="5"></p>
+<p>计算机结构分成以下 5 个部分：</p>
+<ul>
+<li>输入设备；</li>
+<li>输出设备；</li>
+<li>内存；</li>
+<li>中央处理器；</li>
+<li>总线。</li>
+</ul>
+<p>这个模型也被称为<strong>冯诺依曼模型</strong>，下面我们具体来看看这 5 部分的作用。</p>
+<h4 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h4><ul>
+<li>存储的数据单位是一个二进制位，英文是 bit( 8 位，英文是 byte)</li>
+<li>随机存取器，读取任何一个地址数据的速度是一样的</li>
+</ul>
+<h4 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h4><ul>
+<li>如果 CPU 每次可以计算 4 个 byte，那么我们称作 32 位 CPU；</li>
+<li>如果 CPU 每次可以计算 8 个 byte，那么我们称作 64 位 CPU。</li>
+</ul>
+<p>这里的 32 和 64，称作 CPU 的位宽。</p>
+<h4 id="控制单元和逻辑运算单元"><a href="#控制单元和逻辑运算单元" class="headerlink" title="控制单元和逻辑运算单元"></a>控制单元和逻辑运算单元</h4><ul>
+<li>控制单元专门负责控制 CPU 工作；</li>
+<li>逻辑运算单元专门负责计算。</li>
+</ul>
+<h4 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h4><p>寄存器在 CPU 里，控制单元和逻辑运算单元非常近，因此速度很快。</p>
+<ul>
+<li><p>寄存器中有一部分是可供用户编程用的，比如用来存加和指令的两个参数，是<strong>通用寄存器</strong>。</p>
+</li>
+<li><p>还有一部分寄存器有特殊的用途，叫作<strong>特殊寄存器</strong>。比如程序指针，就是一个特殊寄存器。它存储了 CPU 要执行的下一条指令所在的内存地址。注意，程序指针不是存储了下一条要执行的指令，此时指令还在内存中，程序指针只是存储了下一条指令的地址。</p>
+</li>
+<li><p>下一条要执行的指令，会从内存读入到另一个特殊的寄存器中，这个寄存器叫作<strong>指令寄存器</strong>。指令被执行完成之前，指令都存储在这里。</p>
+</li>
+</ul>
+<h4 id="总线"><a href="#总线" class="headerlink" title="总线"></a>总线</h4><p>CPU内存以及其他设备之间,也要通讯,因此我们用一种特殊的设备进行控制,就是总线.分为三种:</p>
+<ol>
+<li><p>**地址总线:**专门用来指定cpu将要操作的内存地址</p>
+</li>
+<li><p>**数据总线,**用来读写内存中的数据</p>
+<p>当cpu需要读写的内存的时候,先要通过地址总线来指定内存地址,再通过数据总线来传输数据.</p>
+</li>
+<li><p>**控制总线:**用来发送和接受信号.中断信号，还有设备复位、就绪等信号，都是通过控制总线传输。同样的，CPU 需要对这些信号进行响应，这也需要控制总线。</p>
+</li>
+</ol>
+<h4 id="输入、输出设备"><a href="#输入、输出设备" class="headerlink" title="输入、输出设备"></a>输入、输出设备</h4><ul>
+<li><strong>输入设备</strong>向计算机输入数据，计算机经过计算，将结果通过<strong>输出设备</strong>向外界传达。</li>
+<li>输入设备、输出设备想要和 CPU 进行交互，比如说用户按键需要 CPU 响应，这时候就需要用到<strong>控制总线</strong></li>
+</ul>
+<h2 id="线路位宽问题"><a href="#线路位宽问题" class="headerlink" title="线路位宽问题"></a>线路位宽问题</h2><p>通过操作电压，低电压是 0，高电压是 1。</p>
+<p>一条线路:只能传递 1 个信号,必须在 0,1 中选一个.只能操作两个内存地址</p>
+<p>10 条地址总线;一次就可以表示 210 种情况，也就是可以操作 1024 个内存地址</p>
+<p>32 条线 :2^32 是 4G。 可以操作4G 的内存地址.</p>
+<h2 id="64-位和-32-位的计算"><a href="#64-位和-32-位的计算" class="headerlink" title="64 位和 32 位的计算"></a>64 位和 32 位的计算</h2><p><strong>32 位宽的 CPU 控制 40 位宽</strong></p>
+<ul>
+<li><p>地址总线、数据总线工作会非常麻烦，需要双方制定协议。 因此通常 32 位宽 CPU 最多操作 32 位宽的地址总线和数据总线。</p>
+</li>
+<li><p>把两个 64 位数字拆成 2 个 32 位数字来计算，这样就需要一个算法，</p>
+</li>
+</ul>
+<p>64 位的 CPU 就可以一次读入 64 位的数字</p>
+<ul>
+<li>64 位的 CPU 内部的逻辑计算单元，也支持 64 位的数字进行计算</li>
+</ul>
+<p><em>注:不要仅仅因为位宽的区别，就认为 64 位 CPU 性能比 32 位高很多。</em></p>
+<p><strong>注意</strong>:32 位宽的 CPU 没办法控制超过 32 位的地址总线、数据总线工作。比如说你有一条 40 位的地址总线（其实就是 40 条线），32 位的 CPU 没有办法一次给 40 个信号，因为它最多只有 32 位的寄存器。因此 32 位宽的 CPU 最多操作 232 个内存地址，也就是 4G 内存地址。</p>
  
       <!-- reward -->
       
@@ -170,12 +275,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2020/09/22/index%20-%20%E5%89%AF%E6%9C%AC%20(3)/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2020/10/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F00-2/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%A1%A8%E6%A0%BC/" rel="tag">表格</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
 
     </footer>
   </div>
@@ -183,19 +288,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2020/09/22/index%20-%20%E5%89%AF%E6%9C%AC%20(2)/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            javase
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/09/22/index%20-%20%E5%89%AF%E6%9C%AC/" class="article-nav-link">
+      <a href="/2020/10/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F00-1/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">javase</div>
+        <div class="article-nav-title">操作系统00-1-计算</div>
       </a>
     
   </nav>
