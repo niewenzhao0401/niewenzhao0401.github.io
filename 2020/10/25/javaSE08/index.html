@@ -76,7 +76,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">2.7k</span>
+            <span class="post-count">3k</span>
         </span>
     </span>
 
@@ -85,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">11 min</span>
+            <span class="post-count">12 min</span>
         </span>
     </span>
 </div>
@@ -101,7 +101,11 @@
     <div class="article-entry" itemprop="articleBody">
        
   <h1 id="面向对象特征"><a href="#面向对象特征" class="headerlink" title="面向对象特征"></a>面向对象特征</h1><h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><h3 id="封装概念"><a href="#封装概念" class="headerlink" title="封装概念:"></a>封装概念:</h3><ul>
-<li>封装,将类的某些信息隐藏在类内部,不允许外部访问,而且时通过该类提供的方法来实现对隐藏信息的操作和访问</li>
+<li><p>封装,将类的某些信息隐藏在类内部,不允许外部访问,而且时通过该类提供的方法来实现对隐藏信息的操作和访问</p>
+<hr>
+
+<p>(封装隐藏了类的内部实现机制，可以在不影响使用的情况下改变类的内部结构，同时也保护了数据。对外界而已它的内部细节是隐藏的，暴露给外界的只是它的访问方法。)</p>
+</li>
 </ul>
 <p>优点:</p>
 <ol>
@@ -136,7 +140,7 @@
 </li>
 </ul>
 <p>使用“this.成员变量名”这样的格式来引用成员变量名，,常常硬来区分同名的成员变量呵和局部变量</p>
-<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>继承是面向对象程序设计思想,是实现代码可重用的根基,是提高代码可扩展性的主要途径。</p>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>继承是面向对象程序设计思想,是实现代码可重用的根基,是提高代码可扩展性的主要途径。并减少代码的冗余.</p>
 <ul>
 <li>继承是从已有的类中派生出新的类,新类能吸收已有类的属性和行为，并能扩展新的能力<ul>
 <li>Java中使用extends关键字来表示继承关系</li>
@@ -238,6 +242,8 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CourseTable</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addCourse</span><span class="params">(Course c)</span></span>&#123;</span><br><span class="line">		c.show();</span><br><span class="line">		System.out.println(<span class="string">&quot;新增课程&quot;</span>);</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="function">pubilc <span class="keyword">void</span> <span class="title">deCourse</span><span class="params">(Course c)</span></span>&#123;</span><br><span class="line">		c.show();</span><br><span class="line">		System.out.println(<span class="string">&quot;删除课程&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Course</span></span>&#123;</span><br><span class="line">	System.out.println(<span class="string">&quot;课程为：&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>同一事物,在不同时刻表现不同的状态</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">所谓多态就是指程序中定义的引用变量所指向的具体类型和通过该引用变量发出的方法调用在编程时并不确定，而是在程序运行期间才确定，即一个引用变量倒底会指向哪个类的实例对象，该引用变量发出的方法调用到底是哪个类中实现的方法，必须在由程序运行期间才能决定。因为在程序运行时才确定具体的类，这样，不用修改源程序代码，就可以让引用变量绑定到各种不同的类实现上，从而导致该引用调用的具体方法随之改变，即不修改程序代码就可以改变程序运行时所绑定的具体代码，让程序可以选择多个运行状态，这就是多态性。</span><br></pre></td></tr></table></figure>
+
 <p>多态存在的必要的三个条件:</p>
 <ul>
 <li>要有继承(前提条件)</li>
