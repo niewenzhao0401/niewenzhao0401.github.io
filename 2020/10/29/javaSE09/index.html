@@ -110,7 +110,7 @@
 <p>–在声明时同时赋值,往往与static一起使用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">final static int Num &#x3D; 10;</span><br></pre></td></tr></table></figure>
 
-
+<a id="more"></a>
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nie.day5.demo06;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Filal</span> </span>&#123;</span><br><span class="line">    <span class="comment">//用于声明方法和类</span></span><br><span class="line">    <span class="comment">//final修饰常量,常量值不能变,利用static 修饰 节省空间</span></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> Num = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> a = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;你好&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//定义就必须直接赋值或者在构造方法中进行中进行赋值,后期不能修改</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">num</span><span class="params">(<span class="keyword">int</span> a)</span> </span>&#123;</span><br><span class="line"><span class="comment">//       this.a=1000;</span></span><br><span class="line">        System.out.println(a);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//在方法参数前加final关键字,防止数据在方法题中被修改.</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">num1</span><span class="params">(<span class="keyword">final</span> <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line"><span class="comment">//        b=11;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -264,6 +264,15 @@
 
    
   <nav class="article-nav">
+    
+      <a href="/2020/10/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F1-1-1/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            1.1操作系统的概念功能和目标
+          
+        </div>
+      </a>
     
     
       <a href="/2020/10/25/javaSE08/" class="article-nav-link">
