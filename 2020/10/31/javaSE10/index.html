@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    11 |  当咸鱼,不存在!!!
+    javaSE-11-一维数组 |  当咸鱼,不存在!!!
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -46,7 +46,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-index - 副本 (3)"
+  id="post-javaSE10"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -57,15 +57,15 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  11
+  javaSE-11-一维数组
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2020/09/22/index%20-%20%E5%89%AF%E6%9C%AC%20(3)/" class="article-date">
-  <time datetime="2020-09-22T05:05:38.000Z" itemprop="datePublished">2020-09-22</time>
+      <a href="/2020/10/31/javaSE10/" class="article-date">
+  <time datetime="2020-10-30T16:45:07.000Z" itemprop="datePublished">2020-10-31</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/javase/">-javase</a>
@@ -76,7 +76,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">10</span>
+            <span class="post-count">976</span>
         </span>
     </span>
 
@@ -85,21 +85,132 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">4 min</span>
         </span>
     </span>
 </div>
  
     </div>
       
+    <div class="tocbot"></div>
+
 
 
 
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>士大夫山豆根萨格11</p>
-<p>1fsdfsdgsdgsdds</p>
+  <h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念:"></a>概念:</h2><ul>
+<li>相同数据类型元素的集合,多个数据</li>
+<li>引用数据类型,对象,,,数组可以存储基本数据类型,也可以储存引用数据类型</li>
+</ul>
+<p>**是一种线性数据结构,**在内存空间是连续的</p>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用:"></a>作用:</h2><p>储存多个数据,并且类型相同</p>
+<h2 id="声明方式"><a href="#声明方式" class="headerlink" title="声明方式:"></a>声明方式:</h2><ul>
+<li><p>int[]    a;     ||    数据类型[]  数组名字    ||    建议使用第一种</p>
+<p>数据类型数组中的数据类型</p>
+</li>
+<li><p>int    a[];     ||    数据类型 数组名字[]</p>
+</li>
+</ul>
+<a id="more"></a>
+
+<p>Java数组在创建时必须给给定的长度,一旦定义就不可修改    </p>
+<p>在内存空间中是一个连续的空间 为其中每个存储空间初始化值</p>
+<table>
+<thead>
+<tr>
+<th>变量的数据类型</th>
+<th>默认初始化值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>byte</td>
+<td>0</td>
+</tr>
+<tr>
+<td>short</td>
+<td>0</td>
+</tr>
+<tr>
+<td>int</td>
+<td>0</td>
+</tr>
+<tr>
+<td>long</td>
+<td>0</td>
+</tr>
+<tr>
+<td>double</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>float</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>false</td>
+</tr>
+<tr>
+<td>char</td>
+<td>\u0000(空格的UNICODE码)</td>
+</tr>
+<tr>
+<td>string</td>
+<td>null</td>
+</tr>
+</tbody></table>
+<ul>
+<li>int [] a=new int[10];  堆空间创建了一个数组对象,有10连续的空间. 初始化和为零</li>
+</ul>
+<h2 id="创建方式"><a href="#创建方式" class="headerlink" title="创建方式:"></a>创建方式:</h2><ol>
+<li><p>int[] a = new int[10];</p>
+<p>堆空间创建了一个数组对象,有10连续的空间. 初始化和为零</p>
+<p>数据类型和前面的声明类型对应  int[] a 数组数据为int,元素都是默认的初始化值</p>
+</li>
+<li><p>int[] arry = new int[]{1, 3, 4, 5, 24};</p>
+<p>在创建时直接初始化,根据内容的数量,确定数组的长度,分配内存，同时将其初始化</p>
+</li>
+<li><p>int[] arr2 = {1, 2, 34, 5, 6};</p>
+<p>简写</p>
+</li>
+</ol>
+<p><strong>将对象(数组)以字符串的形式进行输出</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(Arrays.toString(a))</span><br></pre></td></tr></table></figure>
+
+<p><strong>案例</strong>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Array01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//创建的三种方式</span></span><br><span class="line">        <span class="comment">//int[] a = new int[10];</span></span><br><span class="line">        <span class="comment">//堆空间创建了一个数组对象,有10连续的空间. 初始化和为零</span></span><br><span class="line">        <span class="comment">//数据类型和前面的声明类型对应  int[] a 数组数据为int,元素都是默认的初始化值</span></span><br><span class="line">        <span class="keyword">int</span>[] a = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line">        <span class="comment">//将对象(数组)以字符串的形式进行输出</span></span><br><span class="line">        System.out.println(Arrays.toString(a));</span><br><span class="line">        <span class="keyword">boolean</span>[] b = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">10</span>];</span><br><span class="line">        System.out.println(Arrays.toString(b));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//在创建时直接初始化,根据内容的数量,确定数组的长度,分配内存，同时将其初始化</span></span><br><span class="line">        <span class="keyword">int</span>[] arry = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">24</span>&#125;;</span><br><span class="line">        <span class="comment">//简写</span></span><br><span class="line">        <span class="keyword">int</span>[] arr2 = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">34</span>, <span class="number">5</span>, <span class="number">6</span>&#125;;</span><br><span class="line">        System.out.println(Arrays.toString(arry));</span><br><span class="line">        System.out.println(Arrays.toString(arr2));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>一旦创建对象创建就会在<strong>堆空间</strong>中有一个存储位置,</li>
+<li>如果存储的是引用类(类类型),会存储对向的引用</li>
+<li>数组中如果存储的是基本类型,存储的是具体的值</li>
+</ul>
+<p><strong>车类</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Car</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//重写Object类toString()方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Car :name=&quot;</span>+<span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>引用类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Car car0 = <span class="keyword">new</span> Car(<span class="string">&quot;car0&quot;</span>);<span class="comment">//一旦创建对象创建就会在堆空间中有一个存储位置</span></span><br><span class="line"> Car car1 = <span class="keyword">new</span> Car(<span class="string">&quot;car1&quot;</span>);</span><br><span class="line"> Car car2 = <span class="keyword">new</span> Car(<span class="string">&quot;car2&quot;</span>);</span><br><span class="line"> Car car3 = <span class="keyword">new</span> Car(<span class="string">&quot;car3&quot;</span>);</span><br><span class="line"> Car car4 = <span class="keyword">new</span> Car(<span class="string">&quot;car4&quot;</span>);</span><br><span class="line">          <span class="comment">//如果存储的是引用类(类类型),会存储对向的引用</span></span><br><span class="line"> Car[] cars = <span class="keyword">new</span> Car[]&#123;car0,car1,car2,car3,car4&#125;;</span><br><span class="line"> System.out.println(Arrays.toString(cars));</span><br></pre></td></tr></table></figure>
+
+<h2 id="数组的访问"><a href="#数组的访问" class="headerlink" title="数组的访问:"></a>数组的访问:</h2><ul>
+<li>数组名字[索引]    例如：a[0],a[1];</li>
+</ul>
+<p>注意</p>
+<ul>
+<li>数组的索引从0开始。</li>
+<li>索引的数据类型是整型</li>
+<li>索引最大值和数组长度始终差1</li>
+</ul>
+<p>注意使用合法的索引访问,否则会程序终止,抛出异常</p>
+<p> 数组越界:ArrayIndexOutOfBoundsException</p>
+<h3 id="数组迭代的两种方式："><a href="#数组迭代的两种方式：" class="headerlink" title="数组迭代的两种方式："></a>数组迭代的两种方式：</h3><h4 id="第一种-for循环"><a href="#第一种-for循环" class="headerlink" title="第一种:for循环"></a>第一种:for循环</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> [] a = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>&#125;;</span><br><span class="line">               <span class="comment">// 0 1 2 3 4 5 6</span></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">          System.out.println(a[i]);<span class="comment">//取出数组第i个元素</span></span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="第二种：增强for循环"><a href="#第二种：增强for循环" class="headerlink" title="第二种：增强for循环"></a>第二种：增强for循环</h4><p>for(数组元素的类型  临时变量名字 ：数组的名字){<br>System.out.println(临时变量名字 );<br>}</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> item :a) &#123;</span><br><span class="line">          System.out.println(item);</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+
  
       <!-- reward -->
       
@@ -164,12 +275,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2020/09/22/index%20-%20%E5%89%AF%E6%9C%AC%20(3)/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2020/10/31/javaSE10/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%A1%A8%E6%A0%BC/" rel="tag">表格</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a></li></ul>
 
     </footer>
   </div>
@@ -177,19 +288,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2020/09/22/index/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            javase
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/09/21/hhhhh%E4%BD%A0%E9%AA%84%E5%82%B2/" class="article-nav-link">
+      <a href="/2020/10/30/LC005-%E6%9C%80%E5%A4%A7%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title"></div>
+        <div class="article-nav-title">LC005-最大回文子串</div>
       </a>
     
   </nav>
