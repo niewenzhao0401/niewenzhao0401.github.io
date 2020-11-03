@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    操作系统1.1_2 |  当咸鱼,不存在!!!
+    LC011-1103-最大容器 |  当咸鱼,不存在!!!
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -46,7 +46,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-操作系统1-1-2"
+  id="post-LC011-1103-最大容器"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -57,18 +57,18 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  操作系统1.1_2
+  LC011-1103-最大容器
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2020/10/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F1-1-2/" class="article-date">
-  <time datetime="2020-10-29T17:56:46.000Z" itemprop="datePublished">2020-10-30</time>
+      <a href="/2020/11/03/LC011-1103-%E6%9C%80%E5%A4%A7%E5%AE%B9%E5%99%A8/" class="article-date">
+  <time datetime="2020-11-03T08:45:17.000Z" itemprop="datePublished">2020-11-03</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">-操作系统</a>
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
   </div>
   
 <div class="word_count">
@@ -76,7 +76,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">657</span>
+            <span class="post-count">600</span>
         </span>
     </span>
 
@@ -100,45 +100,40 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="操作系统四个特征"><a href="#操作系统四个特征" class="headerlink" title="操作系统四个特征"></a>操作系统四个特征</h1><ol>
-<li><strong>并发{最基本的特征}</strong></li>
-<li><strong>共享{最基本的特征}</strong></li>
-<li>虚拟</li>
-<li>异步</li>
-</ol>
-<h2 id="操作系统的特征–并发"><a href="#操作系统的特征–并发" class="headerlink" title="操作系统的特征–并发"></a>操作系统的特征–并发</h2><ul>
-<li>并发:是指两个或者多个事件在同一时间间隔内发生,这事件<strong>宏观上是同时发生的</strong>,但是<strong>微观上是交替发生</strong>的.</li>
-<li>并行:是两个或者多个事件在同时同刻发生</li>
-</ul>
-<p>操作系统的并发性:是指计算机系统中<strong>同时存在着多个</strong>运行的程序.<strong>操作系统和程序的并发是一起诞生的.</strong></p>
-<a id="more"></a>  
+  <h1 id="盛最多水的容器"><a href="#盛最多水的容器" class="headerlink" title="盛最多水的容器"></a>盛最多水的容器</h1><p>给你 <code>n</code> 个非负整数 <code>a1，a2，...，a``n</code>，每个数代表坐标中的一个点 <code>(i, ai)</code> 。在坐标内画 <code>n</code> 条垂直线，垂直线 <code>i</code> 的两个端点分别为 <code>(i, ai)</code> 和 <code>(i, 0)</code> 。找出其中的两条线，使得它们与 <code>x</code> 轴共同构成的容器可以容纳最多的水。</p>
+<p><strong>说明：</strong>你不能倾斜容器。</p>
+  <a id="more"></a> 
 
-<h2 id="操作系统的特征–共享"><a href="#操作系统的特征–共享" class="headerlink" title="操作系统的特征–共享"></a>操作系统的特征–共享</h2><p>共享资源共享方式:</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="/2020/11/03/LC011-1103-%E6%9C%80%E5%A4%A7%E5%AE%B9%E5%99%A8/11.png" alt="11"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：[1,8,6,2,5,4,8,3,7]</span><br><span class="line">输出：49 </span><br><span class="line">解释：图中垂直线代表输入数组 [1,8,6,2,5,4,8,3,7]。在此情况下，容器能够容纳水（表示为蓝色部分）的最大值为 49。</span><br></pre></td></tr></table></figure>
+
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p><strong>算法流程：</strong> 设置双指针i.j分别位于容器壁两端，根据规则移动指针（后续说明），并且更新面积最大值 area，直到 i==j时返回area。</p>
+<p><strong>指针移动规则与证明：</strong></p>
+<p>指针移动规则与证明： 每次选定围成水槽两板高度 h[i]h[j]中的短板，向中间收窄 11 格。以下证明：</p>
+<p>设每一状态下水槽面积为 S(i, j),(0 &lt;= i &lt; j &lt; n)，由于水槽的实际高度由两板中的短板决定，则可得面积公式 S(i, j) = min(h[i], h[j]) × (j - i)</p>
+<p>在每一个状态下，无论长板或短板收窄 1 格，都会导致水槽 底边宽度 −1：</p>
+<p>若向内移动短板，水槽的短板 min(h[i], h[j])可能变大，因此水槽面积 S(i, j)S(i,j) 可能增大。</p>
+<p>若向内移动长板，水槽的短板 min(h[i], h[j])不变或变小，下个水槽的面积一定小于当前水槽面积。</p>
+<p>因此，向内收窄短板可以获取面积最大值。换个角度理解：</p>
+<p><strong>因为短指针已经限制了高度，如果移动高指针不可能增加整体的高度，而底在不断减少，所以移动短指针来尝试增加最大高度</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">      <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> j = (height.length - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> area=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">            area = (height[i] &lt; height[j]) ? Math.max(area , (j - i) * height[i++]) :</span><br><span class="line">            								 Math.max(area, (j - i) *height[j--]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> area;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="双指针法正确性证明"><a href="#双指针法正确性证明" class="headerlink" title="双指针法正确性证明"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/container-with-most-water/solution/shuang-zhi-zhen-fa-zheng-que-xing-zheng-ming-by-r3/">双指针法正确性证明</a></h1><p><strong>复杂度分析</strong>：</p>
 <ul>
-<li><p>互斥共享方式</p>
-<p>系统中的某些资源,虽然可以提供给多个进程使用,但<strong>一个时间段内只允许一个进程访问资源</strong></p>
+<li><p>时间复杂度 O(N)，双指针遍历一次底边宽度 N 。</p>
 </li>
-<li><p>同时共享方式</p>
-<p>系统中的某些资源,<strong>允许一个时间段内由多个进程”同时”对他们进行访问</strong></p>
+<li><p>空间复杂度 O(1)，指针使用常数额外空间。</p>
 </li>
 </ul>
-<h2 id="并发和共享的关系"><a href="#并发和共享的关系" class="headerlink" title="并发和共享的关系"></a>并发和共享的关系</h2><ul>
-<li>并发:计算机系统中同时存在多个运行的程序</li>
-<li>共享:系统资源可以提供内存中多个并发执行的进程共同使用(需要共享的访问硬盘资源)</li>
-</ul>
-<h2 id="操作系统的特性–虚拟"><a href="#操作系统的特性–虚拟" class="headerlink" title="操作系统的特性–虚拟"></a>操作系统的特性–虚拟</h2><p><strong>虚拟</strong>:是指把一个物理上的实体变为若干个逻辑上的对应物.物理实体(前者)是实际存在的,在逻辑上对应物(后者)是用户感受.</p>
-<p>一个程序<strong>需要放入内存</strong>并给他<strong>分配CPU</strong>才能执行</p>
-<ul>
-<li><strong>虚拟技术中的”空分复用技术”</strong></li>
-<li><strong>虚拟技术中的”时分复用技术”</strong>,微观上处理机在各个微小的时间段内交替着为各个进程服务——–<ul>
-<li><em>如果失去了并发性，则一个时间段内系统中只需运行一道程序，那么就失去了实现虚拟性的意义了。因此，没有并发性，就谈不上虚拟性</em></li>
-</ul>
-</li>
-</ul>
-<h2 id="操作系统的特性–异步"><a href="#操作系统的特性–异步" class="headerlink" title="操作系统的特性–异步"></a>操作系统的特性–异步</h2><p><strong>异步</strong>:在多道程序环境下,允许多个程序并发操作,但由于资源有限,进程的执行不是一贯到底的,而是走走停停,以不可预知的速度向前推进,这就是进程的异步性.</p>
-<p>显然.如果失去了并发性,则系统只能串行的处理各个进程,每个进程的执行会一贯到底,<strong>只有系统拥有并发性,才有可能导致异步性.</strong></p>
-<p><img src="/2020/10/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F1-1-2/1.png" alt="1"></p>
-<p>没有并发和共享,就谈不上虚拟和异步,因此并发和共享是操作系统的两个最基本的特征</p>
+<p>  <img src="/2020/11/03/LC011-1103-%E6%9C%80%E5%A4%A7%E5%AE%B9%E5%99%A8/22.png" alt="22"></p>
+<p>  <img src="/2020/11/03/LC011-1103-%E6%9C%80%E5%A4%A7%E5%AE%B9%E5%99%A8/33.png" alt="33"></p>
+<p>  <img src="/2020/11/03/LC011-1103-%E6%9C%80%E5%A4%A7%E5%AE%B9%E5%99%A8/44.png" alt="44"></p>
+<p>  <img src="/2020/11/03/LC011-1103-%E6%9C%80%E5%A4%A7%E5%AE%B9%E5%99%A8/55.png" alt="55"></p>
+<p>  <img src="/2020/11/03/LC011-1103-%E6%9C%80%E5%A4%A7%E5%AE%B9%E5%99%A8/66.png" alt="66"></p>
+<p><img src="/2020/11/03/LC011-1103-%E6%9C%80%E5%A4%A7%E5%AE%B9%E5%99%A8/77.png" alt="77"></p>
+<p><img src="/2020/11/03/LC011-1103-%E6%9C%80%E5%A4%A7%E5%AE%B9%E5%99%A8/88.png" alt="88"></p>
+<p><img src="/2020/11/03/LC011-1103-%E6%9C%80%E5%A4%A7%E5%AE%B9%E5%99%A8/99.png" alt="99"></p>
  
       <!-- reward -->
       
@@ -203,12 +198,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2020/10/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F1-1-2/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2020/11/03/LC011-1103-%E6%9C%80%E5%A4%A7%E5%AE%B9%E5%99%A8/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li></ul>
 
     </footer>
   </div>
@@ -216,19 +211,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2020/10/30/LC005-%E6%9C%80%E5%A4%A7%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            LC005-最大回文子串
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/10/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F1-1-1/" class="article-nav-link">
+      <a href="/2020/11/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F1-1-3/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">操作系统1.1_1概念功能和目标</div>
+        <div class="article-nav-title">操作系统1.1_2操作系统四个特征</div>
       </a>
     
   </nav>

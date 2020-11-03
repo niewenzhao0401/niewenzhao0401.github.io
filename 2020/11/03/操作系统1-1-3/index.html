@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    操作系统1.1_2 |  当咸鱼,不存在!!!
+    操作系统1.1_2操作系统四个特征 |  当咸鱼,不存在!!!
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -46,7 +46,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-操作系统1-1-2"
+  id="post-操作系统1-1-3"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -57,15 +57,15 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  操作系统1.1_2
+  操作系统1.1_2操作系统四个特征
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2020/10/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F1-1-2/" class="article-date">
-  <time datetime="2020-10-29T17:56:46.000Z" itemprop="datePublished">2020-10-30</time>
+      <a href="/2020/11/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F1-1-3/" class="article-date">
+  <time datetime="2020-11-03T08:40:38.000Z" itemprop="datePublished">2020-11-03</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">-操作系统</a>
@@ -76,7 +76,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">657</span>
+            <span class="post-count">768</span>
         </span>
     </span>
 
@@ -100,46 +100,57 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="操作系统四个特征"><a href="#操作系统四个特征" class="headerlink" title="操作系统四个特征"></a>操作系统四个特征</h1><ol>
-<li><strong>并发{最基本的特征}</strong></li>
-<li><strong>共享{最基本的特征}</strong></li>
-<li>虚拟</li>
-<li>异步</li>
-</ol>
-<h2 id="操作系统的特征–并发"><a href="#操作系统的特征–并发" class="headerlink" title="操作系统的特征–并发"></a>操作系统的特征–并发</h2><ul>
-<li>并发:是指两个或者多个事件在同一时间间隔内发生,这事件<strong>宏观上是同时发生的</strong>,但是<strong>微观上是交替发生</strong>的.</li>
-<li>并行:是两个或者多个事件在同时同刻发生</li>
+  <h1 id="操作系统的发展与分类"><a href="#操作系统的发展与分类" class="headerlink" title="操作系统的发展与分类"></a>操作系统的发展与分类</h1><hr>
+
+<h2 id="手工操作阶段"><a href="#手工操作阶段" class="headerlink" title="手工操作阶段"></a>手工操作阶段</h2><p>输入输出速度慢</p>
+<ul>
+<li>缺点:用户独占全机,人机速度矛盾造成的资源利用率低</li>
 </ul>
-<p>操作系统的并发性:是指计算机系统中<strong>同时存在着多个</strong>运行的程序.<strong>操作系统和程序的并发是一起诞生的.</strong></p>
+<hr>
+
+<h2 id="批处理阶段"><a href="#批处理阶段" class="headerlink" title="批处理阶段"></a>批处理阶段</h2><h3 id="单道批处理系统"><a href="#单道批处理系统" class="headerlink" title="单道批处理系统"></a>单道批处理系统</h3><p>引用<strong>脱机输入/输出技术</strong>(用磁带完成),并监<strong>督程程序</strong>责控制作业的输入,输出</p>
+<p>督程程序==操作系统的雏形</p>
 <a id="more"></a>  
 
-<h2 id="操作系统的特征–共享"><a href="#操作系统的特征–共享" class="headerlink" title="操作系统的特征–共享"></a>操作系统的特征–共享</h2><p>共享资源共享方式:</p>
 <ul>
-<li><p>互斥共享方式</p>
-<p>系统中的某些资源,虽然可以提供给多个进程使用,但<strong>一个时间段内只允许一个进程访问资源</strong></p>
-</li>
-<li><p>同时共享方式</p>
-<p>系统中的某些资源,<strong>允许一个时间段内由多个进程”同时”对他们进行访问</strong></p>
-</li>
+<li><strong>主要优点</strong>:缓解了一定程度上的人机速度矛盾,资源利用率有所提升</li>
+<li><strong>主要缺点</strong>:内存中仅能有一道程序运行,只有该程序运行结束之后才能调用下一道程序,cup中有大量的时间时空闲等待I/O完成,资源利用率低</li>
 </ul>
-<h2 id="并发和共享的关系"><a href="#并发和共享的关系" class="headerlink" title="并发和共享的关系"></a>并发和共享的关系</h2><ul>
-<li>并发:计算机系统中同时存在多个运行的程序</li>
-<li>共享:系统资源可以提供内存中多个并发执行的进程共同使用(需要共享的访问硬盘资源)</li>
-</ul>
-<h2 id="操作系统的特性–虚拟"><a href="#操作系统的特性–虚拟" class="headerlink" title="操作系统的特性–虚拟"></a>操作系统的特性–虚拟</h2><p><strong>虚拟</strong>:是指把一个物理上的实体变为若干个逻辑上的对应物.物理实体(前者)是实际存在的,在逻辑上对应物(后者)是用户感受.</p>
-<p>一个程序<strong>需要放入内存</strong>并给他<strong>分配CPU</strong>才能执行</p>
-<ul>
-<li><strong>虚拟技术中的”空分复用技术”</strong></li>
-<li><strong>虚拟技术中的”时分复用技术”</strong>,微观上处理机在各个微小的时间段内交替着为各个进程服务——–<ul>
-<li><em>如果失去了并发性，则一个时间段内系统中只需运行一道程序，那么就失去了实现虚拟性的意义了。因此，没有并发性，就谈不上虚拟性</em></li>
-</ul>
-</li>
-</ul>
-<h2 id="操作系统的特性–异步"><a href="#操作系统的特性–异步" class="headerlink" title="操作系统的特性–异步"></a>操作系统的特性–异步</h2><p><strong>异步</strong>:在多道程序环境下,允许多个程序并发操作,但由于资源有限,进程的执行不是一贯到底的,而是走走停停,以不可预知的速度向前推进,这就是进程的异步性.</p>
-<p>显然.如果失去了并发性,则系统只能串行的处理各个进程,每个进程的执行会一贯到底,<strong>只有系统拥有并发性,才有可能导致异步性.</strong></p>
-<p><img src="/2020/10/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F1-1-2/1.png" alt="1"></p>
-<p>没有并发和共享,就谈不上虚拟和异步,因此并发和共享是操作系统的两个最基本的特征</p>
- 
+<hr>
+
+<h3 id="多道批处理系统"><a href="#多道批处理系统" class="headerlink" title="多道批处理系统"></a>多道批处理系统</h3><p>每次往内存中输入多道程序–&gt;操作系统正式诞生,并引用了中断技术,由操作系统负责管理这些程序的运行,各个程序并发执行</p>
+<p><strong>主要优点</strong>:多道程序并发执行,共享计算机资源,资源利用率大幅提升,CPU和其他资源保持”忙碌”状态,系统吞吐量增大</p>
+<p>主要缺点:用户响应时间长,没有人机交互功能(用户提交自己的作业之后就只能等待计算机处理完成,中间不能控制自己的作业执行)</p>
+<p>为何多道批处理系统使用资源利用率大幅度提高.</p>
+<img src="/2020/11/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F1-1-3/1.png" alt="1" style="zoom:80%;">
+
+
+
+<img src="/2020/11/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F1-1-3/2.png" alt="2" style="zoom:80%;">
+
+<hr>
+
+<h2 id="分时操作阶段"><a href="#分时操作阶段" class="headerlink" title="分时操作阶段"></a>分时操作阶段</h2><p>计算机以时间为单位轮流为各个用户/作业服务,多个用户可通过终端与计算机进行交互.</p>
+<p>优点:<strong>解决了人机交互问题</strong></p>
+<p>缺点:**不能优先处理一些紧急的任务.**操作系统对各个用户/作业都是完全公平的，循环地为每个用户/作业服务一个时间片，不区分任务的紧急性。</p>
+<hr>
+
+<h2 id="实时操作阶段"><a href="#实时操作阶段" class="headerlink" title="实时操作阶段"></a>实时操作阶段</h2><p>主要优点:能够优先相应一些紧急任务,</p>
+<p>在实时操作系统的控制下,计算机系统接收外部信号后及时处理,并且<strong>要在严格的时限内处理完事件</strong>,实时系统操作的主要<strong>特点及时性和可靠性</strong></p>
+<img src="/2020/11/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F1-1-3/3.png" alt="3" style="zoom:80%;">
+
+<hr>
+
+<h2 id="网络操作阶段"><a href="#网络操作阶段" class="headerlink" title="网络操作阶段"></a>网络操作阶段</h2><p>网络操作系统:是伴随着计算机网络的发展而诞生的，能把网络中各个计算机有机地结合起来，实现数据传送等功能，<strong>实现网络中各种资源的共享（如文件共享)和各台计算机之间的通信</strong>。(如: Windows NT就是一种典型的网络操作系统，网站服务器就可以使用）</p>
+<hr>
+
+<h2 id="分布式操作阶段"><a href="#分布式操作阶段" class="headerlink" title="分布式操作阶段"></a>分布式操作阶段</h2><p>分布式操作系统:主要特点是<strong>分布性和并行性</strong>。系统中的各台计算机地位相同，<strong>任何工作都可以分布在这些计算机上，由它们并行、协同完成这个任务</strong>。</p>
+<hr>
+
+<h2 id="个人计算机操作系统"><a href="#个人计算机操作系统" class="headerlink" title="个人计算机操作系统"></a>个人计算机操作系统</h2><p>个人计算机操作系统:如 Windows XP、MacOs，方便个人使用。</p>
+<hr>
+
+<img src="/2020/11/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F1-1-3/4.png" alt="4" style="zoom:80%;"> 
       <!-- reward -->
       
     </div>
@@ -203,7 +214,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2020/10/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F1-1-2/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2020/11/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F1-1-3/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -216,19 +227,19 @@
    
   <nav class="article-nav">
     
-      <a href="/2020/10/30/LC005-%E6%9C%80%E5%A4%A7%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/" class="article-nav-link">
+      <a href="/2020/11/03/LC011-1103-%E6%9C%80%E5%A4%A7%E5%AE%B9%E5%99%A8/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            LC005-最大回文子串
+            LC011-1103-最大容器
           
         </div>
       </a>
     
     
-      <a href="/2020/10/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F1-1-1/" class="article-nav-link">
+      <a href="/2020/11/02/javaSE12/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">操作系统1.1_1概念功能和目标</div>
+        <div class="article-nav-title">javaSE-12-API常用类|默认继承Object|toString()|==与equals()</div>
       </a>
     
   </nav>
