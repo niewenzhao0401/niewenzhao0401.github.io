@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    自顶向下-第一章复习知识点 |  当咸鱼,不存在!!!
+    最接近三数之和--016 |  当咸鱼,不存在!!!
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -46,7 +46,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-网络概念01"
+  id="post-LC016-1105-最接近三数之和"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -57,18 +57,18 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  自顶向下-第一章复习知识点
+  最接近三数之和--016
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B501/" class="article-date">
-  <time datetime="2020-09-22T11:05:38.000Z" itemprop="datePublished">2020-09-22</time>
+      <a href="/2020/11/05/LC016-1105-%E6%9C%80%E6%8E%A5%E8%BF%91%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/" class="article-date">
+  <time datetime="2020-11-05T04:44:03.000Z" itemprop="datePublished">2020-11-05</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a>
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
   </div>
   
 <div class="word_count">
@@ -76,7 +76,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">2.5k</span>
+            <span class="post-count">532</span>
         </span>
     </span>
 
@@ -85,114 +85,43 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">8 min</span>
+            <span class="post-count">2 min</span>
         </span>
     </span>
 </div>
  
     </div>
       
+    <div class="tocbot"></div>
+
 
 
 
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p><strong>一、什么是因特网？</strong></p>
-<p>因特网是一个世界范围内的计算机网络，即它是一个互联了遍及全世界的数以亿计的计算设备的系统。</p>
-<p>可通过基本硬件和软件设备组件（端系统、通信链路、运行网络应用）以及分布式应用提供服务的联网基础设施(通信基础设施使能分布式应用，提供给应用通信服务)来描述。</p>
-  <a id="more"></a>  
+  <h1 id="最接近的三数之和"><a href="#最接近的三数之和" class="headerlink" title="最接近的三数之和"></a>最接近的三数之和</h1><p>给定一个包括 <em>n</em> 个整数的数组 <code>nums</code> 和 一个目标值 <code>target</code>。找出 <code>nums</code> 中的三个整数，使得它们的和与 <code>target</code> 最接近。返回这三个数的和。假定每组输入只存在唯一答案。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums &#x3D; [-1,2,1,-4], target &#x3D; 1</span><br><span class="line">输出：2</span><br><span class="line">解释：与 target 最接近的和是 2 (-1 + 2 + 1 &#x3D; 2) 。</span><br></pre></td></tr></table></figure>
 
-<p><strong>二、因特网的部件有哪些（软件方面、硬件方面）？</strong>   </p>
-<p>硬件方面：</p>
-<p>主机或端系统：数以百万计互联的计算设备。</p>
-<p>端系统的连接部件：通信链路（双绞铜线，光纤，无线电频谱等），分组交换机（路由器，链路层交换机），通信链路和分组交换机组成的路径。</p>
-<p>软件方面：</p>
-<p>硬件是载体，软件是灵魂：软件：数据+算法</p>
-<p>协议：描述通信双方交互信息的方式，控制报文发送接受，以字节流的形式体现。</p>
-<p>因特网标准：因特网工程任务组（IETF）：RFC请求评论、因特网TCP\IP协议。</p>
-<p>因特网是网络的网络。</p>
-<p><strong>三、什么是端系统、主机、ISP（因特网服务提供商）、ICP(因特网内容提供商)？什么是协议？</strong></p>
-<p>端系统（主机）：与因特网相连的计算机和其他设备。</p>
-<p>ISP：因特网服务提供商，每个ISP是一个由多个分组交换机和多端通信链路组成的网络。</p>
-<p>ICP：因特网内容提供商，向广大用户综合提供互联网信息业务和增值业务的电信运营商。</p>
-<p>协议：一个协议定义了在两个或多个通信实体之间交换的报文格式和次序，以及报文发送或接收一条报文或其他事件所采取的动作。</p>
-<p><strong>四、网络边缘、网络核心；客户机和服务器。端系统包括？</strong></p>
-<p>网络边缘：1.应用程序和主机 2.接入网络、物理媒体</p>
-<p>网络核心：1.互联的路由器 2.网络的网络</p>
-<p>客户机和服务器：客户机非正式等同于桌面PC、智能手机等，服务器非正式等同于更为强大的机器。</p>
-<p>端系统包括：桌面计算机（桌面PC、Mac和linux盒）、服务器（web和电子邮件服务器）和移动计算机（便携机、智能手机和平板电脑）</p>
-<p><strong>五、</strong> <strong>电路交换和分组交换的特点</strong></p>
-<p>电路交换：非共享、性能有保障、效率低，需要建立连接</p>
-<p>分组交换：共享，效率高，有时延</p>
-<p>分组交换和电路交换各有优缺点。</p>
-<p>分组交换的优缺点：</p>
-<p>1、它提供了比电路交换更好的带宽共享；同样的网络资源可以容纳更多的用户，比电路交换的资源利用率高；</p>
-<p>2、与电路交换相比，分组交换技术要简单、有效、容易实现，成本低无需建立连接，分组交换无需维护连接状态等</p>
-<p>3、缺点:</p>
-<p>分组交换因它的端到端时延是变动的和不可预测的(主要是因为排队时延的变动和不可预测所致)，故而不适合实时服务(例如，电话和视频会议)。</p>
-<p><strong>六、接入网的类型，接入网的多种技术；物理媒体分类与常见的物理媒体及其特点。</strong></p>
-<p>接入网：将端系统连接到其边缘路由器（端系统到任何其他远程端系统的路径上的第一台路由器）的物理链路</p>
-<p>接入网的多种技术：</p>
-<p>家庭接入：DSL、电缆、FTTH、拨号和卫星</p>
-<p>企业接入：以太网和WiFi</p>
-<p>广域无限接入：3G和LTE</p>
-<p>物理媒体分类：</p>
-<p>导引型媒体：电波沿固体媒体前行，如光缆、双绞铜线、电缆。</p>
-<p>非导引型媒体：电波在空气或外层空气中传播，如在无线局域网，或者数字卫星频道中。</p>
-<p>常见的物理媒体及其特点</p>
-<p>1.双绞铜线：最便宜且使用最为简便；常用在建筑物内的计算机网络中，即在局域网中。</p>
-<p>2.同轴电缆：由两个同心而不并行的铜导体组成，。具有较高的数据传输速率；在电缆电视系统中相当普遍。</p>
-<p>3.光纤：光纤是一种细而柔软的、能够导引光脉冲的媒体，每个脉冲表示一个比特，支持极高的比特速率，不受电磁干扰，且光缆信号衰减极低，并且很难窃听。用于长途引导型传输媒体，特别是跨海链路。</p>
-<p>4.陆地无线电通道：无线电信道承载电磁频谱中的信号。它不需要安装物理线路，并具有穿透墙壁，提供与移动用户的连接以及长距离承载信号的能力。</p>
-<p>5.卫星无线电信道：同步卫星和近地轨道卫星</p>
-<p><strong>七、分组交换网络中的4种类型的时延及其特点；吞吐量。</strong></p>
-<p>1.结点处理时延：检查比特差错，决定输出链路，高速路由器的处理时延通常为微秒或更低数量级。</p>
-<p>2.排队时延：等待链路的可用时间，取决于前面的正在排队等待链路传输的分组数量</p>
-<p>3.传输时延：R= 链路带宽 (bps)；L= 分组长度 (比特)；发送比特进入链路的时间= L/R</p>
-<p>实际时间为毫秒到微秒级。（传输时延是路由器将分组推出所需要的时间）</p>
-<p>4.传播时延：d = 物理链路的长度取决于链路的物理材质；s = 在媒体中传播的速度 (2x108 ~3x108 m/sec)；传播时延 = d/s；广域网中为毫秒级</p>
-<p>5.端到端的时延包括节点处理时延、传输时延、传播时延和排队时延。节点处理时延、传输时延、传播时延是固定的，排队时延是变化的。</p>
-<p>吞吐量：接受比特/用去的时间</p>
-<p><strong>八、因特网协议栈自顶向下的5个层次及各层的主要功能。各层数据单元的名称是？相关层的协议分析。</strong></p>
-<p>应用层：</p>
-<p>完成一个端系统与另一个端系统之间的信息交换。包含大量应用普遍需要的协议，支持网络应用</p>
-<p>数据单元：报文</p>
-<p>相关协议分析：FTP、SMTP、HTTP </p>
-<p>运输层：</p>
-<p>在应用程序端点之间传送应用报文。主机到主机数据传输，负责从应用层接收报文段（ segment ），并传输应用层的报文，到达目的后将消息上交给应用。</p>
-<p>数据单元：报文段</p>
-<p>相关协议分析：TCP、UDP</p>
-<p>网络层：</p>
-<p>在完成网络中一台主机与另一台主机之间的通信。从源到目的地数据报（datagram）的选路</p>
-<p>数据单元：数据报</p>
-<p>相关协议分析：IP、选路协议</p>
-<p>链路层：为网络层将分组从一个节点移动到下一个节点。在邻近网元之间传输数据</p>
-<p>数据单元：帧</p>
-<p>相关协议分析：PPP、以太网</p>
-<p>物理层：将链路层一帧中一个一个比特从一个节点移动到下一个节点。物理层负责将链路层帧中的每一位(bit)从链路的一端传输到另一端。</p>
-<p>数据单元：比特。</p>
-<p>相关协议分析：无。</p>
-<p><strong>九、OSI参考模型的七层结构及各层的主要功能。TCP/IP四层模型的结构及各层的主要功能。</strong></p>
-<p>应用层、表示层、会话层、传输层、网络层、链路层、物理层</p>
-<p>表示层：使通信的应用程序能够解释交换数据的含义（如数据加密、压缩、描述）</p>
-<p>会话层：数据交换的定界、同步，包括建立检查点和恢复方案的方法</p>
-<p>（因特网协议栈中没有这两层，如果需要这些服务，必须在应用层中实现）</p>
-<p>TCP/IP四层模型：应用层、传输层、互联层、主机-网络层。</p>
-<p><strong>十、作业补充</strong></p>
-<p>1.各种处理因特网协议栈中层次：</p>
-<p>路由器处理第一层到第三层（也就是物理层、数据链路层和网络层）；链路交换机处理第一层和第二层（也就是物理层和数据链路层）；主机处理所有的5层（也就是物理层、数据链路层、网络层、传输层和应用层）。</p>
-<p>2.与分组交换网络相比，电路交换优点，TDM比FDM的优点。</p>
-<p>电路交换网络具有带宽的保证、时延的保证，而分组交换网络一般不能保证带宽和时延。分组交换更简单，通信效率更高。</p>
-<p>FDM（频分复用Frequency Division Multiplexing)</p>
-<p>是将整个传输频带划分为若干个频率通道，每个用 户占用一个通道。频率通道之间留有防护频带；</p>
-<p>TDM（时分复用Time Division Multiplexing）是将时间分割成小的时间片，每个时间片又分为若干个通道(时隙），每个用户占用一个通道传输数据。</p>
-<p>TDM与FDM对比分析时，由于TDM适用于数字信号传输，FDM适用于模拟信号传输，而目前的通信技术中绝倒多数情况下都使用数字通信，因此就体现出了TDM的优势。</p>
-<p>3.</p>
-<p>应用层报文：应用程序要发出的在传输层上传递的数据；</p>
-<p>传输层报文段：将应用层报文加上传输层包头，由传输层管理和封装的信息；</p>
-<p>网络层数据报：将传输层报文段加上网络层包头之后封装；</p>
-<p>链路层帧：将网络层数据报加上链路层包头之后封装。</p>
+
+
+<h2 id="排序和双指针"><a href="#排序和双指针" class="headerlink" title="排序和双指针"></a>排序和双指针</h2> <a id="more"></a> 
+
+<p>本题要计算三个数,暴力枚举的话时间复杂度会到 O(n^3)，需要降低时间复杂度</p>
+<ul>
+<li>首先进行数组排序，时间复杂度 O(nlogn)</li>
+<li>在数组 nums 中，进行遍历，每遍历一个值利用其下标i，形成一个固定值 nums[i]</li>
+<li>再使用前指针指向 start = i + 1 处，后指针指向 end = nums.length - 1 处，也就是结尾处</li>
+<li>根据 sum = nums[i] + nums[start] + nums[end] 的结果，判断 sum 与目标 target 的距离，如果更近则更新结果 ans</li>
+<li>同时判断 sum 与 target 的大小关系，因为数组有序，如果 sum &gt; target 则 end–，如果 sum &lt; target 则 start++，如果 sum == target 则说明距离为 0 直接返回结果</li>
+<li>整个遍历过程，固定值为 n 次，双指针为 n 次，时间复杂度为 O(n^2)</li>
+<li>总时间复杂度：O(nlogn) + O(n^2) = O(n^2)</li>
+</ul>
+<p>时间复杂度：O(N^2)</p>
+<p>空间复杂度：O(\log N)    排序需要使用 O(log N)的空间</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">threeSumClosest</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">       Arrays.sort(nums);</span><br><span class="line">       <span class="keyword">int</span> num = nums[<span class="number">0</span>] + nums[<span class="number">1</span>] + nums[<span class="number">2</span>];</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">           <span class="comment">//指针指向 start = i + 1 处，后指针指向 end = nums.length - 1 处，也就是结尾处</span></span><br><span class="line">           <span class="keyword">int</span> start = i + <span class="number">1</span>, end = nums.length-<span class="number">1</span>;</span><br><span class="line">           <span class="keyword">while</span> (start &lt; end) &#123;</span><br><span class="line">              <span class="comment">//根据 sum = nums[i] + nums[start] + nums[end] 的结果，</span></span><br><span class="line">               <span class="comment">// 判断 sum 与目标 target 的距离，如果更近则更新结果 num</span></span><br><span class="line">               <span class="keyword">int</span> sum = nums[start] + nums[end] + nums[i];</span><br><span class="line">               <span class="keyword">if</span> (Math.abs(target - sum) &lt; Math.abs(target - num))</span><br><span class="line">                   num = sum;</span><br><span class="line">               <span class="comment">//判断 sum 与 target 的大小关系，因为数组有序，如果 sum &gt; target 则 end--，</span></span><br><span class="line">               <span class="comment">// 如果 sum &lt; target 则 start++，</span></span><br><span class="line">               <span class="keyword">if</span> (sum &gt; target)</span><br><span class="line">                   end--;</span><br><span class="line">               <span class="keyword">else</span> <span class="keyword">if</span> (sum &lt; target)</span><br><span class="line">                   start++;</span><br><span class="line">               <span class="keyword">else</span></span><br><span class="line">                   <span class="keyword">return</span> num;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> num;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
  
       <!-- reward -->
       
@@ -257,12 +186,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B501/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2020/11/05/LC016-1105-%E6%9C%80%E6%8E%A5%E8%BF%91%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCod/" rel="tag">LeetCod</a></li></ul>
 
     </footer>
   </div>
@@ -270,19 +199,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            自顶向下-第三章复习知识点
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/09/22/index%20-%20%E5%89%AF%E6%9C%AC/" class="article-nav-link">
+      <a href="/2020/11/05/LC026-1105-%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E9%A1%B9/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">javase</div>
+        <div class="article-nav-title">删除排序数组中的重复项--026</div>
       </a>
     
   </nav>
