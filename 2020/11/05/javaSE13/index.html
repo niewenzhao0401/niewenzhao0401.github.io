@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="当咸鱼,不存在!!!" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    javaSE-13-String类 |  当咸鱼,不存在!!!
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-javaSE13"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  javaSE-13-String类
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/11/05/javaSE13/" class="article-date">
+  <time datetime="2020-11-05T10:31:25.000Z" itemprop="datePublished">2020-11-05</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javase/">-javase</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">1.9k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">7 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="String类"><a href="#String类" class="headerlink" title="String类"></a>String类</h1><h2 id="java-lang-String类表示字符串的类"><a href="#java-lang-String类表示字符串的类" class="headerlink" title="java.lang.String类表示字符串的类"></a>java.lang.String类表示字符串的类</h2><h3 id="创建方式"><a href="#创建方式" class="headerlink" title="创建方式"></a>创建方式</h3><ul>
+<li>直接赋值字符串字面量</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s1 &#x3D; &quot;hello&quot;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>无参构造    String()</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String s2 &#x3D; new String();</span><br><span class="line">		System.out.println( s2 &#x3D;&#x3D; null ); 	</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>第一种先在栈中创建一个对String类的对象引用变量s，然后去查找”abc”是否被保存在字符串常量池中，如果没有则在堆中创建一个String对象object，<br><strong>第一种特点</strong>：JVM会自动根据栈中数据的实际情况来决定是否有必要创建新对象</li>
+<li>第二种一概在堆中创建新对象，而不管其字符串值是否相等，是否有必要创建新对象</li>
+</ol>
+<h3 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h3> <a id="more"></a> 
+
+<p>public String()<br>public String(String str)<br>public String(byte[] bytes)<br>public String(char[] value)</p>
+<p>根据字节数组创建String对象,  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">byte</span> [] bytes = &#123;<span class="number">65</span>,<span class="number">66</span>,<span class="number">67</span>,<span class="number">97</span>,<span class="number">98</span>,<span class="number">99</span>&#125;;	</span><br><span class="line">String s3 = <span class="keyword">new</span> String(bytes);<span class="comment">//把bytes字节数组中的所有字节, 根据当前默认的编码(UTF-8)转换为字符串</span></span><br><span class="line">System.out.println( s3 ); 			<span class="comment">//ABCabc</span></span><br></pre></td></tr></table></figure>
+
+<p>把字节数组中部分字节转换为字符串</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s3 = <span class="keyword">new</span> String(bytes, <span class="number">2</span>, <span class="number">3</span>);		<span class="comment">//把bytes字节数组中从2开始的3个字节转换为字符串</span></span><br><span class="line">System.out.println( s3 );  		<span class="comment">//Cab</span></span><br></pre></td></tr></table></figure>
+
+<p>把字节数组中的字节,按照GBK编码转换为字符串</p>
+<p>String字符串的getBytes()方法,可以把字符串以当前默认的编码(utf-8)转换为字节数组</p>
+<p>)根据字符数组创建字符串</p>
+<h3 id="基本方法"><a href="#基本方法" class="headerlink" title="基本方法"></a>基本方法</h3><ul>
+<li><p>charAt()返回指定索引值的字符, </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String  s1 = <span class="string">&quot;hello,bjpowernode&quot;</span>;</span><br><span class="line">	<span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; s1.length() ; i++)&#123;</span><br><span class="line">			System.out.print(  s1.charAt(i) );</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>,重写compareTo()方法, 根据字符的码值比较大小</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(<span class="string">&quot;hehe&quot;</span>.compareTo(<span class="string">&quot;hello&quot;</span>) ); 		<span class="comment">//-4</span></span><br><span class="line">	System.out.println(<span class="string">&quot;张三&quot;</span>.compareTo(<span class="string">&quot;李四&quot;</span>) ); 			<span class="comment">//-2094</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把字符串转换为字节数组</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">byte</span>[] bytesss = <span class="string">&quot;hello&quot;</span>.getBytes(); 		<span class="comment">//把字符串以当前默认的编码转换为字节数组</span></span><br><span class="line">	System.out.println( Arrays.toString(bytesss)); </span><br><span class="line">	bytesss = <span class="string">&quot;hello&quot;</span>.getBytes(<span class="string">&quot;GBK&quot;</span>);  	<span class="comment">//把字符串以指定的编码转换为字节数组</span></span><br><span class="line">	System.out.println( Arrays.toString(bytesss));</span><br></pre></td></tr></table></figure>
+</li>
+<li><ol start="5">
+<li>把字符串中的路径, 文件名, 扩展名分别分离出来</li>
+</ol>
+</li>
+<li><p>lastIndexOf(int ch  or string str)     返回字符ch在当前字符串中最后一次出现的索引值</p>
+</li>
+<li><p>indexOf(int ch  or string str)       返回字符ch在当前字符串中第一次出现的索引值</p>
+</li>
+<li><p>substring(int beginIndex)       返回从beginIndex开始的子串.</p>
+</li>
+<li><p>substring(int beginIndex, int endIndex)    返回[beginIndex, endIndex)范围内的子串</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String  text = <span class="string">&quot;d:/Chapter04/src/com/bjpowernode/chapter04/string/Test02.java&quot;</span>;</span><br><span class="line">	<span class="keyword">int</span> lastSlashIndex = text.lastIndexOf(<span class="string">&quot;/&quot;</span>);</span><br><span class="line">	<span class="keyword">int</span> dotIndex = text.indexOf(<span class="string">&quot;.&quot;</span>);</span><br><span class="line">	String folder = text.substring(<span class="number">0</span>, lastSlashIndex);</span><br><span class="line">	String filename = text.substring(lastSlashIndex+<span class="number">1</span> , dotIndex);</span><br><span class="line">	String suffix = text.substring(dotIndex+<span class="number">1</span>);</span><br><span class="line">	System.out.println( folder );</span><br><span class="line">	System.out.println( filename);</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="字符串的比较"><a href="#字符串的比较" class="headerlink" title="字符串的比较"></a>字符串的比较</h3><p><strong>==比较的是内存地址，equal比较的是值</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">String s3 = <span class="keyword">new</span> String(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">   String s4 = <span class="keyword">new</span> String(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">   System.out.println(s3==s4);<span class="comment">//false</span></span><br><span class="line">   System.out.println(s3.equals(s4));<span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   String  s1 = <span class="string">&quot;abc&quot;</span>;</span><br><span class="line">   String  s2 = <span class="string">&quot;abc&quot;</span>;</span><br><span class="line">   System.out.println(s1==s2);<span class="comment">//true</span></span><br><span class="line">   System.out.println(s1.equals(s2));<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<p>String类</p>
+<p>Java中所有字符串,都是String类的对象,值一旦给给定就不能改变,一旦修改描绘重新创建一个新的对象</p>
+<p>两种创建方法:</p>
+<ol>
+<li><p>String s = “abc”;</p>
+<p>第一种先在栈中创建一个对String类的对象引用变量s,然后去查找”abc”是否被保存在**字符串常量池中,**如果没有则在堆中创建一个String对象object，</p>
+<p>第二次创建时,常量池已经存在,直接让引用变量指向已有的字符串对象</p>
+<ul>
+<li><p><strong>特点</strong></p>
+<p>jvm会自动根据栈中数据的实际情况来决定是否有必要创建新对象</p>
+</li>
+</ul>
+</li>
+<li><p>String s = new String(“abc”)</p>
+<p>一概在队中创建新对象,而不管其字符串值是否相等，是否有必要创建新对象。</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">String s3 = <span class="string">&quot;he&quot;</span> + <span class="string">&quot;llo&quot;</span>;</span><br><span class="line">System.out.println( s1 == s3 ); 		<span class="comment">//true</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 字符串字面量进行连接时, javac编译器会进行优化, </span></span><br><span class="line"><span class="comment"> * 在编译阶段, 把&quot;he&quot;+&quot;llo&quot;优化为 &quot;hello&quot;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line">String s4 = <span class="string">&quot;hehe123&quot;</span>;</span><br><span class="line">String s5 = <span class="string">&quot;hehe&quot;</span> + <span class="number">123</span> ; 		<span class="comment">//字符串与整数连接,系统会把整数转换为字符串再连接</span></span><br><span class="line">System.out.println( s4 == s5 );			<span class="comment">//true</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 字符串字面量与整数字面量进行连接时, javac编译器也会进行优化</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> num = <span class="number">123</span>;</span><br><span class="line">String s6 = <span class="string">&quot;hehe&quot;</span> + num; 			<span class="comment">//变量不优化</span></span><br><span class="line">System.out.println( s4 == s6); 		<span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="字符串对象是不可变的"><a href="#字符串对象是不可变的" class="headerlink" title="字符串对象是不可变的"></a>字符串对象是不可变的</h3><p>String字符串对象是不可变的,每次进行字符串连接都会生成新的字符串对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String s1 = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">		s1 = <span class="string">&quot;hehe&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p> 注意: “hello”与”hehe”才是String对象 , s1是String类型的变量<br>变量原来存储的是 “hello”对象的引用, 现在存储的是”hehe”对象的引用<br>String对象不可变是指不能把”hello”字符串变为”hehe”,,当执行s1 = “hehe”时, 是在常量池中又添加了一个新的字符串对象”hehe”, 把该对象的引用保存到s1中, 常量 池中依然存在”hello”对象</p>
+<h4 id="字符串连接-会创建新的字符串对象"><a href="#字符串连接-会创建新的字符串对象" class="headerlink" title="字符串连接, 会创建新的字符串对象"></a>字符串连接, 会创建新的字符串对象</h4><hr>
+
+<h3 id="StringBuilder-StringBuffer"><a href="#StringBuilder-StringBuffer" class="headerlink" title="StringBuilder/StringBuffer"></a>StringBuilder/StringBuffer</h3><ul>
+<li><ol>
+<li>可变的字符串 , 适用于频繁进行字符串连接</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>最常用的方法: append() </li>
+</ol>
+</li>
+<li><ol start="3">
+<li>StringBuffer是线程安全的, StringBuilder不是线程安全的</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>StringBuilder/StringBuffer默认初始化容量: 16</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>默认扩容: newCapacity = value.length * 2 + 2</li>
+</ol>
+</li>
+</ul>
+<p><strong>附件</strong></p>
+<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><table>
+<thead>
+<tr>
+<th>char</th>
+<th>charAt(int index) 返回指定位置的字符</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int</td>
+<td>compareTo(#compareTo-java.lang.String-)(String anotherString) 字符串大小的比较, String类实现了Comparable接口, 重写了接口的抽象方法, 字符大小的比较根据字符串第一个不相等的字符进行码值相减 “abc”.compareTo(“abx”)</td>
+</tr>
+<tr>
+<td><a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/String.html">String</a></td>
+<td><a href="#concat-java.lang.String-">concat</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/String.html">String</a> str) 在当前字符串的后面连接str串.</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td><a href="#contains-java.lang.CharSequence-">contains</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/CharSequence.html">CharSequence</a> s) 判断当前字符串是否包含s串</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td><a href="#endsWith-java.lang.String-">endsWith</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/String.html">String</a> suffix) 判断是否以suffix结尾.</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td><a href="#equals-java.lang.Object-">equals</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/Object.html">Object</a> anObject)判断两个字符串是否相等.</td>
+</tr>
+<tr>
+<td>static <a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/String.html">String</a></td>
+<td><a href="#format-java.lang.String-java.lang.Object...-">format</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/String.html">String</a> format, <a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/Object.html">Object</a>… args)字符串的格式化</td>
+</tr>
+<tr>
+<td>byte[]</td>
+<td><a href="#getBytes--">getBytes</a>() 返回字符串在当前编码下对应的字节数组.</td>
+</tr>
+<tr>
+<td>byte[]</td>
+<td><a href="#getBytes-java.nio.charset.Charset-">getBytes</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/String.html">String</a> charsetName) 返回字符串在指定编码下对应的字节数组.</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#getChars-int-int-char:A-int-">getChars</a>(int srcBegin, int srcEnd, char[] dst, int dstBegin) 把当前字符串[srcBegin,srcEnd) 范围内的字符复制到dst数组的dstBegin位置</td>
+</tr>
+<tr>
+<td>int</td>
+<td><a href="#hashCode--">hashCode</a>()</td>
+</tr>
+<tr>
+<td>int</td>
+<td><a href="#indexOf-int-">indexOf</a>(int ch) 返回字符ch在当前字符串中第一次出现的索引值</td>
+</tr>
+<tr>
+<td>int</td>
+<td><a href="#indexOf-java.lang.String-">indexOf</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/String.html">String</a> str) 返回字符串str在当前字符串中第一次出现的索引值</td>
+</tr>
+<tr>
+<td><a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/String.html">String</a></td>
+<td><a href="#intern--">intern</a>() 返回字符串对应的常量.</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td><a href="#isEmpty--">isEmpty</a>() 判断 是否为空串,是否长度为0.</td>
+</tr>
+<tr>
+<td>int</td>
+<td><a href="#lastIndexOf-int-">lastIndexOf</a>(int ch) 返回字符ch在当前字符串中最后一次出现的索引值</td>
+</tr>
+<tr>
+<td>int</td>
+<td><a href="#lastIndexOf-java.lang.String-">lastIndexOf</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/String.html">String</a> str)</td>
+</tr>
+<tr>
+<td>int</td>
+<td><a href="#length--">length</a>() 返回字符串中字符的个数</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td><a href="#matches-java.lang.String-">matches</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/String.html">String</a> regex) 判断字符串是否匹配正则表达式.</td>
+</tr>
+<tr>
+<td><a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/String.html">String</a></td>
+<td><a href="#replaceAll-java.lang.String-java.lang.String-">replaceAll</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/String.html">String</a> regex, <a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/String.html">String</a> replacement) 把符合regex正则表达式的字符串都替换为replacement</td>
+</tr>
+<tr>
+<td><a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/String.html">String</a></td>
+<td><a href="#replaceFirst-java.lang.String-java.lang.String-">replaceFirst</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/String.html">String</a> regex, <a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/String.html">String</a> replacement)</td>
+</tr>
+<tr>
+<td><a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/String.html">String</a>[]</td>
+<td><a href="#split-java.lang.String-">split</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/String.html">String</a> regex) 使用regex正则表达式把字符串分隔</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td><a href="#startsWith-java.lang.String-">startsWith</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/String.html">String</a> prefix) 判断是否以指定的字符串开始.</td>
+</tr>
+<tr>
+<td><a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/String.html">String</a></td>
+<td><a href="#substring-int-">substring</a>(int beginIndex) 返回从beginIndex开始的子串.</td>
+</tr>
+<tr>
+<td><a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/String.html">String</a></td>
+<td><a href="#substring-int-int-">substring</a>(int beginIndex, int endIndex) 返回[beginIndex, endIndex)范围内的子串</td>
+</tr>
+<tr>
+<td>char[]</td>
+<td><a href="#toCharArray--">toCharArray</a>() 把字符串转换为字符数组</td>
+</tr>
+<tr>
+<td><a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/String.html">String</a></td>
+<td><a href="#toLowerCase--">toLowerCase</a>() 把字符串中 的大写字母转换为小写字母</td>
+</tr>
+<tr>
+<td><a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/String.html">String</a></td>
+<td><a href="#toString--">toString</a>()</td>
+</tr>
+<tr>
+<td><a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/String.html">String</a></td>
+<td><a href="#toUpperCase--">toUpperCase</a>() 小写转大写</td>
+</tr>
+<tr>
+<td><a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/String.html">String</a></td>
+<td><a href="#trim--">trim</a>() 去掉字符串前面和后面的空白字符</td>
+</tr>
+<tr>
+<td>static <a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/String.html">String</a></td>
+<td><a href="#valueOf-int-">valueOf</a>(int i) 把基本类型转换为字符串</td>
+</tr>
+<tr>
+<td>static <a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/String.html">String</a></td>
+<td><a href="#valueOf-java.lang.Object-">valueOf</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/Object.html">Object</a> obj) 把对象转换为字符串</td>
+</tr>
+</tbody></table>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2020/11/05/javaSE13/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String%E7%B1%BB/" rel="tag">String类</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/11/05/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C-01%E8%83%8C%E5%8C%85%E7%A9%B7%E4%B8%BE%E6%B3%95/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            01背包-穷举法递归
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/11/05/LC016-1105-%E6%9C%80%E6%8E%A5%E8%BF%91%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">最接近三数之和--016</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "",
+    app_key: "",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2020
+        <i class="ri-heart-fill heart_icon"></i> niewenzhao
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="WenZhao"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" target="_blank" rel="noopener" href="http://shenyu-vip.lofter.com">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44236958">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=1491585&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+</body>
+
+</html>
