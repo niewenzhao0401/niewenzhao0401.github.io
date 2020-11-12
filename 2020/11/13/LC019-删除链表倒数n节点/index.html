@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-     当咸鱼,不存在!!!
+    删除链表倒数n节点-019 |  当咸鱼,不存在!!!
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -46,24 +46,37 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-hhhhh你骄傲"
+  id="post-LC019-删除链表倒数n节点"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
   data-scroll-reveal
 >
   <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  删除链表倒数n节点-019
+</h1>
+ 
+
+    </header>
      
     <div class="article-meta">
-      <a href="/2020/09/21/hhhhh%E4%BD%A0%E9%AA%84%E5%82%B2/" class="article-date">
-  <time datetime="2020-09-21T13:36:08.243Z" itemprop="datePublished">2020-09-21</time>
-</a>   
+      <a href="/2020/11/13/LC019-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E5%80%92%E6%95%B0n%E8%8A%82%E7%82%B9/" class="article-date">
+  <time datetime="2020-11-12T16:16:21.000Z" itemprop="datePublished">2020-11-13</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
+  </div>
+  
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">374</span>
+            <span class="post-count">506</span>
         </span>
     </span>
 
@@ -72,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">2 min</span>
         </span>
     </span>
 </div>
@@ -87,71 +100,37 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>title: 常用工具<br>date: 2017-12-14 13:05:38<br>type: “resources”</p>
-<h1 id="Lesson-2"><a href="#Lesson-2" class="headerlink" title="Lesson_2"></a>Lesson_2</h1><h2 id="MySql-2"><a href="#MySql-2" class="headerlink" title="MySql-2"></a>MySql-2</h2><h3 id="2-校对集"><a href="#2-校对集" class="headerlink" title="2.校对集"></a>2.校对集</h3><p>在某种字符集下，字符和字符的关系称为校对集。比如(ASCII)a和B的大小关系，如果区分大小写a&gt;B，如果不区分大小写a&lt;B</p>
-<p>不同的校对集的比较规则不一样。</p>
-<p>在定义表的时候可以指定校对集</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--more--&gt;</span></span><br></pre></td></tr></table></figure>
+  <h2 id="19-删除链表的倒数第N个节点"><a href="#19-删除链表的倒数第N个节点" class="headerlink" title="19. 删除链表的倒数第N个节点"></a>19. 删除链表的倒数第N个节点</h2><p>给定一个链表，删除链表的倒数第 <em>n</em> 个节点，并且返回链表的头结点。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">给定一个链表: 1-&gt;2-&gt;3-&gt;4-&gt;5, 和 n &#x3D; 2.</span><br><span class="line"></span><br><span class="line">当删除了倒数第二个节点后，链表变为 1-&gt;2-&gt;3-&gt;5.</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#utf8_general_ci  使用_ci这种校对集不区分大小写</span><br><span class="line">create table t1(</span><br><span class="line">name char(1)</span><br><span class="line">)charset&#x3D;utf8 collate&#x3D;utf8_general_ci;</span><br><span class="line"></span><br><span class="line">create table t2(</span><br><span class="line">name char(1)</span><br><span class="line">)charset&#x3D;utf8 collate&#x3D;utf8_bin;</span><br><span class="line"></span><br><span class="line">insert into t1 values (&#39;a&#39;),(&#39;B&#39;);</span><br><span class="line">insert into t2 values (&#39;a&#39;),(&#39;B&#39;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="方法一：栈"><a href="#方法一：栈" class="headerlink" title="方法一：栈"></a>方法一：栈</h3><ul>
+<li><p>常规思维 算链表长度，然后再找倒数第n个。</p>
+</li>
+<li><p>栈 先压栈，然后弹栈，弹n个</p>
+<a id="more"></a> 
+</li>
+<li><p>双指针，预制位置，j 在 i后面 n的位置，然后两个指针同时移动，就能找到倒数第n个位置</p>
+</li>
+<li><p>ListNode pre = stack.peek();</p>
+<pre><code>pre.next = pre.next.next;</code></pre>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">removeNthFromEnd</span><span class="params">(ListNode head, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//创建一个新链表</span></span><br><span class="line">    ListNode listNode = <span class="keyword">new</span> ListNode(<span class="number">0</span>, head);</span><br><span class="line"></span><br><span class="line">    Stack&lt;ListNode&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    <span class="comment">//创建一个辅助变量</span></span><br><span class="line">    ListNode temp = listNode;</span><br><span class="line">    <span class="keyword">while</span> (temp != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="comment">//将全部压入栈中</span></span><br><span class="line">        stack.push(temp);</span><br><span class="line">        temp = temp.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="comment">//弹出栈顶</span></span><br><span class="line">        stack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//返回栈顶元素</span></span><br><span class="line">    ListNode pre = stack.peek();</span><br><span class="line">    pre.next = pre.next.next;</span><br><span class="line">    ListNode ans = listNode.next;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from t1 order by name;</span><br><span class="line">+------+</span><br><span class="line">| name |</span><br><span class="line">+------+</span><br><span class="line">| a    |</span><br><span class="line">| B    |</span><br><span class="line">+------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">#排序查询以后没有区分大小写说明a和b不区分大小写;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from t2 order by name;</span><br><span class="line">+------+</span><br><span class="line">| name |</span><br><span class="line">+------+</span><br><span class="line">| B    |</span><br><span class="line">| a    |</span><br><span class="line">+------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">#按照正序排列,对照ASCLL编码,B&lt;a,B在a前面那么这种二进制校对集区分大小写;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">牢记:</span><br><span class="line">_bin：按二进制编码比较</span><br><span class="line">_ci：不区分大小写比较</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<table>
-<thead>
-<tr>
-<th align="left"></th>
-<th></th>
-<th align="left"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"></td>
-<td></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"></td>
-<td></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"></td>
-<td></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"></td>
-<td></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"></td>
-<td></td>
-<td align="left"></td>
-</tr>
-</tbody></table>
-<h4 id="2-unsigned-无符号"><a href="#2-unsigned-无符号" class="headerlink" title="(2)unsigned  (无符号)"></a>(2)unsigned  (无符号)</h4><p>一个数是无符号数，那么这个数肯定是非负数</p>
-<p><code>数据库mysql第一条记录一定是1(起码是),绝对不能是0</code></p>
-<p><code>tinyint unsigned   2^8-1</code></p>
-<p>无符号数的范围相当于是有符号数的两倍。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table test1(</span><br><span class="line">    -&gt; age tinyint unsigned</span><br><span class="line">    -&gt; );</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; insert into test1 values (128);</span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
+<h3 id="方法二：计算链表长度"><a href="#方法二：计算链表长度" class="headerlink" title="方法二：计算链表长度"></a>方法二：计算链表长度</h3><ul>
+<li><p>首先从头节点开始对链表进行一次遍历，得到链表的长度 LL。随后我们再从头节点开始对链表进行一次遍历，当遍历到第 L-n+1L−n+1 个节点时，它就是我们需要删除的节点。</p>
+</li>
+<li><p>为了与题目中的 n保持一致，节点的编号从 11 开始，头节点为编号 11 的节点</p>
+</li>
+<li><p>当遍历到第 L-n+1<em>L</em>−<em>n</em>+1 个节点时，<strong>它的下一个节点</strong>就是我们需要删除的节点，这样我们只需要修改一次指针，就能完成删除操作。</p>
+</li>
+<li><p>ListNode pre = stack.peek();</p>
+<pre><code>pre.next = pre.next.next;</code></pre>
+</li>
+</ul>
+<p><strong>代码</strong>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">removeNthFromEnd</span><span class="params">(ListNode head, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    ListNode pre = <span class="keyword">new</span> ListNode(<span class="number">0</span>, head);</span><br><span class="line">    <span class="keyword">int</span> length = getLength(head);</span><br><span class="line">    ListNode cur = pre;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; length - n + <span class="number">1</span>; i++) &#123;</span><br><span class="line">        cur = cur.next;</span><br><span class="line">    &#125;</span><br><span class="line">    cur.next = cur.next.next;</span><br><span class="line">    ListNode ans = pre.next;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getLength</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> length = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (head != <span class="keyword">null</span>) &#123;</span><br><span class="line">        length++;</span><br><span class="line">        head = head.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
  
       <!-- reward -->
@@ -217,30 +196,32 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2020/09/21/hhhhh%E4%BD%A0%E9%AA%84%E5%82%B2/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2020/11/13/LC019-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E5%80%92%E6%95%B0n%E8%8A%82%E7%82%B9/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A0%88/" rel="tag">栈</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a></li></ul>
+
     </footer>
   </div>
 
    
   <nav class="article-nav">
     
-      <a href="/2020/09/22/index%20-%20%E5%89%AF%E6%9C%AC%20(2)/" class="article-nav-link">
+      <a href="/2020/11/13/LC021-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            javase
+            合并两个有序链表-021
           
         </div>
       </a>
     
     
-      <a href="/2017/12/14/hhhhh%E4%BD%A0%E9%AA%84%E5%82%B2%20-%20%E5%89%AF%E6%9C%AC/" class="article-nav-link">
+      <a href="/2020/11/13/LC031-081-153-154-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%89%A9%E5%B1%95/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">常用工具</div>
+        <div class="article-nav-title">二分查找扩展(搜索旋转排序数组)081-153-154</div>
       </a>
     
   </nav>
