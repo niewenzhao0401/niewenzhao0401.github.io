@@ -76,7 +76,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">2.6k</span>
+            <span class="post-count">2.8k</span>
         </span>
     </span>
 
@@ -85,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">10 min</span>
+            <span class="post-count">11 min</span>
         </span>
     </span>
 </div>
@@ -161,7 +161,10 @@
 <p>控制指针已成. 空指针异常<code>NullPointerException</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;控制指针异常</span><br><span class="line">&#x2F;&#x2F;NullPointerException</span><br><span class="line">&#x2F;&#x2F;当应用程序试图在需要对象的地方使用 null 时，抛出该异常</span><br><span class="line">String s&#x3D;null;</span><br><span class="line">s.length();</span><br></pre></td></tr></table></figure>
 
-<h2 id="异常体系结构"><a href="#异常体系结构" class="headerlink" title="异常体系结构"></a>异常体系结构</h2><p><img src="/2020/11/16/javaSE19/2222.png" alt="2222"></p>
+<h2 id="异常体系结构"><a href="#异常体系结构" class="headerlink" title="异常体系结构"></a>异常体系结构</h2><img src="/2020/11/16/javaSE19/2222.png" alt="2222" style="zoom:80%;">
+
+
+
 <h2 id="try-catch"><a href="#try-catch" class="headerlink" title="try-catch"></a>try-catch</h2><ul>
 <li><p>try-执行可能产生 异常的代码</p>
 </li>
@@ -186,7 +189,8 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">        System.out.println(a / <span class="number">2</span>);<span class="comment">//有多个异常   下面的try 跳过下面 直接到对应的  直接运行  对应的catch</span></span><br><span class="line">        Integer.parseInt(<span class="string">&quot;frf&quot;</span>);<span class="comment">//catch中没有对应的异常类型.jvm也会停止  进行提示报错</span></span><br><span class="line">    &#125; <span class="keyword">catch</span> (ArithmeticException e) &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;算数异常:除数不饿能为零&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (NullPointerException n) &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;空指针异常&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">&quot;aaaaa&quot;</span>);</span><br></pre></td></tr></table></figure>
 
 <p><strong>输出</strong>:</p>
-<p><img src="/2020/11/16/javaSE19/../../../Users/LENOVO/Desktop/image-20201114145313641.png" alt="image-20201114145313641"></p>
+<img src="/2020/11/16/javaSE19/1.png" alt="1" style="zoom:80%;">
+
 <h2 id="getMessage-parintStackTrace"><a href="#getMessage-parintStackTrace" class="headerlink" title="getMessage()parintStackTrace"></a>getMessage()parintStackTrace</h2><ul>
 <li>getMessage() 获取异常信息,返回字符串</li>
 <li>parintStackTrace 获取异常类名和异常信息,以及异常出现在程序中的位置.返回值未void</li>
@@ -252,13 +256,31 @@
 <p>当分数不满足条件时,抛出此对象</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ScoreException</span> <span class="keyword">extends</span> <span class="title">Exception</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ScoreException</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ScoreException</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(message);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="throws-1"><a href="#throws-1" class="headerlink" title="throws"></a>throws</h3><ul>
+<ul>
+<li><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="throws-1"><a href="#throws-1" class="headerlink" title="throws"></a>throws</h3><ul>
 <li>作为子啊方法的声明,此方法可能会出现异常,</li>
 <li>throws后面声明多个异常类型,多为编译期异常</li>
 </ul>
 <h3 id="throw"><a href="#throw" class="headerlink" title="throw"></a>throw</h3><ul>
-<li>在方法体中主动抛出异常对象,想当于程序出现异常的情况,后面的程序不执行</li>
+<li>在方法体中主动抛出异常对象,想当于程序出现异常的情况,<strong>后面的程序不执行</strong></li>
 <li>在不满足条件的情况下以抛出异常的形式告诉调用处</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38011265/article/details/79149313">参考throws与throw</a></p>
+<h2 id="throws-2"><a href="#throws-2" class="headerlink" title="throws"></a>throws</h2><ol>
+<li>throws：用来声明一个方法可能产生的所有异常，不做任何处理而是将异常往上传，谁调用我我就抛给谁。</li>
+<li>用在方法声明后面，跟的是异常类名</li>
+<li>可以跟多个异常类名，用逗号隔开</li>
+<li>表示抛出异常，由该方法的调用者来处理</li>
+<li>throws表示出现异常的一种可能性，并不一定会发生这些异常</li>
+</ol>
+<h2 id="throw-1"><a href="#throw-1" class="headerlink" title="throw"></a>throw</h2><ol>
+<li>throw：则是用来抛出一个具体的异常类型。</li>
+<li>用在方法体内，跟的是异常对象名</li>
+<li>只能抛出一个异常对象名</li>
+<li>表示抛出异常，由方法体内的语句处理</li>
+<li>throw则是抛出了异常，执行throw则一定抛出了某种异常  </li>
+</ol>
+</li>
 </ul>
 <h3 id="自定义异常-1"><a href="#自定义异常-1" class="headerlink" title="自定义异常"></a>自定义异常</h3><ul>
 <li>由于java中封装的异常类都是与语法相关的</li>
