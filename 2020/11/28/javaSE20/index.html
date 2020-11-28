@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="当咸鱼,不存在!!!" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    javaSE-20-Collection集合概述 |  当咸鱼,不存在!!!
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-javaSE20"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  javaSE-20-Collection集合概述
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/11/28/javaSE20/" class="article-date">
+  <time datetime="2020-11-28T13:41:47.000Z" itemprop="datePublished">2020-11-28</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javase/">-javase</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">3k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">12 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="Collection集合概述"><a href="#Collection集合概述" class="headerlink" title="Collection集合概述"></a>Collection集合概述</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ThinkWon/article/details/103592572">最强Java集合合集</a></p>
+<p>集合是用来储存引用类型数据的容器</p>
+<p>集合分为两类:</p>
+<ul>
+<li>Collection集合: 存取数据时是单个存取,</li>
+<li>Map集合: 是按&lt;键,值&gt;对的形式存取数据, &lt;”lisi”,18&gt;  &lt;”feifei”, 28&gt;</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ThinkWon/article/details/103592572">最强Java集合合集</a></p>
+ <a id="more"></a> 
+
+<p><img src="/2020/11/28/javaSE20/222.png" alt="222"></p>
+<h2 id="Collection的常用操作"><a href="#Collection的常用操作" class="headerlink" title="Collection的常用操作"></a>Collection的常用操作</h2><table>
+<thead>
+<tr>
+<th><a href="#add-E-">add</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/util/Collection.html">E</a> e) 向集合中添加元素e</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="#addAll-java.util.Collection-">addAll</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/util/Collection.html">Collection</a>&lt;? extends <a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/util/Collection.html">E</a>&gt; c) 把集合c中的元素都添加到当前集合中</td>
+</tr>
+<tr>
+<td><a href="#clear--">clear</a>() 清空集合,删除集合中所有的元素.</td>
+</tr>
+<tr>
+<td><a href="#contains-java.lang.Object-">contains</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/Object.html">Object</a> o) 判断集合是否包含指定元素o</td>
+</tr>
+<tr>
+<td><a href="#containsAll-java.util.Collection-">containsAll</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/util/Collection.html">Collection</a>&lt;?&gt; c) 判断当前集合是否包含指定c集合中的所有元素</td>
+</tr>
+<tr>
+<td><a href="#equals-java.lang.Object-">equals</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/Object.html">Object</a> o)</td>
+</tr>
+<tr>
+<td><a href="#hashCode--">hashCode</a>()</td>
+</tr>
+<tr>
+<td><a href="#isEmpty--">isEmpty</a>() 判断集合是否为空.</td>
+</tr>
+<tr>
+<td><a href="#iterator--">iterator</a>() 返回集合的迭代器对象.</td>
+</tr>
+<tr>
+<td><a href="#remove-java.lang.Object-">remove</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/Object.html">Object</a> o) 在集合中删除第一个与o匹配的元素</td>
+</tr>
+<tr>
+<td><a href="#removeAll-java.util.Collection-">removeAll</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/util/Collection.html">Collection</a>&lt;?&gt; c) 把当前集合中出现在c集合里的元素都删除</td>
+</tr>
+<tr>
+<td><a href="#retainAll-java.util.Collection-">retainAll</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/util/Collection.html">Collection</a>&lt;?&gt; c) 删除当前集合中的元素,如果该元素在c集合中存在就保留</td>
+</tr>
+<tr>
+<td><a href="#size--">size</a>() 返回元素的个数.</td>
+</tr>
+<tr>
+<td><a href="#toArray--">toArray</a>() 把集合转换为数组.</td>
+</tr>
+<tr>
+<td><a href="#toArray-T:A-">toArray</a>(T[] a)</td>
+</tr>
+</tbody></table>
+<h2 id="List集合"><a href="#List集合" class="headerlink" title="List集合"></a>List集合</h2><p>list特点:有序,可重复</p>
+<p>List集合为每个元素指定了一个索引值,主要增加了针对索引值的操作</p>
+<h2 id="ArrayList与Vector"><a href="#ArrayList与Vector" class="headerlink" title="ArrayList与Vector"></a>ArrayList与Vector</h2><ol>
+<li>底层都是数组, Vector是线程安全的, Arraylist不是线程安全的</li>
+<li>初始化容量: 10 </li>
+<li>ArrayList扩容: 1.5 倍速,  Vector扩容: 2倍</li>
+</ol>
+<h2 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h2><p>增加了针对头与尾的操作</p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><a href="#addFirst-E-">addFirst</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/util/LinkedList.html">E</a> e)把元素e添加到列表的头部</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><a href="#addLast-E-">addLast</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/util/LinkedList.html">E</a> e) 把元素e添加到最后</td>
+</tr>
+<tr>
+<td><a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/util/LinkedList.html">E</a></td>
+<td><a href="#getFirst--">getFirst</a>() 返回第一个元素</td>
+</tr>
+<tr>
+<td><a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/util/LinkedList.html">E</a></td>
+<td><a href="#getLast--">getLast</a>() 返回最后一个元素</td>
+</tr>
+<tr>
+<td><a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/util/LinkedList.html">E</a></td>
+<td><a href="#removeFirst--">removeFirst</a>() 删除第一个元素</td>
+</tr>
+<tr>
+<td><a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/util/LinkedList.html">E</a></td>
+<td><a href="#removeLast--">removeLast</a>() 删除最后一个元素</td>
+</tr>
+<tr>
+<td><a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/util/LinkedList.html">E</a></td>
+<td><a href="#peek--">peek</a>() 返回第一个元素</td>
+</tr>
+</tbody></table>
+<p>有时, 使用LinkedList模拟栈, 栈的特点:后进先出</p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><a href="#push-E-">push</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/util/LinkedList.html">E</a> e) 模拟压栈, 把元素e添加列表的头部</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/util/LinkedList.html">E</a></td>
+<td><a href="#pop--">pop</a>() 模拟出栈, 把列表的第一个元素删除</td>
+</tr>
+</tbody></table>
+<p>使用offer(e), poll()模拟队列, 队列特点: 先进先出,    </p>
+<table>
+<thead>
+<tr>
+<th>boolean</th>
+<th><a href="#offer-E-">offer</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/util/LinkedList.html">E</a> e) 模拟入队, 把元素e添加到列表的尾部</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/util/LinkedList.html">E</a></td>
+<td><a href="#poll--">poll</a>() 模拟出队, 把列表的第一个元素删除</td>
+</tr>
+</tbody></table>
+<p><strong>for循环进行遍历</strong></p>
+<ul>
+<li>增删后   集合长度发生变化   i–   一种向后增长,,,索引和长度不匹配</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; list1.size(); i++) &#123;</span><br><span class="line">          list1.remove(i);</span><br><span class="line">      &#125;</span><br><span class="line">      System.out.println(list1);</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>增强for循环</strong></p>
+<ul>
+<li>增强for循环,不允许遍历时堆元素进行操作</li>
+<li>如果进行操作(删除),会 报错ConcurrentModificationException</li>
+<li>如果执意删除的话  操作依次后    就必须的终止break;否则会抛出异常</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (Object obj:list1)&#123;</span><br><span class="line">    System.out.println(obj);</span><br><span class="line">    <span class="keyword">if</span> (obj.equals(<span class="string">&quot;a&quot;</span>))&#123;</span><br><span class="line">    list1.remove(obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>iterator</strong></p>
+<ul>
+<li>hasnext()检测迭代器中是否有元素</li>
+<li>next() 返回元素,并向后遍历</li>
+<li>在进行迭代器中必须使用迭代器的方法       进行移除,增加等操作,</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Iterator it = list1.iterator();</span><br><span class="line"><span class="comment">//hasnext()检测迭代器中是否有元素</span></span><br><span class="line"><span class="keyword">while</span> (it.hasNext()) &#123;</span><br><span class="line">    Object obj = it.next();</span><br><span class="line">    <span class="keyword">if</span> (<span class="string">&quot;a&quot;</span>.equals(obj)) &#123;</span><br><span class="line">        it.remove();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(list1);</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>泛型</strong></p>
+<ul>
+<li>泛指一种类型,类型不确定,可以以参数的形式进行传递</li>
+<li>必须是 引用数据类型,可以有多个</li>
+<li>如果没有给有给具体的类型,默认为object</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">如果使用object作为类型,可以使用任何数据类型</span><br><span class="line">具体操作的时候需要向下转型..类型不匹配</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TypeDemo</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    如果使用object作为类型,可以使用任何数据类型</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ArrayList arrayList = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        arrayList.add(<span class="string">&quot;adasd&quot;</span>);</span><br><span class="line">        arrayList.add(<span class="number">0</span>);</span><br><span class="line">        arrayList.add(<span class="keyword">true</span>);</span><br><span class="line">        <span class="keyword">for</span> (Object obj : arrayList) &#123;</span><br><span class="line">            <span class="comment">//具体操作的时候需要向下转型..类型不匹配</span></span><br><span class="line">            <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> Iterator) &#123;</span><br><span class="line">                String str = (String) obj;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        Iterator iterator1 = arrayList.iterator();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TypeDemo01</span>&lt;<span class="title">A</span>&gt; </span>&#123;</span><br><span class="line">    A ob;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(A ob)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    如果使用object作为类型,可以使用任何数据类型</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        TypeDemo01&lt;String&gt; typeDemo01 = <span class="keyword">new</span> TypeDemo01&lt;&gt;();</span><br><span class="line">        typeDemo01.test(<span class="string">&quot;a&quot;</span>);</span><br><span class="line">        typeDemo01.test(<span class="string">&quot;a&quot;</span>);</span><br><span class="line"><span class="comment">//        typeDemo01.test(12);</span></span><br><span class="line">        <span class="comment">//前面写 必须写 string    后面的没必要写</span></span><br><span class="line">        ArrayList&lt;String&gt; arrayList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><p>set接口特点,  无序,不重复</p>
+<p>hashset 无序(不是按照添加顺序排列,按照hash进行排列)</p>
+<p>treeset 有序  按照元素进行排序</p>
+<h3 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a><strong>HashSet</strong></h3><h4 id="位置为什么时无序的"><a href="#位置为什么时无序的" class="headerlink" title="位置为什么时无序的"></a><strong>位置为什么时无序的</strong></h4><p>添加时根据内容的hash值,在经过hash函数经过计算得到函数计算 得到在hash表中的储存位置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">HashSet&lt;String&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">    set.add(<span class="string">&quot;ads&quot;</span>);<span class="comment">//字符串 已经重写hashcode</span></span><br><span class="line">    set.add(<span class="string">&quot;通话&quot;</span>);</span><br><span class="line">    set.add(<span class="string">&quot;ads&quot;</span>);</span><br><span class="line">    set.add(<span class="string">&quot;重地&quot;</span>);</span><br><span class="line">    set.add(<span class="string">&quot;ads&quot;</span>);</span><br><span class="line">    set.add(<span class="string">&quot;123&quot;</span>);</span><br><span class="line">    System.out.println(set);</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>//如果类中没有从写hashcode()   那么会调用object 类中的hashcode()不会重复  算出对象的值</strong></p>
+<h2 id="为什么使用-hashcode"><a href="#为什么使用-hashcode" class="headerlink" title="为什么使用 hashcode"></a>为什么使用 hashcode</h2><p>hashCode 存在的第一重要的原因就是在 HashMap(HashSet 其实就是HashMap) 中使用（其实Object 类的 hashCode 方法注释已经说明了 ），我知道，HashMap 之所以速度快，因为他使用的是散列表，根据 key 的 hashcode 值生成数组下标（通过内存地址直接查找，没有任何判断），时间复杂度完美情况下可以达到 n1（和数组相同，但是比数组用着爽多了，但是需要多出很多内存，相当于以空间换时间）。</p>
+<h4 id="向hashset添加元素时-如何确定重复元素"><a href="#向hashset添加元素时-如何确定重复元素" class="headerlink" title="向hashset添加元素时 如何确定重复元素"></a>向hashset添加元素时 如何确定重复元素</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">底层双保险,既要提高效率,又要安全可靠</span><br><span class="line">首先会获得添加类容的hash值,判断hash值在集合中是否存在</span><br><span class="line">但是内容不相同时,hash值可能会相同,,也就不可靠</span><br><span class="line">在hash值相同时,会调用equal方法,比较内容是否相等</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>重写object类中的hashcode()  来自己根据对象中包含的内容计算hash值</strong></p>
+<p><strong>效率高,会出现重复</strong></p>
+</li>
+<li><p><strong>当hash值出现重复 叫用equal  进行内容判断</strong>        </p>
+<p><strong>效率低,  安全</strong></p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">if</span> (<span class="keyword">this</span> == o) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">     <span class="keyword">if</span> (o == <span class="keyword">null</span> || getClass() != o.getClass()) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">     Student student = (Student) o;</span><br><span class="line">     <span class="keyword">return</span> num == student.num &amp;&amp;</span><br><span class="line">             Objects.equals(name, student.name);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">     <span class="keyword">return</span> Objects.hash(num, name);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h2><p>不可以存储重复元素  自平衡 有序的</p>
+<p>有序(按照类容的自然排序)      数据类型 必须实现Comparable接口 重写compareTo()</p>
+<p>底层使用的是红黑树</p>
+<p><strong>判断重复</strong> 向TreeSet中添加元素时调用compareTo()比较大小,  小于0   等于0(重复) 大于0</p>
+<h3 id><a href="#" class="headerlink" title></a></h3><h3 id="自然排序要进行一下操作："><a href="#自然排序要进行一下操作：" class="headerlink" title="自然排序要进行一下操作："></a><strong>自然排序要进行一下操作</strong>：</h3><h3 id="Compara"><a href="#Compara" class="headerlink" title="Compara"></a>Compara</h3><p>1.Student类中实现 Comparable接口<br>2.重写Comparable接口中的Compareto方法          </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Student</span>&gt;</span>&#123;</span><br><span class="line">	</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> num;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(<span class="keyword">int</span> num, String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">		<span class="keyword">this</span>.num = num;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	 *  TreeSet添加元素时调用 排序用  比较大小</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Student o)</span> </span>&#123;</span><br><span class="line">		 </span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.num-o.num;<span class="comment">//用哪个属性比较,哪个属性不能重复</span></span><br><span class="line">	&#125;</span><br><span class="line">	..................</span><br></pre></td></tr></table></figure>
+
+<h3 id="比较器排序"><a href="#比较器排序" class="headerlink" title="比较器排序"></a>比较器排序</h3><p>1.单独创建一个比较类，这里以MyComparator为例，并且要让其继承Comparator接口<br>2.重写Comparator接口中的Compare方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compare(T o1,T o2)      比较用来排序的两个参数。</span><br></pre></td></tr></table></figure>
+
+<p>3.在主类中使用下面的 构造方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TreeSet(Comparator&lt;? superE&gt; comparator)</span><br><span class="line">          构造一个新的空 TreeSet，它根据指定比较器进行排序。</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试类</strong>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> nie.java.collection.day3L;</span><br><span class="line"><span class="keyword">import</span> java.util.TreeSet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashsetDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建集合对象</span></span><br><span class="line">        <span class="comment">//TreeSet(Comparator&lt;? super E&gt; comparator) </span></span><br><span class="line">        <span class="comment">// 构造一个新的空 TreeSet，它根据指定比较器进行排序。</span></span><br><span class="line">        TreeSet&lt;Student&gt; ste = <span class="keyword">new</span> TreeSet&lt;&gt;(<span class="keyword">new</span> MyComparator());</span><br><span class="line">        Student s1 = <span class="keyword">new</span> Student(<span class="number">1</span>, <span class="string">&quot;jjj&quot;</span>);</span><br><span class="line">        Student s2 = <span class="keyword">new</span> Student(<span class="number">1</span>, <span class="string">&quot;jjj&quot;</span>);</span><br><span class="line">        Student s3 = <span class="keyword">new</span> Student(<span class="number">2</span>, <span class="string">&quot;jj11&quot;</span>);</span><br><span class="line">        Student s4 = <span class="keyword">new</span> Student(<span class="number">3</span>, <span class="string">&quot;j23j&quot;</span>);</span><br><span class="line">        Student s5 = <span class="keyword">new</span> Student(<span class="number">4</span>, <span class="string">&quot;jj123&quot;</span>);</span><br><span class="line">        ste.add(s1);</span><br><span class="line">        ste.add(s2);</span><br><span class="line">        ste.add(s3);</span><br><span class="line">        ste.add(s4);</span><br><span class="line">        ste.add(s5);</span><br><span class="line">        System.out.println(ste);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>Student.java</strong>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> nie.java.collection.day3L;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Objects;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span>  <span class="keyword">int</span> num;</span><br><span class="line">    <span class="keyword">private</span>  String nume;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(<span class="keyword">int</span> num, String nume)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.num = num;</span><br><span class="line">        <span class="keyword">this</span>.nume = nume;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Student&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;num=&quot;</span> + num +</span><br><span class="line">                <span class="string">&quot;, nume=&#x27;&quot;</span> + nume + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;\n&quot;</span>+<span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Objects.hash(num, nume);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getNum</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> num;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setNum</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.num = num;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getNume</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> nume;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setNume</span><span class="params">(String nume)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.nume = nume;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>MyComparator类</strong>：</p>
+<p>注意为:Comparator</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> nie.java.collection.day3L;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Comparator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyComparator</span> <span class="keyword">implements</span>  <span class="title">Comparator</span>&lt;<span class="title">Student</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Student o1, Student o2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> o1.getNume().compareTo(o2.getNume());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>允许结果</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[Student&#123;num=<span class="number">3</span>, nume=<span class="string">&#x27;j23j&#x27;</span></span><br><span class="line">&#125;, Student&#123;num=<span class="number">2</span>, nume=<span class="string">&#x27;jj11&#x27;</span></span><br><span class="line">&#125;, Student&#123;num=<span class="number">4</span>, nume=<span class="string">&#x27;jj123&#x27;</span></span><br><span class="line">&#125;, Student&#123;num=<span class="number">1</span>, nume=<span class="string">&#x27;jjj&#x27;</span></span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
+
+<h2 id="LinkedHashSet"><a href="#LinkedHashSet" class="headerlink" title="LinkedHashSet"></a>LinkedHashSet</h2><h4 id="按插入的顺序进行输"><a href="#按插入的顺序进行输" class="headerlink" title="按插入的顺序进行输"></a>按插入的顺序进行输</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">LinkedHashSet&lt;Dog&gt; dset = <span class="keyword">new</span> LinkedHashSet&lt;Dog&gt;();</span><br><span class="line">dset.add(<span class="keyword">new</span> Dog(<span class="number">2</span>));</span><br><span class="line">dset.add(<span class="keyword">new</span> Dog(<span class="number">1</span>));</span><br><span class="line">dset.add(<span class="keyword">new</span> Dog(<span class="number">3</span>));</span><br><span class="line">dset.add(<span class="keyword">new</span> Dog(<span class="number">5</span>));</span><br><span class="line">dset.add(<span class="keyword">new</span> Dog(<span class="number">4</span>));</span><br><span class="line">Iterator&lt;Dog&gt; iterator = dset.iterator();</span><br><span class="line"><span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">    System.out.print(iterator.next() + <span class="string">&quot; &quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>按插入的顺序进行输出：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span> <span class="number">1</span> <span class="number">3</span> <span class="number">5</span> <span class="number">4</span> </span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><p>双列存储  键-值<br>键不重复,值可以重复</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hashMap</span><br><span class="line">treeMap</span><br><span class="line">hashTable</span><br></pre></td></tr></table></figure>
+
+<h3 id="hashMap特点"><a href="#hashMap特点" class="headerlink" title="hashMap特点"></a>hashMap特点</h3><p>键去重复 hashcode()方法和equals();<br>如果键重复,值覆盖以前的<br>允许一个键可以为空,</p>
+<h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><table>
+<thead>
+<tr>
+<th><a href="#clear--">clear</a>() 清除所有的&lt;键,值&gt;对.</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="#containsKey-java.lang.Object-">containsKey</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/Object.html">Object</a> key) 判断是否包含指定的键.</td>
+</tr>
+<tr>
+<td><a href="#containsValue-java.lang.Object-">containsValue</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/Object.html">Object</a> value) 判断是否包含指定的值</td>
+</tr>
+<tr>
+<td><a href="#entrySet--">entrySet</a>() 返回Entry的集合, 一个&lt;键,值&gt;对就是一个Entry</td>
+</tr>
+<tr>
+<td><a href="#equals-java.lang.Object-">equals</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/Object.html">Object</a> o).</td>
+</tr>
+<tr>
+<td><a href="#get-java.lang.Object-">get</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/Object.html">Object</a> key) 返回key对应的值</td>
+</tr>
+<tr>
+<td><a href="#isEmpty--">isEmpty</a>() 判断 是否为空.</td>
+</tr>
+<tr>
+<td><a href="#keySet--">keySet</a>() 返回键的集合</td>
+</tr>
+<tr>
+<td><a href="#put-K-V-">put</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/util/Map.html">K</a> key, <a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/util/Map.html">V</a> value) 向Map中添加&lt;key,value&gt;对, 如果键key已存在, 使用value值替换原来的值, Map中的键是不重复的</td>
+</tr>
+<tr>
+<td><a href="#putAll-java.util.Map-">putAll</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/util/Map.html">Map</a>&lt;? extends <a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/util/Map.html">K</a>,? extends <a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/util/Map.html">V</a>&gt; m)</td>
+</tr>
+<tr>
+<td><a href="#remove-java.lang.Object-">remove</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/Object.html">Object</a> key) 只要key匹配就删除对应的&lt;键,值&gt;对</td>
+</tr>
+<tr>
+<td><a href="#remove-java.lang.Object-java.lang.Object-">remove</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/Object.html">Object</a> key, <a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/lang/Object.html">Object</a> value)要求&lt;key,value&gt;都匹配才会删除</td>
+</tr>
+<tr>
+<td><a href="#replace-K-V-">replace</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/util/Map.html">K</a> key, <a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/util/Map.html">V</a> value) 替换</td>
+</tr>
+<tr>
+<td><a href="#replace-K-V-V-">replace</a>(<a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/util/Map.html">K</a> key, <a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/util/Map.html">V</a> oldValue, <a href="mk:@MSITStore:D:\course\03-JavaSE\resources\jdk1_8.chm::/java/util/Map.html">V</a> newValue)</td>
+</tr>
+<tr>
+<td><a href="#size--">size</a>() 返回&lt;键,值&gt;对的数量.</td>
+</tr>
+<tr>
+<td><a href="#values--">values</a>() 返回值的集合</td>
+</tr>
+</tbody></table>
+<h3 id="hashmap工作原理"><a href="#hashmap工作原理" class="headerlink" title="hashmap工作原理"></a>hashmap工作原理</h3><p><img src="/2020/11/28/javaSE20/11121212.png" alt="11121212"></p>
+<p>hashmap的底层时哈希表(散列表),哈希表即使一个数组,数组的每一个元素是一个单向链表;在put(k,v)添加键值对,先根据键的hashCode计算数组的索引值(下标),访问数组元素,如果该元素为null,创建一个新的节点保存到数组元素中,如果数组元素部位null,遍历单向链表的各个节点,如果有某个节点的key与当前的键equles相等,就使用新的值V替换结点原来的value值,如果整个链表中所有结点都不匹配,就创建一个新的结点插入到链表的头部.</p>
+<h3 id="遍历一"><a href="#遍历一" class="headerlink" title="遍历一:"></a>遍历一:</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;String&gt; key = map.keySet();</span><br><span class="line">    <span class="keyword">for</span> (String key1 : key) &#123;</span><br><span class="line">        System.out.println(key1 + <span class="string">&quot;====&quot;</span> + map.get(key1));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="遍历三"><a href="#遍历三" class="headerlink" title="遍历三:"></a>遍历三:</h3><p>取键值对</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;Map.Entry&lt;String, String&gt;&gt; entries = map.entrySet();</span><br><span class="line">     <span class="keyword">for</span> (Map.Entry&lt;String, String&gt; entrie : entries) &#123;</span><br><span class="line">         System.out.println(entrie);</span><br><span class="line"></span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable:"></a>HashTable:</h2><p>hashtable:</p>
+<ol>
+<li>底层都是hash表(散列表),但是hashtable是线程安全的,hashmap不是线程安全</li>
+<li>hashmap的父类是Abstractmap,HashTable的父类是Dictionary</li>
+<li>hashmap默认的初始化容量:16, hashtable默认初始化容量为:11;</li>
+<li>加载因子: 0.75   当&lt;键,值&gt;对的数量  大于  数组的容量(哈希桶的容量) * 加载因子时 , 数组要扩容</li>
+<li>hashmap扩容默认:2倍大小,  hashtale 扩容:2倍加一</li>
+<li>hashmap的键与值都可以为null; HashTable的键与值都不能为null</li>
+<li>hashmap子啊创建时,可以指向一个初始化容量,系统会调整为2次幂,为了快速的计算出数组的下标</li>
+<li>HashTable也可以指定初始化容量, 系统不调整</li>
+</ol>
+<h2 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h2><ol>
+<li>properties继承了hashtable,  键与值都是string</li>
+<li>经常用于设置/读取系统属性,setPropertty(属性名,属性值),getProperty(属性名)</li>
+<li>使用Properties读取配置文件</li>
+</ol>
+<h2 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a><strong>TreeMap</strong></h2><p>treeMap实现了SortedMap,可以根据键自然排序,排序的原理是二叉树原理</p>
+<ol start="2">
+<li>TreeMap的键必须是可比较的</li>
+</ol>
+<p>​    指定Comparator比较器</p>
+<p>​    如果没有Comparator比较器, 元素的类实现Comparable接口</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2020/11/28/javaSE20/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9B%86%E5%90%88/" rel="tag">集合</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2020/11/28/java%E5%B8%B8%E7%94%A8%E5%AD%97%E7%AC%A6%E8%BD%AC%E6%8D%A2/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">java常用字符转换</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "",
+    app_key: "",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2020
+        <i class="ri-heart-fill heart_icon"></i> niewenzhao
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="WenZhao"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" target="_blank" rel="noopener" href="http://shenyu-vip.lofter.com">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44236958">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=1491585&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+</body>
+
+</html>

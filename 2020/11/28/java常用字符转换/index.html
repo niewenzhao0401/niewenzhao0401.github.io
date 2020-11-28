@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    javase |  当咸鱼,不存在!!!
+    java常用字符转换 |  当咸鱼,不存在!!!
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -46,7 +46,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-index"
+  id="post-java常用字符转换"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -57,18 +57,18 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  javase
+  java常用字符转换
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2020/09/22/index/" class="article-date">
-  <time datetime="2020-09-22T05:05:38.000Z" itemprop="datePublished">2020-09-22</time>
+      <a href="/2020/11/28/java%E5%B8%B8%E7%94%A8%E5%AD%97%E7%AC%A6%E8%BD%AC%E6%8D%A2/" class="article-date">
+  <time datetime="2020-11-28T13:40:36.000Z" itemprop="datePublished">2020-11-28</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">-前端</a>
+    <a class="article-category-link" href="/categories/javase/">-javase</a>
   </div>
   
 <div class="word_count">
@@ -76,7 +76,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">10</span>
+            <span class="post-count">331</span>
         </span>
     </span>
 
@@ -92,15 +92,51 @@
  
     </div>
       
+    <div class="tocbot"></div>
+
 
 
 
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>士大夫山豆根萨格11</p>
-<p>1fsdfsdgsdgsdds</p>
- 
+  <h1 id="常用的字符转换"><a href="#常用的字符转换" class="headerlink" title="常用的字符转换"></a>常用的字符转换</h1><hr>
+
+<h2 id="int–-gt-String"><a href="#int–-gt-String" class="headerlink" title="int–&gt;String"></a>int–&gt;String</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> num = <span class="number">123</span>;</span><br><span class="line">String str = <span class="string">&quot;&quot;</span> + num;<span class="comment">//字符串与基本类型连接,会先把基本类型转换为字符串再连接</span></span><br><span class="line">String str1 = String.valueOf(num);<span class="comment">//参数的字符串表示形式。</span></span><br><span class="line">String str2 = Integer.toString(num);<span class="comment">//返回一个表示指定整数的 String 对象。</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+
+ <a id="more"></a> 
+
+<h2 id="Integer-–-gt-String"><a href="#Integer-–-gt-String" class="headerlink" title="Integer –&gt;String"></a>Integer –&gt;String</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Integer integer = <span class="keyword">new</span> Integer(<span class="number">123</span>);</span><br><span class="line">String str3 = Integer.toString(integer);</span><br><span class="line">String str4 = integer.toString();</span><br><span class="line">System.out.println(str3);</span><br><span class="line">System.out.println(str4);</span><br></pre></td></tr></table></figure>
+
+<hr>
+
+<h2 id="int-–-gt-Integer"><a href="#int-–-gt-Integer" class="headerlink" title="int –&gt;Integer"></a>int –&gt;Integer</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i1 = <span class="number">300</span>;                    <span class="comment">//自动装箱</span></span><br><span class="line">      i1 = Integer.valueOf(num);</span><br></pre></td></tr></table></figure>
+
+<hr>
+
+<h2 id="String-–-gt-Integer"><a href="#String-–-gt-Integer" class="headerlink" title="String –&gt; Integer"></a>String –&gt; Integer</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String text = <span class="string">&quot;1231&quot;</span>;</span><br><span class="line">      i1 = Integer.valueOf(text);</span><br></pre></td></tr></table></figure>
+
+<hr>
+
+<h2 id="String-–-gt-int"><a href="#String-–-gt-int" class="headerlink" title="String –&gt;int"></a>String –&gt;int</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">num = Integer.parseInt(text);</span><br></pre></td></tr></table></figure>
+
+<hr>
+
+<h2 id="Integer–-gt-int"><a href="#Integer–-gt-int" class="headerlink" title="Integer–&gt;int"></a>Integer–&gt;int</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">num = i1;                <span class="comment">//自动拆箱</span></span><br><span class="line">String str5 = <span class="string">&quot;abcdefg&quot;</span>;</span><br><span class="line"><span class="keyword">char</span>[] chars = str5.toCharArray();<span class="comment">//字符串转换成为字符数组</span></span><br></pre></td></tr></table></figure>
+
+<h2 id><a href="#" class="headerlink" title></a><hr></h2><h2 id="符数组–-gt-字符串-String-valueOf-chars"><a href="#符数组–-gt-字符串-String-valueOf-chars" class="headerlink" title="符数组–&gt;字符串   String.valueOf(chars);"></a>符数组–&gt;字符串   String.valueOf(chars);</h2><h2 id="把字符串-转为-字符数组-char-toCharArray"><a href="#把字符串-转为-字符数组-char-toCharArray" class="headerlink" title="把字符串 转为 字符数组  char[] toCharArray () ;"></a>把字符串 转为 字符数组  char[] toCharArray () ;</h2><h2 id="把字符数组-转为-字符串-static-String-valueOf-char-chs"><a href="#把字符数组-转为-字符串-static-String-valueOf-char-chs" class="headerlink" title="把字符数组 转为 字符串 static String valueOf ( char[] chs)"></a>把字符数组 转为 字符串 static String valueOf ( char[] chs)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String.valueOf(chars);&#x2F;&#x2F;符数组--&gt;字符串</span><br><span class="line">char[] toCharArray () &#x2F;&#x2F;把字符串 转为 字符数组</span><br><span class="line">static String valueOf ( char[] chs)&#x2F;&#x2F;&#x2F;把字符数组 转为 字符串</span><br></pre></td></tr></table></figure>
+
+<hr>
+
+<h2 id="可以把字符串转换为基本类型数据"><a href="#可以把字符串转换为基本类型数据" class="headerlink" title="可以把字符串转换为基本类型数据"></a>可以把字符串转换为基本类型数据</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 可以把字符串转换为基本类型数据</span></span><br><span class="line"><span class="keyword">int</span> num = Integer.parseInt(<span class="string">&quot;789&quot;</span>);</span><br><span class="line">dd = Double.parseDouble(<span class="string">&quot;45.78&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<hr>
+
+<h2 id="把基本类型-字符串转换为包装类对象"><a href="#把基本类型-字符串转换为包装类对象" class="headerlink" title="//把基本类型/字符串转换为包装类对象"></a>//把基本类型/字符串转换为包装类对象</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">i1 = Integer.valueOf(<span class="number">369</span>);</span><br><span class="line">     i2 = Integer.valueOf(<span class="string">&quot;258&quot;</span>);</span><br><span class="line">     </span><br><span class="line">       Integer i1 = <span class="keyword">new</span> Integer(<span class="number">123</span>);</span><br><span class="line">     Integer i2 = <span class="keyword">new</span> Integer(<span class="string">&quot;456&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">byte</span> bb = i1.byteValue();</span><br><span class="line"><span class="keyword">double</span> dd = i2.doubleValue();</span><br></pre></td></tr></table></figure> 
       <!-- reward -->
       
     </div>
@@ -164,30 +200,32 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2020/09/22/index/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2020/11/28/java%E5%B8%B8%E7%94%A8%E5%AD%97%E7%AC%A6%E8%BD%AC%E6%8D%A2/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+
     </footer>
   </div>
 
    
   <nav class="article-nav">
     
-      <a href="/2020/09/22/index%20-%20%E5%89%AF%E6%9C%AC/" class="article-nav-link">
+      <a href="/2020/11/28/javaSE20/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            javase
+            javaSE-20-Collection集合概述
           
         </div>
       </a>
     
     
-      <a href="/2020/09/21/hhhhh%E4%BD%A0%E9%AA%84%E5%82%B2/" class="article-nav-link">
+      <a href="/2020/11/28/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F05%E5%BF%AB%E9%80%9F/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title"></div>
+        <div class="article-nav-title">十大排序05快速</div>
       </a>
     
   </nav>
