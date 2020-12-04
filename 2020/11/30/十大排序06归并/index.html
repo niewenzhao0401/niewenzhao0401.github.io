@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-     当咸鱼,不存在!!!
+    十大排序06归并 |  当咸鱼,不存在!!!
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -46,24 +46,37 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-hhhhh你骄傲"
+  id="post-十大排序06归并"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
   data-scroll-reveal
 >
   <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  十大排序06归并
+</h1>
+ 
+
+    </header>
      
     <div class="article-meta">
-      <a href="/2020/09/21/hhhhh%E4%BD%A0%E9%AA%84%E5%82%B2/" class="article-date">
-  <time datetime="2020-09-21T13:36:08.243Z" itemprop="datePublished">2020-09-21</time>
-</a>   
+      <a href="/2020/11/30/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F06%E5%BD%92%E5%B9%B6/" class="article-date">
+  <time datetime="2020-11-30T13:35:31.000Z" itemprop="datePublished">2020-11-30</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
+  </div>
+  
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">374</span>
+            <span class="post-count">663</span>
         </span>
     </span>
 
@@ -72,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">2 min</span>
         </span>
     </span>
 </div>
@@ -87,72 +100,23 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>title: 常用工具<br>date: 2017-12-14 13:05:38<br>type: “resources”</p>
-<h1 id="Lesson-2"><a href="#Lesson-2" class="headerlink" title="Lesson_2"></a>Lesson_2</h1><h2 id="MySql-2"><a href="#MySql-2" class="headerlink" title="MySql-2"></a>MySql-2</h2><h3 id="2-校对集"><a href="#2-校对集" class="headerlink" title="2.校对集"></a>2.校对集</h3><p>在某种字符集下，字符和字符的关系称为校对集。比如(ASCII)a和B的大小关系，如果区分大小写a&gt;B，如果不区分大小写a&lt;B</p>
-<p>不同的校对集的比较规则不一样。</p>
-<p>在定义表的时候可以指定校对集</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--more--&gt;</span></span><br></pre></td></tr></table></figure>
+  <h1 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h1><p>归并排序,利用归并的思想实现排序,该方法才采用经典的分治策略,成一些小的问题然后递归求解，   而治的阶段则将分的阶段得到各答案”修补”在一起即分而治之  </p>
+<h2 id="归并排序思想示意图-1-基本思想"><a href="#归并排序思想示意图-1-基本思想" class="headerlink" title="归并排序思想示意图 1-基本思想:"></a>归并排序思想示意图 1-基本思想:</h2><img src="/2020/11/30/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F06%E5%BD%92%E5%B9%B6/2.png" alt="2" style="zoom:80%;">
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#utf8_general_ci  使用_ci这种校对集不区分大小写</span><br><span class="line">create table t1(</span><br><span class="line">name char(1)</span><br><span class="line">)charset&#x3D;utf8 collate&#x3D;utf8_general_ci;</span><br><span class="line"></span><br><span class="line">create table t2(</span><br><span class="line">name char(1)</span><br><span class="line">)charset&#x3D;utf8 collate&#x3D;utf8_bin;</span><br><span class="line"></span><br><span class="line">insert into t1 values (&#39;a&#39;),(&#39;B&#39;);</span><br><span class="line">insert into t2 values (&#39;a&#39;),(&#39;B&#39;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="归并排序思想示意图-2-合并相邻有序子序列"><a href="#归并排序思想示意图-2-合并相邻有序子序列" class="headerlink" title="归并排序思想示意图 2-合并相邻有序子序列:"></a>归并排序思想示意图 2-合并相邻有序子序列:</h2><a id="more"></a>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from t1 order by name;</span><br><span class="line">+------+</span><br><span class="line">| name |</span><br><span class="line">+------+</span><br><span class="line">| a    |</span><br><span class="line">| B    |</span><br><span class="line">+------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">#排序查询以后没有区分大小写说明a和b不区分大小写;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>取中间的值作为基准,两边的进行合并.类似于链表合并</p>
+<p><img src="/2020/11/30/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F06%E5%BD%92%E5%B9%B6/211212223.png" alt="211212223"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nie.sort;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">归并排序</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MergetSort</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> arr[] = &#123;<span class="number">8</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">2</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span> temp[] = <span class="keyword">new</span> <span class="keyword">int</span>[arr.length];</span><br><span class="line">        mergeSort(arr, <span class="number">0</span>, arr.length - <span class="number">1</span>, temp);</span><br><span class="line">        System.out.println(Arrays.toString(arr));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//分+合</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">mergeSort</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span>[] temp)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (left &lt; right) &#123;</span><br><span class="line">            <span class="comment">//中间索引</span></span><br><span class="line">            <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">            <span class="comment">//向左递归进行分解</span></span><br><span class="line">            mergeSort(arr, left, mid, temp);</span><br><span class="line">            <span class="comment">//向右递归进行分解</span></span><br><span class="line">            mergeSort(arr, mid + <span class="number">1</span>, right, temp);</span><br><span class="line">            <span class="comment">//合并</span></span><br><span class="line">            merge(arr, left, mid, right, temp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> arr   排序的原始数组</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> left  左边有序序列的初始索引</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> mid   中间索引</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> right 右边索引</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> temp  作为中转的数组</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> left, <span class="keyword">int</span> mid, <span class="keyword">int</span> right, <span class="keyword">int</span>[] temp)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = left;</span><br><span class="line">        <span class="keyword">int</span> j = mid + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> t = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//(一)</span></span><br><span class="line">        <span class="comment">//先把左右两边(有序)的数据按照规则填充到temp数组</span></span><br><span class="line">        <span class="comment">//直到左右两边的有序序列，有一边处理完毕为止</span></span><br><span class="line">        <span class="keyword">while</span> (i &lt;= mid &amp;&amp; j &lt;= right) &#123;</span><br><span class="line">            <span class="comment">//如果左边的有序序列的当前元素，小于等于右边有序序列的当前元素</span></span><br><span class="line">            <span class="comment">//即将左边的当前元素，填充到 temp数组</span></span><br><span class="line">            <span class="comment">//然后 t++, i++</span></span><br><span class="line">            <span class="keyword">if</span> (arr[i] &lt;= arr[j]) &#123;</span><br><span class="line">                temp[t] = arr[i];</span><br><span class="line">                t++;</span><br><span class="line">                i++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;<span class="comment">//反之,将右边有序序列的当前元素，填充到temp数组</span></span><br><span class="line">                temp[t] = arr[j];</span><br><span class="line">                t++;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//(二)</span></span><br><span class="line">        <span class="comment">//把有剩余数据的一边的数据依次全部填充到temp</span></span><br><span class="line">        <span class="keyword">while</span> (i &lt;= mid) &#123;<span class="comment">//左边的有序序列还有剩余的元素，就全部填充到temp</span></span><br><span class="line">            temp[t] = arr[i];</span><br><span class="line">            t += <span class="number">1</span>;</span><br><span class="line">            i += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (j &lt;= right) &#123;<span class="comment">//右边的有序序列还有剩余的元素，就全部填充到temp</span></span><br><span class="line">            temp[t] = arr[j];</span><br><span class="line">            t += <span class="number">1</span>;</span><br><span class="line">            j += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//(三)</span></span><br><span class="line">        <span class="comment">//将temp数组的元素拷贝到arr</span></span><br><span class="line">        <span class="comment">//注意，并不是每次都拷贝所有</span></span><br><span class="line">        t = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> tempLeft = left;</span><br><span class="line">        <span class="comment">//第一次合并 tempLeft = 0 , right = 1 //  tempLeft = 2  right = 3 // tL=0 ri=3</span></span><br><span class="line">        <span class="comment">//最后一次 tempLeft = 0  right = 7</span></span><br><span class="line">        <span class="keyword">while</span> (tempLeft &lt;= right) &#123;</span><br><span class="line">            arr[tempLeft] = temp[t];</span><br><span class="line">            t += <span class="number">1</span>;</span><br><span class="line">            tempLeft++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from t2 order by name;</span><br><span class="line">+------+</span><br><span class="line">| name |</span><br><span class="line">+------+</span><br><span class="line">| B    |</span><br><span class="line">| a    |</span><br><span class="line">+------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">#按照正序排列,对照ASCLL编码,B&lt;a,B在a前面那么这种二进制校对集区分大小写;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hh</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">牢记:</span><br><span class="line">_bin：按二进制编码比较</span><br><span class="line">_ci：不区分大小写比较</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<table>
-<thead>
-<tr>
-<th align="left"></th>
-<th></th>
-<th align="left"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"></td>
-<td></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"></td>
-<td></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"></td>
-<td></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"></td>
-<td></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"></td>
-<td></td>
-<td align="left"></td>
-</tr>
-</tbody></table>
-<h4 id="2-unsigned-无符号"><a href="#2-unsigned-无符号" class="headerlink" title="(2)unsigned  (无符号)"></a>(2)unsigned  (无符号)</h4><p>一个数是无符号数，那么这个数肯定是非负数</p>
-<p><code>数据库mysql第一条记录一定是1(起码是),绝对不能是0</code></p>
-<p><code>tinyint unsigned   2^8-1</code></p>
-<p>无符号数的范围相当于是有符号数的两倍。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table test1(</span><br><span class="line">    -&gt; age tinyint unsigned</span><br><span class="line">    -&gt; );</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; insert into test1 values (128);</span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结:"></a>总结:</h2><p>平均时间复杂度O(nlogn)</p>
+<p>最好情况 O(nlog n)</p>
+<p>最坏情况 O(nlog n)</p>
+<p>空间复杂度 O(n)</p>
+<p>排序方式 out-place</p>
+<p>稳定性 稳定</p>
  
       <!-- reward -->
       
@@ -217,30 +181,32 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2020/09/21/hhhhh%E4%BD%A0%E9%AA%84%E5%82%B2/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2020/11/30/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F06%E5%BD%92%E5%B9%B6/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F/" rel="tag">十大排序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag">排序</a></li></ul>
+
     </footer>
   </div>
 
    
   <nav class="article-nav">
     
-      <a href="/2020/09/22/index%20-%20%E5%89%AF%E6%9C%AC/" class="article-nav-link">
+      <a href="/2020/12/02/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F07%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            javase
+            十大排序07基数排序
           
         </div>
       </a>
     
     
-      <a href="/2017/12/14/hhhhh%E4%BD%A0%E9%AA%84%E5%82%B2%20-%20%E5%89%AF%E6%9C%AC/" class="article-nav-link">
+      <a href="/2020/11/28/javaSE20/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">常用工具</div>
+        <div class="article-nav-title">javaSE-20-Collection集合概述</div>
       </a>
     
   </nav>
