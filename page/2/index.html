@@ -141,6 +141,71 @@
     
     
     <article
+  id="post-LC015"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/12/06/LC015/"
+    >LC015-三数之和</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/12/06/LC015/" class="article-date">
+  <time datetime="2020-12-06T08:50:24.000Z" itemprop="datePublished">2020-12-06</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="15-三数之和"><a href="#15-三数之和" class="headerlink" title="15. 三数之和"></a>15. 三数之和</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/3sum/">https://leetcode-cn.com/problems/3sum/</a></p>
+<p>利用暴力破解</p>
+<p>利用集合的特性将 方法一中的一个for循环代替</p>
+<p>利用三指针的方法</p>
+<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一:"></a>方法一:</h3><p>利用暴力破解</p>
+<p>注意主要的是去重复</p>
+<ul>
+<li>if (i &gt; 0 &amp;&amp; nums[i - 1] == nums[i]) continue;</li>
+</ul>
+<p><strong>超时</strong></p> 
+      <a class="article-more-link" href="/2020/12/06/LC015/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/map/" rel="tag">map</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B8%89%E6%8C%87%E9%92%88/" rel="tag">三指针</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" rel="tag">双指针</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-LC011"
   class="article article-type-post"
   itemscope
@@ -690,69 +755,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F/" rel="tag">十大排序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag">排序</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-javaSE-hash"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/11/26/javaSE-hash/"
-    >javaSE-hash</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/11/26/javaSE-hash/" class="article-date">
-  <time datetime="2020-11-26T10:49:45.000Z" itemprop="datePublished">2020-11-26</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/javase/">-javase</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="哈希表总结"><a href="#哈希表总结" class="headerlink" title="哈希表总结"></a>哈希表总结</h1><h3 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h3><p>记录的存储位置和它的关键字之间建立一确定的对应关系f，使每个关键字和结构中一个唯一的存储位置相对应。</p>
-<p>因而查找时，只需根据这个对应关系f找到给定值K的像f(K）。</p>
-<p>若结构中存在关键字和K相等的记录，则必定在f(K）的存储位置上，由此不需要进行比较便可直接取得所查记录。</p>
-<p>在此，称这个对应关系f为哈希函数，按这个思想建立的表为哈希表（又称为杂凑法或散列表。</p>
-<h3 id="哈希表不可避免冲突（collision）现象："><a href="#哈希表不可避免冲突（collision）现象：" class="headerlink" title="哈希表不可避免冲突（collision）现象："></a>哈希表不可避免冲突（collision）现象：</h3><ul>
-<li><p>对不同的关键字可能得到同一哈希地址 即key1≠key2，而hash(key1)=hash(key2）。</p>
-</li>
-<li><p>具有相同函数值的关键字对该哈希函数来说称为同义词（synonym）。</p></li></ul> 
-      <a class="article-more-link" href="/2020/11/26/javaSE-hash/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hash/" rel="tag">hash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
 
     </footer>
   </div>
