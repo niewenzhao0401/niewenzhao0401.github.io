@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    javase |  当咸鱼,不存在!!!
+    LC121-买卖股票的最佳时机 |  当咸鱼,不存在!!!
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -46,7 +46,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-index"
+  id="post-LC121"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -57,18 +57,18 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  javase
+  LC121-买卖股票的最佳时机
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2020/09/22/index/" class="article-date">
-  <time datetime="2020-09-22T05:05:38.000Z" itemprop="datePublished">2020-09-22</time>
+      <a href="/2020/12/16/LC121/" class="article-date">
+  <time datetime="2020-12-16T08:19:12.000Z" itemprop="datePublished">2020-12-16</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">-前端</a>
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
   </div>
   
 <div class="word_count">
@@ -76,7 +76,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">10</span>
+            <span class="post-count">790</span>
         </span>
     </span>
 
@@ -85,21 +85,50 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">3 min</span>
         </span>
     </span>
 </div>
  
     </div>
       
+    <div class="tocbot"></div>
+
 
 
 
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>士大夫山豆根萨格11</p>
-<p>1fsdfsdgsdgsdds</p>
+  <h4 id="121-买卖股票的最佳时机"><a href="#121-买卖股票的最佳时机" class="headerlink" title="121. 买卖股票的最佳时机"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/">121. 买卖股票的最佳时机</a></h4><p>难度简单1344</p>
+<p>给定一个数组，它的第 <em>i</em> 个元素是一支给定股票第 <em>i</em> 天的价格。</p>
+<p>如果你最多只允许完成一笔交易（即买入和卖出一支股票一次），设计一个算法来计算你所能获取的最大利润。</p>
+<p>注意：你不能在买入股票前卖出股票。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: [7,1,5,3,6,4]</span><br><span class="line">输出: 5</span><br><span class="line">解释: 在第 2 天（股票价格 &#x3D; 1）的时候买入，在第 5 天（股票价格 &#x3D; 6）的时候卖出，最大利润 &#x3D; 6-1 &#x3D; 5 。</span><br><span class="line">     注意利润不能是 7-1 &#x3D; 6, 因为卖出价格需要大于买入价格；同时，你不能在买入前卖出股票</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a> 
+
+<p>解法一:暴力破解法</p>
+<p>利用两次for循环进行遍历</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (prices.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; prices.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; prices.length; j++) &#123;</span><br><span class="line">            max = Math.max(max, prices[j] - prices[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>解法二:最低点买入</p>
+<p>算法只是动态记录最小值和最大利益，遍历完一次后就得到了最大利益。</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/solution/121-mai-mai-gu-piao-de-zui-jia-shi-ji-by-leetcode-/">相关详解</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit2</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">int</span> minPrice = Integer.MAX_VALUE;</span><br><span class="line">     <span class="keyword">int</span> maxPrice = <span class="number">0</span>;</span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; prices.length; i++) &#123;</span><br><span class="line">         <span class="keyword">if</span> (prices[i] &lt; minPrice) &#123;</span><br><span class="line">             minPrice = prices[i];</span><br><span class="line">         &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">             maxPrice = Math.max(maxPrice, (prices[i] - minPrice));</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> maxPrice;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>解法三: 动态规划</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/solution/wu-chong-shi-xian-xiang-xi-tu-jie-121-mai-mai-gu-p/">动态规划三种解法的相关详解</a></p>
+<p>动态规划就是,空间换取时间</p>
+<p>这是一个买入和卖出的过程，而且能交易一次即只能买卖一次，所以<strong>买入</strong>之后，状态可以转换到<strong>卖出</strong>，但是<strong>卖出</strong>之后就不能再<strong>买入</strong>了，因为只能<strong>买卖一次</strong></p>
+<p>第三天卖出的利润就变了<br>卖出收益是：第二天买入的值-1，加上第三天的股票价格，也就是前一天买入的最大收益 -1加上第三天的股票价格5，于是第三天买入的收益就变成了4<br>买入的收益是：第二天买入的值-1vs第三天买入的股价-5，选择不动</p>
+<p><img src="/2020/12/16/LC121/121.png" alt="121"></p>
+<p>第i天卖出的最大收益计算公式为：</p>
+<p>i-1天卖出的最大收益 vs i-1天买入的最大收益+第i天的股价<br>sell[i] = max(sell[i-1],buy[i-1]+prices[i])<br>第i天买入的最大收益计算公式为：(注意第i天前面有个负号)</p>
+<p>i-1天买入的最大收益 vs -第i天的股价<br>buy[i] = max(buy[i-1],-prices[i])</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit4</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (prices == <span class="keyword">null</span> || prices.length == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> n = prices.length;</span><br><span class="line">    <span class="keyword">int</span>[] sell = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">    <span class="keyword">int</span>[] buy = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">    <span class="comment">//初始化第一天的收益</span></span><br><span class="line">    sell[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    buy[<span class="number">0</span>] = -prices[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="comment">//第i天卖出的收益 = max(第i-1天卖出的收益,第i-1天买入收益+当天股价)</span></span><br><span class="line">        sell[i] = Math.max(sell[i - <span class="number">1</span>], buy[i - <span class="number">1</span>] + prices[i]);</span><br><span class="line">        <span class="comment">//第i天买入的收益=max(第i-1天买入收益，-当天股价)</span></span><br><span class="line">        buy[i] = Math.max(buy[i - <span class="number">1</span>], -prices[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> Math.max(sell[n - <span class="number">1</span>], buy[n - <span class="number">1</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
  
       <!-- reward -->
       
@@ -164,30 +193,32 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2020/09/22/index/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2020/12/16/LC121/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a></li></ul>
+
     </footer>
   </div>
 
    
   <nav class="article-nav">
     
-      <a href="/2020/09/22/index%20-%20%E5%89%AF%E6%9C%AC%20(3)/" class="article-nav-link">
+      <a href="/2020/12/17/Java%E4%BA%8C%E5%8F%89%E6%A0%91%E5%9F%BA%E6%9C%AC%E5%AE%9E%E7%8E%B0/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            11
+            二叉树基本实现-遍历.查找.删除{JAVA}
           
         </div>
       </a>
     
     
-      <a href="/2020/09/22/index%20-%20%E5%89%AF%E6%9C%AC/" class="article-nav-link">
+      <a href="/2020/12/16/java%E7%BA%BF%E7%A8%8B02/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">javase</div>
+        <div class="article-nav-title">javaSE23-线程同步</div>
       </a>
     
   </nav>
