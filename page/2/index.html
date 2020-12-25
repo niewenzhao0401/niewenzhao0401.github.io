@@ -141,6 +141,74 @@
     
     
     <article
+  id="post-快排总汇Java"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/12/12/%E5%BF%AB%E6%8E%92%E6%80%BB%E6%B1%87Java/"
+    >快排总汇Java</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/12/12/%E5%BF%AB%E6%8E%92%E6%80%BB%E6%B1%87Java/" class="article-date">
+  <time datetime="2020-12-12T11:55:52.000Z" itemprop="datePublished">2020-12-12</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/nrsc272420199/article/details/82587933?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromBaidu-1.control&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromBaidu-1.control">优秀快排写法</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_20011607/article/details/82357239">此文章python写法</a><br>快速排序使用分治法（Divide and conquer）策略来把一个序列（list）分为两个子序列（sub-lists）。步骤如下</p>
+<ol>
+<li><p>从数列中挑出一个元素,称为基准(pivot)</p>
+</li>
+<li><p>分区(partition):遍历数列,比基数小的元素放在左边,比他大的放在右边</p>
+<p>于是此次分区结束后，该基准就处于数列的中间位置，其左边的数全比它小（称为小与子序列），右边的数全比他大（称为大于子序列）。这样一次排序就造成了整体上的有序化。</p>
+</li>
+<li><p>子数列排序:将小于子数列和大于子序列分别继续快速排序</p>
+</li>
+<li><p>递归到最底部,数列是零或一,至此,递归结束</p>
+</li>
+</ol> 
+      <a class="article-more-link" href="/2020/12/12/%E5%BF%AB%E6%8E%92%E6%80%BB%E6%B1%87Java/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F/" rel="tag">十大排序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" rel="tag">快速排序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag">排序</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-LC239"
   class="article article-type-post"
   itemscope
@@ -695,75 +763,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/" rel="tag">环形链表</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-LC070"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/12/06/LC070/"
-    >LC070-爬楼梯</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/12/06/LC070/" class="article-date">
-  <time datetime="2020-12-06T08:51:32.000Z" itemprop="datePublished">2020-12-06</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h2 id="70-爬楼梯"><a href="#70-爬楼梯" class="headerlink" title="70. 爬楼梯"></a>70. 爬楼梯</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/climbing-stairs/">https://leetcode-cn.com/problems/climbing-stairs/</a></p>
-<ol>
-<li><p>//该数组每个元素的指针对应的是台阶数,元素的值存放的是台阶数对应的方法数</p>
-</li>
-<li><p>不管怎样,数组下标指针肯定是从0开始的,所以要考虑0.有0个台阶,不需要爬,所以没有方法数(但从斐波那契角度,dp[0]=1)</p>
-</li>
-<li><p>dp[1] = 1; //1阶台阶,只有一种方式(1)</p>
-</li>
-<li><p>2阶台阶,有两种方式(1+1, 2), 因为题目设定n是正整数,所以n最小是1,此时如果定义dp的长度是int[n + 1],则length=2</p>
-<p>而dp[2]实际对应的是第三个元素,超出length了,所以定义new int[n + 2]更合理</p>
-</li>
-<li><p>从第三个台阶开始遍历,第三个台阶,是第二个台阶的方法和第一个台阶的方法之和,,,第四个台阶,是第三个台阶和第二个台阶方法之和,依此论推….</p>
-</li>
-</ol> 
-      <a class="article-more-link" href="/2020/12/06/LC070/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91/" rel="tag">斐波那契</a></li></ul>
 
     </footer>
   </div>
