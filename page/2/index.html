@@ -141,6 +141,75 @@
     
     
     <article
+  id="post-java线程02"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/12/16/java%E7%BA%BF%E7%A8%8B02/"
+    >javaSE23-线程同步</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/12/16/java%E7%BA%BF%E7%A8%8B02/" class="article-date">
+  <time datetime="2020-12-16T00:35:19.000Z" itemprop="datePublished">2020-12-16</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javase/">-javase</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="线程同步"><a href="#线程同步" class="headerlink" title="线程同步"></a>线程同步</h2><p>并发与并行</p>
+<ul>
+<li>并行：多个CPU同时执行多个任务,  比如: 多个人同时做不同的事</li>
+<li>并发: 一个CPU(采用时间片)同时执行多个任务,比如: 秒杀,多个人做同一件事</li>
+</ul>
+<p>线程同步:</p>
+<ul>
+<li>多个线程同时读写同一份共享资源,可能会引起从图,所以引入线程”同步”机制,即各线程要有先来后到</li>
+</ul>
+<p>同步就是排队+锁:</p>
+<ul>
+<li>几个线程之间要排队,一个个对共享资源操作,而不是同时进行操作</li>
+<li>为了保证数据在方法中被访问的正确性,在访问时加入锁机制</li>
+</ul> 
+      <a class="article-more-link" href="/2020/12/16/java%E7%BA%BF%E7%A8%8B02/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B/" rel="tag">线程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%9B%E7%A8%8B/" rel="tag">进程</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-java线程01"
   class="article article-type-post"
   itemscope
@@ -706,76 +775,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A0%88/" rel="tag">栈</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-LC20"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/12/07/LC20/"
-    >LC20-有效的括号</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/12/07/LC20/" class="article-date">
-  <time datetime="2020-12-07T11:01:12.000Z" itemprop="datePublished">2020-12-07</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="20-有效的括号"><a href="#20-有效的括号" class="headerlink" title="20. 有效的括号"></a>20. 有效的括号</h1><p>难度简单2031</p>
-<p>给定一个只包括 <code>&#39;(&#39;</code>，<code>&#39;)&#39;</code>，<code>&#39;&#123;&#39;</code>，<code>&#39;&#125;&#39;</code>，<code>&#39;[&#39;</code>，<code>&#39;]&#39;</code> 的字符串，判断字符串是否有效。</p>
-<p>有效字符串需满足：</p>
-<ol>
-<li>左括号必须用相同类型的右括号闭合。</li>
-<li>左括号必须以正确的顺序闭合。</li>
-</ol>
-<p>注意空字符串可被认为是有效字符串。</p>
-<ul>
-<li>输入: “()”<br>输出: true</li>
-<li>输入: “()[]{}”<br>输出: true</li>
-<li>输入: “(]”<br>输出: false</li>
-<li>输入: “([)]”<br>输出: false</li>
-</ul>
-<h4 id="方法一-使用栈-哈希映射（HashMap）"><a href="#方法一-使用栈-哈希映射（HashMap）" class="headerlink" title="方法一:使用栈,哈希映射（HashMap）"></a>方法一:使用栈,哈希映射（HashMap）</h4><p>使用栈,哈希映射（HashMap）</p> 
-      <a class="article-more-link" href="/2020/12/07/LC20/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7/" rel="tag">有效括号</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A0%88/" rel="tag">栈</a></li></ul>
 
     </footer>
   </div>
