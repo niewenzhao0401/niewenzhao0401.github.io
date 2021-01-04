@@ -141,6 +141,70 @@
     
     
     <article
+  id="post-javaSE反射"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/12/21/javaSE%E5%8F%8D%E5%B0%84/"
+    >javaSE24-反射</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/12/21/javaSE%E5%8F%8D%E5%B0%84/" class="article-date">
+  <time datetime="2020-12-21T05:10:47.000Z" itemprop="datePublished">2020-12-21</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javase/">-javase</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><p>反射就是根据字节码文件,反射类的信息,字段,方法,构造方法等类的内容,</p>
+<p>根据<strong>字节码文件创建对象,调用方法的技术</strong></p>
+<h2 id="反射的基础-是class的对象"><a href="#反射的基础-是class的对象" class="headerlink" title="反射的基础,是class的对象"></a>反射的基础,是class的对象</h2><ul>
+<li>每一个类都有class属性</li>
+<li>每个对象都有getClass() 方法</li>
+<li>Class.forName(完整类名)</li>
+</ul>
+<p>Class.forName 返回Class对象时,回把参数指定的类加载到内存中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;?&gt; class7 = Person.class;   <span class="comment">//没有执行Person类静态代码块, 说明Person类没有加载内存</span></span><br><span class="line">Class&lt;?&gt; class8 = Class.forName(<span class="string">&quot;com.bjpowernode.chapter08.demo01.Person&quot;</span>);  <span class="comment">//执行了静态代码块, 说明类加载了内存</span></span><br></pre></td></tr></table></figure> 
+      <a class="article-more-link" href="/2020/12/21/javaSE%E5%8F%8D%E5%B0%84/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8F%8D%E5%B0%84/" rel="tag">反射</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-十大排序8堆排序"
   class="article article-type-post"
   itemscope
@@ -714,73 +778,13 @@
 </article>
 
     
-    <article
-  id="post-LC239"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/12/12/LC239/"
-    >LC239-滑动窗口最大值</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/12/12/LC239/" class="article-date">
-  <time datetime="2020-12-12T11:50:26.000Z" itemprop="datePublished">2020-12-12</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="239-滑动窗口最大值"><a href="#239-滑动窗口最大值" class="headerlink" title="239. 滑动窗口最大值"></a>239. 滑动窗口最大值</h1><p>给定一个数组 <em>nums</em>，有一个大小为 <em>k</em> 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 <em>k</em> 个数字。滑动窗口每次只向右移动一位。</p>
-<p>返回滑动窗口中的最大值。</p>
-<p><strong>进阶：</strong></p>
-<p>你能在线性时间复杂度内解决此题吗？</p>
-<p><strong>示例:</strong></p> 
-      <a class="article-more-link" href="/2020/12/12/LC239/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/map/" rel="tag">map</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
+    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
   </nav>
   
 </section>
