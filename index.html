@@ -141,6 +141,95 @@
     
     
     <article
+  id="post-JS-04"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/01/04/JS-04/"
+    >JS-04-JavaScript DOM模型</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/01/04/JS-04/" class="article-date">
+  <time datetime="2021-01-03T16:25:41.000Z" itemprop="datePublished">2021-01-04</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">-JavaScript</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        //全选
+        function checkAll() {
+//让所有复选框都选中
+            //document.getElementsByName();是根据 指定的name 属性 查询返回多个标签对象集合
+            //集合的作用和数组一样
+            //集合中的每个对象都是dom对象
+            //这个集中的元素顺序是他们的HTMl 页面中由上到下的顺序
+            var elementsByName = document.getElementsByName("hobby");
+            for (var i = 0; i < elementsByName.length; i++) {
+                elementsByName[i].checked = true;
+            }
+        }
+# DOM模型
+
+<p>DOM全称是 Document Object Model  文档对象模型</p>
+<blockquote>
+<p>就是把文档中的标签,属性,文本,转型成为对象来管理</p>
+</blockquote>
+<h2 id="Document对象的理解"><a href="#Document对象的理解" class="headerlink" title="Document对象的理解"></a>Document对象的理解</h2><ol>
+<li><p>Document它管理了所有的HTML文档内容</p>
+</li>
+<li><p>Document它是一种树形结构文档,有层级关系</p>
+</li>
+<li><p>把所有的标签都对象化</p>
+</li>
+<li><p>可以通过document访问所有的标签对象</p>
+</li>
+</ol></script></head></html> 
+      <a class="article-more-link" href="/2021/01/04/JS-04/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DOM%E6%A8%A1%E5%9E%8B/" rel="tag">DOM模型</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaWeb/" rel="tag">JavaWeb</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-JS-03"
   class="article article-type-post"
   itemscope
@@ -687,70 +776,6 @@
 </li>
 </ol> 
       <a class="article-more-link" href="/2020/12/25/JDBC6-2%E6%95%B0%E6%8D%AE%E4%BA%8B%E5%8A%A1ACID%E5%B1%9E%E6%80%A7/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86/" rel="tag">事务处理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-JDBC6-1数据库事务"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/12/24/JDBC6-1%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/"
-    >JDBC-数据库事务-JDBC事务处理-6.1</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/12/24/JDBC6-1%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/" class="article-date">
-  <time datetime="2020-12-23T16:12:27.000Z" itemprop="datePublished">2020-12-24</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/JDBC/">-JDBC</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="数据库事务"><a href="#数据库事务" class="headerlink" title="数据库事务"></a>数据库事务</h1><h4 id="什么叫数据库事务"><a href="#什么叫数据库事务" class="headerlink" title="什么叫数据库事务"></a><strong>什么叫数据库事务</strong></h4><ul>
-<li>事务:一组逻辑操作单元,使数据从一种状态到另外一种状态,一组逻辑操作单元,一个或者多个DML操作</li>
-</ul>
-<h4 id="事务处理的原则"><a href="#事务处理的原则" class="headerlink" title="事务处理的原则:"></a><strong>事务处理的原则</strong>:</h4><ul>
-<li>保证所有事务都为一个工作单元执行  即使出现了故障,都不能改变这种方式当一个事务中执行了多个操作时,要么所有的事务都<strong>被提交(**commit) , 那么这些修改就永久保存下来: 要么数据库管理系统将放弃所作的所有修改,整个事务</strong>回滚**(roolBack) 到最初始状态</li>
-</ul>
-<h2 id="JDBC事务处理"><a href="#JDBC事务处理" class="headerlink" title="JDBC事务处理"></a>JDBC事务处理</h2><ul>
-<li>数据一旦提交 就不会发生回滚</li>
-</ul> 
-      <a class="article-more-link" href="/2020/12/24/JDBC6-1%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/"
         >阅读更多...</a
       >
        

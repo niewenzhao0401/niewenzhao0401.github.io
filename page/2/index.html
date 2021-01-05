@@ -141,6 +141,70 @@
     
     
     <article
+  id="post-JDBC6-1数据库事务"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/12/24/JDBC6-1%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/"
+    >JDBC-数据库事务-JDBC事务处理-6.1</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/12/24/JDBC6-1%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/" class="article-date">
+  <time datetime="2020-12-23T16:12:27.000Z" itemprop="datePublished">2020-12-24</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JDBC/">-JDBC</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="数据库事务"><a href="#数据库事务" class="headerlink" title="数据库事务"></a>数据库事务</h1><h4 id="什么叫数据库事务"><a href="#什么叫数据库事务" class="headerlink" title="什么叫数据库事务"></a><strong>什么叫数据库事务</strong></h4><ul>
+<li>事务:一组逻辑操作单元,使数据从一种状态到另外一种状态,一组逻辑操作单元,一个或者多个DML操作</li>
+</ul>
+<h4 id="事务处理的原则"><a href="#事务处理的原则" class="headerlink" title="事务处理的原则:"></a><strong>事务处理的原则</strong>:</h4><ul>
+<li>保证所有事务都为一个工作单元执行  即使出现了故障,都不能改变这种方式当一个事务中执行了多个操作时,要么所有的事务都<strong>被提交(**commit) , 那么这些修改就永久保存下来: 要么数据库管理系统将放弃所作的所有修改,整个事务</strong>回滚**(roolBack) 到最初始状态</li>
+</ul>
+<h2 id="JDBC事务处理"><a href="#JDBC事务处理" class="headerlink" title="JDBC事务处理"></a>JDBC事务处理</h2><ul>
+<li>数据一旦提交 就不会发生回滚</li>
+</ul> 
+      <a class="article-more-link" href="/2020/12/24/JDBC6-1%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86/" rel="tag">事务处理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-线索化二叉树"
   class="article article-type-post"
   itemscope
@@ -702,77 +766,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A0%88/" rel="tag">栈</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-LC049"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/12/13/LC049/"
-    >LC049-字母异位词分组</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/12/13/LC049/" class="article-date">
-  <time datetime="2020-12-13T10:05:41.000Z" itemprop="datePublished">2020-12-13</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="49-字母异位词分组"><a href="#49-字母异位词分组" class="headerlink" title="49. 字母异位词分组"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/group-anagrams/">49. 字母异位词分组</a></h1><p>给定一个字符串数组，将字母异位词组合在一起。字母异位词指字母相同，但排列不同的字符串。</p>
-<p><strong>示例:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入: [&quot;eat&quot;, &quot;tea&quot;, &quot;tan&quot;, &quot;ate&quot;, &quot;nat&quot;, &quot;bat&quot;]</span><br><span class="line">输出:</span><br><span class="line">[</span><br><span class="line">  [&quot;ate&quot;,&quot;eat&quot;,&quot;tea&quot;],</span><br><span class="line">  [&quot;nat&quot;,&quot;tan&quot;],</span><br><span class="line">  [&quot;bat&quot;]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-<h3 id="1-先排序再判断"><a href="#1-先排序再判断" class="headerlink" title="1.先排序再判断"></a>1.先排序再判断</h3><ul>
-<li>字母异位词就是两个字符串中的字母都是一样的，只不过顺序被打乱了</li>
-<li>找出来他们进行排序</li>
-<li>利用map进行,判断,储存HashMap&lt;String, List<String>&gt; map = new HashMap&lt;&gt;();</String></li>
-<li>输出 map的value的值</li>
-</ul> 
-      <a class="article-more-link" href="/2020/12/13/LC049/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a></li></ul>
 
     </footer>
   </div>
