@@ -1,34 +1,438 @@
-extends partial/layout
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>操作系统01-1-计算 | WenZhao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="基础" />
+  
+  
+  
+  
+  <meta name="description" content="操作系统–前言01可不可以计算一个人程序写得好不好？ “计算”可以涉及到计算机本源的有趣的知识,比如图灵机、冯诺依曼模型；再比如说 CPU 的构成、程序如何执行、缓存的分级、总线的作用等。 芯片：计算能源 第一次工业革命出现了蒸汽机，能源是煤炭 第二次工业革命出现了发电机，能源是电 第三次科技革命，革命产物是计算机 第四次科技革命，就发生在当下，出现了人工智能，能源是数据。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统01-1-计算">
+<meta property="og:url" content="http://example.com/2020/10/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F00-1/index.html">
+<meta property="og:site_name" content="WenZhao">
+<meta property="og:description" content="操作系统–前言01可不可以计算一个人程序写得好不好？ “计算”可以涉及到计算机本源的有趣的知识,比如图灵机、冯诺依曼模型；再比如说 CPU 的构成、程序如何执行、缓存的分级、总线的作用等。 芯片：计算能源 第一次工业革命出现了蒸汽机，能源是煤炭 第二次工业革命出现了发电机，能源是电 第三次科技革命，革命产物是计算机 第四次科技革命，就发生在当下，出现了人工智能，能源是数据。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2020/10/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F00-1/1.png">
+<meta property="article:published_time" content="2020-10-12T14:17:48.000Z">
+<meta property="article:modified_time" content="2020-10-13T08:17:03.241Z">
+<meta property="article:author" content="niewenzhao">
+<meta property="article:tag" content="基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/10/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F00-1/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="WenZhao" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
 
-include mixins
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  
+<link rel="stylesheet" href="/css/style.css">
 
-block site_title
-    != page.title + " · " + config.title
 
-block description
-    - var desc = page.desc || strip_html(page.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 150);
-    meta(name="description", content=desc)
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
 
-block content
-  .autopagerize_page_element: .content: .post-page
-    include mixins
-    +make_post(page, true)
-    .share
-      .evernote
-        a.fa.fa-bookmark(href="",onclick="javascript:join_favorite()", ref="sidebar")
-      .weibo
-        a.fa.fa-weibo(href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));")
-      .twitter
-        a.fa.fa-twitter(href=url_for("http://twitter.com/home?status="+","+config.url+"/"+page.path+","+config.title+","+page.title+",;"))
-    - var prev = page.prev ? page.prev.path : false;
-    - var next = page.next ? page.next.path : false;
-    .pagination
-      ul.clearfix
-        if prev
-          li.pre.pagbuttons
-            a.btn(role="navigation",href=url_for(prev), title=page.prev.title)!= __('prev_post')
-        if next
-          li.next.pagbuttons
-            a.btn(role="navigation",href=url_for(next), title=page.next.title)!= __('next_post')
-    if page.comments
-        include partial/comments
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  
+  <div class="site-header-image">
+    <img id="originBg" width="100%" alt="Hike News" src="">
+  </div>
+
+  <div id="header-blur" class="site-header-image blur" style="position: absolute; top:0; height: 207px; min-height: 207px; min-width: 100%;">
+    <img id="blurBg" width="100%" style="top: 96%" alt="Hike News" src="">
+  </div>
+
+  <script>
+        var imgUrls = "css/images/pose01.jpg,https://source.unsplash.com/collection/954550/1920x1080,https://source.unsplash.com/collection/954550/1920x1081".split(",");
+        var random = Math.floor((Math.random() * imgUrls.length ));
+        if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+          document.getElementById("originBg").src=imgUrls[random];
+          document.getElementById("blurBg").src=imgUrls[random];
+        } else {
+          document.getElementById("originBg").src='/' + imgUrls[random];
+          document.getElementById("blurBg").src='/' + imgUrls[random];
+        }
+    </script>
+
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   style="width: 100%; position: absolute; top:0; background: rgba(255,255,255,.8);"  >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="WenZhao" rel="home"> WenZhao </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">当咸鱼,不存在!!!</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="/"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="archives"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="categories"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="tags"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="about"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-操作系统00-1" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      操作系统01-1-计算
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2020/10/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F00-1/" class="article-date">
+	  <time datetime="2020-10-12T14:17:48.000Z" itemprop="datePublished">October 12, 2020</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">-操作系统</a>
+ 
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="操作系统–前言01"><a href="#操作系统–前言01" class="headerlink" title="操作系统–前言01"></a>操作系统–前言01</h1><p><strong>可不可以计算一个人程序写得好不好？</strong></p>
+<p>“计算”可以涉及到计算机本源的有趣的知识,比如图灵机、冯诺依曼模型；再比如说 CPU 的构成、程序如何执行、缓存的分级、总线的作用等。</p>
+<h2 id="芯片：计算能源"><a href="#芯片：计算能源" class="headerlink" title="芯片：计算能源"></a>芯片：计算能源</h2><ul>
+<li>第一次工业革命出现了蒸汽机，<strong>能源是煤炭</strong></li>
+<li>第二次工业革命出现了发电机，<strong>能源是电</strong></li>
+<li>第三次科技革命，革命产物是计算机</li>
+<li>第四次科技革命，就发生在当下，出现了人工智能，能源是数据。</li>
+</ul>
+<a id="more"></a>  
+
+<p><strong>第三次科技革命的能源是一种数字能量，本质是计算</strong></p>
+<img src="/2020/10/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F00-1/1.png" alt="1" style="zoom:50%;">
+
+<p>​        电能供给给芯片，芯片中的一种电子元件晶振（也就是石英晶体）通电后产生震荡，震荡会产生频率稳定的脉冲信号。通常这是一种高频的脉冲信号，每秒可达百万次。然后，我们通过谐振效应发放这个信号，形成<strong>方波</strong>。再通过电子元件调整这种脉冲的频率，把脉冲信号转换为我们需要的频率，这就形成了驱动芯片工作的时钟信号。这种信号的频率，我们也称作芯片的<strong>时钟频率</strong>。最后，时钟信号驱动着芯片工作，就像人体的脉搏一样，每一次脉冲到来，都让芯片的状态发生一次变化，用这种方法，最终存储器中的指令被一行行执行。指令被执行，其实就是数据被计算，这就是我说的<strong>计算能量</strong>。</p>
+<p>芯片普及后,应用到我们生活中大大小小的物件,有了芯片，设备通电后才可以计算，有了计算，这些设备才能够实现更加复杂而精确的功能。</p>
+<h2 id="摩尔定律：计算能力的发展"><a href="#摩尔定律：计算能力的发展" class="headerlink" title="摩尔定律：计算能力的发展"></a>摩尔定律：计算能力的发展</h2><ul>
+<li>第一个芯片:被称作集成电路， 1958 年由美国德州仪器公司的工程师杰克·基尔比发明</li>
+<li>第一台通用计算机:ENIAC 则是在 1946 年诞生于美国陆军弹道研究实验室。</li>
+</ul>
+<p>Intel 的创始人之一摩尔就观察到了这个现象，并提出了<strong>摩尔定律</strong>：当价格不变时，集成电路中可容纳的晶体管数目约每隔 18～24 个月就会增加一倍，性能也将提升一倍。</p>
+<p>这一定律揭示了信息技术发展的速度，但到今天，摩尔定律失效了。因为随着芯片越来越小，在尺寸和散热等方面已经挑战了人类的极限，芯片中无法再放入更多的电子元件了。</p>
+<p>展望未来，计算能力还有更多的增长点，不仅有可以无限提高计算能力的量子计算机，还有利用<strong>光学元件替代晶体元件的光电集成电路。</strong></p>
+<h2 id="可计算理论：图灵机"><a href="#可计算理论：图灵机" class="headerlink" title="可计算理论：图灵机"></a>可计算理论：图灵机</h2><p>生活在数字时代的我们，用着导航、玩着游戏，本能地知道很多问题是可以被计算的，生活在 20 世纪初的科学家们，需要在没有计算机和芯片的时代就想清楚这些问题，并不是一件容易的事情。</p>
+<h2 id="公理化体系和不完备性定理"><a href="#公理化体系和不完备性定理" class="headerlink" title="公理化体系和不完备性定理"></a>公理化体系和不完备性定理</h2><p>因为世界上存在着大量的这种“公说公有理，婆说婆有理”的问题，才让大家认识到计算不能解决所有问题，所以：<strong>计算机能力也是有边界的。哥德尔的不完备性定理，让大家看到了世界上还有大量不可计算的问题。</strong></p>
+<h2 id="图灵机和可计算理论"><a href="#图灵机和可计算理论" class="headerlink" title="图灵机和可计算理论"></a>图灵机和可计算理论</h2><p><strong>哪些问题可以被计算，哪些不可以被计算</strong></p>
+<p>人工智能之父的阿兰·图灵提出了<strong>图灵机</strong>:它是一种不断执行指令的抽象计算机</p>
+<p>图灵发现如果一个问题是可计算的，那么它的解决方案就必须可以被具化成一条条的指令，也就是可以使用图灵机处理。因此，不能使用图灵机处理的问题，都是不可计算的问题。</p>
+<p>比如一个马达的控制程序是可计算的，因为控制过程是可以被抽象成一条条指令的（即可以写程序实现）</p>
+<h2 id="不可计算问题"><a href="#不可计算问题" class="headerlink" title="不可计算问题"></a>不可计算问题</h2><p>当图灵机遇到“素数是不是有无穷多个”？</p>
+<p>如果素数是无穷的，那么我们的计算就是无穷无尽的，所以这样的问题不可计算。</p>
+<h2 id="停机问题"><a href="#停机问题" class="headerlink" title="停机问题"></a>停机问题</h2><p>​        我们也无法实现用一个通用程序去判断另一个程序是否会停止。比如你用运行这段程序来检查一个程序是否会停止时，你会发现不能因为这个程序执行了 1 天，就判定它不会停止，也不能因为这个程序执行了 10 年，从而得出它不会停止的结论。这个问题放到图灵机领域，叫作<strong>停机问题</strong>，我们无法给出一个判断图灵机是否会停机的通用方法，因此停机问题是一个经典的不可计算问题</p>
+<h2 id="计算能力的边界在哪里？"><a href="#计算能力的边界在哪里？" class="headerlink" title="计算能力的边界在哪里？"></a>计算能力的边界在哪里？</h2><ul>
+<li>解决问题往往需要消耗芯片的计算能力，这通常称作时间开销</li>
+<li>另外解决问题还需要消耗内存，称作空间开销。</li>
+</ul>
+<h2 id="问题的分类"><a href="#问题的分类" class="headerlink" title="问题的分类"></a>问题的分类</h2><p>世界上有一类问题，无论我们消耗多少时间和空间也无法解决，这类问题就包括“停机问题”，称作不可计算问题，</p>
+<p>可计算问题   &lt;   不可计算问题</p>
+<h2 id="P-问题-vs-NP-问题"><a href="#P-问题-vs-NP-问题" class="headerlink" title="P 问题 vs NP 问题"></a>P 问题 vs NP 问题</h2><ul>
+<li>有能力解决的问题，统称为多项式时间（ Polynomial time）问题。今天能解决的问题，都是多项式时间的问题，下面记为 P 类型的问题</li>
+<li>问题如果不能在多项式时间内找到答案，我们记为 NP 问题。</li>
+</ul>
+<p>有一部分 NP 问题可以被转化为 P 问题，比如斐波那契数列求第 N 项，可以用缓存、动态规划等方式转化为 O(N) 的问题。但还有更多的 NP 问题，比如一个集合，找出和为零的子集，就没能找到一个合适的转换方法。</p>
+<p><strong>今还有很多问题无法解决，它的数量远远大于我们可以解决的问题，科学家、工程师们也只能望洋兴叹了</strong></p>
+<h2 id="人工智能"><a href="#人工智能" class="headerlink" title="人工智能"></a>人工智能</h2><p>包括停机问题、包括 NP 问题在内的很多问题，虽然不能解决，但可以努力让计算机的解决方案超过人类的水平，<strong>这就是人工智能</strong>。</p>
+<p>AlphaGo 战胜李世石就是利用了基于概率的不完全解法，这种解法已经可以超过部分人类职业选手了，也就是说计算机的解法已经超过了人类。</p>
+<p>人类的强项在于理解和分析，<strong>人有两种思维，归纳和假设</strong>，这两种思维都是计算机无法计算的。机器用概率理解围棋，局部来说机器下得更好，但是<strong>人可以制造机器</strong>，因此，人的感悟更有意义，谈不上孰优孰劣。</p>
+<p><strong>可不可以计算一个人程序写得好不好？</strong></p>
+<p>这个问题可以这样来思考，如果把问题降级，变成：“可不可以计算一个人写的程序会不会停机？”</p>
+<p>这个问题就如同停机问题，无法计算，因此这是一个不可计算的问题。</p>
+<p>但是我们通过</p>
+<p>设立规则，比如</p>
+<ul>
+<li>检查缩进、</li>
+<li>检查函数的复用情况、</li>
+<li>检查类的命名情况</li>
+</ul>
+<p>另外，我们也可以通过 AI 技术，让机器在“程序写得好不好”这个问题的判定能力上，达到人类的水平，通过图灵测试。</p>
+<p>综上，从绝对的对错角度去看，这是一个不可计算问题，因为它没有办法被完全解决；但是从图灵测试层面来看，虽然目前无法解决这个问题，但是我们有理由相信，在未来，计算机对这个问题的解决方案，是可以超过人类的。</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">-操作系统</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/10/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F00-2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          操作系统01-2-程序如何执行
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/10/12/%E7%AE%97%E6%B3%95-%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95003-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%AE%97%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">十大算法——动态规划算法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%93%E5%89%8D%E8%A8%8001"><span class="nav-number">1.</span> <span class="nav-text">操作系统–前言01</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8A%AF%E7%89%87%EF%BC%9A%E8%AE%A1%E7%AE%97%E8%83%BD%E6%BA%90"><span class="nav-number">1.1.</span> <span class="nav-text">芯片：计算能源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%91%A9%E5%B0%94%E5%AE%9A%E5%BE%8B%EF%BC%9A%E8%AE%A1%E7%AE%97%E8%83%BD%E5%8A%9B%E7%9A%84%E5%8F%91%E5%B1%95"><span class="nav-number">1.2.</span> <span class="nav-text">摩尔定律：计算能力的发展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA%EF%BC%9A%E5%9B%BE%E7%81%B5%E6%9C%BA"><span class="nav-number">1.3.</span> <span class="nav-text">可计算理论：图灵机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AC%E7%90%86%E5%8C%96%E4%BD%93%E7%B3%BB%E5%92%8C%E4%B8%8D%E5%AE%8C%E5%A4%87%E6%80%A7%E5%AE%9A%E7%90%86"><span class="nav-number">1.4.</span> <span class="nav-text">公理化体系和不完备性定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%81%B5%E6%9C%BA%E5%92%8C%E5%8F%AF%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA"><span class="nav-number">1.5.</span> <span class="nav-text">图灵机和可计算理论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%8F%AF%E8%AE%A1%E7%AE%97%E9%97%AE%E9%A2%98"><span class="nav-number">1.6.</span> <span class="nav-text">不可计算问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%81%9C%E6%9C%BA%E9%97%AE%E9%A2%98"><span class="nav-number">1.7.</span> <span class="nav-text">停机问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E8%83%BD%E5%8A%9B%E7%9A%84%E8%BE%B9%E7%95%8C%E5%9C%A8%E5%93%AA%E9%87%8C%EF%BC%9F"><span class="nav-number">1.8.</span> <span class="nav-text">计算能力的边界在哪里？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.9.</span> <span class="nav-text">问题的分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-%E9%97%AE%E9%A2%98-vs-NP-%E9%97%AE%E9%A2%98"><span class="nav-number">1.10.</span> <span class="nav-text">P 问题 vs NP 问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD"><span class="nav-number">1.11.</span> <span class="nav-text">人工智能</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2021 WenZhao All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+      var headerblur = document.getElementById("header-blur");
+      headerblur.style.minHeight = window.getComputedStyle(document.getElementById("allheader"), null).height;
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/bootstrap.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

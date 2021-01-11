@@ -1,34 +1,415 @@
-extends partial/layout
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>java常用字符转换 | WenZhao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="基础java" />
+  
+  
+  
+  
+  <meta name="description" content="常用的字符转换  int–&gt;String1234int num &#x3D; 123;String str &#x3D; &quot;&quot; + num;&#x2F;&#x2F;字符串与基本类型连接,会先把基本类型转换为字符串再连接String str1 &#x3D; String.valueOf(num);&#x2F;&#x2F;参数的字符串表示形式。String str2 &#x3D; Integer.toString(num);&#x2F;&#x2F;返回一个表示指定整数的 S">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java常用字符转换">
+<meta property="og:url" content="http://example.com/2020/11/28/java%E5%B8%B8%E7%94%A8%E5%AD%97%E7%AC%A6%E8%BD%AC%E6%8D%A2/index.html">
+<meta property="og:site_name" content="WenZhao">
+<meta property="og:description" content="常用的字符转换  int–&gt;String1234int num &#x3D; 123;String str &#x3D; &quot;&quot; + num;&#x2F;&#x2F;字符串与基本类型连接,会先把基本类型转换为字符串再连接String str1 &#x3D; String.valueOf(num);&#x2F;&#x2F;参数的字符串表示形式。String str2 &#x3D; Integer.toString(num);&#x2F;&#x2F;返回一个表示指定整数的 S">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-11-28T13:40:36.000Z">
+<meta property="article:modified_time" content="2020-11-28T13:41:20.709Z">
+<meta property="article:author" content="niewenzhao">
+<meta property="article:tag" content="基础">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="WenZhao" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
 
-include mixins
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  
+<link rel="stylesheet" href="/css/style.css">
 
-block site_title
-    != page.title + " · " + config.title
 
-block description
-    - var desc = page.desc || strip_html(page.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 150);
-    meta(name="description", content=desc)
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
 
-block content
-  .autopagerize_page_element: .content: .post-page
-    include mixins
-    +make_post(page, true)
-    .share
-      .evernote
-        a.fa.fa-bookmark(href="",onclick="javascript:join_favorite()", ref="sidebar")
-      .weibo
-        a.fa.fa-weibo(href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));")
-      .twitter
-        a.fa.fa-twitter(href=url_for("http://twitter.com/home?status="+","+config.url+"/"+page.path+","+config.title+","+page.title+",;"))
-    - var prev = page.prev ? page.prev.path : false;
-    - var next = page.next ? page.next.path : false;
-    .pagination
-      ul.clearfix
-        if prev
-          li.pre.pagbuttons
-            a.btn(role="navigation",href=url_for(prev), title=page.prev.title)!= __('prev_post')
-        if next
-          li.next.pagbuttons
-            a.btn(role="navigation",href=url_for(next), title=page.next.title)!= __('next_post')
-    if page.comments
-        include partial/comments
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  
+  <div class="site-header-image">
+    <img id="originBg" width="100%" alt="Hike News" src="">
+  </div>
+
+  <div id="header-blur" class="site-header-image blur" style="position: absolute; top:0; height: 207px; min-height: 207px; min-width: 100%;">
+    <img id="blurBg" width="100%" style="top: 96%" alt="Hike News" src="">
+  </div>
+
+  <script>
+        var imgUrls = "css/images/pose01.jpg,https://source.unsplash.com/collection/954550/1920x1080,https://source.unsplash.com/collection/954550/1920x1081".split(",");
+        var random = Math.floor((Math.random() * imgUrls.length ));
+        if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+          document.getElementById("originBg").src=imgUrls[random];
+          document.getElementById("blurBg").src=imgUrls[random];
+        } else {
+          document.getElementById("originBg").src='/' + imgUrls[random];
+          document.getElementById("blurBg").src='/' + imgUrls[random];
+        }
+    </script>
+
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   style="width: 100%; position: absolute; top:0; background: rgba(255,255,255,.8);"  >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="WenZhao" rel="home"> WenZhao </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">当咸鱼,不存在!!!</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="/"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="archives"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="categories"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="tags"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="about"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-java常用字符转换" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      java常用字符转换
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2020/11/28/java%E5%B8%B8%E7%94%A8%E5%AD%97%E7%AC%A6%E8%BD%AC%E6%8D%A2/" class="article-date">
+	  <time datetime="2020-11-28T13:40:36.000Z" itemprop="datePublished">November 28, 2020</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javase/">-javase</a>
+ 
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="常用的字符转换"><a href="#常用的字符转换" class="headerlink" title="常用的字符转换"></a>常用的字符转换</h1><hr>
+
+<h2 id="int–-gt-String"><a href="#int–-gt-String" class="headerlink" title="int–&gt;String"></a>int–&gt;String</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> num = <span class="number">123</span>;</span><br><span class="line">String str = <span class="string">&quot;&quot;</span> + num;<span class="comment">//字符串与基本类型连接,会先把基本类型转换为字符串再连接</span></span><br><span class="line">String str1 = String.valueOf(num);<span class="comment">//参数的字符串表示形式。</span></span><br><span class="line">String str2 = Integer.toString(num);<span class="comment">//返回一个表示指定整数的 String 对象。</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+
+ <a id="more"></a> 
+
+<h2 id="Integer-–-gt-String"><a href="#Integer-–-gt-String" class="headerlink" title="Integer –&gt;String"></a>Integer –&gt;String</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Integer integer = <span class="keyword">new</span> Integer(<span class="number">123</span>);</span><br><span class="line">String str3 = Integer.toString(integer);</span><br><span class="line">String str4 = integer.toString();</span><br><span class="line">System.out.println(str3);</span><br><span class="line">System.out.println(str4);</span><br></pre></td></tr></table></figure>
+
+<hr>
+
+<h2 id="int-–-gt-Integer"><a href="#int-–-gt-Integer" class="headerlink" title="int –&gt;Integer"></a>int –&gt;Integer</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i1 = <span class="number">300</span>;                    <span class="comment">//自动装箱</span></span><br><span class="line">      i1 = Integer.valueOf(num);</span><br></pre></td></tr></table></figure>
+
+<hr>
+
+<h2 id="String-–-gt-Integer"><a href="#String-–-gt-Integer" class="headerlink" title="String –&gt; Integer"></a>String –&gt; Integer</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String text = <span class="string">&quot;1231&quot;</span>;</span><br><span class="line">      i1 = Integer.valueOf(text);</span><br></pre></td></tr></table></figure>
+
+<hr>
+
+<h2 id="String-–-gt-int"><a href="#String-–-gt-int" class="headerlink" title="String –&gt;int"></a>String –&gt;int</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">num = Integer.parseInt(text);</span><br></pre></td></tr></table></figure>
+
+<hr>
+
+<h2 id="Integer–-gt-int"><a href="#Integer–-gt-int" class="headerlink" title="Integer–&gt;int"></a>Integer–&gt;int</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">num = i1;                <span class="comment">//自动拆箱</span></span><br><span class="line">String str5 = <span class="string">&quot;abcdefg&quot;</span>;</span><br><span class="line"><span class="keyword">char</span>[] chars = str5.toCharArray();<span class="comment">//字符串转换成为字符数组</span></span><br></pre></td></tr></table></figure>
+
+<h2 id><a href="#" class="headerlink" title></a><hr></h2><h2 id="符数组–-gt-字符串-String-valueOf-chars"><a href="#符数组–-gt-字符串-String-valueOf-chars" class="headerlink" title="符数组–&gt;字符串   String.valueOf(chars);"></a>符数组–&gt;字符串   String.valueOf(chars);</h2><h2 id="把字符串-转为-字符数组-char-toCharArray"><a href="#把字符串-转为-字符数组-char-toCharArray" class="headerlink" title="把字符串 转为 字符数组  char[] toCharArray () ;"></a>把字符串 转为 字符数组  char[] toCharArray () ;</h2><h2 id="把字符数组-转为-字符串-static-String-valueOf-char-chs"><a href="#把字符数组-转为-字符串-static-String-valueOf-char-chs" class="headerlink" title="把字符数组 转为 字符串 static String valueOf ( char[] chs)"></a>把字符数组 转为 字符串 static String valueOf ( char[] chs)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String.valueOf(chars);&#x2F;&#x2F;符数组--&gt;字符串</span><br><span class="line">char[] toCharArray () &#x2F;&#x2F;把字符串 转为 字符数组</span><br><span class="line">static String valueOf ( char[] chs)&#x2F;&#x2F;&#x2F;把字符数组 转为 字符串</span><br></pre></td></tr></table></figure>
+
+<hr>
+
+<h2 id="可以把字符串转换为基本类型数据"><a href="#可以把字符串转换为基本类型数据" class="headerlink" title="可以把字符串转换为基本类型数据"></a>可以把字符串转换为基本类型数据</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 可以把字符串转换为基本类型数据</span></span><br><span class="line"><span class="keyword">int</span> num = Integer.parseInt(<span class="string">&quot;789&quot;</span>);</span><br><span class="line">dd = Double.parseDouble(<span class="string">&quot;45.78&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<hr>
+
+<h2 id="把基本类型-字符串转换为包装类对象"><a href="#把基本类型-字符串转换为包装类对象" class="headerlink" title="//把基本类型/字符串转换为包装类对象"></a>//把基本类型/字符串转换为包装类对象</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">i1 = Integer.valueOf(<span class="number">369</span>);</span><br><span class="line">     i2 = Integer.valueOf(<span class="string">&quot;258&quot;</span>);</span><br><span class="line">     </span><br><span class="line">       Integer i1 = <span class="keyword">new</span> Integer(<span class="number">123</span>);</span><br><span class="line">     Integer i2 = <span class="keyword">new</span> Integer(<span class="string">&quot;456&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">byte</span> bb = i1.byteValue();</span><br><span class="line"><span class="keyword">double</span> dd = i2.doubleValue();</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javase/">-javase</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/11/28/javaSE20/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          javaSE-20-Collection集合概述
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/11/28/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F05%E5%BF%AB%E9%80%9F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">十大排序05快速</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E5%AD%97%E7%AC%A6%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">常用的字符转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#int%E2%80%93-gt-String"><span class="nav-number">1.1.</span> <span class="nav-text">int–&gt;String</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Integer-%E2%80%93-gt-String"><span class="nav-number">1.2.</span> <span class="nav-text">Integer –&gt;String</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#int-%E2%80%93-gt-Integer"><span class="nav-number">1.3.</span> <span class="nav-text">int –&gt;Integer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String-%E2%80%93-gt-Integer"><span class="nav-number">1.4.</span> <span class="nav-text">String –&gt; Integer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String-%E2%80%93-gt-int"><span class="nav-number">1.5.</span> <span class="nav-text">String –&gt;int</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Integer%E2%80%93-gt-int"><span class="nav-number">1.6.</span> <span class="nav-text">Integer–&gt;int</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.7.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%A6%E6%95%B0%E7%BB%84%E2%80%93-gt-%E5%AD%97%E7%AC%A6%E4%B8%B2-String-valueOf-chars"><span class="nav-number">1.8.</span> <span class="nav-text">符数组–&gt;字符串   String.valueOf(chars);</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%8A%E5%AD%97%E7%AC%A6%E4%B8%B2-%E8%BD%AC%E4%B8%BA-%E5%AD%97%E7%AC%A6%E6%95%B0%E7%BB%84-char-toCharArray"><span class="nav-number">1.9.</span> <span class="nav-text">把字符串 转为 字符数组  char[] toCharArray () ;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%8A%E5%AD%97%E7%AC%A6%E6%95%B0%E7%BB%84-%E8%BD%AC%E4%B8%BA-%E5%AD%97%E7%AC%A6%E4%B8%B2-static-String-valueOf-char-chs"><span class="nav-number">1.10.</span> <span class="nav-text">把字符数组 转为 字符串 static String valueOf ( char[] chs)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E4%BB%A5%E6%8A%8A%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E6%95%B0%E6%8D%AE"><span class="nav-number">1.11.</span> <span class="nav-text">可以把字符串转换为基本类型数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%8A%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8C%85%E8%A3%85%E7%B1%BB%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.12.</span> <span class="nav-text">&#x2F;&#x2F;把基本类型&#x2F;字符串转换为包装类对象</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2021 WenZhao All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+      var headerblur = document.getElementById("header-blur");
+      headerblur.style.minHeight = window.getComputedStyle(document.getElementById("allheader"), null).height;
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/bootstrap.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

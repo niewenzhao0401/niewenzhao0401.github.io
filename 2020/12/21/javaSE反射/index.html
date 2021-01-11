@@ -1,34 +1,457 @@
-extends partial/layout
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>javaSE24-反射 | WenZhao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="基础反射" />
+  
+  
+  
+  
+  <meta name="description" content="反射反射就是根据字节码文件,反射类的信息,字段,方法,构造方法等类的内容, 根据字节码文件创建对象,调用方法的技术 反射的基础,是class的对象 每一个类都有class属性 每个对象都有getClass() 方法 Class.forName(完整类名)  Class.forName 返回Class对象时,回把参数指定的类加载到内存中 12Class&lt;?&gt; class7 &#x3D; Perso">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javaSE24-反射">
+<meta property="og:url" content="http://example.com/2020/12/21/javaSE%E5%8F%8D%E5%B0%84/index.html">
+<meta property="og:site_name" content="WenZhao">
+<meta property="og:description" content="反射反射就是根据字节码文件,反射类的信息,字段,方法,构造方法等类的内容, 根据字节码文件创建对象,调用方法的技术 反射的基础,是class的对象 每一个类都有class属性 每个对象都有getClass() 方法 Class.forName(完整类名)  Class.forName 返回Class对象时,回把参数指定的类加载到内存中 12Class&lt;?&gt; class7 &#x3D; Perso">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-12-21T05:10:47.000Z">
+<meta property="article:modified_time" content="2020-12-25T12:17:50.629Z">
+<meta property="article:author" content="niewenzhao">
+<meta property="article:tag" content="基础">
+<meta property="article:tag" content="反射">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="WenZhao" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
 
-include mixins
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  
+<link rel="stylesheet" href="/css/style.css">
 
-block site_title
-    != page.title + " · " + config.title
 
-block description
-    - var desc = page.desc || strip_html(page.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 150);
-    meta(name="description", content=desc)
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
 
-block content
-  .autopagerize_page_element: .content: .post-page
-    include mixins
-    +make_post(page, true)
-    .share
-      .evernote
-        a.fa.fa-bookmark(href="",onclick="javascript:join_favorite()", ref="sidebar")
-      .weibo
-        a.fa.fa-weibo(href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));")
-      .twitter
-        a.fa.fa-twitter(href=url_for("http://twitter.com/home?status="+","+config.url+"/"+page.path+","+config.title+","+page.title+",;"))
-    - var prev = page.prev ? page.prev.path : false;
-    - var next = page.next ? page.next.path : false;
-    .pagination
-      ul.clearfix
-        if prev
-          li.pre.pagbuttons
-            a.btn(role="navigation",href=url_for(prev), title=page.prev.title)!= __('prev_post')
-        if next
-          li.next.pagbuttons
-            a.btn(role="navigation",href=url_for(next), title=page.next.title)!= __('next_post')
-    if page.comments
-        include partial/comments
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  
+  <div class="site-header-image">
+    <img id="originBg" width="100%" alt="Hike News" src="">
+  </div>
+
+  <div id="header-blur" class="site-header-image blur" style="position: absolute; top:0; height: 207px; min-height: 207px; min-width: 100%;">
+    <img id="blurBg" width="100%" style="top: 96%" alt="Hike News" src="">
+  </div>
+
+  <script>
+        var imgUrls = "css/images/pose01.jpg,https://source.unsplash.com/collection/954550/1920x1080,https://source.unsplash.com/collection/954550/1920x1081".split(",");
+        var random = Math.floor((Math.random() * imgUrls.length ));
+        if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+          document.getElementById("originBg").src=imgUrls[random];
+          document.getElementById("blurBg").src=imgUrls[random];
+        } else {
+          document.getElementById("originBg").src='/' + imgUrls[random];
+          document.getElementById("blurBg").src='/' + imgUrls[random];
+        }
+    </script>
+
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   style="width: 100%; position: absolute; top:0; background: rgba(255,255,255,.8);"  >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="WenZhao" rel="home"> WenZhao </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">当咸鱼,不存在!!!</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="/"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="archives"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="categories"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="tags"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="about"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-javaSE反射" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      javaSE24-反射
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2020/12/21/javaSE%E5%8F%8D%E5%B0%84/" class="article-date">
+	  <time datetime="2020-12-21T05:10:47.000Z" itemprop="datePublished">December 21, 2020</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javase/">-javase</a>
+ 
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><p>反射就是根据字节码文件,反射类的信息,字段,方法,构造方法等类的内容,</p>
+<p>根据<strong>字节码文件创建对象,调用方法的技术</strong></p>
+<h2 id="反射的基础-是class的对象"><a href="#反射的基础-是class的对象" class="headerlink" title="反射的基础,是class的对象"></a>反射的基础,是class的对象</h2><ul>
+<li>每一个类都有class属性</li>
+<li>每个对象都有getClass() 方法</li>
+<li>Class.forName(完整类名)</li>
+</ul>
+<p>Class.forName 返回Class对象时,回把参数指定的类加载到内存中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;?&gt; class7 = Person.class;   <span class="comment">//没有执行Person类静态代码块, 说明Person类没有加载内存</span></span><br><span class="line">Class&lt;?&gt; class8 = Class.forName(<span class="string">&quot;com.bjpowernode.chapter08.demo01.Person&quot;</span>);  <span class="comment">//执行了静态代码块, 说明类加载了内存</span></span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+
+
+
+
+<h2 id="反射类的信息"><a href="#反射类的信息" class="headerlink" title="反射类的信息"></a>反射类的信息</h2><p>java.lang.reflect包中有反射相关的类</p>
+<ul>
+<li>class1.getModifiers()        返回类的修饰符</li>
+<li>class1.getName()            返回完整类名</li>
+<li>class1.getSimpleName()        简易类名</li>
+<li>class1.getSuperClass()        父类</li>
+<li>class1.getInterfaces()        接口</li>
+</ul>
+<h3 id="创建Class对象"><a href="#创建Class对象" class="headerlink" title="创建Class对象"></a>创建Class对象</h3><p>Class&lt;?&gt; class1 = String.class;    </p>
+<h4 id="反射类的信息-1"><a href="#反射类的信息-1" class="headerlink" title="反射类的信息"></a>反射类的信息</h4><h5 id="修饰类-Modifiers-修饰器"><a href="#修饰类-Modifiers-修饰器" class="headerlink" title="修饰类  Modifiers:修饰器"></a>修饰类  <code>Modifiers:修饰器</code></h5><p>class1.getModifiers();</p>
+<p>Modifier.toString(mod);//整数转换为字符串</p>
+<h5 id="类名"><a href="#类名" class="headerlink" title="类名"></a>类名</h5><p><strong><code>Simple简单</code></strong></p>
+<p>class1.getName() 返回完整类名</p>
+<p>class1.getSimpleName() //返回简易类名</p>
+<h5 id="父名"><a href="#父名" class="headerlink" title="父名"></a>父名</h5><p>class1.getSuperClass();</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;?&gt; superclass &#x3D; class1.getSuperclass();</span><br><span class="line">	&#x2F;&#x2F;判断父类是否为Object</span><br><span class="line">	if ( Object.class !&#x3D; superclass ) &#123;</span><br><span class="line">		sb.append(&quot; extends &quot;);</span><br><span class="line">		sb.append( superclass.getSimpleName() );			</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h5><p><strong><code>getInterfaces()</code>返回接口数组, 如果类没有实现接口,返回的数组长度为0</strong></p>
+<p>class1.getInterfaces();</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;?&gt;[] interfaces &#x3D; class1.getInterfaces();</span><br><span class="line">if( interfaces.length &gt; 0 )&#123; 		&#x2F;&#x2F;实现了接口</span><br><span class="line">	sb.append(&quot; implements &quot;);</span><br><span class="line">	&#x2F;&#x2F;遍历接口数组</span><br><span class="line">	for( int i &#x3D; 0 ;  i&lt;interfaces.length ; i++)&#123;</span><br><span class="line">		sb.append( interfaces[i].getSimpleName() );</span><br><span class="line">		&#x2F;&#x2F;接口之间使用逗号分隔</span><br><span class="line">		if ( i &lt; interfaces.length - 1) &#123;</span><br><span class="line">			sb.append(&quot;,&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h2 id="通过反射技术访问字段"><a href="#通过反射技术访问字段" class="headerlink" title="通过反射技术访问字段"></a>通过反射技术访问字段</h2><ul>
+<li>class1.getField(字段名)            返回指定字段名的公共字段</li>
+<li>class1.getDeclaredField(字段名)    返回指定名称的字段(即使它是私有的)</li>
+<li>class1.newInstance()             创建一个实例(创建一个对象)</li>
+<li>field.set(对象名, 字段的值);             设置字段的值</li>
+<li>field.get(对象名);                     返回字段的值</li>
+<li>field.setAccessible(true);             设置字段的可访问性</li>
+</ul>
+<h5 id="创建Class对象-1"><a href="#创建Class对象-1" class="headerlink" title="创建Class对象,"></a>创建Class对象,</h5><p>​        Class&lt;?&gt; class1 = Person.class;</p>
+<h5 id="反射name字段"><a href="#反射name字段" class="headerlink" title="反射name字段"></a>反射name字段</h5><p>​    Field nameF = class1.getField(“name”);</p>
+<h5 id="通过反射技术创建对象-实例-默认调用类的无参构造"><a href="#通过反射技术创建对象-实例-默认调用类的无参构造" class="headerlink" title="通过反射技术创建对象(实例),默认调用类的无参构造"></a>通过反射技术创建对象(实例),默认调用类的无参构造</h5><p>​    Object p1 = class1.newInstance();             //相当于new Person()</p>
+<h5 id="设置字段的值"><a href="#设置字段的值" class="headerlink" title="设置字段的值"></a>设置字段的值</h5><p>nameF.set(p1, “lisi”);                 //p1.setName(“lisi”)</p>
+<h5 id="返回字段的值"><a href="#返回字段的值" class="headerlink" title="返回字段的值"></a>返回字段的值</h5><p>​    System.out.println( p1 );<br>​    System.out.println( nameF.get(p1) );        //p1.getName()</p>
+<h5 id="访问私有字段-age"><a href="#访问私有字段-age" class="headerlink" title="访问私有字段 age"></a>访问私有字段 age</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Object p1 = class1.newInstance(); 			<span class="comment">//相当于new Person()</span></span><br><span class="line"></span><br><span class="line">Field ageF = class1.getField(<span class="string">&quot;age&quot;</span>); 		<span class="comment">//只能返回公共字段</span></span><br><span class="line">Field ageF = class1.getDeclaredField(<span class="string">&quot;age&quot;</span>); 		<span class="comment">//返回字段</span></span><br><span class="line">ageF.setAccessible(<span class="keyword">true</span>); 				<span class="comment">//设置字段的可访问性</span></span><br><span class="line">ageF.set(p1, <span class="number">18</span>);</span><br><span class="line">System.out.println( ageF.get(p1));</span><br><span class="line">System.out.println( p1 );</span><br></pre></td></tr></table></figure>
+
+<h2 id="通过反射技术调用方法"><a href="#通过反射技术调用方法" class="headerlink" title="通过反射技术调用方法"></a>通过反射技术调用方法</h2><ul>
+<li>class1.getMethod(方法名,参数类型列表)  反射指定方法签名的公共方法</li>
+<li>method.invoke(实例名, 方法的实参列表)         调用方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException </span>&#123;</span><br><span class="line">		<span class="comment">//1) 创建Class对象</span></span><br><span class="line">		Class&lt;?&gt; class1 = Person.class;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//2) 反射show()方法</span></span><br><span class="line">		Method showM = class1.getMethod(<span class="string">&quot;show&quot;</span>, <span class="keyword">null</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//3)通过反射技术创建实例</span></span><br><span class="line">		Object obj = class1.newInstance();			<span class="comment">//new Person()</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//4)调用方法</span></span><br><span class="line">		showM.invoke(obj, <span class="keyword">null</span>); 		<span class="comment">//obj.show()</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//5)反射set(String, int)方法</span></span><br><span class="line">		Method setM = class1.getMethod(<span class="string">&quot;set&quot;</span>, String.class , <span class="keyword">int</span>.class );</span><br><span class="line">		setM.invoke(obj, <span class="string">&quot;lisi&quot;</span>, <span class="number">66</span>);</span><br><span class="line">		</span><br><span class="line">		showM.invoke(obj);</span><br><span class="line">		System.out.println( obj );</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h4 id="Person类"><a href="#Person类" class="headerlink" title="Person类"></a>Person类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">static</span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;静态代码块, 在类加载内存后执行&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> String name; 		</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;Person [name=&quot;</span> + name + <span class="string">&quot;, age=&quot;</span> + age + <span class="string">&quot;]&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;name:&quot;</span> + name + <span class="string">&quot;,age:&quot;</span> + age);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="创建Class对象的方式"><a href="#创建Class对象的方式" class="headerlink" title="创建Class对象的方式"></a>创建Class对象的方式</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test01</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException </span>&#123;</span><br><span class="line">		<span class="comment">//1) 每个类都有一个Class属性</span></span><br><span class="line">		Class class1 = Test01.class;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//2)每个 对象有getClass()</span></span><br><span class="line">		Class class2 =  <span class="keyword">new</span> Test01().getClass();</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//3) Class.forName()</span></span><br><span class="line">		Class class3 = Class.forName(<span class="string">&quot;com.bjpowernode.chapter08.demo01.Test01&quot;</span>);</span><br><span class="line">		</span><br><span class="line">		System.out.println( class1 );</span><br><span class="line">		<span class="comment">//</span></span><br><span class="line">		System.out.println( class1 == class2 );</span><br><span class="line">		System.out.println( class2 == class3 );</span><br><span class="line">		 </span><br><span class="line">		<span class="comment">//4)</span></span><br><span class="line">		Class&lt;?&gt;  class4 = <span class="keyword">int</span>.class;</span><br><span class="line">		Class&lt;?&gt; class5 = Integer.class;</span><br><span class="line">		System.out.println( class4 == class5 ); 	 <span class="comment">//false</span></span><br><span class="line">		Class&lt;?&gt; class6 = Integer.TYPE;</span><br><span class="line">		System.out.println( class4 == class6 ); 	<span class="comment">//true</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//5) Class.forName()r返回Class对象时, 会把参数指定的类加载到内存中</span></span><br><span class="line"><span class="comment">//		Class&lt;?&gt; class7 = Person.class;   //没有执行Person类静态代码块, 说明Person类没有加载内存</span></span><br><span class="line">		Class&lt;?&gt; class8 = Class.forName(<span class="string">&quot;com.bjpowernode.chapter08.demo01.Person&quot;</span>);  <span class="comment">//执行了静态代码块, 说明类加载了内存</span></span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="反射类的信息-2"><a href="#反射类的信息-2" class="headerlink" title="反射类的信息"></a>反射类的信息</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test02</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//1)创建Class对象</span></span><br><span class="line">		Class&lt;?&gt; class1 = String.class;				</span><br><span class="line"><span class="comment">//		Class&lt;?&gt; class1 = Integer.class;				</span></span><br><span class="line">		</span><br><span class="line">		StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">		<span class="comment">//2)反射类的信息</span></span><br><span class="line">		<span class="comment">//2.1 修饰符</span></span><br><span class="line">		<span class="keyword">int</span> mod = class1.getModifiers(); 		<span class="comment">//方法返回类的修饰符,是一个整数</span></span><br><span class="line">		String modifier = Modifier.toString(mod);<span class="comment">//整数转换为字符串</span></span><br><span class="line">		sb.append( modifier );</span><br><span class="line">		<span class="comment">//2.2 类名</span></span><br><span class="line">		sb.append(<span class="string">&quot; class  &quot;</span>);</span><br><span class="line"><span class="comment">//		sb.append( class1.getName() ) ; 		//getName()r返回完整类名 </span></span><br><span class="line">		sb.append( class1.getSimpleName() ) ; 	<span class="comment">//返回简易类名 </span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//2.3 父类</span></span><br><span class="line">		Class&lt;?&gt; superclass = class1.getSuperclass();</span><br><span class="line">		<span class="comment">//判断父类是否为Object</span></span><br><span class="line">		<span class="keyword">if</span> ( Object.class != superclass ) &#123;</span><br><span class="line">			sb.append(<span class="string">&quot; extends &quot;</span>);</span><br><span class="line">			sb.append( superclass.getSimpleName() );			</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//2.4 接口,getInterfaces()返回接口数组, 如果类没有实现接口,返回的数组长度为0</span></span><br><span class="line">		Class&lt;?&gt;[] interfaces = class1.getInterfaces();</span><br><span class="line">		<span class="keyword">if</span>( interfaces.length &gt; <span class="number">0</span> )&#123; 		<span class="comment">//实现了接口</span></span><br><span class="line">			sb.append(<span class="string">&quot; implements &quot;</span>);</span><br><span class="line">			<span class="comment">//遍历接口数组</span></span><br><span class="line">			<span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ;  i&lt;interfaces.length ; i++)&#123;</span><br><span class="line">				sb.append( interfaces[i].getSimpleName() );</span><br><span class="line">				<span class="comment">//接口之间使用逗号分隔</span></span><br><span class="line">				<span class="keyword">if</span> ( i &lt; interfaces.length - <span class="number">1</span>) &#123;</span><br><span class="line">					sb.append(<span class="string">&quot;,&quot;</span>);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; </span><br><span class="line">		</span><br><span class="line">		System.out.println( sb );</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="通过反射技术访问字段-1"><a href="#通过反射技术访问字段-1" class="headerlink" title="通过反射技术访问字段"></a>通过反射技术访问字段</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test03</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchFieldException, SecurityException, InstantiationException, IllegalAccessException </span>&#123;</span><br><span class="line">		<span class="comment">//1) 创建Class对象, </span></span><br><span class="line">		Class&lt;?&gt; class1 = Person.class;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//2) 反射name字段</span></span><br><span class="line">		Field nameF = class1.getField(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//3) 通过反射技术创建对象(实例), 默认调用类的无参构造</span></span><br><span class="line">		Object p1 = class1.newInstance(); 			<span class="comment">//相当于new Person()</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//4)设置字段的值</span></span><br><span class="line">		nameF.set(p1, <span class="string">&quot;lisi&quot;</span>); 				<span class="comment">//p1.setName(&quot;lisi&quot;)</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//5)返回字段的值</span></span><br><span class="line">		System.out.println( p1 );</span><br><span class="line">		System.out.println( nameF.get(p1) );		<span class="comment">//p1.getName()</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//6)访问私有字段: age</span></span><br><span class="line"><span class="comment">//		Field ageF = class1.getField(&quot;age&quot;); 		//只能返回公共字段</span></span><br><span class="line">		Field ageF = class1.getDeclaredField(<span class="string">&quot;age&quot;</span>); 		<span class="comment">//返回字段</span></span><br><span class="line">		ageF.setAccessible(<span class="keyword">true</span>); 				<span class="comment">//设置字段的可访问性</span></span><br><span class="line">		ageF.set(p1, <span class="number">18</span>);</span><br><span class="line">		System.out.println( ageF.get(p1));</span><br><span class="line">		System.out.println( p1 );</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="通过反射技术调用方法-1"><a href="#通过反射技术调用方法-1" class="headerlink" title="通过反射技术调用方法"></a>通过反射技术调用方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test04</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException </span>&#123;</span><br><span class="line">		<span class="comment">//1) 创建Class对象</span></span><br><span class="line">		Class&lt;?&gt; class1 = Person.class;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//2) 反射show()方法</span></span><br><span class="line">		Method showM = class1.getMethod(<span class="string">&quot;show&quot;</span>, <span class="keyword">null</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//3)通过反射技术创建实例</span></span><br><span class="line">		Object obj = class1.newInstance();			<span class="comment">//new Person()</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//4)调用方法</span></span><br><span class="line">		showM.invoke(obj, <span class="keyword">null</span>); 		<span class="comment">//obj.show()</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//5)反射set(String, int)方法</span></span><br><span class="line">		Method setM = class1.getMethod(<span class="string">&quot;set&quot;</span>, String.class , <span class="keyword">int</span>.class );</span><br><span class="line">		setM.invoke(obj, <span class="string">&quot;lisi&quot;</span>, <span class="number">66</span>);</span><br><span class="line">		</span><br><span class="line">		showM.invoke(obj);</span><br><span class="line">		System.out.println( obj );</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javase/">-javase</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8F%8D%E5%B0%84/" rel="tag">反射</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/12/22/B%E7%AB%99%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8%E4%BA%8C%E5%8F%89%E6%A0%91/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          B站顺序存储二叉树
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/12/20/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F8%E5%A0%86%E6%8E%92%E5%BA%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">十大排序8堆排序</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84"><span class="nav-number">1.</span> <span class="nav-text">反射</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84%E7%9A%84%E5%9F%BA%E7%A1%80-%E6%98%AFclass%E7%9A%84%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.1.</span> <span class="nav-text">反射的基础,是class的对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84%E7%B1%BB%E7%9A%84%E4%BF%A1%E6%81%AF"><span class="nav-number">1.2.</span> <span class="nav-text">反射类的信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAClass%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.2.1.</span> <span class="nav-text">创建Class对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84%E7%B1%BB%E7%9A%84%E4%BF%A1%E6%81%AF-1"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">反射类的信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BF%AE%E9%A5%B0%E7%B1%BB-Modifiers-%E4%BF%AE%E9%A5%B0%E5%99%A8"><span class="nav-number">1.2.1.1.1.</span> <span class="nav-text">修饰类  Modifiers:修饰器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%B1%BB%E5%90%8D"><span class="nav-number">1.2.1.1.2.</span> <span class="nav-text">类名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%88%B6%E5%90%8D"><span class="nav-number">1.2.1.1.3.</span> <span class="nav-text">父名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.2.1.1.4.</span> <span class="nav-text">接口</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E5%8F%8D%E5%B0%84%E6%8A%80%E6%9C%AF%E8%AE%BF%E9%97%AE%E5%AD%97%E6%AE%B5"><span class="nav-number">1.3.</span> <span class="nav-text">通过反射技术访问字段</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAClass%E5%AF%B9%E8%B1%A1-1"><span class="nav-number">1.3.0.0.1.</span> <span class="nav-text">创建Class对象,</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84name%E5%AD%97%E6%AE%B5"><span class="nav-number">1.3.0.0.2.</span> <span class="nav-text">反射name字段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E5%8F%8D%E5%B0%84%E6%8A%80%E6%9C%AF%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1-%E5%AE%9E%E4%BE%8B-%E9%BB%98%E8%AE%A4%E8%B0%83%E7%94%A8%E7%B1%BB%E7%9A%84%E6%97%A0%E5%8F%82%E6%9E%84%E9%80%A0"><span class="nav-number">1.3.0.0.3.</span> <span class="nav-text">通过反射技术创建对象(实例),默认调用类的无参构造</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%AD%97%E6%AE%B5%E7%9A%84%E5%80%BC"><span class="nav-number">1.3.0.0.4.</span> <span class="nav-text">设置字段的值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%AD%97%E6%AE%B5%E7%9A%84%E5%80%BC"><span class="nav-number">1.3.0.0.5.</span> <span class="nav-text">返回字段的值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E7%A7%81%E6%9C%89%E5%AD%97%E6%AE%B5-age"><span class="nav-number">1.3.0.0.6.</span> <span class="nav-text">访问私有字段 age</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E5%8F%8D%E5%B0%84%E6%8A%80%E6%9C%AF%E8%B0%83%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">1.4.</span> <span class="nav-text">通过反射技术调用方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Person%E7%B1%BB"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">Person类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAClass%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">创建Class对象的方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84%E7%B1%BB%E7%9A%84%E4%BF%A1%E6%81%AF-2"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">反射类的信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E5%8F%8D%E5%B0%84%E6%8A%80%E6%9C%AF%E8%AE%BF%E9%97%AE%E5%AD%97%E6%AE%B5-1"><span class="nav-number">2.0.0.4.</span> <span class="nav-text">通过反射技术访问字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E5%8F%8D%E5%B0%84%E6%8A%80%E6%9C%AF%E8%B0%83%E7%94%A8%E6%96%B9%E6%B3%95-1"><span class="nav-number">2.0.0.5.</span> <span class="nav-text">通过反射技术调用方法</span></a></li></ol></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2021 WenZhao All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+      var headerblur = document.getElementById("header-blur");
+      headerblur.style.minHeight = window.getComputedStyle(document.getElementById("allheader"), null).height;
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/bootstrap.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

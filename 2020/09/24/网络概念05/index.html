@@ -1,34 +1,443 @@
-extends partial/layout
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>自顶向下-第六章复习知识点 | WenZhao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="面试网络" />
+  
+  
+  
+  
+  <meta name="description" content="计算机网络自顶向下-第六章复习知识点 1.数据链路层提供的服务。  成帧。 （网络层数据报经链路传送前，链路层协议将其用链路层帧封装起来）  链路接入。 （MAC协议规定了帧在链路传输的规则。链路的一段仅有一个发送方，另一端只有一个接收方的点对点链路）  可靠交付。 （保证无差错地经链路层移动每个网络数据报）  差错检验和纠正。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自顶向下-第六章复习知识点">
+<meta property="og:url" content="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/index.html">
+<meta property="og:site_name" content="WenZhao">
+<meta property="og:description" content="计算机网络自顶向下-第六章复习知识点 1.数据链路层提供的服务。  成帧。 （网络层数据报经链路传送前，链路层协议将其用链路层帧封装起来）  链路接入。 （MAC协议规定了帧在链路传输的规则。链路的一段仅有一个发送方，另一端只有一个接收方的点对点链路）  可靠交付。 （保证无差错地经链路层移动每个网络数据报）  差错检验和纠正。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/1.png">
+<meta property="article:published_time" content="2020-09-24T00:37:34.000Z">
+<meta property="article:modified_time" content="2020-09-24T00:37:45.866Z">
+<meta property="article:author" content="niewenzhao">
+<meta property="article:tag" content="面试">
+<meta property="article:tag" content="网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="WenZhao" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
 
-include mixins
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  
+<link rel="stylesheet" href="/css/style.css">
 
-block site_title
-    != page.title + " · " + config.title
 
-block description
-    - var desc = page.desc || strip_html(page.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 150);
-    meta(name="description", content=desc)
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
 
-block content
-  .autopagerize_page_element: .content: .post-page
-    include mixins
-    +make_post(page, true)
-    .share
-      .evernote
-        a.fa.fa-bookmark(href="",onclick="javascript:join_favorite()", ref="sidebar")
-      .weibo
-        a.fa.fa-weibo(href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));")
-      .twitter
-        a.fa.fa-twitter(href=url_for("http://twitter.com/home?status="+","+config.url+"/"+page.path+","+config.title+","+page.title+",;"))
-    - var prev = page.prev ? page.prev.path : false;
-    - var next = page.next ? page.next.path : false;
-    .pagination
-      ul.clearfix
-        if prev
-          li.pre.pagbuttons
-            a.btn(role="navigation",href=url_for(prev), title=page.prev.title)!= __('prev_post')
-        if next
-          li.next.pagbuttons
-            a.btn(role="navigation",href=url_for(next), title=page.next.title)!= __('next_post')
-    if page.comments
-        include partial/comments
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  
+  <div class="site-header-image">
+    <img id="originBg" width="100%" alt="Hike News" src="">
+  </div>
+
+  <div id="header-blur" class="site-header-image blur" style="position: absolute; top:0; height: 207px; min-height: 207px; min-width: 100%;">
+    <img id="blurBg" width="100%" style="top: 96%" alt="Hike News" src="">
+  </div>
+
+  <script>
+        var imgUrls = "css/images/pose01.jpg,https://source.unsplash.com/collection/954550/1920x1080,https://source.unsplash.com/collection/954550/1920x1081".split(",");
+        var random = Math.floor((Math.random() * imgUrls.length ));
+        if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+          document.getElementById("originBg").src=imgUrls[random];
+          document.getElementById("blurBg").src=imgUrls[random];
+        } else {
+          document.getElementById("originBg").src='/' + imgUrls[random];
+          document.getElementById("blurBg").src='/' + imgUrls[random];
+        }
+    </script>
+
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   style="width: 100%; position: absolute; top:0; background: rgba(255,255,255,.8);"  >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="WenZhao" rel="home"> WenZhao </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">当咸鱼,不存在!!!</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="/"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="archives"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="categories"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="tags"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="about"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-网络概念05" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      自顶向下-第六章复习知识点
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/" class="article-date">
+	  <time datetime="2020-09-24T00:37:34.000Z" itemprop="datePublished">September 24, 2020</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a>
+ 
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>计算机网络自顶向下-第六章复习知识点</strong></p>
+<p><strong>1.数据链路层提供的服务。</strong></p>
+<ol>
+<li><p>成帧。 （网络层数据报经链路传送前，链路层协议将其用链路层帧封装起来）</p>
+</li>
+<li><p>链路接入。 （MAC协议规定了帧在链路传输的规则。链路的一段仅有一个发送方，另一端只有一个接收方的点对点链路）</p>
+</li>
+<li><p>可靠交付。 （保证无差错地经链路层移动每个网络数据报）</p>
+</li>
+<li><p>差错检验和纠正。</p>
+<a id="more"></a>  
+
+</li>
+</ol>
+<p><strong>2.多路访问协议作用及分类；理想的多路访问协议；纯ALOHA和时隙ALOHA效率如何？</strong></p>
+<p>多路访问协议：</p>
+<p>作用：节点通过这些协议来规范它们在共享的广播信道上的传输行为。</p>
+<p>分类：信道划分协议、随机接入协议和轮流协议。</p>
+<p>理想的多路访问协议：</p>
+<p>（1）当仅有一个节点发送数据时，该节点具有R bps的吞吐量；</p>
+<p>（2）当有M个节点发送数据时，每个节点吞吐量为R/M bps；（每个节点在一定时间间隔内应有R/M的平均速率）</p>
+<p>（3）协议是分散的；（不会因某个主节点故障而使整个系统崩溃）</p>
+<p>（4）协议是简单的，实现不昂贵。</p>
+<p>纯ALOHA（非时隙、高度分散）：</p>
+<p>最大效率为 1/(2e)=0.185。</p>
+<p>时隙ALOHA（高度分散的）：</p>
+<p>当只有一个节点时可以全速R连续传输；</p>
+<p>一个给定节点传输的概率为p，节点成功传送的概率为 p(1-p)^(N-1)，N个节点任意一个发送成功的概率 Np(1-p)^(N-1)。（这个协议最大效率为 1/e=0.37，是纯ALOHA两倍）</p>
+<p><strong>3.CSMA协议原理；局域网及拓扑结构；以太网；以太网的MAC协议CSMA/CD、CSMA/CA。</strong></p>
+<p>载波侦听多路访问（CSMA）：</p>
+<p>说话之前先听。（这被称为 载波侦听 ，即一个节点在传输前先听信道）</p>
+<p>如果与他人同事开始说话，停止说话。（这称为 碰撞检测 ，即当一个传输节点在传输时一直在侦听此信道）</p>
+<p>具有碰撞检测的载波侦听多路访问（CSMA/CD）：（CSMA/CA为无线的协议）</p>
+<p>（1）适配器从网络层一条活的数据报，准备链路层帧，并将其放入帧适配器缓存中。</p>
+<p>（2）如果适配器真听到信道空闲，它开始传输帧。如果听到信道正在忙，它将等待，直到侦听到没有信号能量时才开始传输帧。</p>
+<p>（3）在传输过程中，适配器监视来自其他使用该广播信道的适配器的信号能量的存在。</p>
+<p>（4）如果适配器传输整个帧而未检测到来自其他适配器的信号能量，该适配器就完成了该帧；若检测到其他适配器的信号能量，将终止传输。</p>
+<p>（5）终止传输后，适配器等待一个随机量，然后返回步骤2。</p>
+<p>当传输一个特定帧时，在该帧经历n次碰撞后，节点随机地从｛0，1，2，…，2^(n-1)｝中选择一个K值。（经历的碰撞越多，K选择的间隔越大）对于以太网，一个节点等待的实际时间量是 K*512 比特时间（即发送512比特进入以太网所需时间量的K倍），n的最大值在10以内。</p>
+<p><strong>4.链路层编址；MAC地址；ARP的工作原理与作用。</strong></p>
+<p>链路层地址有三种称呼：LAN地址、物理地址、MAC地址。</p>
+<p>MAC地址：</p>
+<p>不是主机或路由器具有链路层地址，而是它们的适配器（即网络接口）具有链路层地址。</p>
+<p>MAC地址长度为6字节，共有2^48可能的MAC地址。</p>
+<p>MAC地址通常被设计为永久。</p>
+<p>MAC广播地址为 FF-FF-FF-FF-FF-FF。</p>
+<p>ARP（地址解析协议）：</p>
+<p>作用：将一个IP地址解析为一个MAC地址。</p>
+<p>工作方式：每台主机和路由器在其内存中具有一个ARP表，这张表包含IP地址到MAC地址的映射关系。</p>
+<p>ARP分组有四个字段：源IP、MAC，目的IP、MAC。</p>
+<p>查询ARP报文在广播帧中发送，而响应ARP报文在一个标准帧中发送。</p>
+<p>ARP表是自动建立的，不需要管理员配置。</p>
+<p><strong>5.集线器、交换机、路由器的功能和特点。</strong></p>
+<p>集线器：是一种物理层设备，它作用于各个比特而不是作用于帧。当一个比特到达一个接口时，重新生成该比特，将其 能量强度 放大后向其他所有接口传输出去。（若同时从两个不同的接口接收到帧，将出现一次碰撞，生成该帧的节点必须重新传输该帧）</p>
+<p>交换机：是第二层的分组交换机，使用MAC地址转发分组的存储转发分组交换机。是即插即用的；交换机对于广播风暴不提供任何保护措施，即如果某主机出了故障并传输出没完没了的以太网广播帧，该交换机将转发所有这些帧，是以太网崩溃。</p>
+<p>路由器：第三层的分组交换机，使用网络层IP地址转发分组的存储转发分组交换机。不是即插即用的；对第二层的广播风暴提供防火墙保护。</p>
+<p><strong>补充知识：</strong></p>
+<p><strong>单工，半双工和全双工有何区别：</strong></p>
+<p> <img src="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B505/1.png" alt="1"></p>
+<p>单工数据传输只支持数据在一个方向上传输；在同一时间只有一方能接受或发送信息，不能实现双向通信，举例：电视，广播。</p>
+<p>半双工数据传输允许数据在两个方向上传输,但是,在某一时刻,只允许数据在一个方向上传输,它实际上是一种切换方向的单工通信；在同一时间只可以有一方接受或发送信息，可以实现双向通信。举例：对讲机。</p>
+<p>全双工数据通信允许数据同时在两个方向上传输,因此,全双工通信是两个单工通信方式的结合,它要求发送设备和接收设备都有独立的接收和发送能力；在同一时间可以同时接受和发送信息，实现双向通信，举例：电话通信。</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          计算机网络——TCP 四次挥手过程详解
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/24/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B506/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">自顶向下-第五章复习知识点</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav">None</ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2021 WenZhao All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+      var headerblur = document.getElementById("header-blur");
+      headerblur.style.minHeight = window.getComputedStyle(document.getElementById("allheader"), null).height;
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/bootstrap.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
