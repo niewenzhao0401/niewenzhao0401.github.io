@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>排序||WenZhao|大钊加油</title>
+<meta name="description" content="当咸鱼,不存在!!!">
+<meta property="og:type" content="website">
+<meta property="og:title" content="WenZhao">
+<meta property="og:url" content="http://example.com/tags/%E6%8E%92%E5%BA%8F/index.html">
+<meta property="og:site_name" content="WenZhao">
+<meta property="og:description" content="当咸鱼,不存在!!!">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="niewenzhao">
+<meta name="twitter:card" content="summary">
+
+
+<meta name="description" content="当咸鱼,不存在!!!">
+
+<meta name="author" content="niewenzhao,undefined">
+
+
+<link rel="shortcut icon" href="/favicon.png" type="image/x-icon"/>
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+
+<link rel="stylesheet" href="/css/theme.css">
+
+
+<link rel="stylesheet" href="/css/syntax.css">
+
+
+<link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.1.0/styles/arta.min.css">
+
+<!--baidu analytics-->
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+            <a class="navbar-brand" href="/.">WenZhao</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                
+                <li><a href="/."><i class="icon-home"> Home</i></a></li>
+                
+                <li><a href="/archives/"><i class="icon-archive"> Archive</i></a></li>
+                
+                <li><a href="/atom.xml"><i class="icon-rss"> RSS</i></a></li>
+                
+                <li><a href="/about/"><i class="icon-about"> About</i></a></li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="wrapper">
+    <div class="content">
+        <div class="container container-center">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="page-content wc-container">
+    <div class="post">
+        <h2 class="post_title">排序</h2>
+        <div class="well">
+            <ul>
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li class="archive_list">
+                                <time>2020-11-05</time>
+                                <a class="archive_list_article_link" href="/2020/11/05/LC016-1105-%E6%9C%80%E6%8E%A5%E8%BF%91%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/">最接近三数之和--016</a>
+                                <p>
+                                    
+                                        <h1 id="最接近的三数之和"><a href="#最接近的三数之和" class="headerlink" title="最接近的三数之和"></a>最接近的三数之和</h1><p>给定一个包括 <em>n</em> 个整数的数组 <code>nums</code> 和 一个目标值 <code>target</code>。找出 <code>nums</code> 中的三个整数，使得它们的和与 <code>target</code> 最接近。返回这三个数的和。假定每组输入只存在唯一答案。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums &#x3D; [-1,2,1,-4], target &#x3D; 1</span><br><span class="line">输出：2</span><br><span class="line">解释：与 target 最接近的和是 2 (-1 + 2 + 1 &#x3D; 2) 。</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="排序和双指针"><a href="#排序和双指针" class="headerlink" title="排序和双指针"></a>排序和双指针</h2>
+                                    
+                                </p>
+                            </li>
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                            <li class="archive_list">
+                                <time>2020-11-02</time>
+                                <a class="archive_list_article_link" href="/2020/11/02/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F01%E5%86%92%E6%B3%A1/">十大排序-冒泡排序</a>
+                                <p>
+                                    
+                                        <h1 id="十大排序-冒泡排序"><a href="#十大排序-冒泡排序" class="headerlink" title="十大排序-冒泡排序"></a>十大排序-冒泡排序</h1><h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><h3 id="Bubble-Sort"><a href="#Bubble-Sort" class="headerlink" title="Bubble Sort"></a>Bubble Sort</h3><p><strong>基本思想</strong>:两个数比较大小,较大的数下沉,较小的数冒起来</p>
+<p>思路描述:</p>
+<ol>
+<li>比较两个相邻的元素,如果第一个比迪二个大,就交换他们两个</li>
+<li>对没一对相邻元素作同样的工作,从开始第一对到结束的最后一对,这样在最后元素应该会是虽大的数</li>
+<li>针对所有的元素重复以上的步骤,除了最后一个;</li>
+<li>重复步骤1~3,直到排序结束</li>
+</ol>
+                                    
+                                </p>
+                            </li>
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                            <li class="archive_list">
+                                <time>2020-11-02</time>
+                                <a class="archive_list_article_link" href="/2020/11/02/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F02%E9%80%89%E6%8B%A9/">十大排序-选择排序</a>
+                                <p>
+                                    
+                                        <h1 id="十大排序-选择排序"><a href="#十大排序-选择排序" class="headerlink" title="十大排序-选择排序"></a>十大排序-选择排序</h1><h2 id="Selection-Sort"><a href="#Selection-Sort" class="headerlink" title="Selection Sort"></a>Selection Sort</h2><h2 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想:"></a>基本思想:</h2><ul>
+<li>选择排序Selection Sort时一种简单直观的排序算法.</li>
+<li>首先在末排序序列中找到最小(大)元素,</li>
+<li>然后存放在排序序列中起始位置,</li>
+<li>在从我i排序中继续寻找最小(大)的元素,然后放到已排序序列的末尾,</li>
+<li>重复以上方法直到所有元素均排序完毕.</li>
+</ul>
+                                    
+                                </p>
+                            </li>
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                            <li class="archive_list">
+                                <time>2020-11-02</time>
+                                <a class="archive_list_article_link" href="/2020/11/02/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F03%E6%8F%92%E5%85%A5/">十大排序-插入排序</a>
+                                <p>
+                                    
+                                        <h1 id="十大排序-插入排序"><a href="#十大排序-插入排序" class="headerlink" title="十大排序-插入排序"></a>十大排序-插入排序</h1><h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><h3 id="Insertion-Sort"><a href="#Insertion-Sort" class="headerlink" title="Insertion Sort"></a>Insertion Sort</h3><h3 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想:"></a>基本思想:</h3><p>在要排序的一组数中,假定前n-1个数已经排好序,现将第n个数插到前面的有序数列中,使得这n个数也是排好顺序.</p>
+<h3 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h3><ol>
+<li>从第一个元素开始,该元素可以被认为已经被排序</li>
+<li>取出下一个元素,在已经排序的元素序列中从后向前扫描</li>
+<li>如果该元素(已排序)大于新元素,将该元素移动到下一位置</li>
+<li>重复步骤三,直到直到已经排序的元素最小或者等于新元素的位置</li>
+<li>将新元素插入到该位置后</li>
+<li>重复步骤2~5</li>
+</ol>
+                                    
+                                </p>
+                            </li>
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                            <li class="archive_list">
+                                <time>2020-11-28</time>
+                                <a class="archive_list_article_link" href="/2020/11/28/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F04%E5%B8%8C%E5%B0%94/">十大排序-希尔排序</a>
+                                <p>
+                                    
+                                        <h1 id="希尔排序（Shell-Sort"><a href="#希尔排序（Shell-Sort" class="headerlink" title="希尔排序（Shell Sort)"></a>希尔排序（Shell Sort)</h1><h2 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想:"></a><strong>基本思想</strong>:</h2><ul>
+<li>希尔排序也是一种插入排序,它是简单<strong>插入排序</strong>经过改进之后的一个<strong>更高效的版本,**也称为</strong>缩小增量排序**,</li>
+<li>该算法是冲破O(n2）的第一批算法之一,他与插入排序的不同之处在于,他会优先比较距离较远的元素</li>
+</ul>
+<h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路:"></a><strong>基本思路</strong>:</h3><ul>
+<li>希尔排序是把记录按下标的一定增量分组,对每组使用直接插入排序算法排序:</li>
+<li>随着增量逐渐减少,每组包含的关键字越多,</li>
+<li>当增量减之到1时,整个文件恰被分成一组， 算法便终止  </li>
+</ul>
+                                    
+                                </p>
+                            </li>
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                            <li class="archive_list">
+                                <time>2020-11-28</time>
+                                <a class="archive_list_article_link" href="/2020/11/28/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F05%E5%BF%AB%E9%80%9F/">十大排序05快速</a>
+                                <p>
+                                    
+                                        <h1 id="快速排序（Quick-Sort）"><a href="#快速排序（Quick-Sort）" class="headerlink" title="快速排序（Quick Sort）"></a>快速排序（Quick Sort）</h1><p>快速排序是冒泡排序的一种改进,</p>
+<h2 id="基本思想-分治"><a href="#基本思想-分治" class="headerlink" title="基本思想(分治):"></a>基本思想(分治):</h2><ul>
+<li>通过一趟排序将要排序的数据分割成独立的两个部分,</li>
+<li>其中一部分的所有数据都比另外的一部分的所有数据都要小,</li>
+<li>然而按此方法对两部分数据进行分别进行快速排序,</li>
+<li>整个排序过程可以递归进行,因此可以达到目的</li>
+</ul>
+                                    
+                                </p>
+                            </li>
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                            <li class="archive_list">
+                                <time>2020-11-30</time>
+                                <a class="archive_list_article_link" href="/2020/11/30/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F06%E5%BD%92%E5%B9%B6/">十大排序06归并</a>
+                                <p>
+                                    
+                                        <h1 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h1><p>归并排序,利用归并的思想实现排序,该方法才采用经典的分治策略,成一些小的问题然后递归求解，   而治的阶段则将分的阶段得到各答案”修补”在一起即分而治之  </p>
+<h2 id="归并排序思想示意图-1-基本思想"><a href="#归并排序思想示意图-1-基本思想" class="headerlink" title="归并排序思想示意图 1-基本思想:"></a>归并排序思想示意图 1-基本思想:</h2><img src="/2020/11/30/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F06%E5%BD%92%E5%B9%B6/2.png" alt="2" style="zoom:80%;">
+
+<h2 id="归并排序思想示意图-2-合并相邻有序子序列"><a href="#归并排序思想示意图-2-合并相邻有序子序列" class="headerlink" title="归并排序思想示意图 2-合并相邻有序子序列:"></a>归并排序思想示意图 2-合并相邻有序子序列:</h2>
+                                    
+                                </p>
+                            </li>
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                            <li class="archive_list">
+                                <time>2020-12-02</time>
+                                <a class="archive_list_article_link" href="/2020/12/02/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F07%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/">十大排序07基数排序</a>
+                                <p>
+                                    
+                                        <h1 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h1><h2 id="基数排序基本思想"><a href="#基数排序基本思想" class="headerlink" title="基数排序基本思想"></a>基数排序基本思想</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">基数排序是使用空间换时间的经典算法</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>基数排序属于”分配式排序”,又称“桶子法” （bucket sort）   ,他是通过各个位的值,将排序的元素分配至某些”桶”中,达到排序的作用</li>
+<li>基数排序法是属于稳定性的排序,基数排序法的是效率高的稳定性排序法</li>
+<li>基数排序法是桶排序的发展</li>
+<li>基数排序是1887赫尔曼· 何乐礼发明的。 ,他是实现的将整数位数切割成不同的数字,然后按每个位数分别比较</li>
+</ol>
+                                    
+                                </p>
+                            </li>
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                            <li class="archive_list">
+                                <time>2020-12-20</time>
+                                <a class="archive_list_article_link" href="/2020/12/20/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F8%E5%A0%86%E6%8E%92%E5%BA%8F/">十大排序8堆排序</a>
+                                <p>
+                                    
+                                        <h1 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h1><h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><ol>
+<li>堆排序是利用堆这种数据结构二设计的一种排序算法,堆排序是一种选择排序,他的最好最坏,平均复杂度都为O(nlogn)， 它也是不稳定排序  </li>
+<li>堆是具有一下性质的完全二叉树:每个节点的值都大于或者等于其左右孩子节点的值,称为大顶堆,,没有要求结点的左孩子的值和右孩子的值的关系</li>
+<li>每个结点的值都小于或等于其左右孩子结点的值， 称为小顶堆  </li>
+</ol>
+<h3 id="大顶堆举例说明"><a href="#大顶堆举例说明" class="headerlink" title="大顶堆举例说明"></a>大顶堆举例说明</h3><h3 id><a href="#" class="headerlink" title></a><img src="/2020/12/20/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F8%E5%A0%86%E6%8E%92%E5%BA%8F/1.png" alt="1" style="zoom:80%;"></h3>
+                                    
+                                </p>
+                            </li>
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                            <li class="archive_list">
+                                <time>2020-12-12</time>
+                                <a class="archive_list_article_link" href="/2020/12/12/%E5%BF%AB%E6%8E%92%E6%80%BB%E6%B1%87Java/">快排总汇Java</a>
+                                <p>
+                                    
+                                        <h1 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/nrsc272420199/article/details/82587933?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromBaidu-1.control&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromBaidu-1.control">优秀快排写法</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_20011607/article/details/82357239">此文章python写法</a><br>快速排序使用分治法（Divide and conquer）策略来把一个序列（list）分为两个子序列（sub-lists）。步骤如下</p>
+<ol>
+<li><p>从数列中挑出一个元素,称为基准(pivot)</p>
+</li>
+<li><p>分区(partition):遍历数列,比基数小的元素放在左边,比他大的放在右边</p>
+<p>于是此次分区结束后，该基准就处于数列的中间位置，其左边的数全比它小（称为小与子序列），右边的数全比他大（称为大于子序列）。这样一次排序就造成了整体上的有序化。</p>
+</li>
+<li><p>子数列排序:将小于子数列和大于子序列分别继续快速排序</p>
+</li>
+<li><p>递归到最底部,数列是零或一,至此,递归结束</p>
+</li>
+</ol>
+                                    
+                                </p>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+                </div>
+                <div class="col-md-4 hidden-xs">
+                    
+<div class="sidebar">
+    <div class="well">
+        <h2>Tag Cloud</h2>
+        <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 15px;">数据结构</a> <a href="/tags/%E7%A8%80%E7%96%8F%E6%95%B0%E7%BB%84/" style="font-size: 15px;">稀疏数组</a> <a href="/tags/%E9%98%9F%E5%88%97/" style="font-size: 15px;">队列</a> <a href="/tags/%E9%93%BE%E8%A1%A8/" style="font-size: 15px;">链表</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 15px;">二叉树</a> <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/HTML/" style="font-size: 15px;">HTML</a> <a href="/tags/%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86/" style="font-size: 15px;">事务处理</a> <a href="/tags/JDBC/" style="font-size: 15px;">JDBC</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 15px;">数据库</a> <a href="/tags/hash/" style="font-size: 15px;">hash</a> <a href="/tags/hashTable/" style="font-size: 15px;">hashTable</a> <a href="/tags/JQuery/" style="font-size: 15px;">JQuery</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/JavaWeb/" style="font-size: 15px;">JavaWeb</a> <a href="/tags/JS%E4%BA%8B%E4%BB%B6/" style="font-size: 15px;">JS事件</a> <a href="/tags/DOM%E6%A8%A1%E5%9E%8B/" style="font-size: 15px;">DOM模型</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 15px;">正则表达式</a> <a href="/tags/LeetCode/" style="font-size: 15px;">LeetCode</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 15px;">动态规划</a> <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" style="font-size: 15px;">双指针</a> <a href="/tags/map/" style="font-size: 15px;">map</a> <a href="/tags/%E4%B8%89%E6%8C%87%E9%92%88/" style="font-size: 15px;">三指针</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 15px;">排序</a> <a href="/tags/%E6%A0%88/" style="font-size: 15px;">栈</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 15px;">递归</a> <a href="/tags/%E9%93%BE%E8%A1%A8%E5%90%88%E5%B9%B6/" style="font-size: 15px;">链表合并</a> <a href="/tags/%E9%93%BE%E8%A1%A8%E5%8F%8D%E8%BD%AC/" style="font-size: 15px;">链表反转</a> <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="font-size: 15px;">二分查找</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 15px;">数组</a> <a href="/tags/%E5%8D%95%E8%B0%83%E6%A0%88/" style="font-size: 15px;">单调栈</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 15px;">字符串</a> <a href="/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91/" style="font-size: 15px;">斐波那契</a> <a href="/tags/BFS/" style="font-size: 15px;">BFS</a> <a href="/tags/DFS/" style="font-size: 15px;">DFS</a> <a href="/tags/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/" style="font-size: 15px;">环形链表</a> <a href="/tags/%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7/" style="font-size: 15px;">有效括号</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/%E8%A1%A8%E6%A0%BC/" style="font-size: 15px;">表格</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15px;">面试</a> <a href="/tags/%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/" style="font-size: 15px;">表单验证</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 15px;">基础</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" style="font-size: 15px;">面向对象</a> <a href="/tags/String%E7%B1%BB/" style="font-size: 15px;">String类</a> <a href="/tags/%E5%8C%85%E8%A3%85%E7%B1%BB/" style="font-size: 15px;">包装类</a> <a href="/tags/%E5%BC%82%E5%B8%B8/" style="font-size: 15px;">异常</a> <a href="/tags/%E5%86%85%E9%83%A8%E7%B1%BB/" style="font-size: 15px;">内部类</a> <a href="/tags/%E5%8F%8D%E5%B0%84/" style="font-size: 15px;">反射</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 15px;">线程</a> <a href="/tags/%E8%BF%9B%E7%A8%8B/" style="font-size: 15px;">进程</a> <a href="/tags/%E6%9F%A5%E6%89%BE/" style="font-size: 15px;">查找</a> <a href="/tags/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F/" style="font-size: 15px;">十大排序</a> <a href="/tags/%E5%B7%A5%E5%85%B7%E6%A0%8F/" style="font-size: 15px;">工具栏</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" style="font-size: 15px;">快速排序</a> <a href="/tags/%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95/" style="font-size: 15px;">常用10种算法</a> <a href="/tags/01%E8%83%8C%E5%8C%85/" style="font-size: 15px;">01背包</a> <a href="/tags/%E7%A9%B7%E4%B8%BE%E6%B3%95/" style="font-size: 15px;">穷举法</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 15px;">集合</a> <a href="/tags/IO/" style="font-size: 15px;">IO</a> <a href="/tags/%E7%BA%BF%E7%B4%A2%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 15px;">线索化二叉树</a>
+    </div>
+</div>
+
+<div class="sidebar">
+    <div class="well">
+        <h2>Archive</h2>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">2021年01月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020年12月</a><span class="archive-list-count">36</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">2020年11月</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">2020年10月</a><span class="archive-list-count">34</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">2020年09月</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">2017年12月</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+</div>
+
+<div class="sidebar ">
+    <div class="well">
+        <h2>Recent</h2>
+        <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021/01/08/JQuery-02/">JQuery-02JQuery选择器(重点)</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/01/07/JQuery-01/">JQuery-01概论</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/01/06/%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99/">常用正则写法</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/01/05/JS-05/">JS-05-JavaScript 正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/01/04/JS-04/">JS-04-JavaScript DOM模型</a></li></ul>
+    </div>
+</div>
+
+<div class="sidebar">
+    <div class="well">
+        <h2>Blogroll</h2>
+        <ul>
+            
+            <li><a class="links-list-link" href="http://www.howardliu.com/" title="沉潜飞动" target='_blank'>沉潜飞动</a></li>
+            
+        </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="side-button-wrap">
+        <a id="to-top" class="side-button icon-up-arrow" href="#top"></a>
+        <a id="to-home" class="side-button icon-home" href="/."></a>
+        <a id="to-comment-button" class="side-button icon-msg" href="#comment"></a>
+        <a id="to-bottom-button" class="side-button icon-down-arrow" href="#bottom"></a>
+    </div>
+    <a id="bottom" name="bottom"></a>
+    <footer id="footer" class="footer-distributed" style="background-color: #222222;">
+    <div class="container">
+        <div class="footer">
+            <p>niewenzhao &copy; 2021</p>
+            <ul class="social-media">
+                
+                
+                <li>
+                    <a title="hexo-theme-clean-dark" href="https://github.com/howardliu-cn/hexo-theme-clean-dark"
+                       target="_blank">
+                        <i class="fa fa-film fa-2x"></i>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</footer>
+
+</div>
+
+<script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.1.0/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/header.js"></script>
+
+
+<script src="/js/toc.js"></script>
+
+<!--[if lt IE 9]>
+
+<script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+
+![endif]-->
+<!--fancybox-->
+
+<script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+<script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+<link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+<script>
+    $(document).ready(function () {
+        $("img").each(function (index, item) {
+            var p = $(item).parents()[0];
+            if($(p).is('a')) {
+                $(p).fancybox();
+                return;
+            }
+            $(p).append(function() {return "<a id='fancybox_id_"+index+"' href='" + $(item).attr("src") + "'></a>";});
+            item.remove();
+            var fancyboxItem = $("#fancybox_id_" + index);
+            fancyboxItem.append($(item));
+            fancyboxItem.fancybox();
+        });
+    });
+</script>
+
+<!--baidu auto-push-->
+
+<!--google analytics-->
+
+<script color="255,255,255" opacity='0.9' zIndex="-1" count="150" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</body>
+</html>
