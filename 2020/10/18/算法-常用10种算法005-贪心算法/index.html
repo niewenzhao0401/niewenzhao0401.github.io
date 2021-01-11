@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    十大算法--贪心算法 | WenZhao
+  </title>
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta name="theme-color" content="#4184f3">
+  
+  
+  <link href="https://shuxhan-imgbed.oss-cn-hangzhou.aliyuncs.com/img/20210108143023.png" rel="icon" />
+  
+
+  
+<link rel="stylesheet" href="/css/highlight.light.css">
+
+  
+<link rel="stylesheet" href="/css/prism-customize.css">
+
+  
+<link rel="stylesheet" href="/css/nav-icon.css">
+
+  
+<link rel="stylesheet" href="/css/waves.min.css">
+
+  
+<link rel="stylesheet" href="/css/jquery.tocify.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/nav-indicator.css">
+
+  
+<link rel="stylesheet" href="/css/twikoo.css">
+
+  
+<link rel="stylesheet" href="/css/search.css">
+
+  
+  
+
+  
+
+  </meta>
+  </meta>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+  
+<script src="/js/comment.js"></script>
+
+  
+<script src="/js/copy.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+    <header>
+        <!-- cover image or sth. -->
+    </header>
+    <div id="main" class="m-scene">
+        
+<div class="nav-wrapper" id="header">
+
+    <div class="container">
+        <nav>
+            
+            
+            <div class="logo wave">
+                <a href="/" id="logo">
+                    大钊的博客
+                </a>
+            </div>
+
+            <!-- 春节主题 按钮 -->
+<!-- <a onclick="switchThemes()" id="switchspring">
+    <img class="chunjiepic" src="https://nekodeng.gitee.io/medias/spring-img/caishen.png" title="节日模式">
+</a> -->
+<!-- 春节主题 小挂件 -->
+<div class="caishendeng">
+    <div class="caishenxian">
+        <img class="caishenpic lala" src="https://nekodeng.gitee.io/medias/spring-img/caishen.png">
+    </div>
+</div>
+
+
+<style>
+    /*春节模式 */
+    #switchspring {
+        background: #dc8f03;
+        width: 38px;
+        height: 38px;
+        display: block;
+        position: fixed;
+        border-radius: 50%;
+        right: 15px;
+        bottom: 10px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+        cursor: pointer;
+    }
+
+    .chunjiepic {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        position: absolute;
+        bottom: 0px;
+    }
+
+    /*春节主题 挂件吊线*/
+    .caishenxianleft {
+        left: 16% !important;
+        position: absolute;
+        top: 0px;
+        width: 2px;
+        height: 20px;
+        background: #dc8f03;
+        transform-origin: 50% -100px;
+        animation: swing 3.5s infinite ease-in-out;
+        -webkit-transform-origin: 50% -100px;
+        -webkit-animation: swing 3.5s infinite ease-in-out;
+    }
+
+    .caishenxian {
+        position: absolute;
+        top: 0px;
+        right: 36%;
+        width: 2px;
+        height: 20px;
+        background: #dc8f03;
+        transform-origin: 50% -100px;
+        animation: swing 3.5s infinite ease-in-out;
+        -webkit-transform-origin: 50% -100px;
+        -webkit-animation: swing 3.5s infinite ease-in-out;
+    }
+
+    .guguxian {
+        position: absolute;
+        top: 0px;
+        left: 20%;
+        width: 2px;
+        height: 20px;
+        background: #dc8f03;
+        transform-origin: 50% -100px;
+        animation: swing 3.5s infinite ease-in-out;
+        -webkit-transform-origin: 50% -100px;
+        -webkit-animation: swing 3.5s infinite ease-in-out;
+    }
+
+    .wenzhangxian {
+        left: 50% !important;
+        z-index: 998;
+    }
+
+    /*春节主题 挂件*/
+    .fudai {
+        top: 14px !important;
+        left: -22px !important;
+    }
+
+    .caishenpic {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        position: absolute;
+        top: 12px;
+        right: -22px;
+        z-index: 9;
+        /* transform-origin: 50% -100px; */
+        animation: swing 3.5s infinite ease-in-out;
+        /* -webkit-transform-origin: 50% -100px; */
+        -webkit-animation: swing 3.5s infinite ease-in-out;
+    }
+
+    .lala {
+        width: 32px !important;
+        height: 32px !important;
+        opacity: 1 !important;
+        left: -4px !important;
+        top: 14px !important;
+    }
+
+    .chunp {
+        width: 216px !important;
+        height: 96px !important;
+        left: -80px !important;
+        top: 6px !important;
+    }
+
+    .fudao {
+        width: 38px;
+        height: 38px;
+        top: 18px !important;
+        left: -19px !important;
+    }
+
+    /* 点击显示或者隐藏总样式开始 */
+    /* .caishendeng,
+    .xiaomaozitx,
+    .labelmz,
+    .friendmz {
+        display: none;
+    } */
+
+    body.themespring .caishendeng,
+    body.themespring .xiaomaozitx,
+    body.themespring .labelmz,
+    body.themespring .friendmz {
+        display: block;
+    }
+
+    /* 点击显示或者隐藏总样式结束 */
+    .toupic {
+        position: relative;
+    }
+
+    .xiaomaozitx {
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        top: -127px;
+        right: 25%;
+        transform: rotate(40deg);
+        position: absolute;
+        z-index: 99;
+        -webkit-animation: mzanimate 1.2s infinite ease-in-out;
+    }
+
+    .labelmz {
+        width: 34px;
+        height: 34px;
+        position: absolute;
+        top: 7px;
+        right: -84px;
+        transform: rotate(40deg);
+        position: absolute;
+        z-index: 99;
+        -webkit-transform-origin: 50% -100px;
+        -webkit-animation: mzanimate 1.8s infinite ease-in-out;
+    }
+
+    .weilemz {
+        position: relative;
+    }
+
+    .friendmz {
+        width: 50px !important;
+        height: 50px !important;
+        position: absolute;
+        top: 8px;
+        right: -90px;
+        transform: rotate(44deg);
+        position: absolute;
+        z-index: 99;
+        -webkit-transform-origin: 50% -100px;
+        -webkit-animation: mzanimate 1.8s infinite ease-in-out;
+    }
+
+    .lions {
+        width: 32px !important;
+        height: 32px !important;
+        opacity: 1 !important;
+        left: -15px !important;
+        top: 14px !important;
+    }
+
+    .fenleiss {
+        position: absolute;
+        top: -64px;
+        left: 20%;
+        width: 2px;
+        height: 20px;
+        background: #dc8f03;
+        transform-origin: 50% -100px;
+        animation: swing 3.5s infinite ease-in-out;
+        -webkit-transform-origin: 50% -100px;
+        -webkit-animation: swing 3.5s infinite ease-in-out;
+    }
+
+    .gugus {
+        width: 32px !important;
+        height: 32px !important;
+        opacity: 1 !important;
+        left: -15px !important;
+        top: 9px !important;
+    }
+
+    .huadengpic {
+        width: 40px !important;
+        height: 40px !important;
+        opacity: 1 !important;
+        left: -18px !important;
+        top: 9px !important;
+    }
+
+    .shanzipic {
+        width: 40px !important;
+        height: 40px !important;
+        opacity: 1 !important;
+        left: -18px !important;
+        top: 18px !important;
+    }
+
+    /* .denglong {
+        display: none;
+    } */
+
+    body.themespring .denglong {
+        display: block;
+    }
+
+    @media only screen and (min-width: 1124px) {
+        .nav-menu {
+            padding-right: 0px;
+        }
+
+        body.themespring .nav-menu {
+            padding-right: 96px;
+        }
+    }
+
+    @media only screen and (max-width: 760px) {
+
+        .deng-box,
+        .deng-box1 {
+            width: 40%;
+        }
+
+        body.themespring .right {
+            float: left !important;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+        .right {
+            float: left !important;
+        }
+    }
+
+    .deng-box {
+        position: fixed;
+        top: -40px;
+        right: -20px;
+        z-index: 999;
+    }
+
+    .deng-box1 {
+        position: fixed;
+        top: -30px;
+        right: 10px;
+        z-index: 999;
+    }
+
+    .deng-box1 .deng {
+        position: relative;
+        width: 120px;
+        height: 90px;
+        margin: 50px;
+        background: #d8000f;
+        background: rgba(216, 0, 15, 0.8);
+        border-radius: 50% 50%;
+        -webkit-transform-origin: 50% -100px;
+        -webkit-animation: swing 5s infinite ease-in-out;
+        box-shadow: -5px 5px 30px 4px rgba(252, 144, 61, 1);
+    }
+
+    .deng {
+        position: relative;
+        width: 120px;
+        height: 90px;
+        margin: 50px;
+        background: #d8000f;
+        background: rgba(216, 0, 15, 0.8);
+        border-radius: 50% 50%;
+        -webkit-transform-origin: 50% -100px;
+        -webkit-animation: swing 3s infinite ease-in-out;
+        box-shadow: -5px 5px 50px 4px rgba(250, 108, 0, 1);
+    }
+
+    .deng-a {
+        width: 100px;
+        height: 90px;
+        background: #d8000f;
+        background: rgba(216, 0, 15, 0.1);
+        margin: 12px 8px 8px 10px;
+        border-radius: 50% 50%;
+        border: 2px solid #dc8f03;
+    }
+
+    .deng-b {
+        width: 45px;
+        height: 90px;
+        background: #d8000f;
+        background: rgba(216, 0, 15, 0.1);
+        margin: -4px 8px 8px 26px;
+        border-radius: 50% 50%;
+        border: 2px solid #dc8f03;
+    }
+
+    .xian {
+        position: absolute;
+        top: -20px;
+        left: 60px;
+        width: 2px;
+        height: 20px;
+        background: #dc8f03;
+    }
+
+    .shui-a {
+        position: relative;
+        width: 5px;
+        height: 20px;
+        margin: -5px 0 0 59px;
+        -webkit-animation: swing 4s infinite ease-in-out;
+        -webkit-transform-origin: 50% -45px;
+        background: #ffa500;
+        border-radius: 0 0 5px 5px;
+    }
+
+    .shui-b {
+        position: absolute;
+        top: 14px;
+        left: -2px;
+        width: 10px;
+        height: 10px;
+        background: #dc8f03;
+        border-radius: 50%;
+    }
+
+    .shui-c {
+        position: absolute;
+        top: 18px;
+        left: -2px;
+        width: 10px;
+        height: 35px;
+        background: #ffa500;
+        border-radius: 0 0 0 5px;
+    }
+
+    .deng:before {
+        position: absolute;
+        top: -7px;
+        left: 29px;
+        height: 12px;
+        width: 60px;
+        content: " ";
+        display: block;
+        z-index: 999;
+        border-radius: 5px 5px 0 0;
+        border: solid 1px #dc8f03;
+        background: #ffa500;
+        background: linear-gradient(to right, #dc8f03, #ffa500, #dc8f03, #ffa500, #dc8f03);
+    }
+
+    .deng:after {
+        position: absolute;
+        bottom: -7px;
+        left: 10px;
+        height: 12px;
+        width: 60px;
+        content: " ";
+        display: block;
+        margin-left: 20px;
+        border-radius: 0 0 5px 5px;
+        border: solid 1px #dc8f03;
+        background: #ffa500;
+        background: linear-gradient(to right, #dc8f03, #ffa500, #dc8f03, #ffa500, #dc8f03);
+    }
+
+    .deng-t {
+        font-family: 华文行楷;
+        font-size: 26px;
+        color: #dc8f03;
+        font-weight: bold;
+        line-height: 44px;
+        text-align: center;
+    }
+
+    .night .deng-t,
+    .night .deng-box,
+    .night .deng-box1 {
+        background: transparent !important;
+    }
+
+    @-moz-keyframes swing {
+        0% {
+            -moz-transform: rotate(-10deg)
+        }
+
+        50% {
+            -moz-transform: rotate(10deg)
+        }
+
+        100% {
+            -moz-transform: rotate(-10deg)
+        }
+    }
+
+    @-webkit-keyframes swing {
+        0% {
+            -webkit-transform: rotate(-10deg)
+        }
+
+        50% {
+            -webkit-transform: rotate(10deg)
+        }
+
+        100% {
+            -webkit-transform: rotate(-10deg)
+        }
+    }
+</style>
+
+<script>
+    // 网站主题切换模式开始
+    if (localStorage.getItem('themespring') === '1') {
+        document.body.classList.add('themespring');
+    }
+    else if (matchMedia('(prefers-color-scheme: themespring)').matches) {
+        document.body.classList.add('themespring');
+    }
+
+    function switchThemes() {
+        var body = document.body;
+        if (body.classList.contains('themespring')) {
+            document.body.classList.remove('themespring');
+            localStorage.setItem('themespring', '0');
+            return;
+        } else {
+            document.body.classList.add('themespring');
+            localStorage.setItem('themespring', '1');
+            return;
+        }
+    };
+// 网站主题切换模式结束
+
+</script>
+
+            <div class="nav-toggle-icon" >
+                <div class="material-hamburger">
+                    <span>
+                    </span>
+                    <span>
+                    </span>
+                    <span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="menu-wrapper">
+                <div class="nav-indicator">
+                </div>
+                <ul class="menus">
+                    
+                     
+                        <li>
+                            <a class="wave " href="/">
+                                首页
+                            </a>
+                        </li>
+                     
+                        <li>
+                            <a class="wave " href="/archives">
+                                归档
+                            </a>
+                        </li>
+                     
+                        <li>
+                            <a class="wave " href="/tags">
+                                标签
+                            </a>
+                        </li>
+                     
+                        <li>
+                            <a class="wave " href="/categories">
+                                分类
+                            </a>
+                        </li>
+                     
+                        <li>
+                            <a class="wave " href="/about">
+                                关于我
+                            </a>
+                        </li>
+                     
+                    
+                   
+                </ul>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+            <div class="container content">
+                <div class="scene_element scene_element--fadein">
+                    <div class="row">
+  <div class="main main-article">
+    <article>
+
+      
+            <header class="post-header">
+              
+            </header>
+
+            <h1 class="post-title">
+              十大算法--贪心算法
+            </h1>
+
+            <section class="post-info post-info-bottom">
+
+              <span class="post-date">发布于
+                <span class="post-date-text">
+                   2020-10-18
+                </span>
+              </span>
+
+
+
+
+              
+                <span class="post-category">分类:
+                  <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
+                </span>
+                
+                  
+                    <span class="post-tags">
+                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95/" rel="tag">常用10种算法</a></li></ul>
+                    </span>
+                    
+
+                      <!-- 阅读量统计 -->
+                      
+
+
+            </section>
+
+            <section class="post-content">
+
+              <h1 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h1><h3 id="贪心算法介绍"><a href="#贪心算法介绍" class="headerlink" title="贪心算法介绍"></a>贪心算法介绍</h3><ol>
+<li>贪心算法(贪婪算法)是指对问题进行求解时,**在每一步种都采用最好或者最优(最有利)的选择,**而希望能够导致结果最好或者最优的算法.</li>
+<li>贪心算法所得到的结果不一定时最优的结果(有时候是最优解),但是都是相对近似(接近)最优的结果.</li>
+</ol>
+<h3 id="贪心算法最佳应用-集合覆盖"><a href="#贪心算法最佳应用-集合覆盖" class="headerlink" title="贪心算法最佳应用-集合覆盖"></a>贪心算法最佳应用-集合覆盖</h3><ul>
+<li>假设存在如下表的需要付费的广播台， 以及广播台信号可以覆盖的地区。 如何选择最少的广播台,让所有的地区都可以接收到信号  </li>
+</ul>
+<a id="more"></a>  
+
+<table>
+<thead>
+<tr>
+<th>广播台</th>
+<th>覆盖地区</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>k1</td>
+<td>“北京”,”上海”,”天津”</td>
+</tr>
+<tr>
+<td>k2</td>
+<td>“广州”,”上海”,”深圳”</td>
+</tr>
+<tr>
+<td>k3</td>
+<td>“成都”,”上海”,”杭州”</td>
+</tr>
+<tr>
+<td>k4</td>
+<td>“上海”,”天津”</td>
+</tr>
+<tr>
+<td>k5</td>
+<td>“杭州”,”大连”</td>
+</tr>
+</tbody></table>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h4><ul>
+<li>使用穷举法实现,列出每一个可能出现的广播台的集合,这被称为幂集。 假设总的有 n 个广播台， 则广播台的组合总共有  设总的有 n 个广播台， 则广播台的组合总共有  </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>广播台的数量n</th>
+<th>子集的总数量2^n</th>
+<th>需要的时间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>5</td>
+<td>32</td>
+<td>3.2秒</td>
+</tr>
+<tr>
+<td>10</td>
+<td>1024</td>
+<td>102.4秒</td>
+</tr>
+<tr>
+<td>32</td>
+<td>4294967296</td>
+<td>13.6年</td>
+</tr>
+<tr>
+<td>100</td>
+<td>1.26*100^(30)</td>
+<td>4*10^23年</td>
+</tr>
+</tbody></table>
+<h3 id="使用贪心算法-效率高"><a href="#使用贪心算法-效率高" class="headerlink" title="使用贪心算法,效率高:"></a>使用贪心算法,效率高:</h3><ol>
+<li>目前没有算法可以快速计算的准备的值,使用贪婪算法,则可以得到非常接近的解,并且效率高.选择策略上,需要覆盖全部地区的最最小集合.</li>
+<li>遍历所有的广播电台,找的一个覆盖了最多未覆盖的地区的电台,(此电台可能包含一些已覆盖的地区,下一步处理）  </li>
+<li>将这个电台加入到一个集合,把该电台覆盖的地区在下次比较时去掉  </li>
+<li>重复第一步,直到<strong>覆盖了全部</strong>的地区</li>
+</ol>
+<h4 id="分析的图解"><a href="#分析的图解" class="headerlink" title="分析的图解"></a>分析的图解</h4><ol>
+<li><p>allAreas = { “北京”,”上海”,”天津”,”广州”,深圳”,”成都”,杭州”,”大连”}; </p>
+<p>// 表示需要覆盖的所有地区</p>
+<p><strong>key由K1到5,遍历所有的广播电台,找的一个覆盖了最多未覆盖的地区的电台</strong></p>
+<p><img src="/2020/10/18/%E7%AE%97%E6%B3%95-%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95005-%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/1.png" alt="1"></p>
+</li>
+<li><p>建一个<strong>索引maxKey</strong>表示最大的未覆盖的地区=k1,.</p>
+</li>
+<li><p>将这个电台加入到一个集合,ArrayList(k1)把该电台覆盖的地区在下次比较时去掉  ,所<strong>以</strong></p>
+<p><strong>allAreas = { 广州”,深圳”,”成都”,杭州”,”大连”};</strong></p>
+<p><img src="/2020/10/18/%E7%AE%97%E6%B3%95-%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95005-%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/2.png" alt="2"></p>
+<ol start="4">
+<li><p>索引maxKey<strong>表示最大的未覆盖的地区=k2,</strong>.将这个电台加入到一个集合,ArrayList(k1,k2)</p>
+</li>
+<li><p>然后把k2的元素,去掉.重复第key遍历..依次类推…..</p>
+<p><img src="/2020/10/18/%E7%AE%97%E6%B3%95-%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95005-%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/3.png" alt="3"></p>
+</li>
+</ol>
+</li>
+</ol>
+<p>6.<strong>ArrayList(k1,k2,k3,k5)</strong>,电台覆盖的地区在比较去掉,,所以为:<strong>allAreas = { };</strong>,</p>
+<p><img src="/2020/10/18/%E7%AE%97%E6%B3%95-%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95005-%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/4.png" alt="4"></p>
+<h4 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h4><h5 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建ArrayList, 存放选择的电台集合</span></span><br><span class="line">ArrayList&lt;String&gt; selects = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"><span class="comment">//定义给maxKey ， 保存在一次遍历过程中，能够覆盖最大未覆盖的地区对应的电台的key</span></span><br><span class="line"><span class="comment">//如果maxKey 不为null , 则会加入到 selects</span></span><br><span class="line">String maxKey = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">while</span> (allAreas.size() != <span class="number">0</span>) &#123; <span class="comment">// 如果allAreas 不为0, 则表示还没有覆盖到所有的地区</span></span><br><span class="line">    <span class="comment">//每进行一次while,需要索引清零</span></span><br><span class="line">    maxKey = <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">//遍历 broadcasts, 取出对应key</span></span><br><span class="line">    <span class="keyword">for</span> (String key : broadcasts.keySet()) &#123;</span><br><span class="line">        <span class="comment">//每进行一次for</span></span><br><span class="line">        <span class="comment">//当前这个key能够覆盖的地区</span></span><br><span class="line">        HashSet&lt;String&gt; areas = broadcasts.get(key);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//key能够遍历的的地区与allAreas所最大相同的东西</span></span><br><span class="line">        areas.retainAll(allAreas);</span><br><span class="line">        <span class="comment">//如果当前这个集合包含的未覆盖地区的数量，比maxKey指向的集合地区还多</span></span><br><span class="line">        <span class="comment">//就需要重置maxKey</span></span><br><span class="line">        <span class="comment">// areas.size() &gt;broadcasts.get(maxKey).size()) 体现出贪心算法的特点,每次都选择最优的</span></span><br><span class="line">        <span class="keyword">if</span> (areas.size() &gt; <span class="number">0</span> &amp;&amp;</span><br><span class="line">                (maxKey == <span class="keyword">null</span> || areas.size() &gt; broadcasts.get(maxKey).size())) &#123;</span><br><span class="line">            maxKey = key;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//maxKey != null, 就应该将maxKey 加入selects</span></span><br><span class="line">    <span class="keyword">if</span> (maxKey != <span class="keyword">null</span>) &#123;</span><br><span class="line">        selects.add(maxKey);</span><br><span class="line">        <span class="comment">//将maxKey指向的广播电台覆盖的地区，从 allAreas 去掉</span></span><br><span class="line">        allAreas.removeAll(broadcasts.get(maxKey));</span><br><span class="line">        <span class="comment">//即broadcastsy也变称为</span></span><br><span class="line">        <span class="comment">/**第一次遍历后</span></span><br><span class="line"><span class="comment">         * k1  &quot;&quot;,&quot;&quot;,&quot;&quot;</span></span><br><span class="line"><span class="comment">         * k2  &quot;广州&quot;,&quot;&quot;,&quot;深圳&quot;</span></span><br><span class="line"><span class="comment">         * k3  &quot;成都&quot;,&quot;&quot;,&quot;杭州&quot;</span></span><br><span class="line"><span class="comment">         * k4  &quot;&quot;,&quot;&quot;</span></span><br><span class="line"><span class="comment">         * k5  &quot;杭州&quot;,&quot;大连&quot;</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="贪心算法注意事项和细节"><a href="#贪心算法注意事项和细节" class="headerlink" title="贪心算法注意事项和细节"></a>贪心算法注意事项和细节</h5><ul>
+<li>贪婪算法所得到的结果不一定是最优的结果(有时候会是最优解)， 但是都是相对近似(接近)最优解的结果</li>
+<li>比如上题的算法选出的是 K1, K2, K3, K5， 符合覆盖了全部的地区</li>
+<li>但是我们发现 K2, K3,K4,K5 也可以覆盖全部地区， 如果 K2 的使用成本低于 K1,那么我们上题的 K1, K2, K3,K5 虽然是满足条件， 但是并不是最优的  </li>
+</ul>
+<h5 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.HashSet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GreedyAlgorithm</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建广播电台,放入到Map</span></span><br><span class="line">        HashMap&lt;String, HashSet&lt;String&gt;&gt; broadcasts = <span class="keyword">new</span> HashMap&lt;String, HashSet&lt;String&gt;&gt;();</span><br><span class="line">        <span class="comment">//将各个电台放入到broadcasts</span></span><br><span class="line">        HashSet&lt;String&gt; hashSet1 = <span class="keyword">new</span> HashSet&lt;String&gt;();</span><br><span class="line">        hashSet1.add(<span class="string">&quot;北京&quot;</span>);</span><br><span class="line">        hashSet1.add(<span class="string">&quot;上海&quot;</span>);</span><br><span class="line">        hashSet1.add(<span class="string">&quot;天津&quot;</span>);</span><br><span class="line"></span><br><span class="line">        HashSet&lt;String&gt; hashSet2 = <span class="keyword">new</span> HashSet&lt;String&gt;();</span><br><span class="line">        hashSet2.add(<span class="string">&quot;广州&quot;</span>);</span><br><span class="line">        hashSet2.add(<span class="string">&quot;北京&quot;</span>);</span><br><span class="line">        hashSet2.add(<span class="string">&quot;深圳&quot;</span>);</span><br><span class="line"></span><br><span class="line">        HashSet&lt;String&gt; hashSet3 = <span class="keyword">new</span> HashSet&lt;String&gt;();</span><br><span class="line">        hashSet3.add(<span class="string">&quot;成都&quot;</span>);</span><br><span class="line">        hashSet3.add(<span class="string">&quot;上海&quot;</span>);</span><br><span class="line">        hashSet3.add(<span class="string">&quot;杭州&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        HashSet&lt;String&gt; hashSet4 = <span class="keyword">new</span> HashSet&lt;String&gt;();</span><br><span class="line">        hashSet4.add(<span class="string">&quot;上海&quot;</span>);</span><br><span class="line">        hashSet4.add(<span class="string">&quot;天津&quot;</span>);</span><br><span class="line"></span><br><span class="line">        HashSet&lt;String&gt; hashSet5 = <span class="keyword">new</span> HashSet&lt;String&gt;();</span><br><span class="line">        hashSet5.add(<span class="string">&quot;杭州&quot;</span>);</span><br><span class="line">        hashSet5.add(<span class="string">&quot;大连&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//加入到map</span></span><br><span class="line">        broadcasts.put(<span class="string">&quot;K1&quot;</span>, hashSet1);</span><br><span class="line">        broadcasts.put(<span class="string">&quot;K2&quot;</span>, hashSet2);</span><br><span class="line">        broadcasts.put(<span class="string">&quot;K3&quot;</span>, hashSet3);</span><br><span class="line">        broadcasts.put(<span class="string">&quot;K4&quot;</span>, hashSet4);</span><br><span class="line">        broadcasts.put(<span class="string">&quot;K5&quot;</span>, hashSet5);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//allAreas 存放所有的地区</span></span><br><span class="line">        HashSet&lt;String&gt; allAreas = <span class="keyword">new</span> HashSet&lt;String&gt;();</span><br><span class="line">        allAreas.add(<span class="string">&quot;北京&quot;</span>);</span><br><span class="line">        allAreas.add(<span class="string">&quot;上海&quot;</span>);</span><br><span class="line">        allAreas.add(<span class="string">&quot;天津&quot;</span>);</span><br><span class="line">        allAreas.add(<span class="string">&quot;广州&quot;</span>);</span><br><span class="line">        allAreas.add(<span class="string">&quot;深圳&quot;</span>);</span><br><span class="line">        allAreas.add(<span class="string">&quot;成都&quot;</span>);</span><br><span class="line">        allAreas.add(<span class="string">&quot;杭州&quot;</span>);</span><br><span class="line">        allAreas.add(<span class="string">&quot;大连&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//创建ArrayList, 存放选择的电台集合</span></span><br><span class="line">        ArrayList&lt;String&gt; selects = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        <span class="comment">//定义给maxKey ， 保存在一次遍历过程中，能够覆盖最大未覆盖的地区对应的电台的key</span></span><br><span class="line">        <span class="comment">//如果maxKey 不为null , 则会加入到 selects</span></span><br><span class="line">        String maxKey = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">while</span> (allAreas.size() != <span class="number">0</span>) &#123; <span class="comment">// 如果allAreas 不为0, 则表示还没有覆盖到所有的地区</span></span><br><span class="line">            <span class="comment">//每进行一次while,需要索引清零</span></span><br><span class="line">            maxKey = <span class="keyword">null</span>;</span><br><span class="line">            <span class="comment">//遍历 broadcasts, 取出对应key</span></span><br><span class="line">            <span class="keyword">for</span> (String key : broadcasts.keySet()) &#123;</span><br><span class="line">                <span class="comment">//每进行一次for</span></span><br><span class="line">                <span class="comment">//当前这个key能够覆盖的地区</span></span><br><span class="line">                HashSet&lt;String&gt; areas = broadcasts.get(key);</span><br><span class="line"></span><br><span class="line">                <span class="comment">//key能够遍历的的地区与allAreas所最大相同的东西</span></span><br><span class="line">                areas.retainAll(allAreas);</span><br><span class="line">                <span class="comment">//如果当前这个集合包含的未覆盖地区的数量，比maxKey指向的集合地区还多</span></span><br><span class="line">                <span class="comment">//就需要重置maxKey</span></span><br><span class="line">                <span class="comment">// areas.size() &gt;broadcasts.get(maxKey).size()) 体现出贪心算法的特点,每次都选择最优的</span></span><br><span class="line">                <span class="keyword">if</span> (areas.size() &gt; <span class="number">0</span> &amp;&amp;</span><br><span class="line">                        (maxKey == <span class="keyword">null</span> || areas.size() &gt; broadcasts.get(maxKey).size())) &#123;</span><br><span class="line">                    maxKey = key;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//maxKey != null, 就应该将maxKey 加入selects</span></span><br><span class="line">            <span class="keyword">if</span> (maxKey != <span class="keyword">null</span>) &#123;</span><br><span class="line">                selects.add(maxKey);</span><br><span class="line">                <span class="comment">//将maxKey指向的广播电台覆盖的地区，从 allAreas 去掉</span></span><br><span class="line">                allAreas.removeAll(broadcasts.get(maxKey));</span><br><span class="line">                <span class="comment">//即broadcastsy也变称为</span></span><br><span class="line">                <span class="comment">/**第一次遍历后</span></span><br><span class="line"><span class="comment">                 * k1  &quot;&quot;,&quot;&quot;,&quot;&quot;</span></span><br><span class="line"><span class="comment">                 * k2  &quot;广州&quot;,&quot;&quot;,&quot;深圳&quot;</span></span><br><span class="line"><span class="comment">                 * k3  &quot;成都&quot;,&quot;&quot;,&quot;杭州&quot;</span></span><br><span class="line"><span class="comment">                 * k4  &quot;&quot;,&quot;&quot;</span></span><br><span class="line"><span class="comment">                 * k5  &quot;杭州&quot;,&quot;大连&quot;</span></span><br><span class="line"><span class="comment">                 */</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;得到的选择结果是&quot;</span> + selects);<span class="comment">//[K1,K2,K3,K5]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+            </section>
+    </article>
+    
+
+
+        <!-- 版权声明 -->
+        
+<div class="post-copyright">
+    <div>
+        <strong>本文作者：</strong>
+        <span>大钊</span>
+    </div>
+    <div>
+        <strong>本文链接：</strong>
+        <a href="http://example.com/算法-常用10种算法005-贪心算法">
+            http://example.com/算法-常用10种算法005-贪心算法
+        </a>
+    </div>
+    <div>
+        <span>欢迎任何形式的转载，但请务必注明出处。</span>
+    </div>
+    <div>
+        <span>由于笔者水平有限，如果文章或代码有表述不当之处，还请不吝赐教。</span>
+    </div>
+</div>
+
+
+
+
+
+
+<style>
+    .post-copyright {
+        background-color: #fff;
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.05);
+        display: block;
+        margin: 20px auto;
+        margin-bottom: 15px;
+        padding: 10px;
+        font-size: 15px;
+        color: #2e2d2d;
+        word-break: break-all;
+        line-height: 1.8;
+    }
+
+
+    .post-copyright a {
+        color: #2e2d2d;
+        border-bottom: 1px solid #999; 
+    }
+
+    .post-copyright a:hover {
+        color: #2e2d2d;
+        border-bottom: 1px solid #000; 
+    }
+</style>
+
+          <!-- comments -->
+          <div class="comments">
+    <h3 id="commenttitle" style="margin-top: 20px;margin-left: 10px;">评论区</h3>
+    <div id="tcomment"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/twikoo@0.6.0/dist/twikoo.all.min.js"></script>
+<script>twikoo.init({ envId: '', el: '#tcomment' })</script>
+
+            <div class="right-icon">
+              <div id="to-valine" class="right-icon-item">
+                <a href="#commenttitle">评论</a>
+              </div>
+            </div>
+
+  </div>
+
+
+  <aside>
+    <div class="aside-wrap">
+    
+        <section class="widget-wrap">
+    <h3 class="widget-title">简介</h3>
+    <div class="widget">
+        <div class="notice">
+            <img class="notice-img" src="https://shuxhan-imgbed.oss-cn-hangzhou.aliyuncs.com/img/20210108164434.jpg">
+            <p>路漫漫其修远兮，<br>吾将上下而求索!<br></p>
+            
+            <p class="notice-item">
+                <!-- github -->
+                <span><a target="_blank" href="https://github.com/niewenzhao0401"><img src="https://shuxhan-imgbed.oss-cn-hangzhou.aliyuncs.com/img/20210108165043.jpg" alt="Github"></a></span>
+                <!-- juejin -->
+                <span><a target="_blank" href=""><img src="https://shuxhan-imgbed.oss-cn-hangzhou.aliyuncs.com/img/20210108165800.png" alt="掘金社区"></a></span>
+                <!-- zhihu -->
+                <span><a target="_blank" href=""><img src="https://shuxhan-imgbed.oss-cn-hangzhou.aliyuncs.com/img/20210108172745.ico" alt="知乎"></a></span>
+                <!-- csdn -->
+                <span><a target="_blank" href="https://blog.csdn.net/qq_44236958"><img src="https://shuxhan-imgbed.oss-cn-hangzhou.aliyuncs.com/img/20210108172932.ico" alt="CSDN"></a></span>
+            </p>
+            
+        </div>
+    </div>
+</section>
+
+
+    
+        
+  <section class="widget-wrap">
+    <h3 class="widget-title">文章分类</h3>
+    <div class="widget">
+      <div class="categories-list">
+        
+           
+            
+              <a class="category-list-item" href="/categories/-数据结构和算法-体系">
+                <span class="category-list-link">-数据结构和算法-体系</span>
+                <span class="category-list-number">(9)</span>
+              </a>
+            
+           
+            
+              <a class="category-list-item" href="/categories/-前端">
+                <span class="category-list-link">-前端</span>
+                <span class="category-list-number">(10)</span>
+              </a>
+            
+           
+            
+              <a class="category-list-item" href="/categories/-JDBC">
+                <span class="category-list-link">-JDBC</span>
+                <span class="category-list-number">(2)</span>
+              </a>
+            
+           
+            
+              <a class="category-list-item" href="/categories/-JQuery">
+                <span class="category-list-link">-JQuery</span>
+                <span class="category-list-number">(2)</span>
+              </a>
+            
+           
+            
+              <a class="category-list-item" href="/categories/-JavaScript">
+                <span class="category-list-link">-JavaScript</span>
+                <span class="category-list-number">(5)</span>
+              </a>
+            
+           
+            
+              <a class="category-list-item" href="/categories/-算法">
+                <span class="category-list-link">-算法</span>
+                <span class="category-list-number">(60)</span>
+              </a>
+            
+           
+            
+              <a class="category-list-item" href="/categories/-javase">
+                <span class="category-list-link">-javase</span>
+                <span class="category-list-number">(31)</span>
+              </a>
+            
+           
+            
+              <a class="category-list-item" href="/categories/-工具栏">
+                <span class="category-list-link">-工具栏</span>
+                <span class="category-list-number">(1)</span>
+              </a>
+            
+           
+            
+              <a class="category-list-item" href="/categories/-操作系统">
+                <span class="category-list-link">-操作系统</span>
+                <span class="category-list-number">(8)</span>
+              </a>
+            
+           
+            
+              <a class="category-list-item" href="/categories/-计算机网络">
+                <span class="category-list-link">-计算机网络</span>
+                <span class="category-list-number">(8)</span>
+              </a>
+            
+          
+        
+      </div>
+    </div>
+  </section>
+
+
+    
+        
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/01%E8%83%8C%E5%8C%85/" rel="tag">01背包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BFS/" rel="tag">BFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DFS/" rel="tag">DFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM%E6%A8%A1%E5%9E%8B/" rel="tag">DOM模型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IO/" rel="tag">IO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JQuery/" rel="tag">JQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E4%BA%8B%E4%BB%B6/" rel="tag">JS事件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaWeb/" rel="tag">JavaWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String%E7%B1%BB/" rel="tag">String类</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hash/" rel="tag">hash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hashTable/" rel="tag">hashTable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/map/" rel="tag">map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%89%E6%8C%87%E9%92%88/" rel="tag">三指针</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86/" rel="tag">事务处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" rel="tag">二分查找</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="tag">二叉树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%85%E9%83%A8%E7%B1%BB/" rel="tag">内部类</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%85%E8%A3%85%E7%B1%BB/" rel="tag">包装类</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F/" rel="tag">十大排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%95%E8%B0%83%E6%A0%88/" rel="tag">单调栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" rel="tag">双指针</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8D%E5%B0%84/" rel="tag">反射</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7%E6%A0%8F/" rel="tag">工具栏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95/" rel="tag">常用10种算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%82%E5%B8%B8/" rel="tag">异常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" rel="tag">快速排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag">排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91/" rel="tag">斐波那契</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7/" rel="tag">有效括号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9F%A5%E6%89%BE/" rel="tag">查找</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%88/" rel="tag">栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/" rel="tag">环形链表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%80%E7%96%8F%E6%95%B0%E7%BB%84/" rel="tag">稀疏数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A9%B7%E4%B8%BE%E6%B3%95/" rel="tag">穷举法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B/" rel="tag">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E7%B4%A2%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="tag">线索化二叉树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/" rel="tag">表单验证</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A1%A8%E6%A0%BC/" rel="tag">表格</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E7%A8%8B/" rel="tag">进程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%92%E5%BD%92/" rel="tag">递归</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8%E5%8F%8D%E8%BD%AC/" rel="tag">链表反转</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8%E5%90%88%E5%B9%B6/" rel="tag">链表合并</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%9F%E5%88%97/" rel="tag">队列</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E5%90%88/" rel="tag">集合</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+    
+        
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul class="recent-posts">
+        
+          <li>
+            <a href="/2021/01/08/JQuery-02/">JQuery-02JQuery选择器(重点)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/07/JQuery-01/">JQuery-01概论</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/06/%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99/">常用正则写法</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/05/JS-05/">JS-05-JavaScript 正则表达式</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/04/JS-04/">JS-04-JavaScript DOM模型</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+        
+  <section class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
+    </div>
+  </section>
+
+
+    
+        
+  <section class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div>
+      <ul class="widget-links">
+          
+          <li>
+              <a target="_blank" rel="noopener" href="https://hwame.top" title="">
+                  鴻塵的博客
+              </a>
+          </li>
+          
+          <li>
+              <a target="_blank" rel="noopener" href="https://www.chen-yuan-yuan.icu" title="">
+                  陈园园的博客
+              </a>
+          </li>
+          
+          <li>
+              <a target="_blank" rel="noopener" href="https://www.aigisss.com/blog/" title="">
+                  爱即是诗
+              </a>
+          </li>
+          
+          <li>
+              <a target="_blank" rel="noopener" href="https://noionion.top/" title="">
+                  noionion
+              </a>
+          </li>
+          
+          <li>
+              <a target="_blank" rel="noopener" href="https://heart-of-engine.github.io/" title="">
+                  Heart-of-engine
+              </a>
+          </li>
+          
+      </ul>
+    </div>
+  </section>
+
+
+<style>
+  .widget-links {
+    list-style: none;
+    padding-left: 10px;
+  }
+  .widget-links >li > a:hover {
+    color: #f40;
+    text-decoration: underline;
+  }
+</style>
+    
+        <section class="widget-wrap">
+    <div class="widget">
+        <div class="notice attention">
+            <p>本博客主题采用的是基于 hexo 打造的 <a href="https://github.com/shuxhan/hexo-theme-simple99" target="_blank">simple99</a>，主题已上架 hexo 官网。</p>
+            <p>如有其他问题，请在博客<a target="_blank" rel="noopener" href="https://shuxhan.com/message">留言</a>，或者发一封邮件给我，我的邮箱地址：zsh981109@163.com</p>
+            
+        </div>
+    </div>
+</section>
+
+    
+    
+</div>
+
+
+      <!-- 目录 -->
+      
+</div>
+
+
+<script>
+  $('#to-top').click(function () { $('html,body').animate({ scrollTop: '0px' }, 500); return false; });
+
+</script>
+                </div>
+            </div>
+            <div class="right-icon">
+                <div id="to-top" class="right-icon-item">
+                  <a>
+                    <span class="top-left"></span>
+                    <span class="top-right"></span>
+                  </a>
+                </div>
+              </div>
+    </div>
+    <footer class="footer">
+  <div class="links-wrap-wrap">
+    <div class="links-wrap">
+    
+      
+        <section class="link-wrap">
+          <h3 class="link-title">导航</h3>
+          <div>
+            <ul class="link-item-wrap">
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="https://cn.bing.com" title="">
+                        必应搜索(bing)
+                    </a>
+                </li>
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="https://github.com" title="">
+                        GitHub
+                    </a>
+                </li>
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="https://gitee.com" title="">
+                        Gitee
+                    </a>
+                </li>
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="https://www.aliyun.com/" title="">
+                        阿里云
+                    </a>
+                </li>
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="https://cloud.tencent.com" title="">
+                        腾讯云
+                    </a>
+                </li>
+                
+            </ul>
+          </div>
+        </section>
+      
+
+
+      
+        <section class="link-wrap">
+          <h3 class="link-title">社区论坛</h3>
+          <div>
+            <ul class="link-item-wrap">
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="https://www.csdn.net" title="">
+                        CSDN
+                    </a>
+                </li>
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="https://juejin.cn" title="">
+                        掘金
+                    </a>
+                </li>
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="https://segmentfault.com" title="">
+                        segmentfault思否
+                    </a>
+                </li>
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="https://www.cnblogs.com" title="">
+                        博客园
+                    </a>
+                </li>
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="https://www.v2ex.com/" title="">
+                        V2EX
+                    </a>
+                </li>
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="https://discord.com" title="">
+                        Discord
+                    </a>
+                </li>
+                
+            </ul>
+          </div>
+        </section>
+      
+
+
+      
+        <section class="link-wrap">
+          <h3 class="link-title">文档</h3>
+          <div>
+            <ul class="link-item-wrap">
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="https://react.docschina.org" title="">
+                        React官方中文文档
+                    </a>
+                </li>
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="https://hexo.io" title="">
+                        hexo官网
+                    </a>
+                </li>
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="http://lesscss.cn" title="">
+                        less中文网
+                    </a>
+                </li>
+                
+            </ul>
+          </div>
+        </section>
+      
+
+    </div>
+  </div>
+  
+    <div class="copyright-wrap">
+      <span>&copy; 2020-2021 大钊</span>
+      <span id="timeDate">载入天数...</span>
+      
+    </div>
+    <span id="busuanzi_container_site_pv">
+      本站总访问量<span id="busuanzi_value_site_pv"></span>次
+    </span>
+    <span id="busuanzi_container_site_uv">
+      ，本站访客数<span id="busuanzi_value_site_uv"></span>人次
+    </span>
+    
+</footer>
+
+<script>
+    var now = new Date();
+    function createtime() {
+      var grt = new Date("06/14/2019 12:00:00");//此处修改你的建站时间或者网站上线时间 
+      now.setTime(now.getTime() + 250);
+      days = (now - grt) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+      document.getElementById("timeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+    }
+    setInterval("createtime()", 1000);
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/lib/jquery.js"></script>
+
+
+<script src="/lib/waves.js"></script>
+
+
+<script src="/lib/jquery-ui.js"></script>
+
+
+<script src="/lib/jquery.tocify.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+        
+<style>
+  .copy-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 20px;
+    color: rgb(206, 206, 206);
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: 3px;
+    user-select: none;
+    outline: 0;
+  }
+
+  .copy-btn:hover {
+    color: #888
+  }
+
+  .highlight-wrap .copy-btn {
+    padding: 2px 6px;
+    position: absolute;
+    right: 10px;
+    top: 1px;
+    z-index: 1;
+  }
+
+
+
+  .highlight-wrap {
+    position: relative;
+  }
+
+  #copysuccess {
+    width: 200px;
+    height: 75px;
+    position: fixed;
+    right: 50%;
+    margin-right: -100px;
+    top: 40%;
+    margin-top: -40px;
+    color: #fff;
+    font-weight: 600;
+    background: #444444d8;
+    display: none;
+    z-index: 99999;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 30px;
+    padding-top: 10px;
+    user-select: none;
+  }
+</style>
+
+<script>
+  addLoadEvent(() => {
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<div>').addClass('copy-btn').append('复制代码').on('click', function (e) {
+        var copysuccess = document.getElementById('copysuccess');
+        copysuccess.style.display = 'block'
+        setTimeout(function () {
+          copysuccess.style.display = 'none'
+        }, 2000)
+        var code = $(this).parent().find(".code")[0].innerText
+          
+                var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+          
+                  if (result) $(this).text('复制成功')
+            else $(this).text('复制失败')
+              
+                $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制代码')
+        }, 1000)
+      }).append(e)
+    })
+  })
+</script>
+
+            <div id="copysuccess">复制成功<br>欢迎阅读文章~</div>
+</body>
+
+</html>
+
+<script>
+    $('#to-top').click(function () { $('html,body').animate({ scrollTop: '0px' }, 500); return false; });
+</script>
