@@ -1,53 +1,645 @@
-extends widget/base
-block append head
-  link(rel='stylesheet', href= url_for('/style/post.css'))
-  link(rel='stylesheet', href= url_for('/style/highlight-theme-light.css'))
-  script(src= url_for("/jslib/highlight.pack.js"))
-block topic
-    div#postTopic.is-full-height
-        - var title = truncate( page.title, {length: 65, omission: '..'} ) || ''
-        p.is-full-height.is-flex-shrink-0.is-flex.is-align-items-center.is-justify-content-center= title
-        p.is-full-height.is-flex-shrink-0.is-flex.is-align-items-center.is-justify-content-center= __('click_back_to_the_top')
+<!DOCTYPE html>
+<html  lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#fff" id="theme-color">
+  <meta name="description" content="当咸鱼,不存在!!!">
+  <link rel="icon" href="/img/Kaze.png">
+  <title>操作系统01-1-计算</title>
+  
+  
+  <meta property="og:title" content="操作系统01-1-计算">
+  
+  
+  <meta property="og:url" content="http://example.com/2020/10/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F00-1/index.html">
+  
+  
+  <meta property="og:img" content="/img/Kaze.png">
+  
+  
+  <meta property="og:img" content="&lt;h1 id=&#34;操作系统–前言01&#34;&gt;&lt;a href=&#34;#操作系统–前言01&#34; class=&#34;headerlink&#34; title=&#34;操作系统–前言01&#34;&gt;&lt;/a&gt;操作系统–前言01&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;可不可以计算一个人程序写得好不好？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;“计算”可以涉及到计算机本源的有趣的知识,比如图灵机、冯诺依曼模型；再比如说 CPU 的构成、程序如何执行、缓存的分级、总线的作用等。&lt;/p&gt;
+&lt;h2 id=&#34;芯片：计算能源&#34;&gt;&lt;a href=&#34;#芯片：计算能源&#34; class=&#34;headerlink&#34; title=&#34;芯片：计算能源&#34;&gt;&lt;/a&gt;芯片：计算能源&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;第一次工业革命出现了蒸汽机，&lt;strong&gt;能源是煤炭&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;第二次工业革命出现了发电机，&lt;strong&gt;能源是电&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;第三次科技革命，革命产物是计算机&lt;/li&gt;
+&lt;li&gt;第四次科技革命，就发生在当下，出现了人工智能，能源是数据。&lt;/li&gt;
+&lt;/ul&gt;">
+  
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:published_time" content="2020-10-12">
+  <meta property="og:article:modified_time" content="2020-10-13">
+  <meta property="og:article:author" content="theme-kaze">
+  
+  
+  <meta property="og:article:tag" content="基础">
+  
+  
+  
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+    var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+      }
+    };
+    setDarkmode();
+  </script>
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  </script>
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  
+  <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+  <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+  <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/main.css">
 
-block content
-    - var tocContent = toc(page.content, {list_number: false})
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
 
-    main.container.is-max-widescreen.content.section.post-page.pt-4.px-4
-        .columns.is-flex-desktop.is-justify-content-center.is-flex-direction-row-reverse
-            .column.is-3.is-hidden-mobile(class= tocContent.length < 1 && 'is-hidden')!= tocContent
-            .column.is-9
-                header.my-4
-                    if page.tags && page.tags.length > 0
-                        each tag in page.tags.toArray()
-                            a(href= url_for(`/tags/${tag.name}`))
-                                i.tag.post-item-tag= tag.name
-                h1.mt-0.mb-1.is-family-serif#postTitle= page.title
-                if page.date
-                    time.has-text-grey(datetime=page.date.toJSON())= date(page.date, date_format)
-                article.mt-2.post-content!= page.content
-                section.jump-container.is-flex.is-justify-content-space-between.my-6
-                    // em is empty placeholder
-                    if page.prev
-                        - var preContent= `${ __('prev') }: ${ page.prev.title }`
-                        a.button.is-small.is-default.py-4(href= url_for(page.prev.path) title= page.prev.title)
-                            i.iconfont.icon-prev.mr-2.has-text-grey
-                            span.has-text-weight-semibold= preContent
-                    else
-                        em
-                    if page.next
-                        - var nextContent= `${ __('next') }: ${ page.next.title }`
-                        a.button.is-small.is-default.py-4(href= url_for(page.next.path) title= page.next.title)
-                            span.has-text-weight-semibold= nextContent
-                            i.iconfont.icon-next.ml-2.has-text-grey
-                if theme.comment_utteranc && theme.comment_utteranc.enable
-                    article.mt-6.comment-container
-                        script(
-                            async
-                            repo= theme.comment_utteranc.repo
-                            src= "https://utteranc.es/client.js"
-                            label= theme.comment_utteranc.label
-                            issue-term= theme.comment_utteranc.issue_term || "pathname"
-                            theme= theme.comment_utteranc.theme || "preferred-color-scheme"
-                        )
-block script
-    script(src= url_for("/js/post.js"))
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+
+  
+  
+<link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <div class="wrapper">
+    
+    <nav class="navbar">
+  <div class="navbar-logo">
+    <span class="navbar-logo-main">
+      
+      <img class="navbar-logo-img" src="/img/Kaze.png" alt="logo">
+      
+      <span class="navbar-logo-dsc">theme-kaze demo</span>
+    </span>
+  </div>
+  <div class="navbar-menu">
+    
+    <a href="/" class="navbar-menu-item">
+    
+    Home
+    
+    </a>
+    
+    <a href="/archives" class="navbar-menu-item">
+    
+    Archive
+    
+    </a>
+    
+    <a href="/tags" class="navbar-menu-item">
+    
+    Tags
+    
+    </a>
+    
+    <a href="/categories" class="navbar-menu-item">
+    
+    Categories
+    
+    </a>
+    
+    <a href="/about" class="navbar-menu-item">
+    
+    About
+    
+    </a>
+    
+    <a href="/links" class="navbar-menu-item">
+    
+    Friends
+    
+    </a>
+    
+    <a class="navbar-menu-item darknavbar" id="dark"><i class="iconfont icon-weather"></i></a>
+    <a class="navbar-menu-item searchnavbar" id="search"><i class="iconfont icon-search" style="font-size: 1.2rem; font-weight: 400;"></i></a>
+  </div>
+</nav>
+    
+    <div id="local-search" style="display: none;">
+      <input class="navbar-menu-item" id="search-input" placeholder="请输入搜索内容...">
+      <div id="search-content"></div>
+    </div>
+    
+    <div class="section-wrap">
+      <div class="container">
+        <div class="columns">
+          <main class="main-column">
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      操作系统01-1-计算
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2020-10-12T14:17:48.000Z">
+      <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+      <span>2020-10-12</span>
+    </time>
+    
+    <span class="dot"></span>
+    
+    <a href="/categories/操作系统/" class="post-meta-link">-操作系统</a>
+    
+    
+    
+    <span class="dot"></span>
+    <span>2.1k words</span>
+    
+  </div>
+  
+  <div class="post-meta post-show-meta" style="margin-top: -10px;">
+    <div style="display: flex; align-items: center;">
+      <i class="iconfont icon-biaoqian" style="margin-right: 2px; font-size: 1.15rem;"></i>
+      
+      
+        <a href="/tags/基础/" class="post-meta-link">基础</a>
+      
+    </div>
+  </div>
+  
+  </header>
+  <div id="section" class="post-content">
+    <h1 id="操作系统–前言01"><a href="#操作系统–前言01" class="headerlink" title="操作系统–前言01"></a>操作系统–前言01</h1><p><strong>可不可以计算一个人程序写得好不好？</strong></p>
+<p>“计算”可以涉及到计算机本源的有趣的知识,比如图灵机、冯诺依曼模型；再比如说 CPU 的构成、程序如何执行、缓存的分级、总线的作用等。</p>
+<h2 id="芯片：计算能源"><a href="#芯片：计算能源" class="headerlink" title="芯片：计算能源"></a>芯片：计算能源</h2><ul>
+<li>第一次工业革命出现了蒸汽机，<strong>能源是煤炭</strong></li>
+<li>第二次工业革命出现了发电机，<strong>能源是电</strong></li>
+<li>第三次科技革命，革命产物是计算机</li>
+<li>第四次科技革命，就发生在当下，出现了人工智能，能源是数据。</li>
+</ul>
+<a id="more"></a>  
+
+<p><strong>第三次科技革命的能源是一种数字能量，本质是计算</strong></p>
+<img src="/2020/10/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F00-1/1.png" alt="1" style="zoom:50%;" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2020/10/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F00-1/1.png" class="lozad post-image">
+
+<p>​        电能供给给芯片，芯片中的一种电子元件晶振（也就是石英晶体）通电后产生震荡，震荡会产生频率稳定的脉冲信号。通常这是一种高频的脉冲信号，每秒可达百万次。然后，我们通过谐振效应发放这个信号，形成<strong>方波</strong>。再通过电子元件调整这种脉冲的频率，把脉冲信号转换为我们需要的频率，这就形成了驱动芯片工作的时钟信号。这种信号的频率，我们也称作芯片的<strong>时钟频率</strong>。最后，时钟信号驱动着芯片工作，就像人体的脉搏一样，每一次脉冲到来，都让芯片的状态发生一次变化，用这种方法，最终存储器中的指令被一行行执行。指令被执行，其实就是数据被计算，这就是我说的<strong>计算能量</strong>。</p>
+<p>芯片普及后,应用到我们生活中大大小小的物件,有了芯片，设备通电后才可以计算，有了计算，这些设备才能够实现更加复杂而精确的功能。</p>
+<h2 id="摩尔定律：计算能力的发展"><a href="#摩尔定律：计算能力的发展" class="headerlink" title="摩尔定律：计算能力的发展"></a>摩尔定律：计算能力的发展</h2><ul>
+<li>第一个芯片:被称作集成电路， 1958 年由美国德州仪器公司的工程师杰克·基尔比发明</li>
+<li>第一台通用计算机:ENIAC 则是在 1946 年诞生于美国陆军弹道研究实验室。</li>
+</ul>
+<p>Intel 的创始人之一摩尔就观察到了这个现象，并提出了<strong>摩尔定律</strong>：当价格不变时，集成电路中可容纳的晶体管数目约每隔 18～24 个月就会增加一倍，性能也将提升一倍。</p>
+<p>这一定律揭示了信息技术发展的速度，但到今天，摩尔定律失效了。因为随着芯片越来越小，在尺寸和散热等方面已经挑战了人类的极限，芯片中无法再放入更多的电子元件了。</p>
+<p>展望未来，计算能力还有更多的增长点，不仅有可以无限提高计算能力的量子计算机，还有利用<strong>光学元件替代晶体元件的光电集成电路。</strong></p>
+<h2 id="可计算理论：图灵机"><a href="#可计算理论：图灵机" class="headerlink" title="可计算理论：图灵机"></a>可计算理论：图灵机</h2><p>生活在数字时代的我们，用着导航、玩着游戏，本能地知道很多问题是可以被计算的，生活在 20 世纪初的科学家们，需要在没有计算机和芯片的时代就想清楚这些问题，并不是一件容易的事情。</p>
+<h2 id="公理化体系和不完备性定理"><a href="#公理化体系和不完备性定理" class="headerlink" title="公理化体系和不完备性定理"></a>公理化体系和不完备性定理</h2><p>因为世界上存在着大量的这种“公说公有理，婆说婆有理”的问题，才让大家认识到计算不能解决所有问题，所以：<strong>计算机能力也是有边界的。哥德尔的不完备性定理，让大家看到了世界上还有大量不可计算的问题。</strong></p>
+<h2 id="图灵机和可计算理论"><a href="#图灵机和可计算理论" class="headerlink" title="图灵机和可计算理论"></a>图灵机和可计算理论</h2><p><strong>哪些问题可以被计算，哪些不可以被计算</strong></p>
+<p>人工智能之父的阿兰·图灵提出了<strong>图灵机</strong>:它是一种不断执行指令的抽象计算机</p>
+<p>图灵发现如果一个问题是可计算的，那么它的解决方案就必须可以被具化成一条条的指令，也就是可以使用图灵机处理。因此，不能使用图灵机处理的问题，都是不可计算的问题。</p>
+<p>比如一个马达的控制程序是可计算的，因为控制过程是可以被抽象成一条条指令的（即可以写程序实现）</p>
+<h2 id="不可计算问题"><a href="#不可计算问题" class="headerlink" title="不可计算问题"></a>不可计算问题</h2><p>当图灵机遇到“素数是不是有无穷多个”？</p>
+<p>如果素数是无穷的，那么我们的计算就是无穷无尽的，所以这样的问题不可计算。</p>
+<h2 id="停机问题"><a href="#停机问题" class="headerlink" title="停机问题"></a>停机问题</h2><p>​        我们也无法实现用一个通用程序去判断另一个程序是否会停止。比如你用运行这段程序来检查一个程序是否会停止时，你会发现不能因为这个程序执行了 1 天，就判定它不会停止，也不能因为这个程序执行了 10 年，从而得出它不会停止的结论。这个问题放到图灵机领域，叫作<strong>停机问题</strong>，我们无法给出一个判断图灵机是否会停机的通用方法，因此停机问题是一个经典的不可计算问题</p>
+<h2 id="计算能力的边界在哪里？"><a href="#计算能力的边界在哪里？" class="headerlink" title="计算能力的边界在哪里？"></a>计算能力的边界在哪里？</h2><ul>
+<li>解决问题往往需要消耗芯片的计算能力，这通常称作时间开销</li>
+<li>另外解决问题还需要消耗内存，称作空间开销。</li>
+</ul>
+<h2 id="问题的分类"><a href="#问题的分类" class="headerlink" title="问题的分类"></a>问题的分类</h2><p>世界上有一类问题，无论我们消耗多少时间和空间也无法解决，这类问题就包括“停机问题”，称作不可计算问题，</p>
+<p>可计算问题   &lt;   不可计算问题</p>
+<h2 id="P-问题-vs-NP-问题"><a href="#P-问题-vs-NP-问题" class="headerlink" title="P 问题 vs NP 问题"></a>P 问题 vs NP 问题</h2><ul>
+<li>有能力解决的问题，统称为多项式时间（ Polynomial time）问题。今天能解决的问题，都是多项式时间的问题，下面记为 P 类型的问题</li>
+<li>问题如果不能在多项式时间内找到答案，我们记为 NP 问题。</li>
+</ul>
+<p>有一部分 NP 问题可以被转化为 P 问题，比如斐波那契数列求第 N 项，可以用缓存、动态规划等方式转化为 O(N) 的问题。但还有更多的 NP 问题，比如一个集合，找出和为零的子集，就没能找到一个合适的转换方法。</p>
+<p><strong>今还有很多问题无法解决，它的数量远远大于我们可以解决的问题，科学家、工程师们也只能望洋兴叹了</strong></p>
+<h2 id="人工智能"><a href="#人工智能" class="headerlink" title="人工智能"></a>人工智能</h2><p>包括停机问题、包括 NP 问题在内的很多问题，虽然不能解决，但可以努力让计算机的解决方案超过人类的水平，<strong>这就是人工智能</strong>。</p>
+<p>AlphaGo 战胜李世石就是利用了基于概率的不完全解法，这种解法已经可以超过部分人类职业选手了，也就是说计算机的解法已经超过了人类。</p>
+<p>人类的强项在于理解和分析，<strong>人有两种思维，归纳和假设</strong>，这两种思维都是计算机无法计算的。机器用概率理解围棋，局部来说机器下得更好，但是<strong>人可以制造机器</strong>，因此，人的感悟更有意义，谈不上孰优孰劣。</p>
+<p><strong>可不可以计算一个人程序写得好不好？</strong></p>
+<p>这个问题可以这样来思考，如果把问题降级，变成：“可不可以计算一个人写的程序会不会停机？”</p>
+<p>这个问题就如同停机问题，无法计算，因此这是一个不可计算的问题。</p>
+<p>但是我们通过</p>
+<p>设立规则，比如</p>
+<ul>
+<li>检查缩进、</li>
+<li>检查函数的复用情况、</li>
+<li>检查类的命名情况</li>
+</ul>
+<p>另外，我们也可以通过 AI 技术，让机器在“程序写得好不好”这个问题的判定能力上，达到人类的水平，通过图灵测试。</p>
+<p>综上，从绝对的对错角度去看，这是一个不可计算问题，因为它没有办法被完全解决；但是从图灵测试层面来看，虽然目前无法解决这个问题，但是我们有理由相信，在未来，计算机对这个问题的解决方案，是可以超过人类的。</p>
+
+  </div>
+  <div>
+  
+  <div class="post-note note-warning copyright" style="margin-top: 42px">
+    <p><span style="font-weight: bold;">作者：</span><a target="_blank" rel="nofollow noopener noreferrer" href="http://example.com/about">theme-kaze</a></p>
+    <p><span style="font-weight: bold;">文章链接：</span><a target="_blank" rel="nofollow noopener noreferrer" href="http://example.com/2020/10/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F00-1/">http://example.com/2020/10/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F00-1/</a></p>
+    <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+  </div>
+  
+  </div>
+</article>
+<div class="nav">
+  
+  <div class="nav-item-prev">
+    <a href="/2020/10/13/操作系统00-2/" class="nav-link">
+      <i class="iconfont icon-left nav-prev-icon"></i>
+      <div>
+        <div class="nav-label">Prev</div>
+        
+        <div class="nav-title">操作系统01-2-程序如何执行 </div>
+        
+      </div>
+    </a>
+  </div>
+  
+  
+  <div class="nav-item-next">
+    <a href="/2020/10/12/算法-常用10种算法003-动态规划算法/" class="nav-link">
+      <div>
+        <div class="nav-label">Next</div>
+        
+        <div class="nav-title">十大算法——动态规划算法 </div>
+        
+      </div>
+      <i class="iconfont icon-right nav-next-icon"></i>
+    </a>
+  </div>
+  
+</div>
+
+<div class="card card-content toc-card" id="mobiletoc">
+  <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>TOC</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%93%E5%89%8D%E8%A8%8001"><span class="toc-text">操作系统–前言01</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8A%AF%E7%89%87%EF%BC%9A%E8%AE%A1%E7%AE%97%E8%83%BD%E6%BA%90"><span class="toc-text">芯片：计算能源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%A9%E5%B0%94%E5%AE%9A%E5%BE%8B%EF%BC%9A%E8%AE%A1%E7%AE%97%E8%83%BD%E5%8A%9B%E7%9A%84%E5%8F%91%E5%B1%95"><span class="toc-text">摩尔定律：计算能力的发展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA%EF%BC%9A%E5%9B%BE%E7%81%B5%E6%9C%BA"><span class="toc-text">可计算理论：图灵机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AC%E7%90%86%E5%8C%96%E4%BD%93%E7%B3%BB%E5%92%8C%E4%B8%8D%E5%AE%8C%E5%A4%87%E6%80%A7%E5%AE%9A%E7%90%86"><span class="toc-text">公理化体系和不完备性定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E7%81%B5%E6%9C%BA%E5%92%8C%E5%8F%AF%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA"><span class="toc-text">图灵机和可计算理论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E5%8F%AF%E8%AE%A1%E7%AE%97%E9%97%AE%E9%A2%98"><span class="toc-text">不可计算问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%81%9C%E6%9C%BA%E9%97%AE%E9%A2%98"><span class="toc-text">停机问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E8%83%BD%E5%8A%9B%E7%9A%84%E8%BE%B9%E7%95%8C%E5%9C%A8%E5%93%AA%E9%87%8C%EF%BC%9F"><span class="toc-text">计算能力的边界在哪里？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-text">问题的分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#P-%E9%97%AE%E9%A2%98-vs-NP-%E9%97%AE%E9%A2%98"><span class="toc-text">P 问题 vs NP 问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD"><span class="toc-text">人工智能</span></a></li></ol></li></ol>
+</div></main>
+          <aside class="left-column">
+            
+            <div class="card card-author">
+              
+<img src="/img/Kaze.png" class="author-img">
+
+<p class="author-name">theme-kaze</p>
+<p class="author-description">designed by theme-kaze</p>
+<div class="author-message">
+  <a class="author-posts-count" href="/archives">
+    <span>138</span>
+    <span>Posts</span>
+  </a>
+  <a class="author-categories-count" href="/categories">
+    <span>10</span>
+    <span>Categories</span>
+  </a>
+  <a class="author-tags-count" href="/tags">
+    <span>62</span>
+    <span>Tags</span>
+  </a>
+</div>
+
+            </div>
+            
+            <div class="sticky-tablet">
+  
+  
+  <article class="display-when-two-columns spacer">
+    <div class="card card-content toc-card">
+      <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>TOC</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%93%E5%89%8D%E8%A8%8001"><span class="toc-text">操作系统–前言01</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8A%AF%E7%89%87%EF%BC%9A%E8%AE%A1%E7%AE%97%E8%83%BD%E6%BA%90"><span class="toc-text">芯片：计算能源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%A9%E5%B0%94%E5%AE%9A%E5%BE%8B%EF%BC%9A%E8%AE%A1%E7%AE%97%E8%83%BD%E5%8A%9B%E7%9A%84%E5%8F%91%E5%B1%95"><span class="toc-text">摩尔定律：计算能力的发展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA%EF%BC%9A%E5%9B%BE%E7%81%B5%E6%9C%BA"><span class="toc-text">可计算理论：图灵机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AC%E7%90%86%E5%8C%96%E4%BD%93%E7%B3%BB%E5%92%8C%E4%B8%8D%E5%AE%8C%E5%A4%87%E6%80%A7%E5%AE%9A%E7%90%86"><span class="toc-text">公理化体系和不完备性定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E7%81%B5%E6%9C%BA%E5%92%8C%E5%8F%AF%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA"><span class="toc-text">图灵机和可计算理论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E5%8F%AF%E8%AE%A1%E7%AE%97%E9%97%AE%E9%A2%98"><span class="toc-text">不可计算问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%81%9C%E6%9C%BA%E9%97%AE%E9%A2%98"><span class="toc-text">停机问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E8%83%BD%E5%8A%9B%E7%9A%84%E8%BE%B9%E7%95%8C%E5%9C%A8%E5%93%AA%E9%87%8C%EF%BC%9F"><span class="toc-text">计算能力的边界在哪里？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-text">问题的分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#P-%E9%97%AE%E9%A2%98-vs-NP-%E9%97%AE%E9%A2%98"><span class="toc-text">P 问题 vs NP 问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD"><span class="toc-text">人工智能</span></a></li></ol></li></ol>
+    </div>
+  </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header"><i class="iconfont icon-fenlei" style="padding-right: 2px;"></i>Categories</div>
+  <div class="categories-list">
+    
+      <a href="/categories/-数据结构和算法-体系">
+        <div class="categories-list-item">
+          -数据结构和算法-体系
+          <span class="categories-list-item-badge">9</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-前端">
+        <div class="categories-list-item">
+          -前端
+          <span class="categories-list-item-badge">10</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-JDBC">
+        <div class="categories-list-item">
+          -JDBC
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-JQuery">
+        <div class="categories-list-item">
+          -JQuery
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-JavaScript">
+        <div class="categories-list-item">
+          -JavaScript
+          <span class="categories-list-item-badge">5</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-算法">
+        <div class="categories-list-item">
+          -算法
+          <span class="categories-list-item-badge">60</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-javase">
+        <div class="categories-list-item">
+          -javase
+          <span class="categories-list-item-badge">31</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-工具栏">
+        <div class="categories-list-item">
+          -工具栏
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-操作系统">
+        <div class="categories-list-item">
+          -操作系统
+          <span class="categories-list-item-badge">8</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-计算机网络">
+        <div class="categories-list-item">
+          -计算机网络
+          <span class="categories-list-item-badge">8</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header"><i class="iconfont icon-biaoqian" style="padding-right: 2px;"></i>hot tags</div>
+  <div class="tags-list">
+    
+    <a href="\tags\LeetCode" title="LeetCode"><div class="tags-list-item">LeetCode</div></a>
+    
+    <a href="\tags\基础" title="基础"><div class="tags-list-item">基础</div></a>
+    
+    <a href="\tags\java" title="java"><div class="tags-list-item">java</div></a>
+    
+    <a href="\tags\面试" title="面试"><div class="tags-list-item">面试</div></a>
+    
+    <a href="\tags\排序" title="排序"><div class="tags-list-item">排序</div></a>
+    
+    <a href="\tags\十大排序" title="十大排序"><div class="tags-list-item">十大排序</div></a>
+    
+    <a href="\tags\数据结构" title="数据结构"><div class="tags-list-item">数据结构</div></a>
+    
+    <a href="\tags\网络" title="网络"><div class="tags-list-item">网络</div></a>
+    
+    <a href="\tags\双指针" title="双指针"><div class="tags-list-item">双指针</div></a>
+    
+    <a href="\tags\二叉树" title="二叉树"><div class="tags-list-item">二叉树</div></a>
+    
+    <a href="\tags\链表" title="链表"><div class="tags-list-item">链表</div></a>
+    
+    <a href="\tags\常用10种算法" title="常用10种算法"><div class="tags-list-item">常用10种算法</div></a>
+    
+    <a href="\tags\链表反转" title="链表反转"><div class="tags-list-item">链表反转</div></a>
+    
+    <a href="\tags\JavaWeb" title="JavaWeb"><div class="tags-list-item">JavaWeb</div></a>
+    
+    <a href="\tags\JavaScript" title="JavaScript"><div class="tags-list-item">JavaScript</div></a>
+    
+    <a href="\tags\CSS" title="CSS"><div class="tags-list-item">CSS</div></a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+          </aside>
+          <aside class="right-column">
+            <div class="sticky-widescreen">
+  
+  
+  <article class="card card-content toc-card">
+    <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>TOC</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%93%E5%89%8D%E8%A8%8001"><span class="toc-text">操作系统–前言01</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8A%AF%E7%89%87%EF%BC%9A%E8%AE%A1%E7%AE%97%E8%83%BD%E6%BA%90"><span class="toc-text">芯片：计算能源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%A9%E5%B0%94%E5%AE%9A%E5%BE%8B%EF%BC%9A%E8%AE%A1%E7%AE%97%E8%83%BD%E5%8A%9B%E7%9A%84%E5%8F%91%E5%B1%95"><span class="toc-text">摩尔定律：计算能力的发展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA%EF%BC%9A%E5%9B%BE%E7%81%B5%E6%9C%BA"><span class="toc-text">可计算理论：图灵机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AC%E7%90%86%E5%8C%96%E4%BD%93%E7%B3%BB%E5%92%8C%E4%B8%8D%E5%AE%8C%E5%A4%87%E6%80%A7%E5%AE%9A%E7%90%86"><span class="toc-text">公理化体系和不完备性定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E7%81%B5%E6%9C%BA%E5%92%8C%E5%8F%AF%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA"><span class="toc-text">图灵机和可计算理论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E5%8F%AF%E8%AE%A1%E7%AE%97%E9%97%AE%E9%A2%98"><span class="toc-text">不可计算问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%81%9C%E6%9C%BA%E9%97%AE%E9%A2%98"><span class="toc-text">停机问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E8%83%BD%E5%8A%9B%E7%9A%84%E8%BE%B9%E7%95%8C%E5%9C%A8%E5%93%AA%E9%87%8C%EF%BC%9F"><span class="toc-text">计算能力的边界在哪里？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-text">问题的分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#P-%E9%97%AE%E9%A2%98-vs-NP-%E9%97%AE%E9%A2%98"><span class="toc-text">P 问题 vs NP 问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD"><span class="toc-text">人工智能</span></a></li></ol></li></ol>
+  </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header"><i class="iconfont icon-wenzhang_huaban" style="padding-right: 2px;"></i>Recent Posts</div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-08</div>
+        <a href="/2021/01/08/JQuery-02/"><div class="recent-posts-item-content">JQuery-02JQuery选择器(重点)</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-07</div>
+        <a href="/2021/01/07/JQuery-01/"><div class="recent-posts-item-content">JQuery-01概论</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-06</div>
+        <a href="/2021/01/06/常用正则/"><div class="recent-posts-item-content">常用正则写法</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-05</div>
+        <a href="/2021/01/05/JS-05/"><div class="recent-posts-item-content">JS-05-JavaScript 正则表达式</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>Copyright ©
+          
+          2020 -
+          
+          2021
+        </span>
+        &nbsp;
+        <a href="/" class="footer-link">theme-kaze demo </a>
+      </div>
+    </div>
+
+    
+    <div class="footer-dsc">
+      
+      Powered by
+      <a href="https://hexo.io/" class="footer-link" target="_blank" rel="nofollow noopener noreferrer">&nbsp;Hexo </a>
+      
+      
+      <span>&nbsp;|&nbsp;</span>
+      
+      
+      Theme -
+      <a href="https://github.com/theme-kaze" class="footer-link" target="_blank"
+        rel="nofollow noopener noreferrer">&nbsp;Kaze</a>
+      
+    </div>
+    
+    
+    
+    
+</footer>
+  <a role="button" id="scrollbutton" class="basebutton"  aria-label="回到顶部">
+  <i class="iconfont icon-arrowleft button-icon"></i>
+</a>
+<a role="button" id="menubutton" class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a role="button" id="popbutton" class="basebutton" aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a role="button" id="darkbutton" class="basebutton darkwidget" aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a role="button" id="searchbutton" class="basebutton searchwidget" aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a>
+
+  
+  
+  
+  <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img');
+    var i;
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a');
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'));
+      wrapper.setAttribute('aria-label', 'illustration');
+      wrapper.style.cssText = 'width: 100%; display: flex; justify-content: center;';
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt;
+      wrapper.dataset.nolink = true;
+      img[i].before(wrapper);
+      wrapper.append(img[i]);
+      var divWrap = document.createElement('div');
+      divWrap.classList.add('gallery');
+      wrapper.before(divWrap);
+      divWrap.append(wrapper);
+    }
+    baguetteBox.run('.gallery');
+  }
+</script>
+<script>loadScript("/js/lib/lightbox/baguetteBox.min.js", addImgLayout)</script>
+  
+  
+  
+<script src="/js/main.js"></script>
+
+  
+  
+  <script>
+    var addLazyload = function () {
+      var observer = lozad('.lozad', {
+        load: function (el) {
+          el.srcset = el.getAttribute('data-src');
+        },
+        loaded: function (el) {
+          el.classList.add('loaded');
+        }
+      });
+      observer.observe();
+    }
+  </script>
+  <script>loadScript("/js/lib/lozad.min.js", addLazyload)</script>
+  
+  
+</body>
+
+</html>

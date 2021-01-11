@@ -1,17 +1,2038 @@
-extends widget/base
+<!DOCTYPE html>
+<html  lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#fff" id="theme-color">
+  <meta name="description" content="当咸鱼,不存在!!!">
+  <link rel="icon" href="/img/Kaze.png">
+  <title>theme-kaze demo</title>
+  
+  
+  <meta property="og:title" content="theme-kaze demo">
+  
+  
+  <meta property="og:url" content="http://example.com/page/3/index.html">
+  
+  
+  <meta property="og:img" content="/img/Kaze.png">
+  
+  
+  <meta property="og:img" content="当咸鱼,不存在!!!">
+  
+  
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+    var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+      }
+    };
+    setDarkmode();
+  </script>
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  </script>
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  
+  <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+  <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+  <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/main.css">
 
-block append head
-    link(rel='stylesheet', href= url_for("/style/widget-post-list.css"))
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
 
-block content
-    include widget/widget-post-list
-        block sidebar
-            include widget/widget-profile
-            if theme.widgets.includes('recent_posts')
-                include widget/widget-recent
-            if theme.widgets.includes('category')
-                include widget/widget-categories
-            if theme.widgets.includes('archive')
-                include widget/widget-archives
-            if theme.widgets.includes('tag')
-                include widget/widget-tag
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <div class="wrapper">
+    
+    <nav class="navbar">
+  <div class="navbar-logo">
+    <span class="navbar-logo-main">
+      
+      <img class="navbar-logo-img" src="/img/Kaze.png" alt="logo">
+      
+      <span class="navbar-logo-dsc">theme-kaze demo</span>
+    </span>
+  </div>
+  <div class="navbar-menu">
+    
+    <a href="/" class="navbar-menu-item">
+    
+    Home
+    
+    </a>
+    
+    <a href="/archives" class="navbar-menu-item">
+    
+    Archive
+    
+    </a>
+    
+    <a href="/tags" class="navbar-menu-item">
+    
+    Tags
+    
+    </a>
+    
+    <a href="/categories" class="navbar-menu-item">
+    
+    Categories
+    
+    </a>
+    
+    <a href="/about" class="navbar-menu-item">
+    
+    About
+    
+    </a>
+    
+    <a href="/links" class="navbar-menu-item">
+    
+    Friends
+    
+    </a>
+    
+    <a class="navbar-menu-item darknavbar" id="dark"><i class="iconfont icon-weather"></i></a>
+    <a class="navbar-menu-item searchnavbar" id="search"><i class="iconfont icon-search" style="font-size: 1.2rem; font-weight: 400;"></i></a>
+  </div>
+</nav>
+    
+    <div id="local-search" style="display: none;">
+      <input class="navbar-menu-item" id="search-input" placeholder="请输入搜索内容...">
+      <div id="search-content"></div>
+    </div>
+    
+    <div class="section-wrap">
+      <div class="container">
+        <div class="columns">
+          <main class="main-column">
+<div class="card">
+  
+  <article class="card card-content">
+    <a href="/2020/12/16/LC121/">
+      <h1 class="post-title">
+        LC121-买卖股票的最佳时机
+      </h1>
+    </a>
+    <div class="card-excerpt">
+      
+      121. 买卖股票的最佳时机难度简单1344
+给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。
+如果你最多只允许完成一笔交易（即买入和卖出一支股票一次），设计一个算法来计算你所能获取的最大利润。
+注意：你不能在买入股票前卖出股票。
+示例 1:
+1234输入: [7,1,5,3,6,4]输出: 5解释: 在第 2 天（股票价格 &amp;#x3D; 1）的时候买入，在第 5 天（股票价格 &amp;#x3D; 6）的时候卖出，最大利润 &amp;#x3D; 6-1 &amp;#x3D; 5 。     注意利润不能是 7-1 &amp;#x3D; 6, 因为卖出价格需要大于买入价格；同时，你不能在买入前卖出股票
+      
+    </div>
+    <div class="card-post-footer">
+      <div class="post-meta">
+        <time datetime="2020-12-16T08:19:12.000Z">
+          <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+          <span>2020-12-16</span>
+        </time>
+        
+        <span class="dot"></span>
+        
+        <a href="categories/算法/" class="post-meta-link">-算法</a>
+        
+        
+      </div>
+      <a href="/2020/12/16/LC121/">Read More </a>
+    </div>
+  </article>
+</div>
+
+<div class="card">
+  
+  <article class="card card-content">
+    <a href="/2020/12/16/java线程02/">
+      <h1 class="post-title">
+        javaSE23-线程同步
+      </h1>
+    </a>
+    <div class="card-excerpt">
+      
+      线程同步并发与并行
+
+并行：多个CPU同时执行多个任务,  比如: 多个人同时做不同的事
+并发: 一个CPU(采用时间片)同时执行多个任务,比如: 秒杀,多个人做同一件事
+
+线程同步:
+
+多个线程同时读写同一份共享资源,可能会引起从图,所以引入线程”同步”机制,即各线程要有先来后到
+
+同步就是排队+锁:
+
+几个线程之间要排队,一个个对共享资源操作,而不是同时进行操作
+为了保证数据在方法中被访问的正确性,在访问时加入锁机制
+
+      
+    </div>
+    <div class="card-post-footer">
+      <div class="post-meta">
+        <time datetime="2020-12-16T00:35:19.000Z">
+          <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+          <span>2020-12-16</span>
+        </time>
+        
+        <span class="dot"></span>
+        
+        <a href="categories/javase/" class="post-meta-link">-javase</a>
+        
+        
+      </div>
+      <a href="/2020/12/16/java%E7%BA%BF%E7%A8%8B02/">Read More </a>
+    </div>
+  </article>
+</div>
+
+<div class="card">
+  
+  <article class="card card-content">
+    <a href="/2020/12/16/java线程01/">
+      <h1 class="post-title">
+        javaSE22-线程
+      </h1>
+    </a>
+    <div class="card-excerpt">
+      
+      java-线程程序,进程,线程程序:是为完成特定任务,用某种语言编写的一组指令的集合,,即指一段静态的代码
+进程:就是正在执行的程序,从windows角度讲,进程是含有内存的资源并安置线程的地方
+线性:可进一步细化为线程,是一个进程内部的最小执行单元(执行任务)
+
+
+线程和进程的关系一个进程可以包含多个线程,一个线程只能属于一个进程,线程不能脱离进程而独立运行
+每一个进程至少包含一个线程(称为主线程): 在主线程中开始执行程序,java程序的入口main() 方法就是在主线程中被执行
+在主线程中可以创建并启动其他的线程
+一个进程内的所有线程共享该进程的内存资源
+      
+    </div>
+    <div class="card-post-footer">
+      <div class="post-meta">
+        <time datetime="2020-12-16T00:35:10.000Z">
+          <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+          <span>2020-12-16</span>
+        </time>
+        
+        <span class="dot"></span>
+        
+        <a href="categories/javase/" class="post-meta-link">-javase</a>
+        
+        
+      </div>
+      <a href="/2020/12/16/java%E7%BA%BF%E7%A8%8B01/">Read More </a>
+    </div>
+  </article>
+</div>
+
+<div class="card">
+  
+  <article class="card card-content">
+    <a href="/2020/12/15/LC682/">
+      <h1 class="post-title">
+        LC682-棒球比赛
+      </h1>
+    </a>
+    <div class="card-excerpt">
+      
+      682. 棒球比赛难度简单158
+你现在是一场采特殊赛制棒球比赛的记录员。这场比赛由若干回合组成，过去几回合的得分可能会影响以后几回合的得分。
+输入：ops = [“5”,”2”,”C”,”D”,”+”]输出：30解释：“5” - 记录加 5 ，记录现在是 [5]“2” - 记录加 2 ，记录现在是 [5, 2]“C” - 使前一次得分的记录无效并将其移除，记录现在是 [5].“D” - 记录加 2 * 5 = 10 ，记录现在是 [5, 10].“+” - 记录加 5 + 10 = 15 ，记录现在是 [5, 10, 15].所有得分的总和 5 + 10 + 15 = 30
+      
+    </div>
+    <div class="card-post-footer">
+      <div class="post-meta">
+        <time datetime="2020-12-15T08:05:22.000Z">
+          <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+          <span>2020-12-15</span>
+        </time>
+        
+        <span class="dot"></span>
+        
+        <a href="categories/算法/" class="post-meta-link">-算法</a>
+        
+        
+      </div>
+      <a href="/2020/12/15/LC682/">Read More </a>
+    </div>
+  </article>
+</div>
+
+<div class="card">
+  
+  <article class="card card-content">
+    <a href="/2020/12/13/LC049/">
+      <h1 class="post-title">
+        LC049-字母异位词分组
+      </h1>
+    </a>
+    <div class="card-excerpt">
+      
+      49. 字母异位词分组给定一个字符串数组，将字母异位词组合在一起。字母异位词指字母相同，但排列不同的字符串。
+示例:
+1234567输入: [&amp;quot;eat&amp;quot;, &amp;quot;tea&amp;quot;, &amp;quot;tan&amp;quot;, &amp;quot;ate&amp;quot;, &amp;quot;nat&amp;quot;, &amp;quot;bat&amp;quot;]输出:[  [&amp;quot;ate&amp;quot;,&amp;quot;eat&amp;quot;,&amp;quot;tea&amp;quot;],  [&amp;quot;nat&amp;quot;,&amp;quot;tan&amp;quot;],  [&amp;quot;bat&amp;quot;]]
+
+
+
+
+
+
+
+1.先排序再判断
+字母异位词就是两个字符串中的字母都是一样的，只不过顺序被打乱了
+找出来他们进行排序
+利用map进行,判断,储存HashMap&amp;lt;String, List&amp;gt; map = new HashMap&amp;lt;&amp;gt;();
+输出 map的value的值
+
+      
+    </div>
+    <div class="card-post-footer">
+      <div class="post-meta">
+        <time datetime="2020-12-13T10:05:41.000Z">
+          <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+          <span>2020-12-13</span>
+        </time>
+        
+        <span class="dot"></span>
+        
+        <a href="categories/算法/" class="post-meta-link">-算法</a>
+        
+        
+      </div>
+      <a href="/2020/12/13/LC049/">Read More </a>
+    </div>
+  </article>
+</div>
+
+<div class="card">
+  
+  <article class="card card-content">
+    <a href="/2020/12/13/HashTableJAVA实现/">
+      <h1 class="post-title">
+        hashTable(哈希表){JAVA实现}
+      </h1>
+    </a>
+    <div class="card-excerpt">
+      
+      hashTable(哈希表)哈希表的介绍哈希表(Hashtable 也叫散列表) 是根据关键码值(key value) 而直接进行访问的数据结构,也就是说他是用过关键码值映射到表中一个位置来访问记录,以加快访问进度,这个映射函数叫做散列函数， 存放记录的数组叫做散列表  
+详细hash请看
+      
+    </div>
+    <div class="card-post-footer">
+      <div class="post-meta">
+        <time datetime="2020-12-13T08:09:51.000Z">
+          <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+          <span>2020-12-13</span>
+        </time>
+        
+        <span class="dot"></span>
+        
+        <a href="categories/数据结构和算法-体系/" class="post-meta-link">-数据结构和算法-体系</a>
+        
+        
+      </div>
+      <a href="/2020/12/13/HashTableJAVA%E5%AE%9E%E7%8E%B0/">Read More </a>
+    </div>
+  </article>
+</div>
+
+<div class="card">
+  
+  <article class="card card-content">
+    <a href="/2020/12/12/快排总汇Java/">
+      <h1 class="post-title">
+        快排总汇Java
+      </h1>
+    </a>
+    <div class="card-excerpt">
+      
+      快速排序前言优秀快排写法
+此文章python写法快速排序使用分治法（Divide and conquer）策略来把一个序列（list）分为两个子序列（sub-lists）。步骤如下
+
+从数列中挑出一个元素,称为基准(pivot)
+
+分区(partition):遍历数列,比基数小的元素放在左边,比他大的放在右边
+于是此次分区结束后，该基准就处于数列的中间位置，其左边的数全比它小（称为小与子序列），右边的数全比他大（称为大于子序列）。这样一次排序就造成了整体上的有序化。
+
+子数列排序:将小于子数列和大于子序列分别继续快速排序
+
+递归到最底部,数列是零或一,至此,递归结束
+
+
+      
+    </div>
+    <div class="card-post-footer">
+      <div class="post-meta">
+        <time datetime="2020-12-12T11:55:52.000Z">
+          <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+          <span>2020-12-12</span>
+        </time>
+        
+        <span class="dot"></span>
+        
+        <a href="categories/算法/" class="post-meta-link">-算法</a>
+        
+        
+      </div>
+      <a href="/2020/12/12/%E5%BF%AB%E6%8E%92%E6%80%BB%E6%B1%87Java/">Read More </a>
+    </div>
+  </article>
+</div>
+
+<div class="card">
+  
+  <article class="card card-content">
+    <a href="/2020/12/12/LC239/">
+      <h1 class="post-title">
+        LC239-滑动窗口最大值
+      </h1>
+    </a>
+    <div class="card-excerpt">
+      
+      239. 滑动窗口最大值给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。
+返回滑动窗口中的最大值。
+进阶：
+你能在线性时间复杂度内解决此题吗？
+示例:
+      
+    </div>
+    <div class="card-post-footer">
+      <div class="post-meta">
+        <time datetime="2020-12-12T11:50:26.000Z">
+          <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+          <span>2020-12-12</span>
+        </time>
+        
+        <span class="dot"></span>
+        
+        <a href="categories/算法/" class="post-meta-link">-算法</a>
+        
+        
+      </div>
+      <a href="/2020/12/12/LC239/">Read More </a>
+    </div>
+  </article>
+</div>
+
+<div class="card">
+  
+  <article class="card card-content">
+    <a href="/2020/12/11/LC242/">
+      <h1 class="post-title">
+        LC242-有效的字母异位词
+      </h1>
+    </a>
+    <div class="card-excerpt">
+      
+      242. 有效的字母异位词难度简单314
+给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的字母异位词。
+示例 1:
+12输入: s &amp;#x3D; &amp;quot;anagram&amp;quot;, t &amp;#x3D; &amp;quot;nagaram&amp;quot;输出: true
+
+示例 2:
+12输入: s &amp;#x3D; &amp;quot;rat&amp;quot;, t &amp;#x3D; &amp;quot;car&amp;quot;输出: false
+
+
+
+
+
+解法一:
+将其转成数组之后,排序,作比较
+      
+    </div>
+    <div class="card-post-footer">
+      <div class="post-meta">
+        <time datetime="2020-12-11T11:50:36.000Z">
+          <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+          <span>2020-12-11</span>
+        </time>
+        
+        <span class="dot"></span>
+        
+        <a href="categories/算法/" class="post-meta-link">-算法</a>
+        
+        
+      </div>
+      <a href="/2020/12/11/LC242/">Read More </a>
+    </div>
+  </article>
+</div>
+
+<div class="card">
+  
+  <article class="card card-content">
+    <a href="/2020/12/10/java查找方法/">
+      <h1 class="post-title">
+        java查找方法
+      </h1>
+    </a>
+    <div class="card-excerpt">
+      
+      查找方法:在Java常用的四种查找方法
+
+顺序查找
+二分查找
+插值查找
+斐波那契查找  
+
+顺序查找无序,有序均可利用循环依次进行遍历进行查找
+二分查找
+      
+    </div>
+    <div class="card-post-footer">
+      <div class="post-meta">
+        <time datetime="2020-12-10T03:29:47.000Z">
+          <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+          <span>2020-12-10</span>
+        </time>
+        
+        <span class="dot"></span>
+        
+        <a href="categories/算法/" class="post-meta-link">-算法</a>
+        
+        
+      </div>
+      <a href="/2020/12/10/java%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95/">Read More </a>
+    </div>
+  </article>
+</div>
+
+
+<div class="nav">
+  
+  <div class="nav-item-prev">
+    <a href="/page/2/" class="nav-link">
+      <i class="iconfont icon-left nav-prev-icon"></i>
+      <div>
+        <div class="nav-label">Prev</div>
+        
+      </div>
+    </a>
+  </div>
+  
+  
+  <div class="nav-item-next">
+    <a href="/page/4/" class="nav-link">
+      <div>
+        <div class="nav-label">Next</div>
+        
+      </div>
+      <i class="iconfont icon-right nav-next-icon"></i>
+    </a>
+  </div>
+  
+</div>
+</main>
+          <aside class="left-column">
+            
+            <div class="card card-author">
+              
+<img src="/img/Kaze.png" class="author-img">
+
+<p class="author-name">theme-kaze</p>
+<p class="author-description">designed by theme-kaze</p>
+<div class="author-message">
+  <a class="author-posts-count" href="/archives">
+    <span>138</span>
+    <span>Posts</span>
+  </a>
+  <a class="author-categories-count" href="/categories">
+    <span>10</span>
+    <span>Categories</span>
+  </a>
+  <a class="author-tags-count" href="/tags">
+    <span>62</span>
+    <span>Tags</span>
+  </a>
+</div>
+
+            </div>
+            
+            <div class="sticky-tablet">
+  
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header"><i class="iconfont icon-fenlei" style="padding-right: 2px;"></i>Categories</div>
+  <div class="categories-list">
+    
+      <a href="/categories/-数据结构和算法-体系">
+        <div class="categories-list-item">
+          -数据结构和算法-体系
+          <span class="categories-list-item-badge">9</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-前端">
+        <div class="categories-list-item">
+          -前端
+          <span class="categories-list-item-badge">10</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-JDBC">
+        <div class="categories-list-item">
+          -JDBC
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-JQuery">
+        <div class="categories-list-item">
+          -JQuery
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-JavaScript">
+        <div class="categories-list-item">
+          -JavaScript
+          <span class="categories-list-item-badge">5</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-算法">
+        <div class="categories-list-item">
+          -算法
+          <span class="categories-list-item-badge">60</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-javase">
+        <div class="categories-list-item">
+          -javase
+          <span class="categories-list-item-badge">31</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-工具栏">
+        <div class="categories-list-item">
+          -工具栏
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-操作系统">
+        <div class="categories-list-item">
+          -操作系统
+          <span class="categories-list-item-badge">8</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-计算机网络">
+        <div class="categories-list-item">
+          -计算机网络
+          <span class="categories-list-item-badge">8</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header"><i class="iconfont icon-biaoqian" style="padding-right: 2px;"></i>hot tags</div>
+  <div class="tags-list">
+    
+    <a href="\tags\LeetCode" title="LeetCode"><div class="tags-list-item">LeetCode</div></a>
+    
+    <a href="\tags\基础" title="基础"><div class="tags-list-item">基础</div></a>
+    
+    <a href="\tags\java" title="java"><div class="tags-list-item">java</div></a>
+    
+    <a href="\tags\面试" title="面试"><div class="tags-list-item">面试</div></a>
+    
+    <a href="\tags\排序" title="排序"><div class="tags-list-item">排序</div></a>
+    
+    <a href="\tags\十大排序" title="十大排序"><div class="tags-list-item">十大排序</div></a>
+    
+    <a href="\tags\数据结构" title="数据结构"><div class="tags-list-item">数据结构</div></a>
+    
+    <a href="\tags\网络" title="网络"><div class="tags-list-item">网络</div></a>
+    
+    <a href="\tags\双指针" title="双指针"><div class="tags-list-item">双指针</div></a>
+    
+    <a href="\tags\二叉树" title="二叉树"><div class="tags-list-item">二叉树</div></a>
+    
+    <a href="\tags\链表" title="链表"><div class="tags-list-item">链表</div></a>
+    
+    <a href="\tags\常用10种算法" title="常用10种算法"><div class="tags-list-item">常用10种算法</div></a>
+    
+    <a href="\tags\链表反转" title="链表反转"><div class="tags-list-item">链表反转</div></a>
+    
+    <a href="\tags\JavaWeb" title="JavaWeb"><div class="tags-list-item">JavaWeb</div></a>
+    
+    <a href="\tags\JavaScript" title="JavaScript"><div class="tags-list-item">JavaScript</div></a>
+    
+    <a href="\tags\CSS" title="CSS"><div class="tags-list-item">CSS</div></a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+  <article class="card card-content widescreen-archive archive-widget">
+    <div class="archive-card">
+  <div class="archive-card-header"><i class="iconfont icon-wodebaobiao" style="padding-right: 2px;"></i>Archive</div>
+  <div class="archive-card-list">
+    
+    
+    
+      
+        
+        
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a href="/archives/2021" class="archive-card-list-item">
+              2021
+              <span class="archive-card-list-item-badge">8</span>
+          </a>
+        
+        
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a href="/archives/2020" class="archive-card-list-item">
+              2020
+              <span class="archive-card-list-item-badge">129</span>
+          </a>
+        
+        
+        
+      
+    
+    
+      <a href="/archives/2017" class="archive-card-list-item">
+          2017
+          <span class="archive-card-list-item-badge">1</span>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+</div>
+          </aside>
+          <aside class="right-column">
+            <div class="sticky-widescreen">
+  
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header"><i class="iconfont icon-wenzhang_huaban" style="padding-right: 2px;"></i>Recent Posts</div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-08</div>
+        <a href="/2021/01/08/JQuery-02/"><div class="recent-posts-item-content">JQuery-02JQuery选择器(重点)</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-07</div>
+        <a href="/2021/01/07/JQuery-01/"><div class="recent-posts-item-content">JQuery-01概论</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-06</div>
+        <a href="/2021/01/06/常用正则/"><div class="recent-posts-item-content">常用正则写法</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-05</div>
+        <a href="/2021/01/05/JS-05/"><div class="recent-posts-item-content">JS-05-JavaScript 正则表达式</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+  <article class="card card-content">
+    <div class="archive-card">
+  <div class="archive-card-header"><i class="iconfont icon-wodebaobiao" style="padding-right: 2px;"></i>Archive</div>
+  <div class="archive-card-list">
+    
+    
+    
+      
+        
+        
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a href="/archives/2021" class="archive-card-list-item">
+              2021
+              <span class="archive-card-list-item-badge">8</span>
+          </a>
+        
+        
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a href="/archives/2020" class="archive-card-list-item">
+              2020
+              <span class="archive-card-list-item-badge">129</span>
+          </a>
+        
+        
+        
+      
+    
+    
+      <a href="/archives/2017" class="archive-card-list-item">
+          2017
+          <span class="archive-card-list-item-badge">1</span>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+</div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>Copyright ©
+          
+          2020 -
+          
+          2021
+        </span>
+        &nbsp;
+        <a href="/" class="footer-link">theme-kaze demo </a>
+      </div>
+    </div>
+
+    
+    <div class="footer-dsc">
+      
+      Powered by
+      <a href="https://hexo.io/" class="footer-link" target="_blank" rel="nofollow noopener noreferrer">&nbsp;Hexo </a>
+      
+      
+      <span>&nbsp;|&nbsp;</span>
+      
+      
+      Theme -
+      <a href="https://github.com/theme-kaze" class="footer-link" target="_blank"
+        rel="nofollow noopener noreferrer">&nbsp;Kaze</a>
+      
+    </div>
+    
+    
+    
+    
+</footer>
+  <a role="button" id="scrollbutton" class="basebutton"  aria-label="回到顶部">
+  <i class="iconfont icon-arrowleft button-icon"></i>
+</a>
+<a role="button" id="menubutton" class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a role="button" id="popbutton" class="basebutton" aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a role="button" id="darkbutton" class="basebutton darkwidget" aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a role="button" id="searchbutton" class="basebutton searchwidget" aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a>
+
+  
+  
+  
+  
+  
+<script src="/js/main.js"></script>
+
+  
+  
+  <script>
+    var addLazyload = function () {
+      var observer = lozad('.lozad', {
+        load: function (el) {
+          el.srcset = el.getAttribute('data-src');
+        },
+        loaded: function (el) {
+          el.classList.add('loaded');
+        }
+      });
+      observer.observe();
+    }
+  </script>
+  <script>loadScript("/js/lib/lozad.min.js", addLazyload)</script>
+  
+  
+</body>
+
+</html>

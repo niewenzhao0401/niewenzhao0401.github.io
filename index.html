@@ -1,17 +1,2030 @@
-extends widget/base
+<!DOCTYPE html>
+<html  lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#fff" id="theme-color">
+  <meta name="description" content="当咸鱼,不存在!!!">
+  <link rel="icon" href="/img/Kaze.png">
+  <title>theme-kaze demo</title>
+  
+  
+  <meta property="og:title" content="theme-kaze demo">
+  
+  
+  <meta property="og:url" content="http://example.com/index.html">
+  
+  
+  <meta property="og:img" content="/img/Kaze.png">
+  
+  
+  <meta property="og:img" content="当咸鱼,不存在!!!">
+  
+  
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+    var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+      }
+    };
+    setDarkmode();
+  </script>
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  </script>
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  
+  <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+  <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+  <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/main.css">
 
-block append head
-    link(rel='stylesheet', href= url_for("/style/widget-post-list.css"))
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
 
-block content
-    include widget/widget-post-list
-        block sidebar
-            include widget/widget-profile
-            if theme.widgets.includes('recent_posts')
-                include widget/widget-recent
-            if theme.widgets.includes('category')
-                include widget/widget-categories
-            if theme.widgets.includes('archive')
-                include widget/widget-archives
-            if theme.widgets.includes('tag')
-                include widget/widget-tag
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <div class="wrapper">
+    
+    <nav class="navbar">
+  <div class="navbar-logo">
+    <span class="navbar-logo-main">
+      
+      <img class="navbar-logo-img" src="/img/Kaze.png" alt="logo">
+      
+      <span class="navbar-logo-dsc">theme-kaze demo</span>
+    </span>
+  </div>
+  <div class="navbar-menu">
+    
+    <a href="/" class="navbar-menu-item">
+    
+    Home
+    
+    </a>
+    
+    <a href="/archives" class="navbar-menu-item">
+    
+    Archive
+    
+    </a>
+    
+    <a href="/tags" class="navbar-menu-item">
+    
+    Tags
+    
+    </a>
+    
+    <a href="/categories" class="navbar-menu-item">
+    
+    Categories
+    
+    </a>
+    
+    <a href="/about" class="navbar-menu-item">
+    
+    About
+    
+    </a>
+    
+    <a href="/links" class="navbar-menu-item">
+    
+    Friends
+    
+    </a>
+    
+    <a class="navbar-menu-item darknavbar" id="dark"><i class="iconfont icon-weather"></i></a>
+    <a class="navbar-menu-item searchnavbar" id="search"><i class="iconfont icon-search" style="font-size: 1.2rem; font-weight: 400;"></i></a>
+  </div>
+</nav>
+    
+    <div id="local-search" style="display: none;">
+      <input class="navbar-menu-item" id="search-input" placeholder="请输入搜索内容...">
+      <div id="search-content"></div>
+    </div>
+    
+    <div class="section-wrap">
+      <div class="container">
+        <div class="columns">
+          <main class="main-column">
+<div class="card">
+  
+  <article class="card card-content">
+    <a href="/2021/01/08/JQuery-02/">
+      <h1 class="post-title">
+        JQuery-02JQuery选择器(重点)
+      </h1>
+    </a>
+    <div class="card-excerpt">
+      
+      JQuery选择器(重点)基本选择器(重点)
+#ID             选择器: 根据id查找标签对象
+.class         选择器: 根据class查找标签对象
+element     选择器: 根据标签名查找标签对象
+*                  选择器 表示任意的,所有元素
+selector1，selector2 组合选择器：合并选择器 1，选择器 2 的结果并返回
+
+层级选择器(重点)
+      
+    </div>
+    <div class="card-post-footer">
+      <div class="post-meta">
+        <time datetime="2021-01-08T11:15:50.000Z">
+          <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+          <span>2021-01-08</span>
+        </time>
+        
+        <span class="dot"></span>
+        
+        <a href="categories/JQuery/" class="post-meta-link">-JQuery</a>
+        
+        
+      </div>
+      <a href="/2021/01/08/JQuery-02/">Read More </a>
+    </div>
+  </article>
+</div>
+
+<div class="card">
+  
+  <article class="card card-content">
+    <a href="/2021/01/07/JQuery-01/">
+      <h1 class="post-title">
+        JQuery-01概论
+      </h1>
+    </a>
+    <div class="card-excerpt">
+      
+      JQuery什么是JQuery
+
+顾名思义就是JavaScript和查询(Query),它就是辅助JavaScript开发的JS类库
+
+jQuery 核心思想
+
+核心思想:写得少,做的等多,实现了很多浏览器兼容的问题
+
+jQuery 流行程度  
+
+有超过 55%在使用jQuery  
+
+jQuery 好处
+
+jQuery开源,免费,jQuery语法设计可以使得开发更加便捷,例如操作文档对象,选择DOM元素,制作动画效果.时间处理,使用Ajax以及其他功能
+
+使用 jQuery 给一个按钮绑定单击事件
+      
+    </div>
+    <div class="card-post-footer">
+      <div class="post-meta">
+        <time datetime="2021-01-07T11:15:50.000Z">
+          <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+          <span>2021-01-07</span>
+        </time>
+        
+        <span class="dot"></span>
+        
+        <a href="categories/JQuery/" class="post-meta-link">-JQuery</a>
+        
+        
+      </div>
+      <a href="/2021/01/07/JQuery-01/">Read More </a>
+    </div>
+  </article>
+</div>
+
+<div class="card">
+  
+  <article class="card card-content">
+    <a href="/2021/01/06/常用正则/">
+      <h1 class="post-title">
+        常用正则写法
+      </h1>
+    </a>
+    <div class="card-excerpt">
+      
+      常用正则规则
+      
+    </div>
+    <div class="card-post-footer">
+      <div class="post-meta">
+        <time datetime="2021-01-06T11:15:50.000Z">
+          <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+          <span>2021-01-06</span>
+        </time>
+        
+        <span class="dot"></span>
+        
+        <a href="categories/工具栏/" class="post-meta-link">-工具栏</a>
+        
+        
+      </div>
+      <a href="/2021/01/06/%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99/">Read More </a>
+    </div>
+  </article>
+</div>
+
+<div class="card">
+  
+  <article class="card card-content">
+    <a href="/2021/01/05/JS-05/">
+      <h1 class="post-title">
+        JS-05-JavaScript 正则表达式
+      </h1>
+    </a>
+    <div class="card-excerpt">
+      
+      JavaScript 正则表达式
+\d 匹配数字[4-9] 控制区间[4567] 只能匹配出现数字的一次X? 一次或者一次也没有X* 零次或者多次X+ 一次或者多次[即不能为空]
+
+//表示次数X{n] 恰好n次X{n,} 至少n次x{n,m} 至少n次,最多m次
+
+$ X  字符串必须以结尾
+
+^a 字符串必须以a打头
+
+
+      
+    </div>
+    <div class="card-post-footer">
+      <div class="post-meta">
+        <time datetime="2021-01-05T11:15:50.000Z">
+          <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+          <span>2021-01-05</span>
+        </time>
+        
+        <span class="dot"></span>
+        
+        <a href="categories/JavaScript/" class="post-meta-link">-JavaScript</a>
+        
+        
+      </div>
+      <a href="/2021/01/05/JS-05/">Read More </a>
+    </div>
+  </article>
+</div>
+
+<div class="card">
+  
+  <article class="card card-content">
+    <a href="/2021/01/04/JS-04/">
+      <h1 class="post-title">
+        JS-04-JavaScript DOM模型
+      </h1>
+    </a>
+    <div class="card-excerpt">
+      
+      DOM模型DOM全称是 Document Object Model  文档对象模型
+
+就是把文档中的标签,属性,文本,转型成为对象来管理
+
+Document对象的理解
+Document它管理了所有的HTML文档内容
+
+Document它是一种树形结构文档,有层级关系
+
+把所有的标签都对象化
+
+可以通过document访问所有的标签对象
+
+
+      
+    </div>
+    <div class="card-post-footer">
+      <div class="post-meta">
+        <time datetime="2021-01-03T16:25:41.000Z">
+          <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+          <span>2021-01-04</span>
+        </time>
+        
+        <span class="dot"></span>
+        
+        <a href="categories/JavaScript/" class="post-meta-link">-JavaScript</a>
+        
+        
+      </div>
+      <a href="/2021/01/04/JS-04/">Read More </a>
+    </div>
+  </article>
+</div>
+
+<div class="card">
+  
+  <article class="card card-content">
+    <a href="/2021/01/03/JS-03/">
+      <h1 class="post-title">
+        JS-03-JavaScript 事件
+      </h1>
+    </a>
+    <div class="card-excerpt">
+      
+      JavaScript中的事件什么是事件?事件是电脑输入设备与页面进行交互的响应.我们称之为事件
+常用的事件:
+onload 加载完成事件   页面加载完成之后,常用于做页面JS代码初始化操作
+onclick 单击事件         常用于按钮的点击相应操作
+onblur 失去焦点事件   常用于输入框失去焦点后验证其输入内容是否合法
+onchange 内容发生事件   常用于下拉列表和输入框类容发生改变后操作
+onsubmit 表单提交事件   常用于表单提交前,验证所有表单项是否合法
+
+事件的注册静态注册和动态注册两种
+      
+    </div>
+    <div class="card-post-footer">
+      <div class="post-meta">
+        <time datetime="2021-01-02T16:25:41.000Z">
+          <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+          <span>2021-01-03</span>
+        </time>
+        
+        <span class="dot"></span>
+        
+        <a href="categories/JavaScript/" class="post-meta-link">-JavaScript</a>
+        
+        
+      </div>
+      <a href="/2021/01/03/JS-03/">Read More </a>
+    </div>
+  </article>
+</div>
+
+<div class="card">
+  
+  <article class="card card-content">
+    <a href="/2021/01/02/JS-02/">
+      <h1 class="post-title">
+        JS-02-JavaScript 函数
+      </h1>
+    </a>
+    <div class="card-excerpt">
+      
+      JavaScript 函数函数的二种定义方式第一种，可以使用function 关键字来定义函数
+使用的格式如下: 
+123function 函数名(形参列表)&amp;#123; 函数体 &amp;#125;
+
+
+在 JavaScript 语言中，如何定义带有返回值的函数？ 
+只需要在函数体内直接使用 return 语句返回值即可！
+
+      
+    </div>
+    <div class="card-post-footer">
+      <div class="post-meta">
+        <time datetime="2021-01-01T16:25:41.000Z">
+          <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+          <span>2021-01-02</span>
+        </time>
+        
+        <span class="dot"></span>
+        
+        <a href="categories/JavaScript/" class="post-meta-link">-JavaScript</a>
+        
+        
+      </div>
+      <a href="/2021/01/02/JS-02/">Read More </a>
+    </div>
+  </article>
+</div>
+
+<div class="card">
+  
+  <article class="card card-content">
+    <a href="/2021/01/01/JS-01/">
+      <h1 class="post-title">
+        JS-01-JavaScript 语言入门
+      </h1>
+    </a>
+    <div class="card-excerpt">
+      
+      JavaScript 语言入门JavaScript 介绍Javascript 语言诞生主要是完成页面的数据验证。 因此它运行在客户端， 需要运行浏览器来解析执行 JavaScript 代码。  
+JS 是 Netscape 网景公司的产品， 最早取名为 LiveScript;为了吸引更多 java 程序员。 更名为 JavaScript。  
+JS 是弱类型， Java 是强类型。  
+特点:
+
+交互性（它可以做的就是信息的动态交互） 
+安全性 （不允许直接访问本地硬盘）
+跨平台性 （只要是可以解释 JS 的浏览器都可以执行，和平台无关）
+
+      
+    </div>
+    <div class="card-post-footer">
+      <div class="post-meta">
+        <time datetime="2020-12-31T16:25:41.000Z">
+          <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+          <span>2021-01-01</span>
+        </time>
+        
+        <span class="dot"></span>
+        
+        <a href="categories/JavaScript/" class="post-meta-link">-JavaScript</a>
+        
+        
+      </div>
+      <a href="/2021/01/01/JS-01/">Read More </a>
+    </div>
+  </article>
+</div>
+
+<div class="card">
+  
+  <article class="card card-content">
+    <a href="/2020/12/30/LC590/">
+      <h1 class="post-title">
+        LC590-N叉树的后序遍历
+      </h1>
+    </a>
+    <div class="card-excerpt">
+      
+      590. N叉树的后序遍历难度简单119
+给定一个 N 叉树，返回其节点值的后序遍历。
+例如，给定一个 3叉树 :
+
+
+
+
+返回其后序遍历: [5,6,3,2,4,1]
+递归
+      
+    </div>
+    <div class="card-post-footer">
+      <div class="post-meta">
+        <time datetime="2020-12-30T08:19:12.000Z">
+          <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+          <span>2020-12-30</span>
+        </time>
+        
+        <span class="dot"></span>
+        
+        <a href="categories/算法/" class="post-meta-link">-算法</a>
+        
+        
+      </div>
+      <a href="/2020/12/30/LC590/">Read More </a>
+    </div>
+  </article>
+</div>
+
+<div class="card">
+  
+  <article class="card card-content">
+    <a href="/2020/12/29/LC589/">
+      <h1 class="post-title">
+        LC589-N叉树的前序遍历
+      </h1>
+    </a>
+    <div class="card-excerpt">
+      
+      589. N叉树的前序遍历难度简单128给定一个 N 叉树，返回其节点值的前序遍历。
+例如，给定一个 3叉树 :
+
+
+
+
+返回其前序遍历: [1,3,5,6,2,4]。
+递归
+      
+    </div>
+    <div class="card-post-footer">
+      <div class="post-meta">
+        <time datetime="2020-12-29T08:19:12.000Z">
+          <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+          <span>2020-12-29</span>
+        </time>
+        
+        <span class="dot"></span>
+        
+        <a href="categories/算法/" class="post-meta-link">-算法</a>
+        
+        
+      </div>
+      <a href="/2020/12/29/LC589/">Read More </a>
+    </div>
+  </article>
+</div>
+
+
+<div class="nav">
+  
+  
+  <div class="nav-item-next">
+    <a href="/page/2/" class="nav-link">
+      <div>
+        <div class="nav-label">Next</div>
+        
+      </div>
+      <i class="iconfont icon-right nav-next-icon"></i>
+    </a>
+  </div>
+  
+</div>
+</main>
+          <aside class="left-column">
+            
+            <div class="card card-author">
+              
+<img src="/img/Kaze.png" class="author-img">
+
+<p class="author-name">theme-kaze</p>
+<p class="author-description">designed by theme-kaze</p>
+<div class="author-message">
+  <a class="author-posts-count" href="/archives">
+    <span>138</span>
+    <span>Posts</span>
+  </a>
+  <a class="author-categories-count" href="/categories">
+    <span>10</span>
+    <span>Categories</span>
+  </a>
+  <a class="author-tags-count" href="/tags">
+    <span>62</span>
+    <span>Tags</span>
+  </a>
+</div>
+
+            </div>
+            
+            <div class="sticky-tablet">
+  
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header"><i class="iconfont icon-fenlei" style="padding-right: 2px;"></i>Categories</div>
+  <div class="categories-list">
+    
+      <a href="/categories/-数据结构和算法-体系">
+        <div class="categories-list-item">
+          -数据结构和算法-体系
+          <span class="categories-list-item-badge">9</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-前端">
+        <div class="categories-list-item">
+          -前端
+          <span class="categories-list-item-badge">10</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-JDBC">
+        <div class="categories-list-item">
+          -JDBC
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-JQuery">
+        <div class="categories-list-item">
+          -JQuery
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-JavaScript">
+        <div class="categories-list-item">
+          -JavaScript
+          <span class="categories-list-item-badge">5</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-算法">
+        <div class="categories-list-item">
+          -算法
+          <span class="categories-list-item-badge">60</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-javase">
+        <div class="categories-list-item">
+          -javase
+          <span class="categories-list-item-badge">31</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-工具栏">
+        <div class="categories-list-item">
+          -工具栏
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-操作系统">
+        <div class="categories-list-item">
+          -操作系统
+          <span class="categories-list-item-badge">8</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-计算机网络">
+        <div class="categories-list-item">
+          -计算机网络
+          <span class="categories-list-item-badge">8</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header"><i class="iconfont icon-biaoqian" style="padding-right: 2px;"></i>hot tags</div>
+  <div class="tags-list">
+    
+    <a href="\tags\LeetCode" title="LeetCode"><div class="tags-list-item">LeetCode</div></a>
+    
+    <a href="\tags\基础" title="基础"><div class="tags-list-item">基础</div></a>
+    
+    <a href="\tags\java" title="java"><div class="tags-list-item">java</div></a>
+    
+    <a href="\tags\面试" title="面试"><div class="tags-list-item">面试</div></a>
+    
+    <a href="\tags\排序" title="排序"><div class="tags-list-item">排序</div></a>
+    
+    <a href="\tags\十大排序" title="十大排序"><div class="tags-list-item">十大排序</div></a>
+    
+    <a href="\tags\数据结构" title="数据结构"><div class="tags-list-item">数据结构</div></a>
+    
+    <a href="\tags\网络" title="网络"><div class="tags-list-item">网络</div></a>
+    
+    <a href="\tags\双指针" title="双指针"><div class="tags-list-item">双指针</div></a>
+    
+    <a href="\tags\二叉树" title="二叉树"><div class="tags-list-item">二叉树</div></a>
+    
+    <a href="\tags\链表" title="链表"><div class="tags-list-item">链表</div></a>
+    
+    <a href="\tags\常用10种算法" title="常用10种算法"><div class="tags-list-item">常用10种算法</div></a>
+    
+    <a href="\tags\链表反转" title="链表反转"><div class="tags-list-item">链表反转</div></a>
+    
+    <a href="\tags\JavaWeb" title="JavaWeb"><div class="tags-list-item">JavaWeb</div></a>
+    
+    <a href="\tags\JavaScript" title="JavaScript"><div class="tags-list-item">JavaScript</div></a>
+    
+    <a href="\tags\CSS" title="CSS"><div class="tags-list-item">CSS</div></a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+  <article class="card card-content widescreen-archive archive-widget">
+    <div class="archive-card">
+  <div class="archive-card-header"><i class="iconfont icon-wodebaobiao" style="padding-right: 2px;"></i>Archive</div>
+  <div class="archive-card-list">
+    
+    
+    
+      
+        
+        
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a href="/archives/2021" class="archive-card-list-item">
+              2021
+              <span class="archive-card-list-item-badge">8</span>
+          </a>
+        
+        
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a href="/archives/2020" class="archive-card-list-item">
+              2020
+              <span class="archive-card-list-item-badge">129</span>
+          </a>
+        
+        
+        
+      
+    
+    
+      <a href="/archives/2017" class="archive-card-list-item">
+          2017
+          <span class="archive-card-list-item-badge">1</span>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+</div>
+          </aside>
+          <aside class="right-column">
+            <div class="sticky-widescreen">
+  
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header"><i class="iconfont icon-wenzhang_huaban" style="padding-right: 2px;"></i>Recent Posts</div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-08</div>
+        <a href="/2021/01/08/JQuery-02/"><div class="recent-posts-item-content">JQuery-02JQuery选择器(重点)</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-07</div>
+        <a href="/2021/01/07/JQuery-01/"><div class="recent-posts-item-content">JQuery-01概论</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-06</div>
+        <a href="/2021/01/06/常用正则/"><div class="recent-posts-item-content">常用正则写法</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-05</div>
+        <a href="/2021/01/05/JS-05/"><div class="recent-posts-item-content">JS-05-JavaScript 正则表达式</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+  <article class="card card-content">
+    <div class="archive-card">
+  <div class="archive-card-header"><i class="iconfont icon-wodebaobiao" style="padding-right: 2px;"></i>Archive</div>
+  <div class="archive-card-list">
+    
+    
+    
+      
+        
+        
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a href="/archives/2021" class="archive-card-list-item">
+              2021
+              <span class="archive-card-list-item-badge">8</span>
+          </a>
+        
+        
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a href="/archives/2020" class="archive-card-list-item">
+              2020
+              <span class="archive-card-list-item-badge">129</span>
+          </a>
+        
+        
+        
+      
+    
+    
+      <a href="/archives/2017" class="archive-card-list-item">
+          2017
+          <span class="archive-card-list-item-badge">1</span>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+</div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>Copyright ©
+          
+          2020 -
+          
+          2021
+        </span>
+        &nbsp;
+        <a href="/" class="footer-link">theme-kaze demo </a>
+      </div>
+    </div>
+
+    
+    <div class="footer-dsc">
+      
+      Powered by
+      <a href="https://hexo.io/" class="footer-link" target="_blank" rel="nofollow noopener noreferrer">&nbsp;Hexo </a>
+      
+      
+      <span>&nbsp;|&nbsp;</span>
+      
+      
+      Theme -
+      <a href="https://github.com/theme-kaze" class="footer-link" target="_blank"
+        rel="nofollow noopener noreferrer">&nbsp;Kaze</a>
+      
+    </div>
+    
+    
+    
+    
+</footer>
+  <a role="button" id="scrollbutton" class="basebutton"  aria-label="回到顶部">
+  <i class="iconfont icon-arrowleft button-icon"></i>
+</a>
+<a role="button" id="menubutton" class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a role="button" id="popbutton" class="basebutton" aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a role="button" id="darkbutton" class="basebutton darkwidget" aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a role="button" id="searchbutton" class="basebutton searchwidget" aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a>
+
+  
+  
+  
+  
+  
+<script src="/js/main.js"></script>
+
+  
+  
+  <script>
+    var addLazyload = function () {
+      var observer = lozad('.lozad', {
+        load: function (el) {
+          el.srcset = el.getAttribute('data-src');
+        },
+        loaded: function (el) {
+          el.classList.add('loaded');
+        }
+      });
+      observer.observe();
+    }
+  </script>
+  <script>loadScript("/js/lib/lozad.min.js", addLazyload)</script>
+  
+  
+</body>
+
+</html>

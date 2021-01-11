@@ -1,53 +1,693 @@
-extends widget/base
-block append head
-  link(rel='stylesheet', href= url_for('/style/post.css'))
-  link(rel='stylesheet', href= url_for('/style/highlight-theme-light.css'))
-  script(src= url_for("/jslib/highlight.pack.js"))
-block topic
-    div#postTopic.is-full-height
-        - var title = truncate( page.title, {length: 65, omission: '..'} ) || ''
-        p.is-full-height.is-flex-shrink-0.is-flex.is-align-items-center.is-justify-content-center= title
-        p.is-full-height.is-flex-shrink-0.is-flex.is-align-items-center.is-justify-content-center= __('click_back_to_the_top')
+<!DOCTYPE html>
+<html  lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#fff" id="theme-color">
+  <meta name="description" content="当咸鱼,不存在!!!">
+  <link rel="icon" href="/img/Kaze.png">
+  <title>二分查找扩展(搜索旋转排序数组)-033-081-153-154</title>
+  
+  
+  <meta property="og:title" content="二分查找扩展(搜索旋转排序数组)-033-081-153-154">
+  
+  
+  <meta property="og:url" content="http://example.com/2020/11/13/LC031-081-153-154-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%89%A9%E5%B1%95/index.html">
+  
+  
+  <meta property="og:img" content="/img/Kaze.png">
+  
+  
+  <meta property="og:img" content="&lt;h2 id=&#34;33-搜索旋转排序数组&#34;&gt;&lt;a href=&#34;#33-搜索旋转排序数组&#34; class=&#34;headerlink&#34; title=&#34;33. 搜索旋转排序数组&#34;&gt;&lt;/a&gt;33. 搜索旋转排序数组&lt;/h2&gt;&lt;p&gt;给你一个升序排列的整数数组 nums ，和一个整数 target 。&lt;/p&gt;
+&lt;p&gt;假设按照升序排序的数组在预先未知的某个点上进行了旋转。（例如，数组 [0,1,2,4,5,6,7] 可能变为 [4,5,6,7,0,1,2] ）。&lt;/p&gt;
+&lt;p&gt;请你在数组中搜索 target ，如果数组中存在这个目标值，则返回它的索引，否则返回 -1 。&lt;/p&gt;
+&lt;p&gt;示例 1：&lt;/p&gt;
+&lt;figure class=&#34;highlight plain&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;输入：nums &amp;#x3D; [4,5,6,7,0,1,2], target &amp;#x3D; 0&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;输出：4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 
-block content
-    - var tocContent = toc(page.content, {list_number: false})
 
-    main.container.is-max-widescreen.content.section.post-page.pt-4.px-4
-        .columns.is-flex-desktop.is-justify-content-center.is-flex-direction-row-reverse
-            .column.is-3.is-hidden-mobile(class= tocContent.length < 1 && 'is-hidden')!= tocContent
-            .column.is-9
-                header.my-4
-                    if page.tags && page.tags.length > 0
-                        each tag in page.tags.toArray()
-                            a(href= url_for(`/tags/${tag.name}`))
-                                i.tag.post-item-tag= tag.name
-                h1.mt-0.mb-1.is-family-serif#postTitle= page.title
-                if page.date
-                    time.has-text-grey(datetime=page.date.toJSON())= date(page.date, date_format)
-                article.mt-2.post-content!= page.content
-                section.jump-container.is-flex.is-justify-content-space-between.my-6
-                    // em is empty placeholder
-                    if page.prev
-                        - var preContent= `${ __('prev') }: ${ page.prev.title }`
-                        a.button.is-small.is-default.py-4(href= url_for(page.prev.path) title= page.prev.title)
-                            i.iconfont.icon-prev.mr-2.has-text-grey
-                            span.has-text-weight-semibold= preContent
-                    else
-                        em
-                    if page.next
-                        - var nextContent= `${ __('next') }: ${ page.next.title }`
-                        a.button.is-small.is-default.py-4(href= url_for(page.next.path) title= page.next.title)
-                            span.has-text-weight-semibold= nextContent
-                            i.iconfont.icon-next.ml-2.has-text-grey
-                if theme.comment_utteranc && theme.comment_utteranc.enable
-                    article.mt-6.comment-container
-                        script(
-                            async
-                            repo= theme.comment_utteranc.repo
-                            src= "https://utteranc.es/client.js"
-                            label= theme.comment_utteranc.label
-                            issue-term= theme.comment_utteranc.issue_term || "pathname"
-                            theme= theme.comment_utteranc.theme || "preferred-color-scheme"
-                        )
-block script
-    script(src= url_for("/js/post.js"))
+&lt;p&gt;示例 2：&lt;/p&gt;
+&lt;figure class=&#34;highlight plain&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;输入：nums &amp;#x3D; [4,5,6,7,0,1,2], target &amp;#x3D; 3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;输出：-1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h4 id=&#34;思路&#34;&gt;&lt;a href=&#34;#思路&#34; class=&#34;headerlink&#34; title=&#34;思路&#34;&gt;&lt;/a&gt;思路&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;利用二分法&lt;/strong&gt;&lt;/p&gt;">
+  
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:published_time" content="2020-11-13">
+  <meta property="og:article:modified_time" content="2020-11-16">
+  <meta property="og:article:author" content="theme-kaze">
+  
+  
+  <meta property="og:article:tag" content="LeetCode">
+  
+  <meta property="og:article:tag" content="二分查找">
+  
+  
+  
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+    var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+      }
+    };
+    setDarkmode();
+  </script>
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  </script>
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  
+  <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+  <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+  <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+
+  
+  
+<link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <div class="wrapper">
+    
+    <nav class="navbar">
+  <div class="navbar-logo">
+    <span class="navbar-logo-main">
+      
+      <img class="navbar-logo-img" src="/img/Kaze.png" alt="logo">
+      
+      <span class="navbar-logo-dsc">theme-kaze demo</span>
+    </span>
+  </div>
+  <div class="navbar-menu">
+    
+    <a href="/" class="navbar-menu-item">
+    
+    Home
+    
+    </a>
+    
+    <a href="/archives" class="navbar-menu-item">
+    
+    Archive
+    
+    </a>
+    
+    <a href="/tags" class="navbar-menu-item">
+    
+    Tags
+    
+    </a>
+    
+    <a href="/categories" class="navbar-menu-item">
+    
+    Categories
+    
+    </a>
+    
+    <a href="/about" class="navbar-menu-item">
+    
+    About
+    
+    </a>
+    
+    <a href="/links" class="navbar-menu-item">
+    
+    Friends
+    
+    </a>
+    
+    <a class="navbar-menu-item darknavbar" id="dark"><i class="iconfont icon-weather"></i></a>
+    <a class="navbar-menu-item searchnavbar" id="search"><i class="iconfont icon-search" style="font-size: 1.2rem; font-weight: 400;"></i></a>
+  </div>
+</nav>
+    
+    <div id="local-search" style="display: none;">
+      <input class="navbar-menu-item" id="search-input" placeholder="请输入搜索内容...">
+      <div id="search-content"></div>
+    </div>
+    
+    <div class="section-wrap">
+      <div class="container">
+        <div class="columns">
+          <main class="main-column">
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      二分查找扩展(搜索旋转排序数组)-033-081-153-154
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2020-11-12T16:15:26.000Z">
+      <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+      <span>2020-11-13</span>
+    </time>
+    
+    <span class="dot"></span>
+    
+    <a href="/categories/算法/" class="post-meta-link">-算法</a>
+    
+    
+    
+    <span class="dot"></span>
+    <span>1.7k words</span>
+    
+  </div>
+  
+  <div class="post-meta post-show-meta" style="margin-top: -10px;">
+    <div style="display: flex; align-items: center;">
+      <i class="iconfont icon-biaoqian" style="margin-right: 2px; font-size: 1.15rem;"></i>
+      
+      
+        <a href="/tags/LeetCode/" class="post-meta-link">LeetCode</a>
+      
+      
+      <span class="dot"></span>
+      
+        <a href="/tags/二分查找/" class="post-meta-link">二分查找</a>
+      
+    </div>
+  </div>
+  
+  </header>
+  <div id="section" class="post-content">
+    <h2 id="33-搜索旋转排序数组"><a href="#33-搜索旋转排序数组" class="headerlink" title="33. 搜索旋转排序数组"></a>33. 搜索旋转排序数组</h2><p>给你一个升序排列的整数数组 nums ，和一个整数 target 。</p>
+<p>假设按照升序排序的数组在预先未知的某个点上进行了旋转。（例如，数组 [0,1,2,4,5,6,7] 可能变为 [4,5,6,7,0,1,2] ）。</p>
+<p>请你在数组中搜索 target ，如果数组中存在这个目标值，则返回它的索引，否则返回 -1 。</p>
+<p>示例 1：</p>
+<pre class="highlight"><span class="line">输入：nums &#x3D; [4,5,6,7,0,1,2], target &#x3D; 0</span><br><span class="line">输出：4</span><br></pre>
+
+
+<p>示例 2：</p>
+<pre class="highlight"><span class="line">输入：nums &#x3D; [4,5,6,7,0,1,2], target &#x3D; 3</span><br><span class="line">输出：-1</span><br></pre>
+
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p><strong>利用二分法</strong></p>
+ <a id="more"></a> 
+
+<p>题目要求时间复杂度 O(logn)，显然应该使用二分查找。<strong>二分查找的过程就是不断收缩左右边界</strong>，而怎么缩小区间是关键。</p>
+<p>如果数组[未旋转],在此数组中找一个特定的元素target 的过程</p>
+<ul>
+<li>若target==nums[mid] 直接返回</li>
+<li>若target&lt;nums[mid],则target位于左侧区间[left,mid)中,经right=mid-1;在左侧区间查找</li>
+<li>若target&gt;nums[mid],则target位于左侧区间(left,mid]中,经left = mid+1在左侧区间查找</li>
+</ul>
+<p>由于数组「被旋转」，所以左侧或者右侧<strong>区间不一定是连续的</strong></p>
+<p>当元素不重复时,如果 nums[i] &lt;= nums[j],说明区间<strong>说明区间 <code>[i,j]</code> 是「连续递增」的</strong>。</p>
+<p><code>i</code>、<code>j</code> 可以重合，所以这里使用的比较运算符是「小于等于」</p>
+<p>因此，在旋转排序数组中查找一个特定元素时：</p>
+<ol>
+<li><p>若 target == nums[mid]，直接返回</p>
+</li>
+<li><p>若 nums[left] &lt;= nums[mid]，说明左侧区间 [left,mid]「连续递增」。此时：</p>
+<ul>
+<li><p>若 nums[left] &lt;= target &lt;= nums[mid]，说明 target 位于左侧。令 right = mid-1，在左侧区间查找</p>
+</li>
+<li><p>否则，令 left = mid+1，在右侧区间查找</p>
+</li>
+</ul>
+</li>
+<li><p>否则，说明右侧区间 [mid,right]「连续递增」。此时：</p>
+<ul>
+<li><p>若 nums[mid] &lt;= target &lt;= nums[right]，说明 target 位于右侧区间。令 left = mid+1，在右侧区间查找</p>
+</li>
+<li><p>否则，令 right = mid-1，在左侧区间查找<br>注意：区间收缩时不包含 mid，也就是说，实际收缩后的区间是 [left,mid) 或者 (mid,right]</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>例图:</p>
+<img src="/2020/11/13/LC031-081-153-154-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%89%A9%E5%B1%95/33_fig1.png" alt="33_fig1" style="zoom:80%;" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2020/11/13/LC031-081-153-154-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%89%A9%E5%B1%95/33_fig1.png" class="lozad post-image">
+
+<pre class="highlight"><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> n = nums.length;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = n - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> nums[<span class="number">0</span>] == target ? <span class="number">0</span> : -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> mid = (left + right) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">            <span class="comment">// 等号：考虑 left==right，即只有一个元素的情况</span></span><br><span class="line">            <span class="keyword">if</span> (nums[mid] == target) &#123;</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// [left,mid] 连续递增</span></span><br><span class="line">            <span class="keyword">if</span> (nums[left] &lt;= nums[mid]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[left] &lt;= target &amp;&amp; target &lt; nums[mid]) &#123;</span><br><span class="line">                    <span class="comment">// 加等号，因为 left 可能是 target</span></span><br><span class="line">                    right = mid - <span class="number">1</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    left = mid + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// [mid,right] 连续递增</span></span><br><span class="line">                <span class="keyword">if</span> (nums[mid] &lt; target &amp;&amp; target &lt;= nums[n - <span class="number">1</span>]) &#123;</span><br><span class="line">                    <span class="comment">// 加等号，因为 right 可能是 target</span></span><br><span class="line">                    <span class="comment">// 在右侧 (mid,right] 查找</span></span><br><span class="line">                    left = mid + <span class="number">1</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    right = mid - <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;未找到&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre>
+
+<h2 id="81-搜索旋转排序数组-ii"><a href="#81-搜索旋转排序数组-ii" class="headerlink" title="81.搜索旋转排序数组-ii"></a>81.搜索旋转排序数组-ii</h2><p> 搜索旋转排序数组 II</p>
+<p>难度中等242</p>
+<p>假设按照升序排序的数组在预先未知的某个点上进行了旋转。</p>
+<p>( 例如，数组 <code>[0,0,1,2,2,5,6]</code> 可能变为 <code>[2,5,6,0,0,1,2]</code> )。</p>
+<p>编写一个函数来判断给定的目标值是否存在于数组中。若存在返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p><strong>示例 1:</strong></p>
+<pre class="highlight"><span class="line">输入: nums &#x3D; [2,5,6,0,0,1,2], target &#x3D; 0</span><br><span class="line">输出: true</span><br></pre>
+
+<p><strong>示例 2:</strong></p>
+<pre class="highlight"><span class="line">输入: nums &#x3D; [2,5,6,0,0,1,2], target &#x3D; 3</span><br><span class="line">输出: false</span><br></pre>
+
+<p>道题是 33 题的升级版，元素可以重复。当 nums[left] == nums[mid] 时，无法判断 target 位于左侧还是右侧，此时无法缩小区间，退化为顺序查找。</p>
+<p><strong>left++，去掉一个干扰项，本质上还是顺序查找：</strong></p>
+<p>if nums[left] == nums[mid] {<br>    left++<br>    continue<br>}</p>
+<p><strong>代码</strong></p>
+<pre class="highlight"><span class="line">public boolean search(int[] nums, int target) &#123;</span><br><span class="line">       int n &#x3D; nums.length;</span><br><span class="line">       int left &#x3D; 0;</span><br><span class="line">       int right &#x3D; n - 1;</span><br><span class="line">       if (n &#x3D;&#x3D; 0) &#123;</span><br><span class="line">           return false;</span><br><span class="line">       &#125;</span><br><span class="line">       if (n &#x3D;&#x3D; 1) &#123;</span><br><span class="line">           return nums[0] &#x3D;&#x3D; target ? true : false;</span><br><span class="line">       &#125;</span><br><span class="line">       while (left &lt;&#x3D; right) &#123;</span><br><span class="line">           int mid &#x3D; left + (right - left) &gt;&gt; 1;</span><br><span class="line"></span><br><span class="line">           if (nums[mid] &#x3D;&#x3D; target) &#123;</span><br><span class="line">               return true;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           if (nums[left] &#x3D;&#x3D; nums[mid]) &#123;</span><br><span class="line">               left++;</span><br><span class="line">               continue;</span><br><span class="line">           &#125;</span><br><span class="line">           &#x2F;&#x2F;前半部分有序</span><br><span class="line">           if (nums[left] &lt;&#x3D; nums[mid]) &#123;</span><br><span class="line">               &#x2F;&#x2F;target在前半部分</span><br><span class="line">               if (nums[left] &lt;&#x3D; target &amp;&amp; target &lt; nums[mid]) &#123;</span><br><span class="line">                   right &#x3D; mid - 1;</span><br><span class="line">               &#125; else &#123;</span><br><span class="line">                   left &#x3D; mid + 1;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125; else &#123;</span><br><span class="line">               &#x2F;&#x2F;后半部分有序</span><br><span class="line">               &#x2F;&#x2F;target在后半部分</span><br><span class="line">               if (nums[mid] &lt; target &amp;&amp; target &lt;&#x3D; nums[n - 1]) &#123;</span><br><span class="line">                   left &#x3D; mid + 1;</span><br><span class="line">               &#125; else &#123;</span><br><span class="line">                   right &#x3D; mid - 1;</span><br><span class="line">               &#125;</span><br><span class="line"></span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return false;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre>
+
+
+
+
+
+<h2 id><a href="#" class="headerlink" title></a></h2><h2 id="153-寻找旋转排序数组中的最小值"><a href="#153-寻找旋转排序数组中的最小值" class="headerlink" title="153. 寻找旋转排序数组中的最小值"></a>153. 寻找旋转排序数组中的最小值</h2><p>难度中等293</p>
+<p>假设按照升序排序的数组在预先未知的某个点上进行了旋转。例如，数组 <code>[0,1,2,4,5,6,7]</code> 可能变为 <code>[4,5,6,7,0,1,2]</code> 。</p>
+<p>请找出其中最小的元素。</p>
+<p><strong>示例 1：</strong></p>
+<pre class="highlight"><span class="line">输入：nums &#x3D; [3,4,5,1,2]</span><br><span class="line">输出：1</span><br></pre>
+
+<p><strong>示例 2：</strong></p>
+<pre class="highlight"><span class="line">输入：nums &#x3D; [4,5,6,7,0,1,2]</span><br><span class="line">输出：0</span><br></pre>
+
+
+
+<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><pre class="highlight"><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMin</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">         <span class="keyword">int</span> n=nums.length;</span><br><span class="line">        <span class="keyword">int</span> left=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right=n-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (n==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (n==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (left&lt;=right)&#123;<span class="comment">// 实际上是不会跳出循环，当 left==right 时直接返回 </span></span><br><span class="line">            <span class="keyword">if</span> (nums[left]&lt;=nums[right])&#123;<span class="comment">// 如果 [left,right] 递增，直接返回</span></span><br><span class="line">                <span class="keyword">return</span> nums[left];</span><br><span class="line">            &#125;</span><br><span class="line">             <span class="keyword">int</span> mid=(left+right)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[left]&lt;=nums[mid])&#123;<span class="comment">// [left,mid] 连续递增，则在 [mid+1,right] 查找</span></span><br><span class="line">                left=mid+<span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                right=mid;<span class="comment">// [left,mid] 不连续，在 [left,mid] 查找</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><pre class="highlight"><span class="line"><span class="keyword">int</span> left=<span class="number">0</span>;</span><br><span class="line">   <span class="keyword">int</span> right=nums.length-<span class="number">1</span>;</span><br><span class="line">   <span class="keyword">while</span>(right&gt;left)</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="keyword">int</span> mid=left+(right-left)/<span class="number">2</span>;</span><br><span class="line">       <span class="keyword">if</span>(nums[mid]&gt;nums[right])</span><br><span class="line">           left=mid+<span class="number">1</span>;</span><br><span class="line">       <span class="keyword">else</span></span><br><span class="line">           right=mid;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> nums[left];</span><br></pre>
+
+<h2 id="154-寻找旋转排序数组中的最小值-II"><a href="#154-寻找旋转排序数组中的最小值-II" class="headerlink" title="154. 寻找旋转排序数组中的最小值 II"></a>154. 寻找旋转排序数组中的最小值 II</h2><p>假设按照升序排序的数组在预先未知的某个点上进行了旋转。</p>
+<p>( 例如，数组 [0,1,2,4,5,6,7] 可能变为 [4,5,6,7,0,1,2] )。</p>
+<p>请找出其中最小的元素。</p>
+<p>注意数组中可能存在重复的元素。</p>
+<p>示例 1：</p>
+<pre class="highlight"><span class="line">输入: [1,3,5]</span><br><span class="line">输出: 1</span><br><span class="line">示例 2：</span><br><span class="line"></span><br><span class="line">输入: [2,2,2,0,1]</span><br><span class="line">输出: 0</span><br></pre>
+
+
+
+<pre class="highlight"><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMin</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> n = nums.length;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = n - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">            <span class="comment">// 实际上是不会跳出循环，当 left==right 时直接返回</span></span><br><span class="line">        <span class="comment">// 这里增加判断 ↓↓↓</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (nums[left] &lt; nums[right] || left == right) &#123;<span class="comment">// 如果 [left,right] 递增，直接返回</span></span><br><span class="line">                <span class="keyword">return</span> nums[left];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> mid =(right + left) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[left] == nums[mid]) &#123;</span><br><span class="line">                left++;<span class="comment">// 无法判断 mid 位于哪一部分，去掉干扰项//有重复的值       </span></span><br><span class="line">            &#125;</span><br><span class="line">          <span class="keyword">else</span> <span class="keyword">if</span> (nums[left] &lt; nums[mid]) &#123;</span><br><span class="line">              <span class="comment">// [left,mid] 连续递增，则在 [mid+1,right] 查找</span></span><br><span class="line">                left = mid + <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                right = mid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+
+
+  </div>
+  <div>
+  
+  <div class="post-note note-warning copyright" style="margin-top: 42px">
+    <p><span style="font-weight: bold;">作者：</span><a target="_blank" rel="nofollow noopener noreferrer" href="http://example.com/about">theme-kaze</a></p>
+    <p><span style="font-weight: bold;">文章链接：</span><a target="_blank" rel="nofollow noopener noreferrer" href="http://example.com/2020/11/13/LC031-081-153-154-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%89%A9%E5%B1%95/">http://example.com/2020/11/13/LC031-081-153-154-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%89%A9%E5%B1%95/</a></p>
+    <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+  </div>
+  
+  </div>
+</article>
+<div class="nav">
+  
+  <div class="nav-item-prev">
+    <a href="/2020/11/13/LC019-删除链表倒数n节点/" class="nav-link">
+      <i class="iconfont icon-left nav-prev-icon"></i>
+      <div>
+        <div class="nav-label">Prev</div>
+        
+        <div class="nav-title">删除链表倒数n节点-019 </div>
+        
+      </div>
+    </a>
+  </div>
+  
+  
+  <div class="nav-item-next">
+    <a href="/2020/11/10/B站数据结构004/" class="nav-link">
+      <div>
+        <div class="nav-label">Next</div>
+        
+        <div class="nav-title">数据结构和算法--004--链表 </div>
+        
+      </div>
+      <i class="iconfont icon-right nav-next-icon"></i>
+    </a>
+  </div>
+  
+</div>
+
+<div class="card card-content toc-card" id="mobiletoc">
+  <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>TOC</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#33-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84"><span class="toc-text">33. 搜索旋转排序数组</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#81-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84-ii"><span class="toc-text">81.搜索旋转排序数组-ii</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#153-%E5%AF%BB%E6%89%BE%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="toc-text">153. 寻找旋转排序数组中的最小值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80"><span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C"><span class="toc-text">方法二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#154-%E5%AF%BB%E6%89%BE%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC-II"><span class="toc-text">154. 寻找旋转排序数组中的最小值 II</span></a></li></ol>
+</div></main>
+          <aside class="left-column">
+            
+            <div class="card card-author">
+              
+<img src="/img/Kaze.png" class="author-img">
+
+<p class="author-name">theme-kaze</p>
+<p class="author-description">designed by theme-kaze</p>
+<div class="author-message">
+  <a class="author-posts-count" href="/archives">
+    <span>138</span>
+    <span>Posts</span>
+  </a>
+  <a class="author-categories-count" href="/categories">
+    <span>10</span>
+    <span>Categories</span>
+  </a>
+  <a class="author-tags-count" href="/tags">
+    <span>62</span>
+    <span>Tags</span>
+  </a>
+</div>
+
+            </div>
+            
+            <div class="sticky-tablet">
+  
+  
+  <article class="display-when-two-columns spacer">
+    <div class="card card-content toc-card">
+      <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>TOC</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#33-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84"><span class="toc-text">33. 搜索旋转排序数组</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#81-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84-ii"><span class="toc-text">81.搜索旋转排序数组-ii</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#153-%E5%AF%BB%E6%89%BE%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="toc-text">153. 寻找旋转排序数组中的最小值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80"><span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C"><span class="toc-text">方法二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#154-%E5%AF%BB%E6%89%BE%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC-II"><span class="toc-text">154. 寻找旋转排序数组中的最小值 II</span></a></li></ol>
+    </div>
+  </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header"><i class="iconfont icon-fenlei" style="padding-right: 2px;"></i>Categories</div>
+  <div class="categories-list">
+    
+      <a href="/categories/-数据结构和算法-体系">
+        <div class="categories-list-item">
+          -数据结构和算法-体系
+          <span class="categories-list-item-badge">9</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-前端">
+        <div class="categories-list-item">
+          -前端
+          <span class="categories-list-item-badge">10</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-JDBC">
+        <div class="categories-list-item">
+          -JDBC
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-JQuery">
+        <div class="categories-list-item">
+          -JQuery
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-JavaScript">
+        <div class="categories-list-item">
+          -JavaScript
+          <span class="categories-list-item-badge">5</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-算法">
+        <div class="categories-list-item">
+          -算法
+          <span class="categories-list-item-badge">60</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-javase">
+        <div class="categories-list-item">
+          -javase
+          <span class="categories-list-item-badge">31</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-工具栏">
+        <div class="categories-list-item">
+          -工具栏
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-操作系统">
+        <div class="categories-list-item">
+          -操作系统
+          <span class="categories-list-item-badge">8</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-计算机网络">
+        <div class="categories-list-item">
+          -计算机网络
+          <span class="categories-list-item-badge">8</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header"><i class="iconfont icon-biaoqian" style="padding-right: 2px;"></i>hot tags</div>
+  <div class="tags-list">
+    
+    <a href="\tags\LeetCode" title="LeetCode"><div class="tags-list-item">LeetCode</div></a>
+    
+    <a href="\tags\基础" title="基础"><div class="tags-list-item">基础</div></a>
+    
+    <a href="\tags\java" title="java"><div class="tags-list-item">java</div></a>
+    
+    <a href="\tags\面试" title="面试"><div class="tags-list-item">面试</div></a>
+    
+    <a href="\tags\排序" title="排序"><div class="tags-list-item">排序</div></a>
+    
+    <a href="\tags\十大排序" title="十大排序"><div class="tags-list-item">十大排序</div></a>
+    
+    <a href="\tags\数据结构" title="数据结构"><div class="tags-list-item">数据结构</div></a>
+    
+    <a href="\tags\网络" title="网络"><div class="tags-list-item">网络</div></a>
+    
+    <a href="\tags\双指针" title="双指针"><div class="tags-list-item">双指针</div></a>
+    
+    <a href="\tags\二叉树" title="二叉树"><div class="tags-list-item">二叉树</div></a>
+    
+    <a href="\tags\链表" title="链表"><div class="tags-list-item">链表</div></a>
+    
+    <a href="\tags\常用10种算法" title="常用10种算法"><div class="tags-list-item">常用10种算法</div></a>
+    
+    <a href="\tags\链表反转" title="链表反转"><div class="tags-list-item">链表反转</div></a>
+    
+    <a href="\tags\JavaWeb" title="JavaWeb"><div class="tags-list-item">JavaWeb</div></a>
+    
+    <a href="\tags\JavaScript" title="JavaScript"><div class="tags-list-item">JavaScript</div></a>
+    
+    <a href="\tags\CSS" title="CSS"><div class="tags-list-item">CSS</div></a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+          </aside>
+          <aside class="right-column">
+            <div class="sticky-widescreen">
+  
+  
+  <article class="card card-content toc-card">
+    <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>TOC</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#33-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84"><span class="toc-text">33. 搜索旋转排序数组</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#81-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84-ii"><span class="toc-text">81.搜索旋转排序数组-ii</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#153-%E5%AF%BB%E6%89%BE%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="toc-text">153. 寻找旋转排序数组中的最小值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80"><span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C"><span class="toc-text">方法二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#154-%E5%AF%BB%E6%89%BE%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC-II"><span class="toc-text">154. 寻找旋转排序数组中的最小值 II</span></a></li></ol>
+  </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header"><i class="iconfont icon-wenzhang_huaban" style="padding-right: 2px;"></i>Recent Posts</div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-08</div>
+        <a href="/2021/01/08/JQuery-02/"><div class="recent-posts-item-content">JQuery-02JQuery选择器(重点)</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-07</div>
+        <a href="/2021/01/07/JQuery-01/"><div class="recent-posts-item-content">JQuery-01概论</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-06</div>
+        <a href="/2021/01/06/常用正则/"><div class="recent-posts-item-content">常用正则写法</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-05</div>
+        <a href="/2021/01/05/JS-05/"><div class="recent-posts-item-content">JS-05-JavaScript 正则表达式</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>Copyright ©
+          
+          2020 -
+          
+          2021
+        </span>
+        &nbsp;
+        <a href="/" class="footer-link">theme-kaze demo </a>
+      </div>
+    </div>
+
+    
+    <div class="footer-dsc">
+      
+      Powered by
+      <a href="https://hexo.io/" class="footer-link" target="_blank" rel="nofollow noopener noreferrer">&nbsp;Hexo </a>
+      
+      
+      <span>&nbsp;|&nbsp;</span>
+      
+      
+      Theme -
+      <a href="https://github.com/theme-kaze" class="footer-link" target="_blank"
+        rel="nofollow noopener noreferrer">&nbsp;Kaze</a>
+      
+    </div>
+    
+    
+    
+    
+</footer>
+  <a role="button" id="scrollbutton" class="basebutton"  aria-label="回到顶部">
+  <i class="iconfont icon-arrowleft button-icon"></i>
+</a>
+<a role="button" id="menubutton" class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a role="button" id="popbutton" class="basebutton" aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a role="button" id="darkbutton" class="basebutton darkwidget" aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a role="button" id="searchbutton" class="basebutton searchwidget" aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a>
+
+  
+  
+  
+  <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img');
+    var i;
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a');
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'));
+      wrapper.setAttribute('aria-label', 'illustration');
+      wrapper.style.cssText = 'width: 100%; display: flex; justify-content: center;';
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt;
+      wrapper.dataset.nolink = true;
+      img[i].before(wrapper);
+      wrapper.append(img[i]);
+      var divWrap = document.createElement('div');
+      divWrap.classList.add('gallery');
+      wrapper.before(divWrap);
+      divWrap.append(wrapper);
+    }
+    baguetteBox.run('.gallery');
+  }
+</script>
+<script>loadScript("/js/lib/lightbox/baguetteBox.min.js", addImgLayout)</script>
+  
+  
+  
+<script src="/js/main.js"></script>
+
+  
+  
+  <script>
+    var addLazyload = function () {
+      var observer = lozad('.lozad', {
+        load: function (el) {
+          el.srcset = el.getAttribute('data-src');
+        },
+        loaded: function (el) {
+          el.classList.add('loaded');
+        }
+      });
+      observer.observe();
+    }
+  </script>
+  <script>loadScript("/js/lib/lozad.min.js", addLazyload)</script>
+  
+  
+</body>
+
+</html>

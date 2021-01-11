@@ -1,53 +1,792 @@
-extends widget/base
-block append head
-  link(rel='stylesheet', href= url_for('/style/post.css'))
-  link(rel='stylesheet', href= url_for('/style/highlight-theme-light.css'))
-  script(src= url_for("/jslib/highlight.pack.js"))
-block topic
-    div#postTopic.is-full-height
-        - var title = truncate( page.title, {length: 65, omission: '..'} ) || ''
-        p.is-full-height.is-flex-shrink-0.is-flex.is-align-items-center.is-justify-content-center= title
-        p.is-full-height.is-flex-shrink-0.is-flex.is-align-items-center.is-justify-content-center= __('click_back_to_the_top')
+<!DOCTYPE html>
+<html  lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#fff" id="theme-color">
+  <meta name="description" content="当咸鱼,不存在!!!">
+  <link rel="icon" href="/img/Kaze.png">
+  <title>javaSE-09-包-面向对象三大特征</title>
+  
+  
+  <meta property="og:title" content="javaSE-09-包-面向对象三大特征">
+  
+  
+  <meta property="og:url" content="http://example.com/2020/10/25/javaSE08/index.html">
+  
+  
+  <meta property="og:img" content="/img/Kaze.png">
+  
+  
+  <meta property="og:img" content="&lt;h1 id=&#34;面向对象特征&#34;&gt;&lt;a href=&#34;#面向对象特征&#34; class=&#34;headerlink&#34; title=&#34;面向对象特征&#34;&gt;&lt;/a&gt;面向对象特征&lt;/h1&gt;&lt;h2 id=&#34;封装&#34;&gt;&lt;a href=&#34;#封装&#34; class=&#34;headerlink&#34; title=&#34;封装&#34;&gt;&lt;/a&gt;封装&lt;/h2&gt;&lt;h3 id=&#34;封装概念&#34;&gt;&lt;a href=&#34;#封装概念&#34; class=&#34;headerlink&#34; title=&#34;封装概念:&#34;&gt;&lt;/a&gt;封装概念:&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;封装,将类的某些信息隐藏在类内部,不允许外部访问,而且时通过该类提供的方法来实现对隐藏信息的操作和访问&lt;/p&gt;
+&lt;hr&gt;
 
-block content
-    - var tocContent = toc(page.content, {list_number: false})
+&lt;p&gt;(封装隐藏了类的内部实现机制，可以在不影响使用的情况下改变类的内部结构，同时也保护了数据。对外界而已它的内部细节是隐藏的，暴露给外界的只是它的访问方法。)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;优点:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;隐藏类的实现细节&lt;/li&gt;
+&lt;li&gt;类内部的结构可以自由的修改&lt;/li&gt;
+&lt;li&gt;可以对成员精确的控制&lt;/li&gt;
+&lt;li&gt;只能通过规定方法访问&lt;/li&gt;
+&lt;li&gt;良好的封装能够减少耦合&lt;/li&gt;
+&lt;/ol&gt;">
+  
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:published_time" content="2020-10-25">
+  <meta property="og:article:modified_time" content="2020-10-26">
+  <meta property="og:article:author" content="theme-kaze">
+  
+  
+  <meta property="og:article:tag" content="基础">
+  
+  <meta property="og:article:tag" content="java">
+  
+  <meta property="og:article:tag" content="面向对象">
+  
+  
+  
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+    var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+      }
+    };
+    setDarkmode();
+  </script>
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  </script>
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  
+  <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+  <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+  <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/main.css">
 
-    main.container.is-max-widescreen.content.section.post-page.pt-4.px-4
-        .columns.is-flex-desktop.is-justify-content-center.is-flex-direction-row-reverse
-            .column.is-3.is-hidden-mobile(class= tocContent.length < 1 && 'is-hidden')!= tocContent
-            .column.is-9
-                header.my-4
-                    if page.tags && page.tags.length > 0
-                        each tag in page.tags.toArray()
-                            a(href= url_for(`/tags/${tag.name}`))
-                                i.tag.post-item-tag= tag.name
-                h1.mt-0.mb-1.is-family-serif#postTitle= page.title
-                if page.date
-                    time.has-text-grey(datetime=page.date.toJSON())= date(page.date, date_format)
-                article.mt-2.post-content!= page.content
-                section.jump-container.is-flex.is-justify-content-space-between.my-6
-                    // em is empty placeholder
-                    if page.prev
-                        - var preContent= `${ __('prev') }: ${ page.prev.title }`
-                        a.button.is-small.is-default.py-4(href= url_for(page.prev.path) title= page.prev.title)
-                            i.iconfont.icon-prev.mr-2.has-text-grey
-                            span.has-text-weight-semibold= preContent
-                    else
-                        em
-                    if page.next
-                        - var nextContent= `${ __('next') }: ${ page.next.title }`
-                        a.button.is-small.is-default.py-4(href= url_for(page.next.path) title= page.next.title)
-                            span.has-text-weight-semibold= nextContent
-                            i.iconfont.icon-next.ml-2.has-text-grey
-                if theme.comment_utteranc && theme.comment_utteranc.enable
-                    article.mt-6.comment-container
-                        script(
-                            async
-                            repo= theme.comment_utteranc.repo
-                            src= "https://utteranc.es/client.js"
-                            label= theme.comment_utteranc.label
-                            issue-term= theme.comment_utteranc.issue_term || "pathname"
-                            theme= theme.comment_utteranc.theme || "preferred-color-scheme"
-                        )
-block script
-    script(src= url_for("/js/post.js"))
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+
+  
+  
+<link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <div class="wrapper">
+    
+    <nav class="navbar">
+  <div class="navbar-logo">
+    <span class="navbar-logo-main">
+      
+      <img class="navbar-logo-img" src="/img/Kaze.png" alt="logo">
+      
+      <span class="navbar-logo-dsc">theme-kaze demo</span>
+    </span>
+  </div>
+  <div class="navbar-menu">
+    
+    <a href="/" class="navbar-menu-item">
+    
+    Home
+    
+    </a>
+    
+    <a href="/archives" class="navbar-menu-item">
+    
+    Archive
+    
+    </a>
+    
+    <a href="/tags" class="navbar-menu-item">
+    
+    Tags
+    
+    </a>
+    
+    <a href="/categories" class="navbar-menu-item">
+    
+    Categories
+    
+    </a>
+    
+    <a href="/about" class="navbar-menu-item">
+    
+    About
+    
+    </a>
+    
+    <a href="/links" class="navbar-menu-item">
+    
+    Friends
+    
+    </a>
+    
+    <a class="navbar-menu-item darknavbar" id="dark"><i class="iconfont icon-weather"></i></a>
+    <a class="navbar-menu-item searchnavbar" id="search"><i class="iconfont icon-search" style="font-size: 1.2rem; font-weight: 400;"></i></a>
+  </div>
+</nav>
+    
+    <div id="local-search" style="display: none;">
+      <input class="navbar-menu-item" id="search-input" placeholder="请输入搜索内容...">
+      <div id="search-content"></div>
+    </div>
+    
+    <div class="section-wrap">
+      <div class="container">
+        <div class="columns">
+          <main class="main-column">
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      javaSE-09-包-面向对象三大特征
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2020-10-24T16:25:48.000Z">
+      <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+      <span>2020-10-25</span>
+    </time>
+    
+    <span class="dot"></span>
+    
+    <a href="/categories/javase/" class="post-meta-link">-javase</a>
+    
+    
+    
+    <span class="dot"></span>
+    <span>3k words</span>
+    
+  </div>
+  
+  <div class="post-meta post-show-meta" style="margin-top: -10px;">
+    <div style="display: flex; align-items: center;">
+      <i class="iconfont icon-biaoqian" style="margin-right: 2px; font-size: 1.15rem;"></i>
+      
+      
+        <a href="/tags/基础/" class="post-meta-link">基础</a>
+      
+      
+      <span class="dot"></span>
+      
+        <a href="/tags/java/" class="post-meta-link">java</a>
+      
+      
+      <span class="dot"></span>
+      
+        <a href="/tags/面向对象/" class="post-meta-link">面向对象</a>
+      
+    </div>
+  </div>
+  
+  </header>
+  <div id="section" class="post-content">
+    <h1 id="面向对象特征"><a href="#面向对象特征" class="headerlink" title="面向对象特征"></a>面向对象特征</h1><h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><h3 id="封装概念"><a href="#封装概念" class="headerlink" title="封装概念:"></a>封装概念:</h3><ul>
+<li><p>封装,将类的某些信息隐藏在类内部,不允许外部访问,而且时通过该类提供的方法来实现对隐藏信息的操作和访问</p>
+<hr>
+
+<p>(封装隐藏了类的内部实现机制，可以在不影响使用的情况下改变类的内部结构，同时也保护了数据。对外界而已它的内部细节是隐藏的，暴露给外界的只是它的访问方法。)</p>
+</li>
+</ul>
+<p>优点:</p>
+<ol>
+<li>隐藏类的实现细节</li>
+<li>类内部的结构可以自由的修改</li>
+<li>可以对成员精确的控制</li>
+<li>只能通过规定方法访问</li>
+<li>良好的封装能够减少耦合</li>
+</ol>
+<a id="more"></a>
+
+<h3 id="具体表现"><a href="#具体表现" class="headerlink" title="具体表现"></a>具体表现</h3><ul>
+<li>属性使用private权限</li>
+<li>方法使用public权限</li>
+</ul>
+<pre class="highlight"><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">&#125;</span><br></pre>
+
+<p>将 <strong>name</strong> 和 <strong>age</strong> 属性设置为私有的，只能本类才能访问，其他类都访问不了，如此就对信息进行了隐藏</p>
+<p>其构造方法，及Setter，Gestter方法.即每个值属性提供对外的公共方法访问,也就是创建一堆赋值的方法,用于访问私有属性的访问,例如:</p>
+<pre class="highlight"><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EncapTest</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">​</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line">​</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">​</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">​</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+
+<p> <strong>this</strong> 关键字是为了解决实例变量（private String name）和局部变（setName(String name)中的name变量）之间发生的同名的冲突。</p>
+<p><strong>测试:</strong></p>
+<pre class="highlight"><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RunEncap</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</span><br><span class="line">      EncapTest encap = <span class="keyword">new</span> EncapTest();</span><br><span class="line">      encap.setName(<span class="string">&quot;James&quot;</span>);</span><br><span class="line">      encap.setAge(<span class="number">20</span>);</span><br><span class="line">      encap.setIdNum(<span class="string">&quot;12343ms&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      System.out.print(<span class="string">&quot;Name : &quot;</span> + encap.getName()+ </span><br><span class="line">                             <span class="string">&quot; Age : &quot;</span>+ encap.getAge());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+
+<h3 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a>this关键字</h3><p>this关键字代表自身类的对象</p>
+<ul>
+<li><p>使用this关键字引用成员变量</p>
+</li>
+<li><p>使用this关键字引用成员方法</p>
+<p><strong>注意:this关键字必须放在非静态方法里面</strong></p>
+</li>
+</ul>
+<p>使用“this.成员变量名”这样的格式来引用成员变量名，,常常硬来区分同名的成员变量呵和局部变量</p>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>继承是面向对象程序设计思想,是实现代码可重用的根基,是提高代码可扩展性的主要途径。并减少代码的冗余.</p>
+<ul>
+<li>继承是从已有的类中派生出新的类,新类能吸收已有类的属性和行为，并能扩展新的能力<ul>
+<li>Java中使用extends关键字来表示继承关系</li>
+<li>java不支持多继承,一个子类只有一个父类</li>
+<li>继承后子类可以调用父类的所有非私有属性和非私有方法</li>
+</ul>
+</li>
+</ul>
+<h3 id="使用继承"><a href="#使用继承" class="headerlink" title="使用继承"></a>使用继承</h3><ol>
+<li><p>符合is-a关系的设计,使用继承</p>
+</li>
+<li><p>将子类共有的属性和行为放到父类中</p>
+<p>例如: 猫是动物,   (子类)猫类的(父类)就是动物类</p>
+<p><strong>继承是代码重用的一种方式</strong></p>
+</li>
+</ol>
+<h3 id="继承形式"><a href="#继承形式" class="headerlink" title="继承形式"></a>继承形式</h3><pre class="highlight"><span class="line">[访问权限修饰符][修饰符]  子类名  extends  父类名&#123;子类体&#125;</span><br></pre>
+
+<p><strong>父类</strong>(动物类)</p>
+<pre class="highlight"><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;动物吃&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+
+<p><strong>子类</strong>(猫类)</p>
+<pre class="highlight"><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;猫在玩耍&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+
+<p>测试</p>
+<pre class="highlight"><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Cat cat=<span class="keyword">new</span> Cat();</span><br><span class="line">        cat.play();<span class="comment">//子类属性</span></span><br><span class="line">        cat.eat();<span class="comment">//父类属性</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+
+<h3 id="专业术语"><a href="#专业术语" class="headerlink" title="专业术语"></a>专业术语</h3><p>cat类是 Animal类的子类, Animal类是cat类的父类<br> cat类是 Animal类的派生类, Animal类是cat类的基类</p>
+<h3 id="继承传递性"><a href="#继承传递性" class="headerlink" title="继承传递性"></a>继承传递性</h3><ul>
+<li>继承后子类可以调用父类的所有非私有属性和非私有方法,并别可以多层传递,,C类从B类继承,B类又从A类继承那么C类就具有B类和A类的所有非私有属性和非私有方法</li>
+<li>当一个类没有继承任何一个类时,jvm会默认让继承Object类…..Object是java为所有类提供的基类</li>
+</ul>
+<h3 id="super关键字"><a href="#super关键字" class="headerlink" title="super关键字"></a>super关键字</h3><p>super关键字代表父类的引用,在程序中主要途径</p>
+<ul>
+<li>在子类构造中调用父类的构造方法,super语句只能出现子类构造方法体的第一行</li>
+<li>用”super.成员变量名”用来引用父类成员变量</li>
+<li>用”super.方法名(参数列表)”的方式访问父类的方法.</li>
+<li>与this的区别,this通常指代当前对象,super通常指代父类.</li>
+</ul>
+<h3 id="方法的重写"><a href="#方法的重写" class="headerlink" title="方法的重写"></a>方法的重写</h3><p>重写overRide 重载overload</p>
+<p>子类方法根据父类中继承的方法进行重写</p>
+<p>方法重写规则:</p>
+<ul>
+<li><p>方法名相同,参数相同</p>
+</li>
+<li><p>返回值类型相同</p>
+</li>
+<li><p>访问权限相同</p>
+<p>-即于父类方法结构完全相同</p>
+<p><strong>注意:构造方法不能重写</strong></p>
+</li>
+</ul>
+<p>应用场景:当此父类的方法不能满足子类需求时,可以对方法进行重写(overRide)</p>
+<pre class="highlight"><span class="line"><span class="keyword">package</span> com.nie.day5.demo01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal1</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String a;</span><br><span class="line">    <span class="keyword">private</span> String eat;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Animal1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        System.out.println(<span class="string">&quot;Animal无参构造&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Animal1</span><span class="params">(String a)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.a = a;</span><br><span class="line">        System.out.println(<span class="string">&quot;Animal有参构造&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;动物吃&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getA</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setA</span><span class="params">(String a)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.a = a;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getEat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> eat;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setEat</span><span class="params">(String eat)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.eat = eat;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre>
+
+
+
+<pre class="highlight"><span class="line"><span class="keyword">package</span> com.nie.day5.demo01;</span><br><span class="line"><span class="keyword">import</span> com.nie.day4.demo1.demo02.Animal;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">dog</span> <span class="keyword">extends</span> <span class="title">Animal1</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 子类构造方法,先调用父类的构造方法,默认情况下调用父类的无参构造方法</span></span><br><span class="line"><span class="comment">     * super 调用父类任意一个构造方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">dog</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();	<span class="comment">//- 用&quot;super.成员变量名&quot;用来引用父类成员变量</span></span><br><span class="line">					<span class="comment">//- 用&quot;super.方法名(参数列表)&quot;的方式访问父类的方法.</span></span><br><span class="line">        <span class="comment">//super(&quot;d&quot;);//super语句只能出现子类构造方法体的第一行</span></span><br><span class="line">        System.out.println(<span class="string">&quot;dog无参构造&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">      <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 重写override   重载 overload</span></span><br><span class="line"><span class="comment">     * 方法名,参数列表相同</span></span><br><span class="line"><span class="comment">     * 返回值类型相同</span></span><br><span class="line"><span class="comment">     * 访问权限相同,   即父类的方法结构完全相同</span></span><br><span class="line"><span class="comment">     *  注意::   构造方法不能重写</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     *  场景: 父类的方法不能满足子类的时,需要对方法进行重写</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span><span class="comment">//表示此方法有父类重写而来</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;狗吃&quot;</span>);</span><br><span class="line">        <span class="keyword">super</span>.eat();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre>
+
+<p><strong>测试</strong></p>
+<pre class="highlight"><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        dog a = <span class="keyword">new</span> dog();</span><br><span class="line">        a.eat();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+
+<pre class="highlight"><span class="line">Animal有参构造</span><br><span class="line">dog无参构造</span><br><span class="line">狗吃</span><br><span class="line">动物吃</span><br></pre>
+
+
+
+<h3 id="类之间关系–关联-依赖"><a href="#类之间关系–关联-依赖" class="headerlink" title="类之间关系–关联,依赖"></a>类之间关系–关联,依赖</h3><h4 id="关联"><a href="#关联" class="headerlink" title="关联"></a><strong>关联</strong></h4><p><strong>has-a</strong></p>
+<ul>
+<li>对象与对象之间的连接,.在Java中,关联关系的代码表现形式为一个类做为另外一个类的属性类型存在….类与类之间的一种最常用的关系。</li>
+<li>即“有”的关系：<strong>”has-a”。</strong></li>
+</ul>
+<p>关联关系为:关联关系的多重性</p>
+<ol>
+<li>单向关联,自关联  一对一关联：一个学生，只能在一个班级里学习。</li>
+<li>双向关联:可以调用对对方的公共属性和方法，<strong>例如知道对方的存在供货商和顾客</strong></li>
+</ol>
+<p><strong>双向关联</strong></p>
+<pre class="highlight"><span class="line">publc <span class="class"><span class="keyword">class</span> <span class="title">Customer</span></span>&#123;</span><br><span class="line">	<span class="comment">//供货商对象数组作为顾客的属性成员</span></span><br><span class="line">	<span class="keyword">private</span> Supplier [] supplier;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Supplier</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> Customer [] customer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre>
+
+<p><strong>单向关联</strong></p>
+<pre class="highlight"><span class="line">publc <span class="class"><span class="keyword">class</span> <span class="title">Customer</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Address address;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Address</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre>
+
+
+
+<p><strong>自关联</strong></p>
+<pre class="highlight"><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span></span>&#123;</span><br><span class="line"><span class="keyword">private</span> Customer customer;</span><br><span class="line">&#125;</span><br></pre>
+
+
+
+<h4 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h4><p><strong>use a 的关系为依赖关系</strong></p>
+<ul>
+<li><p>依赖关系(使用关系), 指一个类A使用到了另一个类B</p>
+</li>
+<li><p>依赖关系特性</p>
+<p>这种关系是具有偶然性的,临时性的,非常弱的,,但是类B的变化会影响到类A</p>
+</li>
+</ul>
+<p>课表与课程之间:</p>
+<pre class="highlight"><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CourseTable</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addCourse</span><span class="params">(Course c)</span></span>&#123;</span><br><span class="line">		c.show();</span><br><span class="line">		System.out.println(<span class="string">&quot;新增课程&quot;</span>);</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="function">pubilc <span class="keyword">void</span> <span class="title">deCourse</span><span class="params">(Course c)</span></span>&#123;</span><br><span class="line">		c.show();</span><br><span class="line">		System.out.println(<span class="string">&quot;删除课程&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Course</span></span>&#123;</span><br><span class="line">	System.out.println(<span class="string">&quot;课程为：&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre>
+
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>同一事物,在不同时刻表现不同的状态</p>
+<pre class="highlight"><span class="line">所谓多态就是指程序中定义的引用变量所指向的具体类型和通过该引用变量发出的方法调用在编程时并不确定，而是在程序运行期间才确定，即一个引用变量倒底会指向哪个类的实例对象，该引用变量发出的方法调用到底是哪个类中实现的方法，必须在由程序运行期间才能决定。因为在程序运行时才确定具体的类，这样，不用修改源程序代码，就可以让引用变量绑定到各种不同的类实现上，从而导致该引用调用的具体方法随之改变，即不修改程序代码就可以改变程序运行时所绑定的具体代码，让程序可以选择多个运行状态，这就是多态性。</span><br></pre>
+
+<p>多态存在的必要的三个条件:</p>
+<ul>
+<li>要有继承(前提条件)</li>
+<li>要有重写(前提条件)</li>
+<li>父类引用指向子类对象</li>
+</ul>
+<ol>
+<li>当编译类型是父类,运行类型是子类时,被称为<strong>父类引用指向子类对象</strong></li>
+<li>多态环境下对成员方法的调用             <strong>编译看左边，运行看右边。</strong></li>
+<li>多态环境下对静态成员方法的调用     <strong>简单的说：编译和运行都看左边。</strong></li>
+<li>多态环境下对成员变量的调用      <strong>编译和运行都看等号左边。注意:变量不出存在被子类覆写说法,只存在覆盖</strong></li>
+</ol>
+<p><strong>方法的形参</strong>是父类类型,而传递的似乎实际参数可以是任意子类的对象</p>
+<p>方法参数多态性的好处:提高代码的扩展性</p>
+<p><strong>父类</strong>(动物类)</p>
+<pre class="highlight"><span class="line"><span class="keyword">package</span> com.nie.day5.demo04;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 多态</span></span><br><span class="line"><span class="comment"> * 同一种食物,在不同时刻表现不同的状态</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 多态存在的三个必须的条件</span></span><br><span class="line"><span class="comment"> * --要有继承</span></span><br><span class="line"><span class="comment"> * --要有重写</span></span><br><span class="line"><span class="comment"> * --父类指向子类对象</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> num=<span class="number">10</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;动物吃&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Animal&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;动物飞了&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+
+
+
+<p><strong>子类</strong>(猫)</p>
+<pre class="highlight"><span class="line"><span class="keyword">package</span> com.nie.day5.demo04;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;cat 吃&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;静态成员方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span>  <span class="title">look</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;看家&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre>
+
+<p><strong>子类</strong>(狗)</p>
+<pre class="highlight"><span class="line"><span class="keyword">package</span> com.nie.day5.demo04;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * * --要有继承</span></span><br><span class="line"><span class="comment"> *  * --要有重写</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span>  <span class="keyword">extends</span>  <span class="title">Animal</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;小狗一号  吃&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre>
+
+<p><strong>子类</strong>(狗1)</p>
+<pre class="highlight"><span class="line"><span class="keyword">package</span> com.nie.day5.demo04;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog1</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span>   <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;小狗二号  吃&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre>
+
+<p><strong>测试</strong></p>
+<pre class="highlight"><span class="line"><span class="keyword">package</span> com.nie.day5.demo04;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//父类指向子类对象</span></span><br><span class="line">        <span class="comment">//父类     子类</span></span><br><span class="line">        Animal a = <span class="keyword">new</span> Cat();</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 多态环境下对成员方法的调用</span></span><br><span class="line"><span class="comment">         * **编译看左边，运行看右边。**</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        a.eat();</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 多态环境下对静态成员方法的调用</span></span><br><span class="line"><span class="comment">         * **简单的说：编译和运行都看左边。**</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        a.show();</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * a.num    编译和运行都看等号左边</span></span><br><span class="line"><span class="comment">         * 注意:变量不存在被子类覆盖写这一说法,只有方法存在覆盖</span></span><br><span class="line"><span class="comment">         * 调用的是父类的成员变量</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"></span><br><span class="line">        System.out.println(a.num);</span><br><span class="line">        Animal b = <span class="keyword">new</span> Dog();</span><br><span class="line">        b.eat();</span><br><span class="line">        Animal c = <span class="keyword">new</span> Dog1();</span><br><span class="line">        c.eat();</span><br><span class="line">        Test t = <span class="keyword">new</span> Test();</span><br><span class="line">        t.method(a);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//方法的形参是父类类型,而传递的是实际参数可以是任意子类的对象</span></span><br><span class="line">    <span class="comment">//提高方法参数多态性的好处：提高代码的扩展性</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">(Animal animal)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        animal.eat();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre>
+
+<h3 id="向上转型-向下转型"><a href="#向上转型-向下转型" class="headerlink" title="向上转型,向下转型"></a>向上转型,向下转型</h3><p><strong>父类引用指向子类对象</strong></p>
+<ul>
+<li>向上转型的作用是：提高程序的扩展性。</li>
+<li>向下转型的作用是:为了使用子类中特有的方法</li>
+</ul>
+<pre class="highlight"><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num=<span class="number">10</span>;</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;动物吃&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre>
+
+<pre class="highlight"><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span>  <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">5</span>;</span><br><span class="line">   <span class="function"><span class="keyword">void</span>  <span class="title">look</span><span class="params">()</span></span>&#123;</span><br><span class="line">       System.out.println(<span class="string">&quot;看家&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre>
+
+<pre class="highlight"><span class="line"><span class="keyword">package</span> com.nie.day5.demo05;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;<span class="comment">//向下转型</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Animal a = <span class="keyword">new</span> Cat();<span class="comment">//向上转型</span></span><br><span class="line">        <span class="comment">//多态的问题:父类类型不能访问子类特有的方法</span></span><br><span class="line">        <span class="comment">//解决办法: 向下转型</span></span><br><span class="line">        String s = <span class="string">&quot;ads&quot;</span>;</span><br><span class="line">        Object obj = s;</span><br><span class="line">        <span class="comment">//   大类型 instanceof 小类型  判断检测大类型中是否包含的是具体的小类型</span></span><br><span class="line">        <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> Cat) &#123;</span><br><span class="line">            Cat m = (Cat) a;<span class="comment">//向下转型</span></span><br><span class="line">            m.look();</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;不是&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+  </div>
+  <div>
+  
+  <div class="post-note note-warning copyright" style="margin-top: 42px">
+    <p><span style="font-weight: bold;">作者：</span><a target="_blank" rel="nofollow noopener noreferrer" href="http://example.com/about">theme-kaze</a></p>
+    <p><span style="font-weight: bold;">文章链接：</span><a target="_blank" rel="nofollow noopener noreferrer" href="http://example.com/2020/10/25/javaSE08/">http://example.com/2020/10/25/javaSE08/</a></p>
+    <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+  </div>
+  
+  </div>
+</article>
+<div class="nav">
+  
+  <div class="nav-item-prev">
+    <a href="/2020/10/29/javaSE09/" class="nav-link">
+      <i class="iconfont icon-left nav-prev-icon"></i>
+      <div>
+        <div class="nav-label">Prev</div>
+        
+        <div class="nav-title">javaSE-10-抽象类-接口 </div>
+        
+      </div>
+    </a>
+  </div>
+  
+  
+  <div class="nav-item-next">
+    <a href="/2020/10/23/javaSE07/" class="nav-link">
+      <div>
+        <div class="nav-label">Next</div>
+        
+        <div class="nav-title">javaSE-08-包-权限修饰符 </div>
+        
+      </div>
+      <i class="iconfont icon-right nav-next-icon"></i>
+    </a>
+  </div>
+  
+</div>
+
+<div class="card card-content toc-card" id="mobiletoc">
+  <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>TOC</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%89%B9%E5%BE%81"><span class="toc-text">面向对象特征</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%81%E8%A3%85"><span class="toc-text">封装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%E6%A6%82%E5%BF%B5"><span class="toc-text">封装概念:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E8%A1%A8%E7%8E%B0"><span class="toc-text">具体表现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#this%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">this关键字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF"><span class="toc-text">继承</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E7%BB%A7%E6%89%BF"><span class="toc-text">使用继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF%E5%BD%A2%E5%BC%8F"><span class="toc-text">继承形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%93%E4%B8%9A%E6%9C%AF%E8%AF%AD"><span class="toc-text">专业术语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF%E4%BC%A0%E9%80%92%E6%80%A7"><span class="toc-text">继承传递性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#super%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">super关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E7%9A%84%E9%87%8D%E5%86%99"><span class="toc-text">方法的重写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E4%B9%8B%E9%97%B4%E5%85%B3%E7%B3%BB%E2%80%93%E5%85%B3%E8%81%94-%E4%BE%9D%E8%B5%96"><span class="toc-text">类之间关系–关联,依赖</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E8%81%94"><span class="toc-text">关联</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96"><span class="toc-text">依赖</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E6%80%81"><span class="toc-text">多态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%91%E4%B8%8A%E8%BD%AC%E5%9E%8B-%E5%90%91%E4%B8%8B%E8%BD%AC%E5%9E%8B"><span class="toc-text">向上转型,向下转型</span></a></li></ol></li></ol></li></ol>
+</div></main>
+          <aside class="left-column">
+            
+            <div class="card card-author">
+              
+<img src="/img/Kaze.png" class="author-img">
+
+<p class="author-name">theme-kaze</p>
+<p class="author-description">designed by theme-kaze</p>
+<div class="author-message">
+  <a class="author-posts-count" href="/archives">
+    <span>138</span>
+    <span>Posts</span>
+  </a>
+  <a class="author-categories-count" href="/categories">
+    <span>10</span>
+    <span>Categories</span>
+  </a>
+  <a class="author-tags-count" href="/tags">
+    <span>62</span>
+    <span>Tags</span>
+  </a>
+</div>
+
+            </div>
+            
+            <div class="sticky-tablet">
+  
+  
+  <article class="display-when-two-columns spacer">
+    <div class="card card-content toc-card">
+      <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>TOC</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%89%B9%E5%BE%81"><span class="toc-text">面向对象特征</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%81%E8%A3%85"><span class="toc-text">封装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%E6%A6%82%E5%BF%B5"><span class="toc-text">封装概念:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E8%A1%A8%E7%8E%B0"><span class="toc-text">具体表现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#this%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">this关键字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF"><span class="toc-text">继承</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E7%BB%A7%E6%89%BF"><span class="toc-text">使用继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF%E5%BD%A2%E5%BC%8F"><span class="toc-text">继承形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%93%E4%B8%9A%E6%9C%AF%E8%AF%AD"><span class="toc-text">专业术语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF%E4%BC%A0%E9%80%92%E6%80%A7"><span class="toc-text">继承传递性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#super%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">super关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E7%9A%84%E9%87%8D%E5%86%99"><span class="toc-text">方法的重写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E4%B9%8B%E9%97%B4%E5%85%B3%E7%B3%BB%E2%80%93%E5%85%B3%E8%81%94-%E4%BE%9D%E8%B5%96"><span class="toc-text">类之间关系–关联,依赖</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E8%81%94"><span class="toc-text">关联</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96"><span class="toc-text">依赖</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E6%80%81"><span class="toc-text">多态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%91%E4%B8%8A%E8%BD%AC%E5%9E%8B-%E5%90%91%E4%B8%8B%E8%BD%AC%E5%9E%8B"><span class="toc-text">向上转型,向下转型</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header"><i class="iconfont icon-fenlei" style="padding-right: 2px;"></i>Categories</div>
+  <div class="categories-list">
+    
+      <a href="/categories/-数据结构和算法-体系">
+        <div class="categories-list-item">
+          -数据结构和算法-体系
+          <span class="categories-list-item-badge">9</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-前端">
+        <div class="categories-list-item">
+          -前端
+          <span class="categories-list-item-badge">10</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-JDBC">
+        <div class="categories-list-item">
+          -JDBC
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-JQuery">
+        <div class="categories-list-item">
+          -JQuery
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-JavaScript">
+        <div class="categories-list-item">
+          -JavaScript
+          <span class="categories-list-item-badge">5</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-算法">
+        <div class="categories-list-item">
+          -算法
+          <span class="categories-list-item-badge">60</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-javase">
+        <div class="categories-list-item">
+          -javase
+          <span class="categories-list-item-badge">31</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-工具栏">
+        <div class="categories-list-item">
+          -工具栏
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-操作系统">
+        <div class="categories-list-item">
+          -操作系统
+          <span class="categories-list-item-badge">8</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-计算机网络">
+        <div class="categories-list-item">
+          -计算机网络
+          <span class="categories-list-item-badge">8</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header"><i class="iconfont icon-biaoqian" style="padding-right: 2px;"></i>hot tags</div>
+  <div class="tags-list">
+    
+    <a href="\tags\LeetCode" title="LeetCode"><div class="tags-list-item">LeetCode</div></a>
+    
+    <a href="\tags\基础" title="基础"><div class="tags-list-item">基础</div></a>
+    
+    <a href="\tags\java" title="java"><div class="tags-list-item">java</div></a>
+    
+    <a href="\tags\面试" title="面试"><div class="tags-list-item">面试</div></a>
+    
+    <a href="\tags\排序" title="排序"><div class="tags-list-item">排序</div></a>
+    
+    <a href="\tags\十大排序" title="十大排序"><div class="tags-list-item">十大排序</div></a>
+    
+    <a href="\tags\数据结构" title="数据结构"><div class="tags-list-item">数据结构</div></a>
+    
+    <a href="\tags\网络" title="网络"><div class="tags-list-item">网络</div></a>
+    
+    <a href="\tags\双指针" title="双指针"><div class="tags-list-item">双指针</div></a>
+    
+    <a href="\tags\二叉树" title="二叉树"><div class="tags-list-item">二叉树</div></a>
+    
+    <a href="\tags\链表" title="链表"><div class="tags-list-item">链表</div></a>
+    
+    <a href="\tags\常用10种算法" title="常用10种算法"><div class="tags-list-item">常用10种算法</div></a>
+    
+    <a href="\tags\链表反转" title="链表反转"><div class="tags-list-item">链表反转</div></a>
+    
+    <a href="\tags\JavaWeb" title="JavaWeb"><div class="tags-list-item">JavaWeb</div></a>
+    
+    <a href="\tags\JavaScript" title="JavaScript"><div class="tags-list-item">JavaScript</div></a>
+    
+    <a href="\tags\CSS" title="CSS"><div class="tags-list-item">CSS</div></a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+          </aside>
+          <aside class="right-column">
+            <div class="sticky-widescreen">
+  
+  
+  <article class="card card-content toc-card">
+    <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>TOC</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%89%B9%E5%BE%81"><span class="toc-text">面向对象特征</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%81%E8%A3%85"><span class="toc-text">封装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%E6%A6%82%E5%BF%B5"><span class="toc-text">封装概念:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E8%A1%A8%E7%8E%B0"><span class="toc-text">具体表现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#this%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">this关键字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF"><span class="toc-text">继承</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E7%BB%A7%E6%89%BF"><span class="toc-text">使用继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF%E5%BD%A2%E5%BC%8F"><span class="toc-text">继承形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%93%E4%B8%9A%E6%9C%AF%E8%AF%AD"><span class="toc-text">专业术语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF%E4%BC%A0%E9%80%92%E6%80%A7"><span class="toc-text">继承传递性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#super%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">super关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E7%9A%84%E9%87%8D%E5%86%99"><span class="toc-text">方法的重写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E4%B9%8B%E9%97%B4%E5%85%B3%E7%B3%BB%E2%80%93%E5%85%B3%E8%81%94-%E4%BE%9D%E8%B5%96"><span class="toc-text">类之间关系–关联,依赖</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E8%81%94"><span class="toc-text">关联</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96"><span class="toc-text">依赖</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E6%80%81"><span class="toc-text">多态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%91%E4%B8%8A%E8%BD%AC%E5%9E%8B-%E5%90%91%E4%B8%8B%E8%BD%AC%E5%9E%8B"><span class="toc-text">向上转型,向下转型</span></a></li></ol></li></ol></li></ol>
+  </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header"><i class="iconfont icon-wenzhang_huaban" style="padding-right: 2px;"></i>Recent Posts</div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-08</div>
+        <a href="/2021/01/08/JQuery-02/"><div class="recent-posts-item-content">JQuery-02JQuery选择器(重点)</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-07</div>
+        <a href="/2021/01/07/JQuery-01/"><div class="recent-posts-item-content">JQuery-01概论</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-06</div>
+        <a href="/2021/01/06/常用正则/"><div class="recent-posts-item-content">常用正则写法</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-05</div>
+        <a href="/2021/01/05/JS-05/"><div class="recent-posts-item-content">JS-05-JavaScript 正则表达式</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>Copyright ©
+          
+          2020 -
+          
+          2021
+        </span>
+        &nbsp;
+        <a href="/" class="footer-link">theme-kaze demo </a>
+      </div>
+    </div>
+
+    
+    <div class="footer-dsc">
+      
+      Powered by
+      <a href="https://hexo.io/" class="footer-link" target="_blank" rel="nofollow noopener noreferrer">&nbsp;Hexo </a>
+      
+      
+      <span>&nbsp;|&nbsp;</span>
+      
+      
+      Theme -
+      <a href="https://github.com/theme-kaze" class="footer-link" target="_blank"
+        rel="nofollow noopener noreferrer">&nbsp;Kaze</a>
+      
+    </div>
+    
+    
+    
+    
+</footer>
+  <a role="button" id="scrollbutton" class="basebutton"  aria-label="回到顶部">
+  <i class="iconfont icon-arrowleft button-icon"></i>
+</a>
+<a role="button" id="menubutton" class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a role="button" id="popbutton" class="basebutton" aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a role="button" id="darkbutton" class="basebutton darkwidget" aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a role="button" id="searchbutton" class="basebutton searchwidget" aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a>
+
+  
+  
+  
+  <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img');
+    var i;
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a');
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'));
+      wrapper.setAttribute('aria-label', 'illustration');
+      wrapper.style.cssText = 'width: 100%; display: flex; justify-content: center;';
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt;
+      wrapper.dataset.nolink = true;
+      img[i].before(wrapper);
+      wrapper.append(img[i]);
+      var divWrap = document.createElement('div');
+      divWrap.classList.add('gallery');
+      wrapper.before(divWrap);
+      divWrap.append(wrapper);
+    }
+    baguetteBox.run('.gallery');
+  }
+</script>
+<script>loadScript("/js/lib/lightbox/baguetteBox.min.js", addImgLayout)</script>
+  
+  
+  
+<script src="/js/main.js"></script>
+
+  
+  
+  <script>
+    var addLazyload = function () {
+      var observer = lozad('.lozad', {
+        load: function (el) {
+          el.srcset = el.getAttribute('data-src');
+        },
+        loaded: function (el) {
+          el.classList.add('loaded');
+        }
+      });
+      observer.observe();
+    }
+  </script>
+  <script>loadScript("/js/lib/lozad.min.js", addLazyload)</script>
+  
+  
+</body>
+
+</html>

@@ -1,53 +1,838 @@
-extends widget/base
-block append head
-  link(rel='stylesheet', href= url_for('/style/post.css'))
-  link(rel='stylesheet', href= url_for('/style/highlight-theme-light.css'))
-  script(src= url_for("/jslib/highlight.pack.js"))
-block topic
-    div#postTopic.is-full-height
-        - var title = truncate( page.title, {length: 65, omission: '..'} ) || ''
-        p.is-full-height.is-flex-shrink-0.is-flex.is-align-items-center.is-justify-content-center= title
-        p.is-full-height.is-flex-shrink-0.is-flex.is-align-items-center.is-justify-content-center= __('click_back_to_the_top')
+<!DOCTYPE html>
+<html  lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#fff" id="theme-color">
+  <meta name="description" content="当咸鱼,不存在!!!">
+  <link rel="icon" href="/img/Kaze.png">
+  <title>LC快刷数组.链表.跳表</title>
+  
+  
+  <meta property="og:title" content="LC快刷数组.链表.跳表">
+  
+  
+  <meta property="og:url" content="http://example.com/2020/12/06/LC%E5%BF%AB%E5%88%B7%E6%95%B0%E7%BB%84-%E9%93%BE%E8%A1%A8-%E8%B7%B3%E8%A1%A8/index.html">
+  
+  
+  <meta property="og:img" content="/img/Kaze.png">
+  
+  
+  <meta property="og:img" content="&lt;h1 id=&#34;快刷-数组、链表、跳表&#34;&gt;&lt;a href=&#34;#快刷-数组、链表、跳表&#34; class=&#34;headerlink&#34; title=&#34;快刷:数组、链表、跳表&#34;&gt;&lt;/a&gt;快刷:数组、链表、跳表&lt;/h1&gt;&lt;p&gt;两数之和题目： &lt;a href=&#34;https://leetcode-cn.com/problems/two-sum/&#34;&gt;https://leetcode-cn.com/problems/two-sum/&lt;/a&gt;&lt;br&gt;Array 实战题目&lt;br&gt;&lt;a href=&#34;https://leetcode-cn.com/problems/container-with-most-water/&#34;&gt;https://leetcode-cn.com/problems/container-with-most-water/&lt;/a&gt;&lt;br&gt;&lt;a href=&#34;https://leetcode-cn.com/problems/move-zeroes/&#34;&gt;https://leetcode-cn.com/problems/move-zeroes/&lt;/a&gt;&lt;br&gt;&lt;a href=&#34;https://leetcode.com/problems/climbing-stairs/&#34;&gt;https://leetcode.com/problems/climbing-stairs/&lt;/a&gt;&lt;br&gt;&lt;a href=&#34;https://leetcode-cn.com/problems/3sum/&#34;&gt;https://leetcode-cn.com/problems/3sum/&lt;/a&gt; (高频老题）&lt;br&gt;Linked List 实战题目&lt;br&gt;&lt;a href=&#34;https://leetcode.com/problems/reverse-linked-list/&#34;&gt;https://leetcode.com/problems/reverse-linked-list/&lt;/a&gt;&lt;br&gt;&lt;a href=&#34;https://leetcode.com/problems/swap-nodes-in-pairs&#34;&gt;https://leetcode.com/problems/swap-nodes-in-pairs&lt;/a&gt;&lt;br&gt;&lt;a href=&#34;https://leetcode.com/problems/linked-list-cycle&#34;&gt;https://leetcode.com/problems/linked-list-cycle&lt;/a&gt;&lt;br&gt;&lt;a href=&#34;https://leetcode.com/problems/linked-list-cycle-ii&#34;&gt;https://leetcode.com/problems/linked-list-cycle-ii&lt;/a&gt;&lt;br&gt;&lt;a href=&#34;https://leetcode.com/problems/reverse-nodes-in-k-group/&#34;&gt;https://leetcode.com/problems/reverse-nodes-in-k-group/&lt;/a&gt;&lt;/p&gt;">
+  
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:published_time" content="2020-12-06">
+  <meta property="og:article:modified_time" content="2020-12-06">
+  <meta property="og:article:author" content="theme-kaze">
+  
+  
+  <meta property="og:article:tag" content="链表">
+  
+  <meta property="og:article:tag" content="LeetCode">
+  
+  <meta property="og:article:tag" content="双指针">
+  
+  <meta property="og:article:tag" content="数组">
+  
+  
+  
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+    var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+      }
+    };
+    setDarkmode();
+  </script>
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  </script>
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  
+  <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+  <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+  <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/main.css">
 
-block content
-    - var tocContent = toc(page.content, {list_number: false})
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
 
-    main.container.is-max-widescreen.content.section.post-page.pt-4.px-4
-        .columns.is-flex-desktop.is-justify-content-center.is-flex-direction-row-reverse
-            .column.is-3.is-hidden-mobile(class= tocContent.length < 1 && 'is-hidden')!= tocContent
-            .column.is-9
-                header.my-4
-                    if page.tags && page.tags.length > 0
-                        each tag in page.tags.toArray()
-                            a(href= url_for(`/tags/${tag.name}`))
-                                i.tag.post-item-tag= tag.name
-                h1.mt-0.mb-1.is-family-serif#postTitle= page.title
-                if page.date
-                    time.has-text-grey(datetime=page.date.toJSON())= date(page.date, date_format)
-                article.mt-2.post-content!= page.content
-                section.jump-container.is-flex.is-justify-content-space-between.my-6
-                    // em is empty placeholder
-                    if page.prev
-                        - var preContent= `${ __('prev') }: ${ page.prev.title }`
-                        a.button.is-small.is-default.py-4(href= url_for(page.prev.path) title= page.prev.title)
-                            i.iconfont.icon-prev.mr-2.has-text-grey
-                            span.has-text-weight-semibold= preContent
-                    else
-                        em
-                    if page.next
-                        - var nextContent= `${ __('next') }: ${ page.next.title }`
-                        a.button.is-small.is-default.py-4(href= url_for(page.next.path) title= page.next.title)
-                            span.has-text-weight-semibold= nextContent
-                            i.iconfont.icon-next.ml-2.has-text-grey
-                if theme.comment_utteranc && theme.comment_utteranc.enable
-                    article.mt-6.comment-container
-                        script(
-                            async
-                            repo= theme.comment_utteranc.repo
-                            src= "https://utteranc.es/client.js"
-                            label= theme.comment_utteranc.label
-                            issue-term= theme.comment_utteranc.issue_term || "pathname"
-                            theme= theme.comment_utteranc.theme || "preferred-color-scheme"
-                        )
-block script
-    script(src= url_for("/js/post.js"))
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+
+  
+  
+<link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <div class="wrapper">
+    
+    <nav class="navbar">
+  <div class="navbar-logo">
+    <span class="navbar-logo-main">
+      
+      <img class="navbar-logo-img" src="/img/Kaze.png" alt="logo">
+      
+      <span class="navbar-logo-dsc">theme-kaze demo</span>
+    </span>
+  </div>
+  <div class="navbar-menu">
+    
+    <a href="/" class="navbar-menu-item">
+    
+    Home
+    
+    </a>
+    
+    <a href="/archives" class="navbar-menu-item">
+    
+    Archive
+    
+    </a>
+    
+    <a href="/tags" class="navbar-menu-item">
+    
+    Tags
+    
+    </a>
+    
+    <a href="/categories" class="navbar-menu-item">
+    
+    Categories
+    
+    </a>
+    
+    <a href="/about" class="navbar-menu-item">
+    
+    About
+    
+    </a>
+    
+    <a href="/links" class="navbar-menu-item">
+    
+    Friends
+    
+    </a>
+    
+    <a class="navbar-menu-item darknavbar" id="dark"><i class="iconfont icon-weather"></i></a>
+    <a class="navbar-menu-item searchnavbar" id="search"><i class="iconfont icon-search" style="font-size: 1.2rem; font-weight: 400;"></i></a>
+  </div>
+</nav>
+    
+    <div id="local-search" style="display: none;">
+      <input class="navbar-menu-item" id="search-input" placeholder="请输入搜索内容...">
+      <div id="search-content"></div>
+    </div>
+    
+    <div class="section-wrap">
+      <div class="container">
+        <div class="columns">
+          <main class="main-column">
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      LC快刷数组.链表.跳表
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2020-12-06T09:08:18.000Z">
+      <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+      <span>2020-12-06</span>
+    </time>
+    
+    <span class="dot"></span>
+    
+    <a href="/categories/算法/" class="post-meta-link">-算法</a>
+    
+    
+    
+    <span class="dot"></span>
+    <span>4.8k words</span>
+    
+  </div>
+  
+  <div class="post-meta post-show-meta" style="margin-top: -10px;">
+    <div style="display: flex; align-items: center;">
+      <i class="iconfont icon-biaoqian" style="margin-right: 2px; font-size: 1.15rem;"></i>
+      
+      
+        <a href="/tags/链表/" class="post-meta-link">链表</a>
+      
+      
+      <span class="dot"></span>
+      
+        <a href="/tags/LeetCode/" class="post-meta-link">LeetCode</a>
+      
+      
+      <span class="dot"></span>
+      
+        <a href="/tags/双指针/" class="post-meta-link">双指针</a>
+      
+      
+      <span class="dot"></span>
+      
+        <a href="/tags/数组/" class="post-meta-link">数组</a>
+      
+    </div>
+  </div>
+  
+  </header>
+  <div id="section" class="post-content">
+    <h1 id="快刷-数组、链表、跳表"><a href="#快刷-数组、链表、跳表" class="headerlink" title="快刷:数组、链表、跳表"></a>快刷:数组、链表、跳表</h1><p>两数之和题目： <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/two-sum/">https://leetcode-cn.com/problems/two-sum/</a><br>Array 实战题目<br><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/container-with-most-water/">https://leetcode-cn.com/problems/container-with-most-water/</a><br><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/move-zeroes/">https://leetcode-cn.com/problems/move-zeroes/</a><br><a target="_blank" rel="noopener" href="https://leetcode.com/problems/climbing-stairs/">https://leetcode.com/problems/climbing-stairs/</a><br><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/3sum/">https://leetcode-cn.com/problems/3sum/</a> (高频老题）<br>Linked List 实战题目<br><a target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-linked-list/">https://leetcode.com/problems/reverse-linked-list/</a><br><a target="_blank" rel="noopener" href="https://leetcode.com/problems/swap-nodes-in-pairs">https://leetcode.com/problems/swap-nodes-in-pairs</a><br><a target="_blank" rel="noopener" href="https://leetcode.com/problems/linked-list-cycle">https://leetcode.com/problems/linked-list-cycle</a><br><a target="_blank" rel="noopener" href="https://leetcode.com/problems/linked-list-cycle-ii">https://leetcode.com/problems/linked-list-cycle-ii</a><br><a target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-nodes-in-k-group/">https://leetcode.com/problems/reverse-nodes-in-k-group/</a></p>
+  <a id="more"></a> 
+
+<p>课后作业<br><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/">https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/</a><br><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/rotate-array/">https://leetcode-cn.com/problems/rotate-array/</a><br><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-two-sorted-lists/">https://leetcode-cn.com/problems/merge-two-sorted-lists/</a><br><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-sorted-array/">https://leetcode-cn.com/problems/merge-sorted-array/</a><br><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/two-sum/">https://leetcode-cn.com/problems/two-sum/</a><br><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/move-zeroes/">https://leetcode-cn.com/problems/move-zeroes/</a><br><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/plus-one/">https://leetcode-cn.com/problems/plus-one/</a></p>
+<h2 id="1-两数之和"><a href="#1-两数之和" class="headerlink" title="1. 两数之和"></a>1. 两数之和</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/two-sum/">https://leetcode-cn.com/problems/two-sum/</a></p>
+<p>方法一:暴力破解</p>
+<pre class="highlight"><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; nums.length; j++) &#123;</span><br><span class="line">               <span class="keyword">if</span> (target == (nums[i] + nums[j])) &#123;</span><br><span class="line">                   <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;i, j&#125;;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br></pre>
+
+<p>方法一二,利用集合map</p>
+<p>思想:</p>
+<ol>
+<li>开始遍历数组,将便利的数放到map中&lt; 数的值,  对应的下标 &gt;</li>
+<li>利用int num = target - nums[i];   得到我们所需要的数</li>
+<li>在每次便利的时候,看我们所需要的数是否在集合map中</li>
+<li>如果在返回对应的数,,,否则则继续便利</li>
+</ol>
+<pre class="highlight"><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">       Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> num = target - nums[i];</span><br><span class="line">            <span class="keyword">if</span> (!map.containsKey(num)) &#123;</span><br><span class="line">                map.put(nums[i], i);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;map.get(num), i&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre>
+
+<h2 id="11-盛最多水的容器"><a href="#11-盛最多水的容器" class="headerlink" title="11. 盛最多水的容器"></a>11. 盛最多水的容器</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/container-with-most-water/">https://leetcode-cn.com/problems/container-with-most-water/</a></p>
+<p>利用双指针法</p>
+<ol>
+<li>设置两个指针,一前  一后</li>
+<li>每次将两个指针对应的面积求出,保存,,与前一个面积比较,保存大的</li>
+<li>将两个指针对应的高度,,,小的向另外一边进行遍历,重复第二的</li>
+<li>直到i&lt;j</li>
+</ol>
+<pre class="highlight"><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">       <span class="keyword">int</span> j=(height.length-<span class="number">1</span>);</span><br><span class="line">       <span class="keyword">int</span> area=<span class="number">0</span>;</span><br><span class="line">       <span class="keyword">while</span> (i&lt;j)&#123;</span><br><span class="line">           <span class="keyword">if</span> (height[i]&lt;=height[j])&#123;</span><br><span class="line">               area=Math.max(area,(height[i])*(j-i));</span><br><span class="line">               i++;</span><br><span class="line">           &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">               area=Math.max(area,(height[j])*(j-i));</span><br><span class="line">               j--;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span>  area;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre>
+
+<h2 id="283-移动零"><a href="#283-移动零" class="headerlink" title="283. 移动零"></a>283. 移动零</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/move-zeroes/">https://leetcode-cn.com/problems/move-zeroes/</a></p>
+<p>双指针法</p>
+<ol>
+<li>设置快慢指针</li>
+<li>j慢指针表示  非零数的前一个下标   慢指针</li>
+<li>i表示是不是非零数字  快指针</li>
+</ol>
+<pre class="highlight"><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">moveZeroes1</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">           <span class="keyword">if</span> (nums[i] != <span class="number">0</span>) &#123;</span><br><span class="line">               <span class="keyword">if</span> (nums[j] == <span class="number">0</span>) &#123;</span><br><span class="line">                       nums[j]=nums[i];</span><br><span class="line">                       nums[i]=<span class="number">0</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               j++;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre>
+
+
+
+<h2 id="26-删除排序数组中的重复项"><a href="#26-删除排序数组中的重复项" class="headerlink" title="26. 删除排序数组中的重复项"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/">26. 删除排序数组中的重复项</a></h2><p>示例 1:</p>
+<p>给定数组 nums = [1,1,2], </p>
+<p>函数应该返回新的长度 2, 并且原数组 nums 的前两个元素被修改为 1, 2。 </p>
+<p>你不需要考虑数组中超出新长度后面的元素。</p>
+<p>双指针 快慢指针</p>
+<pre class="highlight"><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">      <span class="comment">//慢指针</span></span><br><span class="line">      <span class="keyword">int</span> a=<span class="number">0</span>;</span><br><span class="line">      <span class="comment">//快指针</span></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;nums.length ; i++) &#123;</span><br><span class="line">          <span class="keyword">if</span> (nums[a]!=nums[i])&#123;</span><br><span class="line">              a++;</span><br><span class="line">              nums[a]=nums[i];</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      a=a+<span class="number">1</span>;</span><br><span class="line">      <span class="keyword">return</span>  a;</span><br><span class="line">  &#125;</span><br></pre>
+
+
+
+<h2 id="27-移除元素"><a href="#27-移除元素" class="headerlink" title="27. 移除元素"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-element/">27. 移除元素</a></h2><p>给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。</p>
+<p>不要使用额外的数组空间，你必须仅使用 O(1) 额外空间并 原地 修改输入数组。</p>
+<p>元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。</p>
+<p>给定 nums = [3,2,2,3], val = 3,</p>
+<p>函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。</p>
+<p>你不需要考虑数组中超出新长度后面的元素。</p>
+<pre class="highlight"><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeElement</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; nums.length; j++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[j] != val) &#123;</span><br><span class="line">            </span><br><span class="line">            nums[i] = nums[j];</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+
+
+
+
+
+<h2 id="70-爬楼梯"><a href="#70-爬楼梯" class="headerlink" title="70. 爬楼梯"></a>70. 爬楼梯</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/climbing-stairs/">https://leetcode-cn.com/problems/climbing-stairs/</a></p>
+<ol>
+<li><p>//该数组每个元素的指针对应的是台阶数,元素的值存放的是台阶数对应的方法数</p>
+</li>
+<li><p>不管怎样,数组下标指针肯定是从0开始的,所以要考虑0.有0个台阶,不需要爬,所以没有方法数(但从斐波那契角度,dp[0]=1)</p>
+</li>
+<li><p>dp[1] = 1; //1阶台阶,只有一种方式(1)</p>
+</li>
+<li><p>2阶台阶,有两种方式(1+1, 2), 因为题目设定n是正整数,所以n最小是1,此时如果定义dp的长度是int[n + 1],则length=2</p>
+<p>而dp[2]实际对应的是第三个元素,超出length了,所以定义new int[n + 2]更合理</p>
+</li>
+<li><p>从第三个台阶开始遍历,第三个台阶,是第二个台阶的方法和第一个台阶的方法之和,,,第四个台阶,是第三个台阶和第二个台阶方法之和,依此论推….</p>
+</li>
+</ol>
+<pre class="highlight"><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">climbStairs</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">2</span>]; <span class="comment">//该数组每个元素的指针对应的是台阶数,元素的值存放的是台阶数对应的方法数</span></span><br><span class="line">        <span class="comment">//dp[0] = 0; //不管怎样,数组下标指针肯定是从0开始的,所以要考虑0.有0个台阶,不需要爬,所以没有方法数(但从斐波那契角度,dp[0]=1)</span></span><br><span class="line">        dp[<span class="number">1</span>] = <span class="number">1</span>; <span class="comment">//1阶台阶,只有一种方式(1)</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//2阶台阶,有两种方式(1+1, 2), 因为题目设定n是正整数,所以n最小是1,此时如果定义dp的长度是int[n + 1],则length=2</span></span><br><span class="line">        <span class="comment">//而dp[2]实际对应的是第三个元素,超出length了,所以定义new int[n + 2]更合理</span></span><br><span class="line">        dp[<span class="number">2</span>] = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//从第三个台阶开始遍历,第三个台阶,是第二个台阶的方法和第一个台阶的方法之和</span></span><br><span class="line">        <span class="comment">//第四个台阶,是第三个台阶和第二个台阶方法之和,依此论推....</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;= n; i++) &#123; <span class="comment">//要遍历到第n个台阶,所以指针其实是从0到n,所以dp数组数量比n多1</span></span><br><span class="line">            dp[i] = dp[i - <span class="number">1</span>] + dp[i - <span class="number">2</span>]; <span class="comment">//最后到第n个台阶,得到结果后正好遍历完</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[n];</span><br><span class="line">  &#125;</span><br></pre>
+
+<h2 id="15-三数之和"><a href="#15-三数之和" class="headerlink" title="15. 三数之和"></a>15. 三数之和</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/3sum/">https://leetcode-cn.com/problems/3sum/</a></p>
+<p>方法一:</p>
+<p>利用暴力破解</p>
+<p>注意主要的是去重复</p>
+<ul>
+<li>if (i &gt; 0 &amp;&amp; nums[i - 1] == nums[i]) continue;</li>
+</ul>
+<p><strong>超时</strong></p>
+<pre class="highlight"><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;List&lt;Integer&gt;&gt; threeSum(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        ArrayList&lt;List&lt;Integer&gt;&gt; inList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length - <span class="number">2</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] &gt; <span class="number">0</span>) <span class="keyword">break</span>;<span class="comment">//第一个数大于零 结束</span></span><br><span class="line">			<span class="comment">//去重复</span></span><br><span class="line">            <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; nums[i - <span class="number">1</span>] == nums[i]) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; nums.length - <span class="number">1</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (j &gt; i + <span class="number">1</span> &amp;&amp; nums[j - <span class="number">1</span>] == nums[j]) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k = j + <span class="number">1</span>; k &lt; nums.length; k++) &#123;</span><br><span class="line">                    </span><br><span class="line">                    <span class="keyword">if</span> (k &gt; j + <span class="number">1</span> &amp;&amp; nums[k - <span class="number">1</span>] == nums[k]) <span class="keyword">continue</span>;  <span class="comment">//去重原理同j</span></span><br><span class="line">                    <span class="keyword">if</span> ((nums[i] + nums[j] + nums[k]) == <span class="number">0</span>) &#123;</span><br><span class="line">                        List&lt;Integer&gt; curr = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">                        curr.add(nums[i]);</span><br><span class="line">                        curr.add(nums[j]);</span><br><span class="line">                        curr.add(nums[k]);</span><br><span class="line">                        inList.add(curr);</span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre>
+
+
+
+<p>方法二:</p>
+<p>利用集合的特性将 方法一中的一个for循环代替</p>
+<ul>
+<li><p>先排序</p>
+</li>
+<li><p>利用hashmap的特性判断是否在数组中</p>
+</li>
+<li><p>先将每个数组遍历放到map中,最后一的数字用map集合进行进行遍历</p>
+</li>
+<li><p>注意各种去重复的放方法</p>
+<pre class="highlight"><span class="line"><span class="keyword">if</span> (nums[i] &gt; <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (nums[i] + nums[j] &gt; <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//去重原理同i，j必须大于i + 1，因为j是从i + 1开始的，必须要大于开始值才能后退一步</span></span><br><span class="line"><span class="keyword">if</span> (j &gt; i + <span class="number">1</span> &amp;&amp; nums[j - <span class="number">1</span>] == nums[j]) <span class="keyword">continue</span>;</span><br></pre>
+
+</li>
+</ul>
+<pre class="highlight"><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;List&lt;Integer&gt;&gt; threeSum1(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">    Arrays.sort(nums);</span><br><span class="line">    ArrayList&lt;List&lt;Integer&gt;&gt; inList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    HashMap&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        map.put(nums[i], i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length - <span class="number">2</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[i] &gt; <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; nums[i - <span class="number">1</span>] == nums[i]) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; nums.length - <span class="number">1</span>; j++) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (nums[i] + nums[j] &gt; <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">            <span class="comment">//去重原理同i，j必须大于i + 1，因为j是从i + 1开始的，必须要大于开始值才能后退一步</span></span><br><span class="line">            <span class="keyword">if</span> (j &gt; i + <span class="number">1</span> &amp;&amp; nums[j - <span class="number">1</span>] == nums[j]) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">int</span> z = <span class="number">0</span> - nums[i] - nums[j];</span><br><span class="line">            <span class="keyword">if</span> (map.containsKey(z)) &#123;</span><br><span class="line">                List&lt;Integer&gt; curr = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">                curr.add(nums[i]);</span><br><span class="line">                curr.add(nums[j]);</span><br><span class="line">                curr.add(z);</span><br><span class="line">                inList.add(curr);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> inList;</span><br><span class="line">&#125;</span><br></pre>
+
+<p>方法三:</p>
+<p>利用三指针的方法</p>
+<pre class="highlight"><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;List&lt;Integer&gt;&gt; threeSum2(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">    </span><br><span class="line">      List&lt;List&lt;Integer&gt;&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">      <span class="keyword">if</span> (nums.length == <span class="number">0</span> &amp;&amp; nums.length &lt; <span class="number">3</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> result;</span><br><span class="line">      &#125;</span><br><span class="line">      Arrays.sort(nums);</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">          <span class="keyword">if</span> (i &gt;= <span class="number">1</span> &amp;&amp; nums[i] == nums[i - <span class="number">1</span>]) <span class="keyword">continue</span>;</span><br><span class="line">          <span class="keyword">int</span> a = i + <span class="number">1</span>;</span><br><span class="line">          <span class="keyword">int</span> b = nums.length - <span class="number">1</span>;</span><br><span class="line">          <span class="keyword">while</span> (a &lt; b) &#123;</span><br><span class="line"></span><br><span class="line">              <span class="keyword">if</span> ((nums[i] + nums[a] + nums[b]) == <span class="number">0</span>) &#123;</span><br><span class="line">                  List&lt;Integer&gt; curr = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">                  curr.add(nums[i]);</span><br><span class="line">                  curr.add(nums[a]);</span><br><span class="line">                  curr.add(nums[b]);</span><br><span class="line">                  result.add(curr);</span><br><span class="line">                  a++;</span><br><span class="line">                  b--;</span><br><span class="line">                  <span class="keyword">while</span> (a &lt; nums.length &amp;&amp; nums[a] == nums[a - <span class="number">1</span>]) a++;</span><br><span class="line">                  <span class="keyword">while</span> (b &gt; a &amp;&amp; nums[b] == nums[b + <span class="number">1</span>]) b--;</span><br><span class="line">              &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[a] + nums[b] &lt; (-nums[i])) &#123;</span><br><span class="line">                  a++;</span><br><span class="line">              &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                  b--;</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> result;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br></pre>
+
+
+
+<h2 id="206-反转链表"><a href="#206-反转链表" class="headerlink" title="206. 反转链表"></a>206. 反转链表</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-linked-list">https://leetcode-cn.com/problems/reverse-linked-list</a></p>
+<p>利用双指针法</p>
+<pre class="highlight"><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        ListNode newHead = <span class="keyword">null</span>;</span><br><span class="line">        ListNode temp;</span><br><span class="line">        <span class="keyword">while</span> (head != <span class="keyword">null</span>) &#123;</span><br><span class="line">            temp = head.next;</span><br><span class="line">            head.next = newHead;</span><br><span class="line">           newHead=head;</span><br><span class="line">           head=temp;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>  newHead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+
+<p>递归</p>
+<pre class="highlight"><span class="line">   <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode cur=reverseList(head.next);</span><br><span class="line">        head.next.next=head;</span><br><span class="line">        head.next=<span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">return</span>  cur;</span><br><span class="line">&#125;</span><br></pre>
+
+
+
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44236958/article/details/109685806">三种解法请看</a>:</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44236958/article/details/109685806">https://blog.csdn.net/qq_44236958/article/details/109685806</a></p>
+<h2 id="24-两两交换链表中的节点"><a href="#24-两两交换链表中的节点" class="headerlink" title="24. 两两交换链表中的节点"></a>24. 两两交换链表中的节点</h2><p><strong>递归</strong></p>
+<pre class="highlight"><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">swapPairs</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">         <span class="keyword">return</span> head;</span><br><span class="line">     &#125;</span><br><span class="line">     ListNode temp = head.next;</span><br><span class="line">     head.next = swapPairs(temp.next);</span><br><span class="line">     temp.next = head;</span><br><span class="line">     <span class="keyword">return</span> temp;</span><br><span class="line"> &#125;</span><br></pre>
+
+<p><strong>利用栈的特性</strong></p>
+<pre class="highlight"><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">swapPairs1</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">    Stack&lt;ListNode&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    ListNode p=<span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">    ListNode temp=head;</span><br><span class="line">    head=p;</span><br><span class="line">    <span class="keyword">while</span> (temp!=<span class="keyword">null</span>&amp;&amp;temp.next!=<span class="keyword">null</span>)&#123;</span><br><span class="line">        stack.push(temp);</span><br><span class="line">        stack.push(temp.next);</span><br><span class="line">        temp=temp.next.next;</span><br><span class="line">        p.next=stack.pop();</span><br><span class="line">        p=p.next;</span><br><span class="line">        p.next=stack.pop();</span><br><span class="line">        p=p.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (temp!=<span class="keyword">null</span>)&#123;</span><br><span class="line">        p.next=temp;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        p.next=<span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>  head.next;</span><br><span class="line">&#125;</span><br></pre>
+
+<h2 id="141-环形链表"><a href="#141-环形链表" class="headerlink" title="141. 环形链表"></a>141. 环形链表</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/linked-list-cycle/solution/yi-wen-gao-ding-chang-jian-de-lian-biao-wen-ti-h-2/">关于链表的小总结</a></p>
+<img src="/2020/12/06/LC%E5%BF%AB%E5%88%B7%E6%95%B0%E7%BB%84-%E9%93%BE%E8%A1%A8-%E8%B7%B3%E8%A1%A8/141.png" alt="141" style="zoom:80%;" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2020/12/06/LC%E5%BF%AB%E5%88%B7%E6%95%B0%E7%BB%84-%E9%93%BE%E8%A1%A8-%E8%B7%B3%E8%A1%A8/141.png" class="lozad post-image">
+
+<p>利用集合存放数据,不在就就存放数据,进行遍历</p>
+<pre class="highlight"><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        HashSet&lt;ListNode&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        ListNode temp=head;</span><br><span class="line">        <span class="keyword">while</span> (temp!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span> (set.contains(temp))&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                set.add(temp);</span><br><span class="line">            &#125;</span><br><span class="line">            temp=temp.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>  <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br></pre>
+
+<p>利用快慢指针</p>
+<pre class="highlight"><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasCycle1</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">       &#125;</span><br><span class="line">     ListNode slow=head;</span><br><span class="line">       ListNode fast=head.next;</span><br><span class="line">       <span class="keyword">while</span> (slow!=fast)&#123;</span><br><span class="line">           <span class="keyword">if</span> (fast==<span class="keyword">null</span>||fast.next==<span class="keyword">null</span>)&#123;</span><br><span class="line">               <span class="keyword">return</span>  <span class="keyword">false</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           slow=slow.next;</span><br><span class="line">           fast=fast.next.next;</span><br><span class="line">       &#125;jaba</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">   &#125;</span><br></pre>
+
+<h2 id="142-环形链表-II"><a href="#142-环形链表-II" class="headerlink" title="142. 环形链表 II"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/linked-list-cycle-ii/">142. 环形链表 II</a></h2><img src="/2020/12/06/LC%E5%BF%AB%E5%88%B7%E6%95%B0%E7%BB%84-%E9%93%BE%E8%A1%A8-%E8%B7%B3%E8%A1%A8/142.png" alt="142" style="zoom:80%;" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2020/12/06/LC%E5%BF%AB%E5%88%B7%E6%95%B0%E7%BB%84-%E9%93%BE%E8%A1%A8-%E8%B7%B3%E8%A1%A8/142.png" class="lozad post-image">
+
+<p>利用集合进行普通的遍历</p>
+<pre class="highlight"><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">detectCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    HashSet&lt;ListNode&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">    <span class="keyword">while</span> (head != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (set.contains(head)) &#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            set.add(head);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        head = head.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre>
+
+<p>快慢指针进行遍历</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/linked-list-cycle-ii/solution/linked-list-cycle-ii-kuai-man-zhi-zhen-shuang-zhi-/">具体详解看</a></p>
+<p>根据：</p>
+<ol>
+<li>f=2s （快指针每次2步，路程刚好2倍）</li>
+<li>f = s + nb (相遇时，刚好多走了n圈）</li>
+</ol>
+<p>推出：s = nb</p>
+<p>从head结点走到入环点需要走 ： a + nb， 而slow已经走了nb，那么slow再走a步就是入环点了。</p>
+<p>如何知道slow刚好走了a步？ 从head开始，和slow指针一起走，相遇时刚好就是a步</p>
+<img src="/2020/12/06/LC%E5%BF%AB%E5%88%B7%E6%95%B0%E7%BB%84-%E9%93%BE%E8%A1%A8-%E8%B7%B3%E8%A1%A8/142L.png" alt="142L" style="zoom:80%;" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2020/12/06/LC%E5%BF%AB%E5%88%B7%E6%95%B0%E7%BB%84-%E9%93%BE%E8%A1%A8-%E8%B7%B3%E8%A1%A8/142L.png" class="lozad post-image">
+
+
+
+
+
+<pre class="highlight"><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">detectCycle2</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode slow = head;</span><br><span class="line">    ListNode fast = head;</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (fast == <span class="keyword">null</span> || fast.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">        fast = fast.next.next;</span><br><span class="line">        <span class="keyword">if</span> (fast == slow) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    fast = head;</span><br><span class="line">    <span class="keyword">while</span> (slow != fast) &#123;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">        fast = fast.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> fast;</span><br><span class="line">&#125;</span><br></pre>
+
+<h2 id="25-K-个一组翻转链表"><a href="#25-K-个一组翻转链表" class="headerlink" title="25. K 个一组翻转链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-nodes-in-k-group/">25. K 个一组翻转链表</a></h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44236958/article/details/109790198">多种解法请看</a></p>
+<p>栈,递归,迭代</p>
+<p><strong>递归</strong></p>
+<pre class="highlight"><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseKGroup</span><span class="params">(ListNode head, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (head==<span class="keyword">null</span>||head.next==<span class="keyword">null</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br><span class="line">    ListNode tail=head;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (tail==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span>  head;</span><br><span class="line">        &#125;</span><br><span class="line">        tail =tail.next;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode newHead=reverse(head,tail);</span><br><span class="line">    head.next=reverseKGroup(tail,k);</span><br><span class="line">    <span class="keyword">return</span>  newHead;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> ListNode <span class="title">reverse</span><span class="params">(ListNode head, ListNode tail)</span> </span>&#123;</span><br><span class="line">ListNode pre=<span class="keyword">null</span>;</span><br><span class="line">ListNode next=<span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">while</span> (head!=tail)&#123;</span><br><span class="line">    next=head.next;</span><br><span class="line">    head.next=pre;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//不能换顺序</span></span><br><span class="line">    pre = head;</span><br><span class="line">    head = next;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span>  pre;</span><br><span class="line">&#125;</span><br></pre>
+
+
+
+<p>迭代</p>
+<ul>
+<li>1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;6-&gt;7</li>
+<li>反转K个,由于遍历k个链表,然后将第k个节点的next指向空(防止循环)</li>
+<li>这样就得到了长度为<code>k</code>的单链表了。1-&gt;2-&gt;3 4-&gt;5-&gt;6-&gt;7</li>
+<li>然后反转所截的</li>
+<li>如果遍历完整个链表，发现最后几个节点的长度不足<code>k</code>，那么直接退出就可以了。</li>
+<li>把长度<code>k</code>的链表前后指向切断，这样就不会出现循环指向了。</li>
+</ul>
+<pre class="highlight"><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        ListNode pre = <span class="keyword">null</span>;<span class="comment">//新节点</span></span><br><span class="line">        ListNode cur = head;<span class="comment">//辅助结点进行反转的</span></span><br><span class="line">        <span class="keyword">while</span> (cur != <span class="keyword">null</span>) &#123;</span><br><span class="line">            ListNode temp = cur.next;标记下一次需要反转的节点</span><br><span class="line">            cur.next = pre;<span class="comment">//已经开始反转</span></span><br><span class="line">            <span class="comment">//移动节点  准备下一次反转</span></span><br><span class="line">            pre = cur;</span><br><span class="line">            cur = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> pre;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseKGroup</span><span class="params">(ListNode head, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span> || k &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</span><br><span class="line">        <span class="comment">//新节点指向头节点</span></span><br><span class="line">        dummy.next = head;</span><br><span class="line">        <span class="comment">//设置辅助指针进行遍历</span></span><br><span class="line">        ListNode p = dummy;</span><br><span class="line">        <span class="keyword">int</span> n = k;</span><br><span class="line">        <span class="keyword">while</span> (p.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">//辅助指针进行遍历</span></span><br><span class="line">            ListNode temp = p;</span><br><span class="line">            <span class="keyword">while</span> (temp != <span class="keyword">null</span> &amp;&amp; temp.next != <span class="keyword">null</span> &amp;&amp; n &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">//在合法范围之内遍历到  k的位置上</span></span><br><span class="line">                temp = temp.next;</span><br><span class="line">                --n;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (n == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">//报先记录下temp.next,方便后面链接链表</span></span><br><span class="line">                ListNode nextNode = temp.next;</span><br><span class="line">                <span class="comment">//得到开始要遍历的节点</span></span><br><span class="line">                <span class="comment">//假设链表为1-&gt;2-&gt;3-&gt;4，下面的nextNode就是4，tail是1</span></span><br><span class="line">                ListNode tail = p.next;</span><br><span class="line">                <span class="comment">//反转之前需要将下一个节点保存，并设置next为空，防止循环指向</span></span><br><span class="line">                temp.next = <span class="keyword">null</span>;</span><br><span class="line">                <span class="comment">//进行反转</span></span><br><span class="line">                <span class="comment">//p 也即是dummy指向反转后的节点 dummy-&gt;2-&gt;1</span></span><br><span class="line">                p.next = reverseList(tail);</span><br><span class="line">                <span class="comment">//翻转后头节点变到最后。通过.next把断开的链表重新链接。</span></span><br><span class="line">                <span class="comment">//1&lt;-2 3-&gt;4 转换成为    2-&gt;1-&gt;3-&gt;4</span></span><br><span class="line">                tail.next = nextNode;</span><br><span class="line">                <span class="comment">//移动p节点进行下一个遍历</span></span><br><span class="line">                p = tail;</span><br><span class="line">                n = k;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre>
+
+
+
+
+
+
+
+<h2 id="189-旋转数组"><a href="#189-旋转数组" class="headerlink" title="189. 旋转数组"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/rotate-array/">189. 旋转数组</a></h2><p>输入: [1,2,3,4,5,6,7] 和 k = 3<br>输出: [5,6,7,1,2,3,4]<br>解释:<br>向右旋转 1 步: [7,1,2,3,4,5,6]<br>向右旋转 2 步: [6,7,1,2,3,4,5]<br>向右旋转 3 步: [5,6,7,1,2,3,4]</p>
+<p><strong>方法一:</strong></p>
+<p>三次数值的反转</p>
+<p>第一次: revers(nums, 0, nums.length - 1);   7,6,5,4,3,2,1</p>
+<p>第二次  revers(nums, 0, k - 1);      5,6,7,4,3,2,1</p>
+<p>第三次 revers(nums, k, nums.length - 1);   5,6,7,1,2,3,4</p>
+<pre class="highlight"><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">       <span class="comment">//元素向右移动 k 个位置</span></span><br><span class="line">       <span class="comment">//在此与原数组的模  防止出界</span></span><br><span class="line">       k = k % nums.length;</span><br><span class="line">       revers(nums, <span class="number">0</span>, nums.length - <span class="number">1</span>);</span><br><span class="line">       revers(nums, <span class="number">0</span>, k - <span class="number">1</span>);</span><br><span class="line">       revers(nums, k, nums.length - <span class="number">1</span>);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">revers</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">while</span> (start &lt; end) &#123;</span><br><span class="line">           <span class="keyword">int</span> temp = nums[start];</span><br><span class="line">           nums[start] = nums[end];</span><br><span class="line">           nums[end] = temp;</span><br><span class="line">           start++;</span><br><span class="line">           end--;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre>
+
+
+
+<p><strong>暴力</strong></p>
+<p>最简单的方法是旋转k次,每次将数组旋转一个元素</p>
+<pre class="highlight"><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rotate1</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">int</span> temp = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">int</span> pre = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; k; j++) &#123;</span><br><span class="line">          pre = nums[nums.length - <span class="number">1</span>];</span><br><span class="line">          <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">              temp = nums[i];</span><br><span class="line">              nums[i] = pre;</span><br><span class="line">              pre = temp;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br></pre>
+
+
+
+<p><strong>环状替代</strong></p>
+<p><strong>思路</strong></p>
+<p>把元素看做同学，把下标看做座位，大家换座位。第一个同学离开座位去第k+1个座位，第k+1个座位的同学被挤出去了，他就去坐他后k个座位，如此反复。但是会出现一种情况，就是其中一个同学被挤开之后，坐到了第一个同学的位置（空位置，没人被挤出来），但是此时还有人没有调换位置，这样就顺着让第二个同学换位置。 那么什么时候就可以保证每个同学都换完了呢？n个同学，换n次，所以用一个count来计数即可。</p>
+<img src="/2020/12/06/LC%E5%BF%AB%E5%88%B7%E6%95%B0%E7%BB%84-%E9%93%BE%E8%A1%A8-%E8%B7%B3%E8%A1%A8/142L.png" alt="142L" style="zoom:80%;" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2020/12/06/LC%E5%BF%AB%E5%88%B7%E6%95%B0%E7%BB%84-%E9%93%BE%E8%A1%A8-%E8%B7%B3%E8%A1%A8/142L.png" class="lozad post-image">
+
+<pre class="highlight"><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">rotate2</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    k = k % nums.length;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;<span class="comment">//记录交换的次数  判断是否终止结束</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> start = <span class="number">0</span>; count &lt; nums.length; start++) &#123;</span><br><span class="line">        <span class="keyword">int</span> current=start;<span class="comment">//现在需要交换的值下标</span></span><br><span class="line">        <span class="keyword">int</span> prev=nums[start];<span class="comment">//现在需要交换的值</span></span><br><span class="line">        <span class="keyword">do</span>&#123;</span><br><span class="line">            <span class="comment">//保存被交换的下标位next</span></span><br><span class="line">            <span class="keyword">int</span> next=(current+k)%nums.length;</span><br><span class="line">           <span class="comment">//保存被交换的值</span></span><br><span class="line">            <span class="keyword">int</span> temp=nums[next];</span><br><span class="line">            nums[next]=prev;<span class="comment">//交换</span></span><br><span class="line">            prev=temp;<span class="comment">//保存下一次交换的值</span></span><br><span class="line">            current=next;<span class="comment">//下一次需要交换的坐标的</span></span><br><span class="line">            count++;<span class="comment">//交换次数加一</span></span><br><span class="line">            <span class="comment">//判断现在交换的值是否已经交换了.如已经交换,由右临开始</span></span><br><span class="line">        &#125;<span class="keyword">while</span> (start!=current);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(Arrays.toString(nums));</span><br><span class="line">&#125;</span><br></pre>
+
+
+
+<h2 id="21-合并两个有序链表"><a href="#21-合并两个有序链表" class="headerlink" title="21. 合并两个有序链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-two-sorted-lists/">21. 合并两个有序链表</a></h2><pre class="highlight"><span class="line">输入：1-&gt;2-&gt;4, 1-&gt;3-&gt;4</span><br><span class="line">输出：1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4</span><br></pre>
+
+
+
+<p>方法一:</p>
+<p>递归</p>
+<pre class="highlight"><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">mergeTwoLists</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (l1 == <span class="keyword">null</span>) &#123;</span><br><span class="line">           <span class="keyword">return</span> l2;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> (l2 == <span class="keyword">null</span>) &#123;</span><br><span class="line">           <span class="keyword">return</span> l1;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> (l1.val &lt; l2.val) &#123;</span><br><span class="line">           l1.next = mergeTwoLists(l1.next, l2);</span><br><span class="line">           <span class="keyword">return</span> l1;</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           l2.next = mergeTwoLists(l1, l2.next);</span><br><span class="line">           <span class="keyword">return</span> l2;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre>
+
+<p>方法二:</p>
+<p>迭代</p>
+<pre class="highlight"><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">mergeTwoLists4</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">    ListNode head = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">    ListNode temp = head;</span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="keyword">null</span> &amp;&amp; l2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (l1.val &lt; l2.val) &#123;</span><br><span class="line">            temp.next = l1;</span><br><span class="line">            l1 = l1.next;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            temp.next = l2;</span><br><span class="line">            l2 = l2.next;</span><br><span class="line">        &#125;</span><br><span class="line">        temp = temp.next;</span><br><span class="line">    &#125;</span><br><span class="line">    temp.next = l1 == <span class="keyword">null</span> ? l2 : l1;</span><br><span class="line">    <span class="keyword">return</span> head.next;</span><br><span class="line">&#125;</span><br></pre>
+
+<h2 id="88-合并两个有序数组"><a href="#88-合并两个有序数组" class="headerlink" title="88. 合并两个有序数组"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-sorted-array/">88. 合并两个有序数组</a></h2><p>最朴素的解法就是将两个数组合并之后再排序。该算法只需要一行(Java是2行)，时间复杂度较差，为O((n + m)\log(n + m))O((n+m)log(n+m))。这是由于这种方法没有利用两个数组本身已经有序这一点</p>
+<pre class="highlight"><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] nums1, <span class="keyword">int</span> m, <span class="keyword">int</span>[] nums2, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    System.arraycopy(nums2, <span class="number">0</span>, nums1, m, n);</span><br><span class="line">    Arrays.sort(nums1);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre>
+
+<p><strong>从后向前数组遍历</strong></p>
+<p>因为 nums1 的空间都集中在后面，所以从后向前处理排序的数据会更好，节省空间，一边遍历一边将值填充进去<br>设置指针 len1 和 len2 分别指向 nums1 和 nums2 的有数字尾部，从尾部值开始比较遍历，同时设置指针 len 指向 nums1 的最末尾，每次遍历比较值大小之后，则进行填充<br>当 len1&lt;0 时遍历结束，此时 nums2 中海油数据未拷贝完全，将其直接拷贝到 nums1 的前面，最后得到结果数组<br>时间复杂度：O(m+n)O(m+n)</p>
+<pre class="highlight"><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] nums1, <span class="keyword">int</span> m, <span class="keyword">int</span>[] nums2, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len1 = m - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> len2 = n - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> len = m + n - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (len1 &gt;= <span class="number">0</span> &amp;&amp; len2 &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// 注意--符号在后面，表示先进行计算再减1，这种缩写缩短了代码</span></span><br><span class="line">        nums1[len--] = nums1[len1] &gt; nums2[len2] ? nums1[len1--] : nums2[len2--];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 表示将nums2数组从下标0位置开始，拷贝到nums1数组中，从下标0位置开始，长度为len2+1</span></span><br><span class="line">    System.arraycopy(nums2, <span class="number">0</span>, nums1, <span class="number">0</span>, len2 + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre>
+
+<h2 id="1-两数之和-1"><a href="#1-两数之和-1" class="headerlink" title="1. 两数之和"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/two-sum/">1. 两数之和</a></h2><p>给定 nums = [2, 7, 11, 15], target = 9</p>
+<p>因为 nums[0] + nums[1] = 2 + 7 = 9<br>所以返回 [0, 1]</p>
+<p>利用集合</p>
+<pre class="highlight"><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">       Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> num = target - nums[i];</span><br><span class="line">            <span class="keyword">if</span> (!map.containsKey(num)) &#123;</span><br><span class="line">                map.put(nums[i], i);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;map.get(num), i&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre>
+
+<h2 id="66-加一"><a href="#66-加一" class="headerlink" title="66. 加一"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/plus-one/">66. 加一</a></h2><p><strong>示例 1：</strong></p>
+<pre class="highlight"><span class="line">输入：digits = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">输出：[<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>]</span><br><span class="line">解释：输入数组表示数字 <span class="number">123</span>。</span><br></pre>
+
+<pre class="highlight"><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">int</span>[] ints = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">9</span>, <span class="number">9</span>, <span class="number">9</span>, <span class="number">9</span>&#125;;</span><br><span class="line">      System.out.println(plusOne(ints));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] plusOne(<span class="keyword">int</span>[] digits) &#123;</span><br><span class="line">      <span class="keyword">int</span> len = digits.length;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = len - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">          digits[i]++;</span><br><span class="line">          digits[i] %= <span class="number">10</span>;</span><br><span class="line">          <span class="keyword">if</span> (digits[i] != <span class="number">0</span>) &#123;</span><br><span class="line">              <span class="keyword">return</span> digits;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      digits = <span class="keyword">new</span> <span class="keyword">int</span>[len + <span class="number">1</span>];</span><br><span class="line">      digits[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">return</span> digits;</span><br><span class="line">  &#125;</span><br></pre>
+
+
+  </div>
+  <div>
+  
+  <div class="post-note note-warning copyright" style="margin-top: 42px">
+    <p><span style="font-weight: bold;">作者：</span><a target="_blank" rel="nofollow noopener noreferrer" href="http://example.com/about">theme-kaze</a></p>
+    <p><span style="font-weight: bold;">文章链接：</span><a target="_blank" rel="nofollow noopener noreferrer" href="http://example.com/2020/12/06/LC%E5%BF%AB%E5%88%B7%E6%95%B0%E7%BB%84-%E9%93%BE%E8%A1%A8-%E8%B7%B3%E8%A1%A8/">http://example.com/2020/12/06/LC%E5%BF%AB%E5%88%B7%E6%95%B0%E7%BB%84-%E9%93%BE%E8%A1%A8-%E8%B7%B3%E8%A1%A8/</a></p>
+    <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+  </div>
+  
+  </div>
+</article>
+<div class="nav">
+  
+  <div class="nav-item-prev">
+    <a href="/2020/12/07/LC20/" class="nav-link">
+      <i class="iconfont icon-left nav-prev-icon"></i>
+      <div>
+        <div class="nav-label">Prev</div>
+        
+        <div class="nav-title">LC20-有效的括号 </div>
+        
+      </div>
+    </a>
+  </div>
+  
+  
+  <div class="nav-item-next">
+    <a href="/2020/12/06/LC283-LC026-LC027/" class="nav-link">
+      <div>
+        <div class="nav-label">Next</div>
+        
+        <div class="nav-title">LC0283-移动零--LC026-删除排序数组中的重复项--LC027-移除元素{双指针解决} </div>
+        
+      </div>
+      <i class="iconfont icon-right nav-next-icon"></i>
+    </a>
+  </div>
+  
+</div>
+
+<div class="card card-content toc-card" id="mobiletoc">
+  <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>TOC</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BF%AB%E5%88%B7-%E6%95%B0%E7%BB%84%E3%80%81%E9%93%BE%E8%A1%A8%E3%80%81%E8%B7%B3%E8%A1%A8"><span class="toc-text">快刷:数组、链表、跳表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">1. 两数之和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8"><span class="toc-text">11. 盛最多水的容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#283-%E7%A7%BB%E5%8A%A8%E9%9B%B6"><span class="toc-text">283. 移动零</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#26-%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9"><span class="toc-text">26. 删除排序数组中的重复项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#27-%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0"><span class="toc-text">27. 移除元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#70-%E7%88%AC%E6%A5%BC%E6%A2%AF"><span class="toc-text">70. 爬楼梯</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">15. 三数之和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8"><span class="toc-text">206. 反转链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#24-%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9"><span class="toc-text">24. 两两交换链表中的节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#141-%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8"><span class="toc-text">141. 环形链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#142-%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8-II"><span class="toc-text">142. 环形链表 II</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#25-K-%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8"><span class="toc-text">25. K 个一组翻转链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#189-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84"><span class="toc-text">189. 旋转数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8"><span class="toc-text">21. 合并两个有序链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#88-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84"><span class="toc-text">88. 合并两个有序数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C-1"><span class="toc-text">1. 两数之和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#66-%E5%8A%A0%E4%B8%80"><span class="toc-text">66. 加一</span></a></li></ol></li></ol>
+</div></main>
+          <aside class="left-column">
+            
+            <div class="card card-author">
+              
+<img src="/img/Kaze.png" class="author-img">
+
+<p class="author-name">theme-kaze</p>
+<p class="author-description">designed by theme-kaze</p>
+<div class="author-message">
+  <a class="author-posts-count" href="/archives">
+    <span>138</span>
+    <span>Posts</span>
+  </a>
+  <a class="author-categories-count" href="/categories">
+    <span>10</span>
+    <span>Categories</span>
+  </a>
+  <a class="author-tags-count" href="/tags">
+    <span>62</span>
+    <span>Tags</span>
+  </a>
+</div>
+
+            </div>
+            
+            <div class="sticky-tablet">
+  
+  
+  <article class="display-when-two-columns spacer">
+    <div class="card card-content toc-card">
+      <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>TOC</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BF%AB%E5%88%B7-%E6%95%B0%E7%BB%84%E3%80%81%E9%93%BE%E8%A1%A8%E3%80%81%E8%B7%B3%E8%A1%A8"><span class="toc-text">快刷:数组、链表、跳表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">1. 两数之和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8"><span class="toc-text">11. 盛最多水的容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#283-%E7%A7%BB%E5%8A%A8%E9%9B%B6"><span class="toc-text">283. 移动零</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#26-%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9"><span class="toc-text">26. 删除排序数组中的重复项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#27-%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0"><span class="toc-text">27. 移除元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#70-%E7%88%AC%E6%A5%BC%E6%A2%AF"><span class="toc-text">70. 爬楼梯</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">15. 三数之和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8"><span class="toc-text">206. 反转链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#24-%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9"><span class="toc-text">24. 两两交换链表中的节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#141-%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8"><span class="toc-text">141. 环形链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#142-%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8-II"><span class="toc-text">142. 环形链表 II</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#25-K-%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8"><span class="toc-text">25. K 个一组翻转链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#189-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84"><span class="toc-text">189. 旋转数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8"><span class="toc-text">21. 合并两个有序链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#88-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84"><span class="toc-text">88. 合并两个有序数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C-1"><span class="toc-text">1. 两数之和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#66-%E5%8A%A0%E4%B8%80"><span class="toc-text">66. 加一</span></a></li></ol></li></ol>
+    </div>
+  </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header"><i class="iconfont icon-fenlei" style="padding-right: 2px;"></i>Categories</div>
+  <div class="categories-list">
+    
+      <a href="/categories/-数据结构和算法-体系">
+        <div class="categories-list-item">
+          -数据结构和算法-体系
+          <span class="categories-list-item-badge">9</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-前端">
+        <div class="categories-list-item">
+          -前端
+          <span class="categories-list-item-badge">10</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-JDBC">
+        <div class="categories-list-item">
+          -JDBC
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-JQuery">
+        <div class="categories-list-item">
+          -JQuery
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-JavaScript">
+        <div class="categories-list-item">
+          -JavaScript
+          <span class="categories-list-item-badge">5</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-算法">
+        <div class="categories-list-item">
+          -算法
+          <span class="categories-list-item-badge">60</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-javase">
+        <div class="categories-list-item">
+          -javase
+          <span class="categories-list-item-badge">31</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-工具栏">
+        <div class="categories-list-item">
+          -工具栏
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-操作系统">
+        <div class="categories-list-item">
+          -操作系统
+          <span class="categories-list-item-badge">8</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-计算机网络">
+        <div class="categories-list-item">
+          -计算机网络
+          <span class="categories-list-item-badge">8</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header"><i class="iconfont icon-biaoqian" style="padding-right: 2px;"></i>hot tags</div>
+  <div class="tags-list">
+    
+    <a href="\tags\LeetCode" title="LeetCode"><div class="tags-list-item">LeetCode</div></a>
+    
+    <a href="\tags\基础" title="基础"><div class="tags-list-item">基础</div></a>
+    
+    <a href="\tags\java" title="java"><div class="tags-list-item">java</div></a>
+    
+    <a href="\tags\面试" title="面试"><div class="tags-list-item">面试</div></a>
+    
+    <a href="\tags\排序" title="排序"><div class="tags-list-item">排序</div></a>
+    
+    <a href="\tags\十大排序" title="十大排序"><div class="tags-list-item">十大排序</div></a>
+    
+    <a href="\tags\数据结构" title="数据结构"><div class="tags-list-item">数据结构</div></a>
+    
+    <a href="\tags\网络" title="网络"><div class="tags-list-item">网络</div></a>
+    
+    <a href="\tags\双指针" title="双指针"><div class="tags-list-item">双指针</div></a>
+    
+    <a href="\tags\二叉树" title="二叉树"><div class="tags-list-item">二叉树</div></a>
+    
+    <a href="\tags\链表" title="链表"><div class="tags-list-item">链表</div></a>
+    
+    <a href="\tags\常用10种算法" title="常用10种算法"><div class="tags-list-item">常用10种算法</div></a>
+    
+    <a href="\tags\链表反转" title="链表反转"><div class="tags-list-item">链表反转</div></a>
+    
+    <a href="\tags\JavaWeb" title="JavaWeb"><div class="tags-list-item">JavaWeb</div></a>
+    
+    <a href="\tags\JavaScript" title="JavaScript"><div class="tags-list-item">JavaScript</div></a>
+    
+    <a href="\tags\CSS" title="CSS"><div class="tags-list-item">CSS</div></a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+          </aside>
+          <aside class="right-column">
+            <div class="sticky-widescreen">
+  
+  
+  <article class="card card-content toc-card">
+    <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>TOC</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BF%AB%E5%88%B7-%E6%95%B0%E7%BB%84%E3%80%81%E9%93%BE%E8%A1%A8%E3%80%81%E8%B7%B3%E8%A1%A8"><span class="toc-text">快刷:数组、链表、跳表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">1. 两数之和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8"><span class="toc-text">11. 盛最多水的容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#283-%E7%A7%BB%E5%8A%A8%E9%9B%B6"><span class="toc-text">283. 移动零</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#26-%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9"><span class="toc-text">26. 删除排序数组中的重复项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#27-%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0"><span class="toc-text">27. 移除元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#70-%E7%88%AC%E6%A5%BC%E6%A2%AF"><span class="toc-text">70. 爬楼梯</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">15. 三数之和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8"><span class="toc-text">206. 反转链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#24-%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9"><span class="toc-text">24. 两两交换链表中的节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#141-%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8"><span class="toc-text">141. 环形链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#142-%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8-II"><span class="toc-text">142. 环形链表 II</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#25-K-%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8"><span class="toc-text">25. K 个一组翻转链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#189-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84"><span class="toc-text">189. 旋转数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8"><span class="toc-text">21. 合并两个有序链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#88-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84"><span class="toc-text">88. 合并两个有序数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C-1"><span class="toc-text">1. 两数之和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#66-%E5%8A%A0%E4%B8%80"><span class="toc-text">66. 加一</span></a></li></ol></li></ol>
+  </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header"><i class="iconfont icon-wenzhang_huaban" style="padding-right: 2px;"></i>Recent Posts</div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-08</div>
+        <a href="/2021/01/08/JQuery-02/"><div class="recent-posts-item-content">JQuery-02JQuery选择器(重点)</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-07</div>
+        <a href="/2021/01/07/JQuery-01/"><div class="recent-posts-item-content">JQuery-01概论</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-06</div>
+        <a href="/2021/01/06/常用正则/"><div class="recent-posts-item-content">常用正则写法</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-05</div>
+        <a href="/2021/01/05/JS-05/"><div class="recent-posts-item-content">JS-05-JavaScript 正则表达式</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>Copyright ©
+          
+          2020 -
+          
+          2021
+        </span>
+        &nbsp;
+        <a href="/" class="footer-link">theme-kaze demo </a>
+      </div>
+    </div>
+
+    
+    <div class="footer-dsc">
+      
+      Powered by
+      <a href="https://hexo.io/" class="footer-link" target="_blank" rel="nofollow noopener noreferrer">&nbsp;Hexo </a>
+      
+      
+      <span>&nbsp;|&nbsp;</span>
+      
+      
+      Theme -
+      <a href="https://github.com/theme-kaze" class="footer-link" target="_blank"
+        rel="nofollow noopener noreferrer">&nbsp;Kaze</a>
+      
+    </div>
+    
+    
+    
+    
+</footer>
+  <a role="button" id="scrollbutton" class="basebutton"  aria-label="回到顶部">
+  <i class="iconfont icon-arrowleft button-icon"></i>
+</a>
+<a role="button" id="menubutton" class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a role="button" id="popbutton" class="basebutton" aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a role="button" id="darkbutton" class="basebutton darkwidget" aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a role="button" id="searchbutton" class="basebutton searchwidget" aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a>
+
+  
+  
+  
+  <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img');
+    var i;
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a');
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'));
+      wrapper.setAttribute('aria-label', 'illustration');
+      wrapper.style.cssText = 'width: 100%; display: flex; justify-content: center;';
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt;
+      wrapper.dataset.nolink = true;
+      img[i].before(wrapper);
+      wrapper.append(img[i]);
+      var divWrap = document.createElement('div');
+      divWrap.classList.add('gallery');
+      wrapper.before(divWrap);
+      divWrap.append(wrapper);
+    }
+    baguetteBox.run('.gallery');
+  }
+</script>
+<script>loadScript("/js/lib/lightbox/baguetteBox.min.js", addImgLayout)</script>
+  
+  
+  
+<script src="/js/main.js"></script>
+
+  
+  
+  <script>
+    var addLazyload = function () {
+      var observer = lozad('.lozad', {
+        load: function (el) {
+          el.srcset = el.getAttribute('data-src');
+        },
+        loaded: function (el) {
+          el.classList.add('loaded');
+        }
+      });
+      observer.observe();
+    }
+  </script>
+  <script>loadScript("/js/lib/lozad.min.js", addLazyload)</script>
+  
+  
+</body>
+
+</html>

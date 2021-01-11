@@ -1,53 +1,663 @@
-extends widget/base
-block append head
-  link(rel='stylesheet', href= url_for('/style/post.css'))
-  link(rel='stylesheet', href= url_for('/style/highlight-theme-light.css'))
-  script(src= url_for("/jslib/highlight.pack.js"))
-block topic
-    div#postTopic.is-full-height
-        - var title = truncate( page.title, {length: 65, omission: '..'} ) || ''
-        p.is-full-height.is-flex-shrink-0.is-flex.is-align-items-center.is-justify-content-center= title
-        p.is-full-height.is-flex-shrink-0.is-flex.is-align-items-center.is-justify-content-center= __('click_back_to_the_top')
+<!DOCTYPE html>
+<html  lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#fff" id="theme-color">
+  <meta name="description" content="当咸鱼,不存在!!!">
+  <link rel="icon" href="/img/Kaze.png">
+  <title>JDBC-数据库事务-JDBC事务处理-6.1</title>
+  
+  
+  <meta property="og:title" content="JDBC-数据库事务-JDBC事务处理-6.1">
+  
+  
+  <meta property="og:url" content="http://example.com/2020/12/24/JDBC6-1%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/index.html">
+  
+  
+  <meta property="og:img" content="/img/Kaze.png">
+  
+  
+  <meta property="og:img" content="&lt;h1 id=&#34;数据库事务&#34;&gt;&lt;a href=&#34;#数据库事务&#34; class=&#34;headerlink&#34; title=&#34;数据库事务&#34;&gt;&lt;/a&gt;数据库事务&lt;/h1&gt;&lt;h4 id=&#34;什么叫数据库事务&#34;&gt;&lt;a href=&#34;#什么叫数据库事务&#34; class=&#34;headerlink&#34; title=&#34;什么叫数据库事务&#34;&gt;&lt;/a&gt;&lt;strong&gt;什么叫数据库事务&lt;/strong&gt;&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;事务:一组逻辑操作单元,使数据从一种状态到另外一种状态,一组逻辑操作单元,一个或者多个DML操作&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;事务处理的原则&#34;&gt;&lt;a href=&#34;#事务处理的原则&#34; class=&#34;headerlink&#34; title=&#34;事务处理的原则:&#34;&gt;&lt;/a&gt;&lt;strong&gt;事务处理的原则&lt;/strong&gt;:&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;保证所有事务都为一个工作单元执行  即使出现了故障,都不能改变这种方式当一个事务中执行了多个操作时,要么所有的事务都&lt;strong&gt;被提交(**commit) , 那么这些修改就永久保存下来: 要么数据库管理系统将放弃所作的所有修改,整个事务&lt;/strong&gt;回滚**(roolBack) 到最初始状态&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;JDBC事务处理&#34;&gt;&lt;a href=&#34;#JDBC事务处理&#34; class=&#34;headerlink&#34; title=&#34;JDBC事务处理&#34;&gt;&lt;/a&gt;JDBC事务处理&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;数据一旦提交 就不会发生回滚&lt;/li&gt;
+&lt;/ul&gt;">
+  
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:published_time" content="2020-12-24">
+  <meta property="og:article:modified_time" content="2020-12-27">
+  <meta property="og:article:author" content="theme-kaze">
+  
+  
+  <meta property="og:article:tag" content="事务处理">
+  
+  <meta property="og:article:tag" content="JDBC">
+  
+  <meta property="og:article:tag" content="数据库">
+  
+  
+  
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+    var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+      }
+    };
+    setDarkmode();
+  </script>
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  </script>
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  
+  <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+  <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+  <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/main.css">
 
-block content
-    - var tocContent = toc(page.content, {list_number: false})
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
 
-    main.container.is-max-widescreen.content.section.post-page.pt-4.px-4
-        .columns.is-flex-desktop.is-justify-content-center.is-flex-direction-row-reverse
-            .column.is-3.is-hidden-mobile(class= tocContent.length < 1 && 'is-hidden')!= tocContent
-            .column.is-9
-                header.my-4
-                    if page.tags && page.tags.length > 0
-                        each tag in page.tags.toArray()
-                            a(href= url_for(`/tags/${tag.name}`))
-                                i.tag.post-item-tag= tag.name
-                h1.mt-0.mb-1.is-family-serif#postTitle= page.title
-                if page.date
-                    time.has-text-grey(datetime=page.date.toJSON())= date(page.date, date_format)
-                article.mt-2.post-content!= page.content
-                section.jump-container.is-flex.is-justify-content-space-between.my-6
-                    // em is empty placeholder
-                    if page.prev
-                        - var preContent= `${ __('prev') }: ${ page.prev.title }`
-                        a.button.is-small.is-default.py-4(href= url_for(page.prev.path) title= page.prev.title)
-                            i.iconfont.icon-prev.mr-2.has-text-grey
-                            span.has-text-weight-semibold= preContent
-                    else
-                        em
-                    if page.next
-                        - var nextContent= `${ __('next') }: ${ page.next.title }`
-                        a.button.is-small.is-default.py-4(href= url_for(page.next.path) title= page.next.title)
-                            span.has-text-weight-semibold= nextContent
-                            i.iconfont.icon-next.ml-2.has-text-grey
-                if theme.comment_utteranc && theme.comment_utteranc.enable
-                    article.mt-6.comment-container
-                        script(
-                            async
-                            repo= theme.comment_utteranc.repo
-                            src= "https://utteranc.es/client.js"
-                            label= theme.comment_utteranc.label
-                            issue-term= theme.comment_utteranc.issue_term || "pathname"
-                            theme= theme.comment_utteranc.theme || "preferred-color-scheme"
-                        )
-block script
-    script(src= url_for("/js/post.js"))
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+
+  
+  
+<link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <div class="wrapper">
+    
+    <nav class="navbar">
+  <div class="navbar-logo">
+    <span class="navbar-logo-main">
+      
+      <img class="navbar-logo-img" src="/img/Kaze.png" alt="logo">
+      
+      <span class="navbar-logo-dsc">theme-kaze demo</span>
+    </span>
+  </div>
+  <div class="navbar-menu">
+    
+    <a href="/" class="navbar-menu-item">
+    
+    Home
+    
+    </a>
+    
+    <a href="/archives" class="navbar-menu-item">
+    
+    Archive
+    
+    </a>
+    
+    <a href="/tags" class="navbar-menu-item">
+    
+    Tags
+    
+    </a>
+    
+    <a href="/categories" class="navbar-menu-item">
+    
+    Categories
+    
+    </a>
+    
+    <a href="/about" class="navbar-menu-item">
+    
+    About
+    
+    </a>
+    
+    <a href="/links" class="navbar-menu-item">
+    
+    Friends
+    
+    </a>
+    
+    <a class="navbar-menu-item darknavbar" id="dark"><i class="iconfont icon-weather"></i></a>
+    <a class="navbar-menu-item searchnavbar" id="search"><i class="iconfont icon-search" style="font-size: 1.2rem; font-weight: 400;"></i></a>
+  </div>
+</nav>
+    
+    <div id="local-search" style="display: none;">
+      <input class="navbar-menu-item" id="search-input" placeholder="请输入搜索内容...">
+      <div id="search-content"></div>
+    </div>
+    
+    <div class="section-wrap">
+      <div class="container">
+        <div class="columns">
+          <main class="main-column">
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      JDBC-数据库事务-JDBC事务处理-6.1
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2020-12-23T16:12:27.000Z">
+      <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+      <span>2020-12-24</span>
+    </time>
+    
+    <span class="dot"></span>
+    
+    <a href="/categories/JDBC/" class="post-meta-link">-JDBC</a>
+    
+    
+    
+    <span class="dot"></span>
+    <span>1.5k words</span>
+    
+  </div>
+  
+  <div class="post-meta post-show-meta" style="margin-top: -10px;">
+    <div style="display: flex; align-items: center;">
+      <i class="iconfont icon-biaoqian" style="margin-right: 2px; font-size: 1.15rem;"></i>
+      
+      
+        <a href="/tags/事务处理/" class="post-meta-link">事务处理</a>
+      
+      
+      <span class="dot"></span>
+      
+        <a href="/tags/JDBC/" class="post-meta-link">JDBC</a>
+      
+      
+      <span class="dot"></span>
+      
+        <a href="/tags/数据库/" class="post-meta-link">数据库</a>
+      
+    </div>
+  </div>
+  
+  </header>
+  <div id="section" class="post-content">
+    <h1 id="数据库事务"><a href="#数据库事务" class="headerlink" title="数据库事务"></a>数据库事务</h1><h4 id="什么叫数据库事务"><a href="#什么叫数据库事务" class="headerlink" title="什么叫数据库事务"></a><strong>什么叫数据库事务</strong></h4><ul>
+<li>事务:一组逻辑操作单元,使数据从一种状态到另外一种状态,一组逻辑操作单元,一个或者多个DML操作</li>
+</ul>
+<h4 id="事务处理的原则"><a href="#事务处理的原则" class="headerlink" title="事务处理的原则:"></a><strong>事务处理的原则</strong>:</h4><ul>
+<li>保证所有事务都为一个工作单元执行  即使出现了故障,都不能改变这种方式当一个事务中执行了多个操作时,要么所有的事务都<strong>被提交(**commit) , 那么这些修改就永久保存下来: 要么数据库管理系统将放弃所作的所有修改,整个事务</strong>回滚**(roolBack) 到最初始状态</li>
+</ul>
+<h2 id="JDBC事务处理"><a href="#JDBC事务处理" class="headerlink" title="JDBC事务处理"></a>JDBC事务处理</h2><ul>
+<li>数据一旦提交 就不会发生回滚</li>
+</ul>
+<a id="more"></a>
+
+<h4 id="那些操作会导致数据的自动提交"><a href="#那些操作会导致数据的自动提交" class="headerlink" title="那些操作会导致数据的自动提交?"></a><strong>那些操作会导致数据的自动提交</strong>?</h4><p><strong>DDL数据定义语言</strong>，用于定义和管理 SQL 数据库中的所有对象的语言</p>
+<ul>
+<li><strong>DDL操作一旦执行,就会自动提交</strong>    set autocommit = false 对DDL操作失效</li>
+</ul>
+<p><strong>DML数据操作语言</strong>，SQL中处理数据等操作统称为数据操纵语言</p>
+<ul>
+<li><strong>DML默认情况下</strong>,一旦执行,就会自动提交</li>
+</ul>
+<p>我们通过set autocommit= false 的方式 取消DML操作的自动提交</p>
+<ul>
+<li>默认在关闭连接时,会自动的提交数据</li>
+</ul>
+<h4 id="JDBC程序中为了让多个-SQL-语句作为一个事务执行"><a href="#JDBC程序中为了让多个-SQL-语句作为一个事务执行" class="headerlink" title="JDBC程序中为了让多个 SQL 语句作为一个事务执行"></a>JDBC程序中为了让多个 SQL 语句作为一个事务执行</h4><ul>
+<li>调用Connection对象的setAutoCommit(flase): 以取消自动提交事务</li>
+<li>在所有的sql语句都成功执行后,调用commit(); 方法提交事务</li>
+<li>出现异常时.调用<strong>rollback(); 进行回滚事务</strong></li>
+</ul>
+<blockquote>
+<p>若此时connection没有被关闭,还可能被被重复使用,则需要恢复其自动提交的状态</p>
+<p>setAutoCommit(true) 尤其时使用数据库连接池技术时,执行close()方法前,建议恢复自动提交状态</p>
+</blockquote>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><h5 id="用户AA向用户BB转账100"><a href="#用户AA向用户BB转账100" class="headerlink" title="用户AA向用户BB转账100"></a><strong>用户AA向用户BB转账100</strong></h5><h5 id="未考虑数据库事务情况下的转账操作"><a href="#未考虑数据库事务情况下的转账操作" class="headerlink" title="未考虑数据库事务情况下的转账操作:"></a><strong>未考虑数据库事务情况下的转账操作</strong>:</h5><pre class="highlight"><span class="line">   <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testUpdate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        String sql1 = <span class="string">&quot;update user_table set balance = balance - 100 where user = ?&quot;</span>;</span><br><span class="line">        update(sql1, <span class="string">&quot;AA&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//模拟网络异常</span></span><br><span class="line"><span class="comment">//        System.out.println(10 / 0);</span></span><br><span class="line"></span><br><span class="line">        String sql2 = <span class="string">&quot;update user_table set balance = balance + 100 where user = ?&quot;</span>;</span><br><span class="line">        update(sql2, <span class="string">&quot;BB&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;转账成功&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通用的增删改操作---version 1.0</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">update</span><span class="params">(String sql, Object... args)</span> </span>&#123;</span><br><span class="line">        Connection conn = <span class="keyword">null</span>;</span><br><span class="line">        PreparedStatement ps = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//1, 获取数据库连接</span></span><br><span class="line">            conn = JDBCUtils.getConnection();</span><br><span class="line">            <span class="comment">//2 预编译sql语句 返回PreparedStatement的实例</span></span><br><span class="line">            ps = conn.prepareStatement(sql);</span><br><span class="line">            <span class="comment">//填充占位符</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; args.length; i++) &#123;</span><br><span class="line">                ps.setObject(i + <span class="number">1</span>, args[i]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//执行</span></span><br><span class="line">            <span class="keyword">return</span> ps.executeUpdate();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="comment">//修改其为自动提交数据</span></span><br><span class="line">            <span class="comment">//主要针对于使用数据库连接池的使用</span></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                conn.setAutoCommit(<span class="keyword">true</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (SQLException throwables) &#123;</span><br><span class="line">                throwables.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//关闭资源</span></span><br><span class="line">            JDBCUtils.closeResource(conn, ps);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br></pre>
+
+<p>出现问题:当模拟网络异常时,AA的钱扣除了,但是没有加到B中</p>
+<p>解决问题:考虑数据库事务后进行转账操作</p>
+<pre class="highlight"><span class="line">*1.什么叫数据库事务</span><br><span class="line">*  事务:一组逻辑操作单元,使数据从一种状态到另外一种状态</span><br><span class="line">*         &gt; 一组逻辑操作单元,一个或者多个DML操作</span><br><span class="line">*2. 事务处理的原则:保证所有事务都为一个工作单元执行  即使出现了故障,都不能改变这种方式</span><br><span class="line">* 当一个事务中执行了多个操作时,要么所有的事务都被提交(commit)  那么这些修改就永久保存下来</span><br><span class="line">* : 要么数据库管理系统将放弃所作的所有修改,整个事务回滚(roolBack) 到最初始状态</span><br></pre>
+
+
+
+
+
+
+
+<hr><hr>
+
+<h5 id="考虑数据库事务后的转账操作"><a href="#考虑数据库事务后的转账操作" class="headerlink" title="考虑数据库事务后的转账操作"></a><strong>考虑数据库事务后的转账操作</strong></h5><p>注意:</p>
+<p>为了数据报错正常产生回滚</p>
+<ul>
+<li><code>update1(Connection conn, String sql, Object... args)</code> 连接数据库由外部测试提供,也即是关闭连接是<code>JDBCUtils.closeResource(null, ps);</code></li>
+<li>.取消自动提<code>conn.setAutoCommit(false)</code>;</li>
+<li>所有的 SQL 语句都成功执行后，调用 <code>commit(); </code>方法提交事务</li>
+<li>出现异常 调用 <code>rollback();</code> 方法回滚事务</li>
+<li></li>
+</ul>
+<pre class="highlight"><span class="line"> <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testUpdateWithTx</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Connection conn = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            conn = JDBCUtils.getConnection();</span><br><span class="line"></span><br><span class="line">            <span class="comment">//1.取消自动提交</span></span><br><span class="line">            conn.setAutoCommit(<span class="keyword">false</span>);</span><br><span class="line"></span><br><span class="line">            String sql1 = <span class="string">&quot;update user_table set balance = balance - 100 where user = ?&quot;</span>;</span><br><span class="line">            update1(conn, sql1, <span class="string">&quot;AA&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//模拟网路异常</span></span><br><span class="line"><span class="comment">//            System.out.println(10 / 0);</span></span><br><span class="line"></span><br><span class="line">            String sql2 = <span class="string">&quot;update user_table set balance = balance + 100 where user = ?&quot;</span>;</span><br><span class="line">            update1(conn, sql2, <span class="string">&quot;BB&quot;</span>);</span><br><span class="line"></span><br><span class="line">            System.out.println(<span class="string">&quot;转账成功&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//2 提交数据</span></span><br><span class="line">            conn.commit();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line"></span><br><span class="line">            <span class="comment">//3 数据回滚</span></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                conn.rollback();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (SQLException throwables) &#123;</span><br><span class="line">                throwables.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            JDBCUtils.closeResource(conn, <span class="keyword">null</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通用的增删改操作---version 2.0</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">update1</span><span class="params">(Connection conn, String sql, Object... args)</span> </span>&#123;</span><br><span class="line">        PreparedStatement ps = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//1 预编译sql语句 返回PreparedStatement的实例</span></span><br><span class="line">            ps = conn.prepareStatement(sql);</span><br><span class="line">            <span class="comment">//2 填充占位符</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; args.length; i++) &#123;</span><br><span class="line">                ps.setObject(i + <span class="number">1</span>, args[i]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//3 执行</span></span><br><span class="line">            <span class="keyword">return</span> ps.executeUpdate();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">           <span class="comment">//4 关闭资源</span></span><br><span class="line">            JDBCUtils.closeResource(<span class="keyword">null</span>, ps);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre>
+
+<h2 id="连接数据库相关操作"><a href="#连接数据库相关操作" class="headerlink" title="连接数据库相关操作"></a>连接数据库相关操作</h2><h4 id="操作数据库的工具类"><a href="#操作数据库的工具类" class="headerlink" title="操作数据库的工具类"></a>操作数据库的工具类</h4><pre class="highlight"><span class="line"><span class="keyword">package</span> com.nie1.transaction.util;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.sql.Connection;</span><br><span class="line"><span class="keyword">import</span> java.sql.DriverManager;</span><br><span class="line"><span class="keyword">import</span> java.sql.ResultSet;</span><br><span class="line"><span class="keyword">import</span> java.sql.SQLException;</span><br><span class="line"><span class="keyword">import</span> java.sql.Statement;</span><br><span class="line"><span class="keyword">import</span> java.util.Properties;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> 操作数据库的工具类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JDBCUtils</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Description</span> 获取数据库的连接</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Connection <span class="title">getConnection</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">// 1.读取配置文件中的4个基本信息</span></span><br><span class="line">        InputStream is = ClassLoader.getSystemClassLoader().getResourceAsStream(<span class="string">&quot;jdbc.properties&quot;</span>);</span><br><span class="line">        Properties pros = <span class="keyword">new</span> Properties();</span><br><span class="line">        pros.load(is);</span><br><span class="line">        <span class="comment">//2获取四个配置</span></span><br><span class="line">        String user = pros.getProperty(<span class="string">&quot;user&quot;</span>);</span><br><span class="line">        String password = pros.getProperty(<span class="string">&quot;password&quot;</span>);</span><br><span class="line">        String url = pros.getProperty(<span class="string">&quot;url&quot;</span>);</span><br><span class="line">        String driverClass = pros.getProperty(<span class="string">&quot;driverClass&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3.加载驱动</span></span><br><span class="line">        Class.forName(driverClass);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 4.获取连接</span></span><br><span class="line">        Connection conn = DriverManager.getConnection(url, user, password);</span><br><span class="line">        <span class="keyword">return</span> conn;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Description</span> 关闭连接和Statement的操作</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">closeResource</span><span class="params">(Connection conn, Statement ps)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (ps != <span class="keyword">null</span>)</span><br><span class="line">                ps.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (conn != <span class="keyword">null</span>)</span><br><span class="line">                conn.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Description</span> 关闭资源操作</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">closeResource</span><span class="params">(Connection conn, Statement ps, ResultSet rs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (ps != <span class="keyword">null</span>)</span><br><span class="line">                ps.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (conn != <span class="keyword">null</span>)</span><br><span class="line">                conn.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (rs != <span class="keyword">null</span>)</span><br><span class="line">                rs.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+
+<h4 id="配置文件jdbc-properties"><a href="#配置文件jdbc-properties" class="headerlink" title="配置文件jdbc.properties"></a>配置文件jdbc.properties</h4><pre class="highlight"><span class="line">#获取</span><br><span class="line">user=root</span><br><span class="line">password=<span class="number">123123</span></span><br><span class="line">url=jdbc:mysql:<span class="comment">//localhost:3306/test?rewriteBatchedStatements=true</span></span><br><span class="line">driverClass=com.mysql.jdbc.Driver</span><br></pre>
+
+
+  </div>
+  <div>
+  
+  <div class="post-note note-warning copyright" style="margin-top: 42px">
+    <p><span style="font-weight: bold;">作者：</span><a target="_blank" rel="nofollow noopener noreferrer" href="http://example.com/about">theme-kaze</a></p>
+    <p><span style="font-weight: bold;">文章链接：</span><a target="_blank" rel="nofollow noopener noreferrer" href="http://example.com/2020/12/24/JDBC6-1%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/">http://example.com/2020/12/24/JDBC6-1%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/</a></p>
+    <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+  </div>
+  
+  </div>
+</article>
+<div class="nav">
+  
+  <div class="nav-item-prev">
+    <a href="/2020/12/25/JDBC6-2数据事务ACID属性/" class="nav-link">
+      <i class="iconfont icon-left nav-prev-icon"></i>
+      <div>
+        <div class="nav-label">Prev</div>
+        
+        <div class="nav-title">JDBC-数据库事务-事务的ACID属性-6.2 </div>
+        
+      </div>
+    </a>
+  </div>
+  
+  
+  <div class="nav-item-next">
+    <a href="/2020/12/23/线索化二叉树/" class="nav-link">
+      <div>
+        <div class="nav-label">Next</div>
+        
+        <div class="nav-title">线索化二叉树 </div>
+        
+      </div>
+      <i class="iconfont icon-right nav-next-icon"></i>
+    </a>
+  </div>
+  
+</div>
+
+<div class="card card-content toc-card" id="mobiletoc">
+  <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>TOC</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1"><span class="toc-text">数据库事务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E5%8F%AB%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1"><span class="toc-text">什么叫数据库事务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86%E7%9A%84%E5%8E%9F%E5%88%99"><span class="toc-text">事务处理的原则:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JDBC%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86"><span class="toc-text">JDBC事务处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%82%A3%E4%BA%9B%E6%93%8D%E4%BD%9C%E4%BC%9A%E5%AF%BC%E8%87%B4%E6%95%B0%E6%8D%AE%E7%9A%84%E8%87%AA%E5%8A%A8%E6%8F%90%E4%BA%A4"><span class="toc-text">那些操作会导致数据的自动提交?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JDBC%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%B8%BA%E4%BA%86%E8%AE%A9%E5%A4%9A%E4%B8%AA-SQL-%E8%AF%AD%E5%8F%A5%E4%BD%9C%E4%B8%BA%E4%B8%80%E4%B8%AA%E4%BA%8B%E5%8A%A1%E6%89%A7%E8%A1%8C"><span class="toc-text">JDBC程序中为了让多个 SQL 语句作为一个事务执行</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B"><span class="toc-text">案例</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%94%A8%E6%88%B7AA%E5%90%91%E7%94%A8%E6%88%B7BB%E8%BD%AC%E8%B4%A6100"><span class="toc-text">用户AA向用户BB转账100</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9C%AA%E8%80%83%E8%99%91%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1%E6%83%85%E5%86%B5%E4%B8%8B%E7%9A%84%E8%BD%AC%E8%B4%A6%E6%93%8D%E4%BD%9C"><span class="toc-text">未考虑数据库事务情况下的转账操作:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%80%83%E8%99%91%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1%E5%90%8E%E7%9A%84%E8%BD%AC%E8%B4%A6%E6%93%8D%E4%BD%9C"><span class="toc-text">考虑数据库事务后的转账操作</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C"><span class="toc-text">连接数据库相关操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="toc-text">操作数据库的工具类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6jdbc-properties"><span class="toc-text">配置文件jdbc.properties</span></a></li></ol></li></ol></li></ol></li></ol>
+</div></main>
+          <aside class="left-column">
+            
+            <div class="card card-author">
+              
+<img src="/img/Kaze.png" class="author-img">
+
+<p class="author-name">theme-kaze</p>
+<p class="author-description">designed by theme-kaze</p>
+<div class="author-message">
+  <a class="author-posts-count" href="/archives">
+    <span>138</span>
+    <span>Posts</span>
+  </a>
+  <a class="author-categories-count" href="/categories">
+    <span>10</span>
+    <span>Categories</span>
+  </a>
+  <a class="author-tags-count" href="/tags">
+    <span>62</span>
+    <span>Tags</span>
+  </a>
+</div>
+
+            </div>
+            
+            <div class="sticky-tablet">
+  
+  
+  <article class="display-when-two-columns spacer">
+    <div class="card card-content toc-card">
+      <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>TOC</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1"><span class="toc-text">数据库事务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E5%8F%AB%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1"><span class="toc-text">什么叫数据库事务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86%E7%9A%84%E5%8E%9F%E5%88%99"><span class="toc-text">事务处理的原则:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JDBC%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86"><span class="toc-text">JDBC事务处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%82%A3%E4%BA%9B%E6%93%8D%E4%BD%9C%E4%BC%9A%E5%AF%BC%E8%87%B4%E6%95%B0%E6%8D%AE%E7%9A%84%E8%87%AA%E5%8A%A8%E6%8F%90%E4%BA%A4"><span class="toc-text">那些操作会导致数据的自动提交?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JDBC%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%B8%BA%E4%BA%86%E8%AE%A9%E5%A4%9A%E4%B8%AA-SQL-%E8%AF%AD%E5%8F%A5%E4%BD%9C%E4%B8%BA%E4%B8%80%E4%B8%AA%E4%BA%8B%E5%8A%A1%E6%89%A7%E8%A1%8C"><span class="toc-text">JDBC程序中为了让多个 SQL 语句作为一个事务执行</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B"><span class="toc-text">案例</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%94%A8%E6%88%B7AA%E5%90%91%E7%94%A8%E6%88%B7BB%E8%BD%AC%E8%B4%A6100"><span class="toc-text">用户AA向用户BB转账100</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9C%AA%E8%80%83%E8%99%91%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1%E6%83%85%E5%86%B5%E4%B8%8B%E7%9A%84%E8%BD%AC%E8%B4%A6%E6%93%8D%E4%BD%9C"><span class="toc-text">未考虑数据库事务情况下的转账操作:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%80%83%E8%99%91%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1%E5%90%8E%E7%9A%84%E8%BD%AC%E8%B4%A6%E6%93%8D%E4%BD%9C"><span class="toc-text">考虑数据库事务后的转账操作</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C"><span class="toc-text">连接数据库相关操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="toc-text">操作数据库的工具类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6jdbc-properties"><span class="toc-text">配置文件jdbc.properties</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+  </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header"><i class="iconfont icon-fenlei" style="padding-right: 2px;"></i>Categories</div>
+  <div class="categories-list">
+    
+      <a href="/categories/-数据结构和算法-体系">
+        <div class="categories-list-item">
+          -数据结构和算法-体系
+          <span class="categories-list-item-badge">9</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-前端">
+        <div class="categories-list-item">
+          -前端
+          <span class="categories-list-item-badge">10</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-JDBC">
+        <div class="categories-list-item">
+          -JDBC
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-JQuery">
+        <div class="categories-list-item">
+          -JQuery
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-JavaScript">
+        <div class="categories-list-item">
+          -JavaScript
+          <span class="categories-list-item-badge">5</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-算法">
+        <div class="categories-list-item">
+          -算法
+          <span class="categories-list-item-badge">60</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-javase">
+        <div class="categories-list-item">
+          -javase
+          <span class="categories-list-item-badge">31</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-工具栏">
+        <div class="categories-list-item">
+          -工具栏
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-操作系统">
+        <div class="categories-list-item">
+          -操作系统
+          <span class="categories-list-item-badge">8</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-计算机网络">
+        <div class="categories-list-item">
+          -计算机网络
+          <span class="categories-list-item-badge">8</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header"><i class="iconfont icon-biaoqian" style="padding-right: 2px;"></i>hot tags</div>
+  <div class="tags-list">
+    
+    <a href="\tags\LeetCode" title="LeetCode"><div class="tags-list-item">LeetCode</div></a>
+    
+    <a href="\tags\基础" title="基础"><div class="tags-list-item">基础</div></a>
+    
+    <a href="\tags\java" title="java"><div class="tags-list-item">java</div></a>
+    
+    <a href="\tags\面试" title="面试"><div class="tags-list-item">面试</div></a>
+    
+    <a href="\tags\排序" title="排序"><div class="tags-list-item">排序</div></a>
+    
+    <a href="\tags\十大排序" title="十大排序"><div class="tags-list-item">十大排序</div></a>
+    
+    <a href="\tags\数据结构" title="数据结构"><div class="tags-list-item">数据结构</div></a>
+    
+    <a href="\tags\网络" title="网络"><div class="tags-list-item">网络</div></a>
+    
+    <a href="\tags\双指针" title="双指针"><div class="tags-list-item">双指针</div></a>
+    
+    <a href="\tags\二叉树" title="二叉树"><div class="tags-list-item">二叉树</div></a>
+    
+    <a href="\tags\链表" title="链表"><div class="tags-list-item">链表</div></a>
+    
+    <a href="\tags\常用10种算法" title="常用10种算法"><div class="tags-list-item">常用10种算法</div></a>
+    
+    <a href="\tags\链表反转" title="链表反转"><div class="tags-list-item">链表反转</div></a>
+    
+    <a href="\tags\JavaWeb" title="JavaWeb"><div class="tags-list-item">JavaWeb</div></a>
+    
+    <a href="\tags\JavaScript" title="JavaScript"><div class="tags-list-item">JavaScript</div></a>
+    
+    <a href="\tags\CSS" title="CSS"><div class="tags-list-item">CSS</div></a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+          </aside>
+          <aside class="right-column">
+            <div class="sticky-widescreen">
+  
+  
+  <article class="card card-content toc-card">
+    <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>TOC</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1"><span class="toc-text">数据库事务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E5%8F%AB%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1"><span class="toc-text">什么叫数据库事务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86%E7%9A%84%E5%8E%9F%E5%88%99"><span class="toc-text">事务处理的原则:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JDBC%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86"><span class="toc-text">JDBC事务处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%82%A3%E4%BA%9B%E6%93%8D%E4%BD%9C%E4%BC%9A%E5%AF%BC%E8%87%B4%E6%95%B0%E6%8D%AE%E7%9A%84%E8%87%AA%E5%8A%A8%E6%8F%90%E4%BA%A4"><span class="toc-text">那些操作会导致数据的自动提交?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JDBC%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%B8%BA%E4%BA%86%E8%AE%A9%E5%A4%9A%E4%B8%AA-SQL-%E8%AF%AD%E5%8F%A5%E4%BD%9C%E4%B8%BA%E4%B8%80%E4%B8%AA%E4%BA%8B%E5%8A%A1%E6%89%A7%E8%A1%8C"><span class="toc-text">JDBC程序中为了让多个 SQL 语句作为一个事务执行</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B"><span class="toc-text">案例</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%94%A8%E6%88%B7AA%E5%90%91%E7%94%A8%E6%88%B7BB%E8%BD%AC%E8%B4%A6100"><span class="toc-text">用户AA向用户BB转账100</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9C%AA%E8%80%83%E8%99%91%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1%E6%83%85%E5%86%B5%E4%B8%8B%E7%9A%84%E8%BD%AC%E8%B4%A6%E6%93%8D%E4%BD%9C"><span class="toc-text">未考虑数据库事务情况下的转账操作:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%80%83%E8%99%91%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1%E5%90%8E%E7%9A%84%E8%BD%AC%E8%B4%A6%E6%93%8D%E4%BD%9C"><span class="toc-text">考虑数据库事务后的转账操作</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C"><span class="toc-text">连接数据库相关操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="toc-text">操作数据库的工具类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6jdbc-properties"><span class="toc-text">配置文件jdbc.properties</span></a></li></ol></li></ol></li></ol></li></ol>
+  </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header"><i class="iconfont icon-wenzhang_huaban" style="padding-right: 2px;"></i>Recent Posts</div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-08</div>
+        <a href="/2021/01/08/JQuery-02/"><div class="recent-posts-item-content">JQuery-02JQuery选择器(重点)</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-07</div>
+        <a href="/2021/01/07/JQuery-01/"><div class="recent-posts-item-content">JQuery-01概论</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-06</div>
+        <a href="/2021/01/06/常用正则/"><div class="recent-posts-item-content">常用正则写法</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-05</div>
+        <a href="/2021/01/05/JS-05/"><div class="recent-posts-item-content">JS-05-JavaScript 正则表达式</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>Copyright ©
+          
+          2020 -
+          
+          2021
+        </span>
+        &nbsp;
+        <a href="/" class="footer-link">theme-kaze demo </a>
+      </div>
+    </div>
+
+    
+    <div class="footer-dsc">
+      
+      Powered by
+      <a href="https://hexo.io/" class="footer-link" target="_blank" rel="nofollow noopener noreferrer">&nbsp;Hexo </a>
+      
+      
+      <span>&nbsp;|&nbsp;</span>
+      
+      
+      Theme -
+      <a href="https://github.com/theme-kaze" class="footer-link" target="_blank"
+        rel="nofollow noopener noreferrer">&nbsp;Kaze</a>
+      
+    </div>
+    
+    
+    
+    
+</footer>
+  <a role="button" id="scrollbutton" class="basebutton"  aria-label="回到顶部">
+  <i class="iconfont icon-arrowleft button-icon"></i>
+</a>
+<a role="button" id="menubutton" class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a role="button" id="popbutton" class="basebutton" aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a role="button" id="darkbutton" class="basebutton darkwidget" aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a role="button" id="searchbutton" class="basebutton searchwidget" aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a>
+
+  
+  
+  
+  <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img');
+    var i;
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a');
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'));
+      wrapper.setAttribute('aria-label', 'illustration');
+      wrapper.style.cssText = 'width: 100%; display: flex; justify-content: center;';
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt;
+      wrapper.dataset.nolink = true;
+      img[i].before(wrapper);
+      wrapper.append(img[i]);
+      var divWrap = document.createElement('div');
+      divWrap.classList.add('gallery');
+      wrapper.before(divWrap);
+      divWrap.append(wrapper);
+    }
+    baguetteBox.run('.gallery');
+  }
+</script>
+<script>loadScript("/js/lib/lightbox/baguetteBox.min.js", addImgLayout)</script>
+  
+  
+  
+<script src="/js/main.js"></script>
+
+  
+  
+  <script>
+    var addLazyload = function () {
+      var observer = lozad('.lozad', {
+        load: function (el) {
+          el.srcset = el.getAttribute('data-src');
+        },
+        loaded: function (el) {
+          el.classList.add('loaded');
+        }
+      });
+      observer.observe();
+    }
+  </script>
+  <script>loadScript("/js/lib/lozad.min.js", addLazyload)</script>
+  
+  
+</body>
+
+</html>

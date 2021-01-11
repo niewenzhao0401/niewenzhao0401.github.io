@@ -1,53 +1,874 @@
-extends widget/base
-block append head
-  link(rel='stylesheet', href= url_for('/style/post.css'))
-  link(rel='stylesheet', href= url_for('/style/highlight-theme-light.css'))
-  script(src= url_for("/jslib/highlight.pack.js"))
-block topic
-    div#postTopic.is-full-height
-        - var title = truncate( page.title, {length: 65, omission: '..'} ) || ''
-        p.is-full-height.is-flex-shrink-0.is-flex.is-align-items-center.is-justify-content-center= title
-        p.is-full-height.is-flex-shrink-0.is-flex.is-align-items-center.is-justify-content-center= __('click_back_to_the_top')
+<!DOCTYPE html>
+<html  lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#fff" id="theme-color">
+  <meta name="description" content="当咸鱼,不存在!!!">
+  <link rel="icon" href="/img/Kaze.png">
+  <title>javaSE-hash</title>
+  
+  
+  <meta property="og:title" content="javaSE-hash">
+  
+  
+  <meta property="og:url" content="http://example.com/2020/11/26/javaSE-hash/index.html">
+  
+  
+  <meta property="og:img" content="/img/Kaze.png">
+  
+  
+  <meta property="og:img" content="&lt;h1 id=&#34;哈希表总结&#34;&gt;&lt;a href=&#34;#哈希表总结&#34; class=&#34;headerlink&#34; title=&#34;哈希表总结&#34;&gt;&lt;/a&gt;哈希表总结&lt;/h1&gt;&lt;h3 id=&#34;哈希表&#34;&gt;&lt;a href=&#34;#哈希表&#34; class=&#34;headerlink&#34; title=&#34;哈希表&#34;&gt;&lt;/a&gt;哈希表&lt;/h3&gt;&lt;p&gt;记录的存储位置和它的关键字之间建立一确定的对应关系f，使每个关键字和结构中一个唯一的存储位置相对应。&lt;/p&gt;
+&lt;p&gt;因而查找时，只需根据这个对应关系f找到给定值K的像f(K）。&lt;/p&gt;
+&lt;p&gt;若结构中存在关键字和K相等的记录，则必定在f(K）的存储位置上，由此不需要进行比较便可直接取得所查记录。&lt;/p&gt;
+&lt;p&gt;在此，称这个对应关系f为哈希函数，按这个思想建立的表为哈希表（又称为杂凑法或散列表。&lt;/p&gt;
+&lt;h3 id=&#34;哈希表不可避免冲突（collision）现象：&#34;&gt;&lt;a href=&#34;#哈希表不可避免冲突（collision）现象：&#34; class=&#34;headerlink&#34; title=&#34;哈希表不可避免冲突（collision）现象：&#34;&gt;&lt;/a&gt;哈希表不可避免冲突（collision）现象：&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;对不同的关键字可能得到同一哈希地址 即key1≠key2，而hash(key1)=hash(key2）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;具有相同函数值的关键字对该哈希函数来说称为同义词（synonym）。&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;">
+  
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:published_time" content="2020-11-26">
+  <meta property="og:article:modified_time" content="2020-11-26">
+  <meta property="og:article:author" content="theme-kaze">
+  
+  
+  <meta property="og:article:tag" content="hash">
+  
+  <meta property="og:article:tag" content="基础">
+  
+  <meta property="og:article:tag" content="java">
+  
+  
+  
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+    var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+      }
+    };
+    setDarkmode();
+  </script>
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  </script>
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  
+  <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+  <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+  <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/main.css">
 
-block content
-    - var tocContent = toc(page.content, {list_number: false})
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
 
-    main.container.is-max-widescreen.content.section.post-page.pt-4.px-4
-        .columns.is-flex-desktop.is-justify-content-center.is-flex-direction-row-reverse
-            .column.is-3.is-hidden-mobile(class= tocContent.length < 1 && 'is-hidden')!= tocContent
-            .column.is-9
-                header.my-4
-                    if page.tags && page.tags.length > 0
-                        each tag in page.tags.toArray()
-                            a(href= url_for(`/tags/${tag.name}`))
-                                i.tag.post-item-tag= tag.name
-                h1.mt-0.mb-1.is-family-serif#postTitle= page.title
-                if page.date
-                    time.has-text-grey(datetime=page.date.toJSON())= date(page.date, date_format)
-                article.mt-2.post-content!= page.content
-                section.jump-container.is-flex.is-justify-content-space-between.my-6
-                    // em is empty placeholder
-                    if page.prev
-                        - var preContent= `${ __('prev') }: ${ page.prev.title }`
-                        a.button.is-small.is-default.py-4(href= url_for(page.prev.path) title= page.prev.title)
-                            i.iconfont.icon-prev.mr-2.has-text-grey
-                            span.has-text-weight-semibold= preContent
-                    else
-                        em
-                    if page.next
-                        - var nextContent= `${ __('next') }: ${ page.next.title }`
-                        a.button.is-small.is-default.py-4(href= url_for(page.next.path) title= page.next.title)
-                            span.has-text-weight-semibold= nextContent
-                            i.iconfont.icon-next.ml-2.has-text-grey
-                if theme.comment_utteranc && theme.comment_utteranc.enable
-                    article.mt-6.comment-container
-                        script(
-                            async
-                            repo= theme.comment_utteranc.repo
-                            src= "https://utteranc.es/client.js"
-                            label= theme.comment_utteranc.label
-                            issue-term= theme.comment_utteranc.issue_term || "pathname"
-                            theme= theme.comment_utteranc.theme || "preferred-color-scheme"
-                        )
-block script
-    script(src= url_for("/js/post.js"))
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+
+  
+  
+<link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <div class="wrapper">
+    
+    <nav class="navbar">
+  <div class="navbar-logo">
+    <span class="navbar-logo-main">
+      
+      <img class="navbar-logo-img" src="/img/Kaze.png" alt="logo">
+      
+      <span class="navbar-logo-dsc">theme-kaze demo</span>
+    </span>
+  </div>
+  <div class="navbar-menu">
+    
+    <a href="/" class="navbar-menu-item">
+    
+    Home
+    
+    </a>
+    
+    <a href="/archives" class="navbar-menu-item">
+    
+    Archive
+    
+    </a>
+    
+    <a href="/tags" class="navbar-menu-item">
+    
+    Tags
+    
+    </a>
+    
+    <a href="/categories" class="navbar-menu-item">
+    
+    Categories
+    
+    </a>
+    
+    <a href="/about" class="navbar-menu-item">
+    
+    About
+    
+    </a>
+    
+    <a href="/links" class="navbar-menu-item">
+    
+    Friends
+    
+    </a>
+    
+    <a class="navbar-menu-item darknavbar" id="dark"><i class="iconfont icon-weather"></i></a>
+    <a class="navbar-menu-item searchnavbar" id="search"><i class="iconfont icon-search" style="font-size: 1.2rem; font-weight: 400;"></i></a>
+  </div>
+</nav>
+    
+    <div id="local-search" style="display: none;">
+      <input class="navbar-menu-item" id="search-input" placeholder="请输入搜索内容...">
+      <div id="search-content"></div>
+    </div>
+    
+    <div class="section-wrap">
+      <div class="container">
+        <div class="columns">
+          <main class="main-column">
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      javaSE-hash
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2020-11-26T10:49:45.000Z">
+      <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+      <span>2020-11-26</span>
+    </time>
+    
+    <span class="dot"></span>
+    
+    <a href="/categories/javase/" class="post-meta-link">-javase</a>
+    
+    
+    
+    <span class="dot"></span>
+    <span>4.6k words</span>
+    
+  </div>
+  
+  <div class="post-meta post-show-meta" style="margin-top: -10px;">
+    <div style="display: flex; align-items: center;">
+      <i class="iconfont icon-biaoqian" style="margin-right: 2px; font-size: 1.15rem;"></i>
+      
+      
+        <a href="/tags/hash/" class="post-meta-link">hash</a>
+      
+      
+      <span class="dot"></span>
+      
+        <a href="/tags/基础/" class="post-meta-link">基础</a>
+      
+      
+      <span class="dot"></span>
+      
+        <a href="/tags/java/" class="post-meta-link">java</a>
+      
+    </div>
+  </div>
+  
+  </header>
+  <div id="section" class="post-content">
+    <h1 id="哈希表总结"><a href="#哈希表总结" class="headerlink" title="哈希表总结"></a>哈希表总结</h1><h3 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h3><p>记录的存储位置和它的关键字之间建立一确定的对应关系f，使每个关键字和结构中一个唯一的存储位置相对应。</p>
+<p>因而查找时，只需根据这个对应关系f找到给定值K的像f(K）。</p>
+<p>若结构中存在关键字和K相等的记录，则必定在f(K）的存储位置上，由此不需要进行比较便可直接取得所查记录。</p>
+<p>在此，称这个对应关系f为哈希函数，按这个思想建立的表为哈希表（又称为杂凑法或散列表。</p>
+<h3 id="哈希表不可避免冲突（collision）现象："><a href="#哈希表不可避免冲突（collision）现象：" class="headerlink" title="哈希表不可避免冲突（collision）现象："></a>哈希表不可避免冲突（collision）现象：</h3><ul>
+<li><p>对不同的关键字可能得到同一哈希地址 即key1≠key2，而hash(key1)=hash(key2）。</p>
+</li>
+<li><p>具有相同函数值的关键字对该哈希函数来说称为同义词（synonym）。</p>
+<a id="more"></a> 
+</li>
+<li><p>因此，在建造哈希表时不仅要设定一个好的哈希函数，而且要设定一种处理冲突的方法。</p>
+</li>
+<li><p>可如下描述哈希表：根据设定的哈希函数H(key）和所选中的处理冲突的方法，</p>
+</li>
+<li><p>将一组关键字<strong>映象</strong>到一个有限的、地址连续的地址集（区间）上并以关键字在地址集中的“象”作为相应记录在表中的存储位置，这种表被称为哈希表。</p>
+</li>
+</ul>
+<img src="/2020/11/26/javaSE-hash/1.webp" alt="1" style="zoom:80%;" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2020/11/26/javaSE-hash/1.webp" class="lozad post-image">
+
+<h2 id="散列表查找步骤"><a href="#散列表查找步骤" class="headerlink" title="散列表查找步骤"></a>散列表查找步骤</h2><p>散列表(也叫哈希表,Hash table) ,是根据关键码的值进行访问的数据结构.散列表的实现常常叫做<strong>散列（hasing）</strong>,散列是一种用于以<strong>常数平均时间</strong>执行插入,删除和查找的技术</p>
+<p>整个散列过程分为两步</p>
+<ol>
+<li><p>通过散列函数计算记录的散列地址,并按照散列地址储存该记录</p>
+<p>无论什么记录我们都需要用<strong>同一个散列函数</strong>计算地址，然后再存储。</p>
+</li>
+<li><p>查找通过同样的散列函数计算记录的散列地址,按此散列地址访问该记录.因为我们存和取的时候用的都是一个散列函数，因此结果肯定相同。</p>
+</li>
+</ol>
+<p>散列函数是什么呢？</p>
+<ul>
+<li>假设某个函数为 <strong>f</strong>，使得 <strong>存储位置 = f (key)</strong> 那样我们就能通过查找关键字<strong>不需要比较</strong>就可获得需要的记录的存储位置。这种存储技术被称为散列技术。散列技术是在通过记录的存储位置和它的关键字之间建立一个确定的对应关系 f ,使得每个关键字 key 都对应一个存储位置 f(key)</li>
+</ul>
+<p>这里的<strong>f</strong>就是我们所描述的哈希函数(散列函数),我们利用散列技术将记录储存在一块连续的储存空间中,这块连续的储存空间就是—-(哈希)散列</p>
+<p>对不同的关键字可能得到同一散列地址，即<strong>k1≠k2</strong>，而**f(k1)=f(k2)**，这种现象称为冲（英语：Collision）。具有相同函数值的关键字对该散列函数来说称做同义词。对于这种情况我们能找到有效的方法解决</p>
+<h3 id="哈希函数的特殊性"><a href="#哈希函数的特殊性" class="headerlink" title="哈希函数的特殊性:"></a>哈希函数的特殊性:</h3><p>创建哈希函数是必须遵循一下原则:</p>
+<ol>
+<li><p>必须一致性</p>
+<p>无论什么记录我们都需要用<strong>同一个散列函数</strong>计算地址</p>
+</li>
+<li><p>计算简单</p>
+<p>在保证不哈希冲突的情况下,使得计算简单,如果这个算法计算复杂，会耗费很多时间.<strong>散列函数的计算时间不应该超过其他查找技术与关键字的比较时间</strong>，不然的话我们干嘛使用哈希技术了</p>
+</li>
+<li><p>散列地址分布均匀</p>
+<p>让散列地址尽量均匀分布在储存空间中,这样既保证了空间的有效性,有减少了处理冲突而消耗的时间</p>
+</li>
+</ol>
+<hr>
+
+<h3 id="散列函数构造方法"><a href="#散列函数构造方法" class="headerlink" title="散列函数构造方法"></a>散列函数构造方法</h3><h4 id="直接定址法"><a href="#直接定址法" class="headerlink" title="直接定址法:"></a>直接定址法:</h4><ol>
+<li>取关键字或关键字的某个线性函数值为散列地址。</li>
+<li>即H(key)=key或H(key) = a·key + b，其中a和b为常数（这种散列函数叫做自身函数）。</li>
+<li>若其中H(key）中已经有值了，就往下一个找，直到H(key）中没有值了，就放进去。</li>
+</ol>
+<p><img src="/2020/11/26/javaSE-hash/2.webp" alt="2" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2020/11/26/javaSE-hash/2.webp" class="lozad post-image"></p>
+<p><strong>优点</strong>:</p>
+<ul>
+<li>简单,均匀,无冲突</li>
+</ul>
+<p><strong>应用场景</strong>：</p>
+<ul>
+<li>需要事先知道关键字的分布情况，适合查找表较小且连续的情况</li>
+</ul>
+<hr>
+
+<h4 id="数字分析法"><a href="#数字分析法" class="headerlink" title="数字分析法"></a>数字分析法</h4><ol>
+<li>该方法也是十分简单的方法，就是分析我们的关键字，取其中一段，或对其位移，叠加，用作地址</li>
+<li>比如一组员工的出生年月日，这时我们发现出生年月日的前几位数字大体相同，这样的话，出现冲突的几率就会很大，但是我们发现年月日的后几位表示月份和具体日期的数字差别很大，如果用后面的数字来构成<strong>散列地址</strong>，则冲突的几率会明显降低。</li>
+<li>因此<strong>数字分析法就是找出数字的规律</strong>，尽可能利用这些数据来构造冲突几率较低的散列地址。</li>
+</ol>
+<p>优点：</p>
+<ul>
+<li>简单、均匀、适用于关键字位数较大的情况</li>
+</ul>
+<p>应用场景：</p>
+<ul>
+<li>关键字位数较大，知道关键字分布情况且关键字的若干位较均匀</li>
+</ul>
+<hr>
+
+<h4 id="折叠法"><a href="#折叠法" class="headerlink" title="折叠法"></a>折叠法</h4><ol>
+<li>将关键字分割成位数相同的几部分，最后一部分位数可以不同，然后取这几部分的叠加和（去除进位）作为散列地址。</li>
+<li>比如我们的关键字是123456789，则我们分为三部分 123 ，456 ，789 然后将其相加得 1368 然后我们再取其后三位 368 作为我们的散列地址。</li>
+</ol>
+<p><strong>优点</strong>：</p>
+<ul>
+<li>事先不需要知道关键字情况</li>
+</ul>
+<p><strong>应用场景</strong>：</p>
+<ul>
+<li>适合关键字位数较多的情况</li>
+</ul>
+<hr>
+
+<h4 id="除法散列法"><a href="#除法散列法" class="headerlink" title="除法散列法"></a>除法散列法</h4><ol>
+<li>在用来设计散列函数的除法散列法中,通过取key除p的余数,将关键字映射到某一个上,对于散列表长度为 m 的散列函数公式为</li>
+<li><strong>f(k) = k mod p  (p &lt;= m)</strong></li>
+</ol>
+<p><strong>如</strong></p>
+<p>如果散列表长度为 12，即 m = 12 ，我们的参数 p 也设为12，那 k = 100时 f(k) = 100 % 12 = 4</p>
+<p>我们只需要做一次除法操作,所以除法散列法非常快</p>
+<p>由上面的公式可以看出，该方法的重点在于 p 的取值，如果 p 值选的不好，就可能会容易产生同义词(<strong>哈希冲突</strong>)。见下面这种情况。我们哈希表长度为6，我们选择6为p值，则有可能产生这种情况，所有关键字都得到了0这个地址数。</p>
+<img src="/2020/11/26/javaSE-hash/4.png" alt="4" style="zoom:80%;" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2020/11/26/javaSE-hash/4.png" class="lozad post-image">
+
+<p>那我们在选用除法散列法时选取 p 值时应该遵循怎样的规则呢？</p>
+<ol>
+<li>m 不应为 2 的幂，因为如果 m = 2^p ，则 f(k) 就是 k 的 p 个最低位数字。例 12 % 8 = 4 ，12的二进制表示位1100，后三位为100。</li>
+<li>若散列表的长度为m,通常p为小于或者等于表长(接近)的最小质数或者包含不小于20质因子的合数</li>
+</ol>
+<pre class="highlight"><span class="line">合数：合数是指在大于1的整数中除了能被1和本身整除外，还能被其他数（0除外）整除的数。</span><br><span class="line"></span><br><span class="line">质因子：质因子（或质因数）在数论里是指能整除给定正整数的质数。</span><br></pre>
+
+
+
+
+
+<img src="/2020/11/26/javaSE-hash/222.svg" alt="222" style="zoom:80%;" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2020/11/26/javaSE-hash/222.svg" class="lozad post-image">
+
+<p><em>注：这里的2，3，5为质因子</em></p>
+<p>根据规则选择 5 为 p 值，我们再来看。这时我们发现只有 6 和 36 冲突，相对来说就好了很多。</p>
+<img src="/2020/11/26/javaSE-hash/5.png" alt="5" style="zoom:80%;" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2020/11/26/javaSE-hash/5.png" class="lozad post-image">
+
+<p>优点:</p>
+<ul>
+<li>计算效率高,灵活</li>
+</ul>
+<p>应用场景:</p>
+<ul>
+<li>不知道关键字分布情况</li>
+</ul>
+<hr>
+
+<h4 id="乘法散列法"><a href="#乘法散列法" class="headerlink" title="乘法散列法"></a>乘法散列法</h4><p>构造散列函数的乘法散列法主要包含两个步骤</p>
+<ul>
+<li>用关键字 k 乘上常数 A(0 &lt; A &lt; 1)，并提取 k A 的小数部分</li>
+<li>用 m 乘以这个值，再向下取整</li>
+</ul>
+<p>散列函数为:</p>
+<p><strong>f (k) = ⌊ m(kA mod 1) ⌋</strong></p>
+<p>这里的 <strong>kA mod 1</strong> 的含义是取 keyA 的小数部分，即 <strong>kA - ⌊kA⌋</strong> 。</p>
+<p>优点：对 m 的选择不是特别关键一般选择它为 2 的某个幂次（m = 2 ^ p ,p为某个整数）</p>
+<p>应用场景：不知道关键字情况</p>
+<hr>
+
+<h4 id="平方取中法"><a href="#平方取中法" class="headerlink" title="平方取中法"></a>平方取中法</h4><ul>
+<li>这个方法就比较简单了，假设关键字是 321，那么他的平方就是 103041，再抽取中间的 3 位就是 030 或 304 用作散列地址。</li>
+<li>再比如关键字是 1234  那么它的平方就是 1522756 ，抽取中间 3 位就是 227 用作散列地址.</li>
+</ul>
+<p><strong>优点</strong>：</p>
+<p>灵活，适用范围广泛</p>
+<p><strong>适用场景</strong>：</p>
+<p>不知道关键字分布，而位数又不是很大的情况</p>
+<hr>
+
+
+
+<h4 id="随机数法"><a href="#随机数法" class="headerlink" title="随机数法"></a>随机数法</h4><p>选择一随机函数，取关键字的随机值作为散列地址，即H(key)=random(key)其中random为随机函数,通常用于关键字长度不等的场合。</p>
+<h3 id="处理散列冲突的方法"><a href="#处理散列冲突的方法" class="headerlink" title="处理散列冲突的方法"></a>处理散列冲突的方法</h3><p>hash 函数之后发现关键字 key1 不等于 key2 ，但是 f(key1) = f(key2)，即有冲突，</p>
+<h4 id="开放地址法"><a href="#开放地址法" class="headerlink" title="开放地址法"></a>开放地址法</h4><p>一旦发生冲突,就会寻找下一个空的散列地址,只要列表足够大,空的散列地址总能找到,并将记录存入,为了使用开放寻址法插入一个元素,需要连续检查散列表,称为<strong>探查</strong>,我们常用的有<strong>线性探测，二次探测，随机探测</strong>。</p>
+<h5 id="线性探测法"><a href="#线性探测法" class="headerlink" title="线性探测法"></a>线性探测法</h5><img src="/2020/11/26/javaSE-hash/6.webp" alt="6" style="zoom:80%;" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2020/11/26/javaSE-hash/6.webp" class="lozad post-image">
+
+
+
+<p>我们来看一个例子，我们的关键字集合为{12，67，56，16，25，37，22，29，15，47，48，21}，表长为12，我们再用散列函数 <strong>f(key) =  key mod 12。</strong></p>
+<p>我们求出每个 key 的 f(key)见下表</p>
+<img src="/2020/11/26/javaSE-hash/7.png" alt="7" style="zoom:80%;" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2020/11/26/javaSE-hash/7.png" class="lozad post-image">
+
+
+
+<p>我们查看上表发现，前五位的 <strong>f(key)</strong> 都不相同，即没有冲突，可以直接存入，但是到了第六位 <strong>f(37) = f(25) = 1</strong>,那我们就需要利用上面的公式 <strong>f(37)  = f (f(37) + 1 ) mod 12 = 2</strong>，这其实就是我们的订包间的做法。下面我们看一下将上面的所有数存入哈希表是什么情况吧。</p>
+<p>注：蓝色为计算哈希值，红色为存入哈希表</p>
+<img src="/2020/11/26/javaSE-hash/8.png" alt="8" style="zoom:80%;" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2020/11/26/javaSE-hash/8.png" class="lozad post-image">
+
+
+
+<p>他第一次会落在下标为 10 的位置，那么如果继续使用线性探测的话，则需要通过不断取余后得到结果，数据量小还好，要是很大的话那也太慢了吧，但是明明他的前面就有一个空房间呀，如果向前移动只需移动一次即可。</p>
+<img src="/2020/11/26/javaSE-hash/9.png" alt="9" style="zoom:80%;" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2020/11/26/javaSE-hash/9.png" class="lozad post-image">
+
+<h5 id="二次探测法"><a href="#二次探测法" class="headerlink" title="二次探测法"></a>二次探测法</h5><p>其实理解了我们的上个例子之后，这个一下就能整明白了，根本不用费脑子，这个方法就是更改了一下di的取值</p>
+<img src="/2020/11/26/javaSE-hash/10.png" alt="10" style="zoom:80%;" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2020/11/26/javaSE-hash/10.png" class="lozad post-image">
+
+<p>注：这里的是 -1^2  为负值 而不是 （-1)^2</p>
+<p>所以对于我们的34来说，当di = -1时，就可以找到空位置了。<img src="/2020/11/26/javaSE-hash/11.png" alt="11" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2020/11/26/javaSE-hash/11.png" class="lozad post-image"></p>
+<p>二次探测法的目的就是为了不让关键字聚集在某一块区域。另外还有一种有趣的方法，位移量采用随机函数计算得到，接着往下看吧.</p>
+<h5 id="随机探测法"><a href="#随机探测法" class="headerlink" title="随机探测法"></a>随机探测法</h5><p>大家看到这是不又有新问题了，刚才我们在散列函数构造规则的第一条中说</p>
+<p>（1）<strong>必须是一致的</strong></p>
+<p>我们 di 是随机生成的呀，这里的随机其实是伪随机数，伪随机数含义为，我们设置<strong>随机种子</strong>相同，则不断调用随机函数可以生成<strong>不会重复的数列</strong>，我们在查找时，<strong>用同样的随机种子</strong>，<strong>它每次得到的数列是相同的</strong>，那么相同的 di 就能得到<strong>相同的散列地址</strong>。</p>
+<img src="/2020/11/26/javaSE-hash/12.png" alt="12" style="zoom:80%;" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2020/11/26/javaSE-hash/12.png" class="lozad post-image">
+
+
+
+<img src="/2020/11/26/javaSE-hash/13.png" alt="13" style="zoom:80%;" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2020/11/26/javaSE-hash/13.png" class="lozad post-image">
+
+
+
+<pre class="highlight"><span class="line">随机种子（Random Seed）是计算机专业术语，一种以随机数作为对象的以真随机数（种子）为初始条件的随机数。一般计算机的随机数都是伪随机数，以一个真随机数（种子）作为初始条件，然后用一定的算法不停迭代产生随机数</span><br></pre>
+
+
+
+<h4 id="再哈希法"><a href="#再哈希法" class="headerlink" title="再哈希法"></a>再哈希法</h4><p>这个方法其实也特别简单，利用不同的哈希函数再求得一个哈希地址，直到不出现冲突为止。</p>
+<p><strong>f,(key) = RH,( key )   (i = 1,2,3,4…..k)</strong></p>
+<p>这里的RH就是不同的散列函数,可以把我们之前说的那些散列函数都用上,每当发生哈希冲突时就换一个散列函数，相信总有一个能够解决冲突的。这样的代价就是增加了计算时间</p>
+<h4 id="链地址法"><a href="#链地址法" class="headerlink" title="链地址法"></a>链地址法</h4><ol>
+<li>key 不同 f(key) 相同的情况,我们将这些同义词储存在一个单链表,这种表叫做同义词子表.散列表中只储存同义词表的头指针….</li>
+<li>关键字集合为{12，67，56，16，25，37，22，29，15，47，48，21}，表长为12，</li>
+<li>我们再用散列函数 <strong>f(key) =  key mod 12</strong></li>
+<li>用了链地址法之后就在也不冲突,无论有多少冲突，我们只需在同义词子表中添加结点即可。下面我们看下链地址法的存储情况。</li>
+</ol>
+<img src="/2020/11/26/javaSE-hash/14.png" alt="14" style="zoom:80%;" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2020/11/26/javaSE-hash/14.png" class="lozad post-image">
+
+
+
+<p>链地址法虽然不能够产生冲突,但是查找时需要遍历单链表的性能.</p>
+<h4 id="公共溢出区法"><a href="#公共溢出区法" class="headerlink" title="公共溢出区法"></a>公共溢出区法</h4><p>将有冲突的,,放入到别的地方(溢出表),这样你就有地方住了。我们为所有冲突的关键字建立了一个公共的溢出区来存放。</p>
+<img src="/2020/11/26/javaSE-hash/15.png" alt="15" style="zoom:67%;" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2020/11/26/javaSE-hash/15.png" class="lozad post-image">
+
+<p>怎样查找: 通过散列函数计算出散列地址后,先于基本表对比,如果不相等就到溢出表中顺序查找.,,,,,,对于冲突很少的情况性能还是非常高的</p>
+<h3 id="散列表查找算法-线性探测法"><a href="#散列表查找算法-线性探测法" class="headerlink" title="散列表查找算法(线性探测法)"></a>散列表查找算法(线性探测法)</h3><p>首先需要定义散列列表的结构以及一些相关常数，</p>
+<ul>
+<li>elem代表散列表数据存储数组</li>
+<li>count代表的是当前插入元素个数</li>
+<li>size代表哈希表容量</li>
+<li>NULLKEY散列表初始值</li>
+<li>然后我们如果查找成功就返回索引，如果不存在该元素就返回元素不存在。</li>
+<li>我们将哈希表初始化，为数组元素赋初值。</li>
+</ul>
+<img src="/2020/11/26/javaSE-hash/16.png" alt="16" style="zoom:67%;" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2020/11/26/javaSE-hash/16.png" class="lozad post-image">
+
+
+
+<p>插入操作的具体步骤</p>
+<ol>
+<li>通过哈希函数(除法散列法),将key转化为数组下标</li>
+<li>如果该下标中没有元素,则插入,否则说明冲突,则利用线性探测法处理冲突</li>
+</ol>
+<img src="/2020/11/26/javaSE-hash/17.png" alt="17" style="zoom:67%;" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2020/11/26/javaSE-hash/17.png" class="lozad post-image">
+
+
+
+<p>查找</p>
+<ol>
+<li>通过哈希函数(同输入时一样),将key转化成为数组下标</li>
+<li>通过数组下标找到key值,如果key一致,则查找成功,否则利用线性探测法继续查找</li>
+</ol>
+<img src="/2020/11/26/javaSE-hash/18.png" alt="18" style="zoom:67%;" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2020/11/26/javaSE-hash/18.png" class="lozad post-image">
+
+<p>完整代码</p>
+<img src="/2020/11/26/javaSE-hash/19.png" alt="19" style="zoom:67%;" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2020/11/26/javaSE-hash/19.png" class="lozad post-image">
+
+<h3 id="散列表性能分析"><a href="#散列表性能分析" class="headerlink" title="散列表性能分析"></a>散列表性能分析</h3><p>如果没有冲突的话,散列表查找是效率最高的,时间复杂度为O(1),</p>
+<p>散列查找的平均查找长度取决于哪些方面呢</p>
+<ol>
+<li><p><strong>散列函数是否均匀</strong></p>
+</li>
+<li><p><strong>处理冲突的方法</strong></p>
+<p>比如我们线性探测有时会堆积，则不如二次探测法好，因为链地址法处理冲突时不会产生任何堆积，因而具有最佳的平均查找性能</p>
+</li>
+<li><p>散列表的填装因子</p>
+<p>装填因子 α  =  填入表中的记录数  /  散列表长度</p>
+</li>
+</ol>
+<h2 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h2><p>什么是文件的hash值呢?</p>
+<p>MD5-Hash-文件的数字文摘通过Hash函数计算得到。不管文件长度如何，它的Hash函数计算结果是一个固定长度的数字。与<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95">加密算法</a>不同，这一个Hash算法是一个不可逆的单向函数。采用安全性高的Hash算法，如MD5、SHA时，两个不同的文件几乎不可能得到相同的Hash结果。因此，一旦文件被修改，就可检测出来。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结:"></a>总结:</h2><ul>
+<li>一般的线性表、树中，记录在结构中的相对位置是随机的即和记录的关键字之间不存在确定的关系，在结构中查找记录时需进行一系列和关键字的比较。这一类查找方法建立在“比较”的基础上，查找的效率与比较次数密切相关。理想的情况是能直接找到需要的记录，因此必须在记录的存储位置和它的关键字之间建立一确定的对应关系f，使每个关键字和结构中一个唯一的存储位置相对应。因而查找时，只需根据这个对应关系f找到给定值K的像f(K）。若结构中存在关键字和K相等的记录，则必定在f(K）的存储位置上，由此不需要进行比较便可直接取得所查记录。在此，称这个对应关系f为<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0">哈希函数</a>，按这个思想建立的表为哈希表（又称为杂凑法或<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%95%A3%E5%88%97%E8%A1%A8">散列表</a>）。</li>
+<li>哈希表不可避免冲突（collision）现象：对不同的关键字可能得到同一哈希地址 即key1≠key2，而hash(key1)=hash(key2）。具有相同函数值的关键字对该<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0">哈希函数</a>来说称为同义词（synonym）。因此，在建造哈希表时不仅要设定一个好的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0">哈希函数</a>，而且要设定一种处理冲突的方法。可如下描述哈希表：根据设定的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0">哈希函数</a>H(key）和所选中的处理冲突的方法，将一组<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%85%B3%E9%94%AE%E5%AD%97">关键字</a>映象到一个有限的、地址连续的地址集（区间）上并以关键字在地址集中的“象”作为相应记录在表中的存储位置，这种表被称为哈希表。</li>
+<li>对于动态<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%9F%A5%E6%89%BE%E8%A1%A8">查找表</a>而言，1) 表长不确定；2）在设计查找表时，只知道关键字所属范围，而不知道确切的关键字。因此，一般情况需建立一个函数关系，以f(key）作为关键字为key的录在表中的位置，通常称这个函数f(key）为<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0">哈希函数</a>。（注意：这个函数并不一定是数学函数）</li>
+<li><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0">哈希函数</a>是一个映象，即：将关键字的集合映射到某个地址集合上，它的设置很灵活，只要这个地址集合的大小不超出允许范围即可。</li>
+<li>现实中<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0">哈希函数</a>是需要构造的，并且构造的好才能使用的好。</li>
+<li>用途：加密，解决冲突问题。</li>
+</ul>
+<hr>
+
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%93%88%E5%B8%8C%E8%A1%A8/5981869?fromtitle=%E6%95%A3%E5%88%97%E8%A1%A8&fromid=10027933&fr=aladdin">转载百度百科</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/mg69FVTqgjryhB8NQhLaLg">袁厨的算法小屋</a></p>
+
+  </div>
+  <div>
+  
+  <div class="post-note note-warning copyright" style="margin-top: 42px">
+    <p><span style="font-weight: bold;">作者：</span><a target="_blank" rel="nofollow noopener noreferrer" href="http://example.com/about">theme-kaze</a></p>
+    <p><span style="font-weight: bold;">文章链接：</span><a target="_blank" rel="nofollow noopener noreferrer" href="http://example.com/2020/11/26/javaSE-hash/">http://example.com/2020/11/26/javaSE-hash/</a></p>
+    <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+  </div>
+  
+  </div>
+</article>
+<div class="nav">
+  
+  <div class="nav-item-prev">
+    <a href="/2020/11/28/十大排序04希尔/" class="nav-link">
+      <i class="iconfont icon-left nav-prev-icon"></i>
+      <div>
+        <div class="nav-label">Prev</div>
+        
+        <div class="nav-title">十大排序-希尔排序 </div>
+        
+      </div>
+    </a>
+  </div>
+  
+  
+  <div class="nav-item-next">
+    <a href="/2020/11/25/LC052/" class="nav-link">
+      <div>
+        <div class="nav-label">Next</div>
+        
+        <div class="nav-title">LC052-最大子序和 </div>
+        
+      </div>
+      <i class="iconfont icon-right nav-next-icon"></i>
+    </a>
+  </div>
+  
+</div>
+
+<div class="card card-content toc-card" id="mobiletoc">
+  <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>TOC</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8%E6%80%BB%E7%BB%93"><span class="toc-text">哈希表总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="toc-text">哈希表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8%E4%B8%8D%E5%8F%AF%E9%81%BF%E5%85%8D%E5%86%B2%E7%AA%81%EF%BC%88collision%EF%BC%89%E7%8E%B0%E8%B1%A1%EF%BC%9A"><span class="toc-text">哈希表不可避免冲突（collision）现象：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%A3%E5%88%97%E8%A1%A8%E6%9F%A5%E6%89%BE%E6%AD%A5%E9%AA%A4"><span class="toc-text">散列表查找步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0%E7%9A%84%E7%89%B9%E6%AE%8A%E6%80%A7"><span class="toc-text">哈希函数的特殊性:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%A3%E5%88%97%E5%87%BD%E6%95%B0%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95"><span class="toc-text">散列函数构造方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E5%AE%9A%E5%9D%80%E6%B3%95"><span class="toc-text">直接定址法:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E5%88%86%E6%9E%90%E6%B3%95"><span class="toc-text">数字分析法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%98%E5%8F%A0%E6%B3%95"><span class="toc-text">折叠法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%99%A4%E6%B3%95%E6%95%A3%E5%88%97%E6%B3%95"><span class="toc-text">除法散列法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B9%98%E6%B3%95%E6%95%A3%E5%88%97%E6%B3%95"><span class="toc-text">乘法散列法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B9%B3%E6%96%B9%E5%8F%96%E4%B8%AD%E6%B3%95"><span class="toc-text">平方取中法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%95%B0%E6%B3%95"><span class="toc-text">随机数法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E6%95%A3%E5%88%97%E5%86%B2%E7%AA%81%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">处理散列冲突的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E6%94%BE%E5%9C%B0%E5%9D%80%E6%B3%95"><span class="toc-text">开放地址法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E6%8E%A2%E6%B5%8B%E6%B3%95"><span class="toc-text">线性探测法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%8C%E6%AC%A1%E6%8E%A2%E6%B5%8B%E6%B3%95"><span class="toc-text">二次探测法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%8E%A2%E6%B5%8B%E6%B3%95"><span class="toc-text">随机探测法</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%8D%E5%93%88%E5%B8%8C%E6%B3%95"><span class="toc-text">再哈希法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%93%BE%E5%9C%B0%E5%9D%80%E6%B3%95"><span class="toc-text">链地址法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%AC%E5%85%B1%E6%BA%A2%E5%87%BA%E5%8C%BA%E6%B3%95"><span class="toc-text">公共溢出区法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%A3%E5%88%97%E8%A1%A8%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95-%E7%BA%BF%E6%80%A7%E6%8E%A2%E6%B5%8B%E6%B3%95"><span class="toc-text">散列表查找算法(线性探测法)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%A3%E5%88%97%E8%A1%A8%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90"><span class="toc-text">散列表性能分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8"><span class="toc-text">实际应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结:</span></a></li></ol></li></ol>
+</div></main>
+          <aside class="left-column">
+            
+            <div class="card card-author">
+              
+<img src="/img/Kaze.png" class="author-img">
+
+<p class="author-name">theme-kaze</p>
+<p class="author-description">designed by theme-kaze</p>
+<div class="author-message">
+  <a class="author-posts-count" href="/archives">
+    <span>138</span>
+    <span>Posts</span>
+  </a>
+  <a class="author-categories-count" href="/categories">
+    <span>10</span>
+    <span>Categories</span>
+  </a>
+  <a class="author-tags-count" href="/tags">
+    <span>62</span>
+    <span>Tags</span>
+  </a>
+</div>
+
+            </div>
+            
+            <div class="sticky-tablet">
+  
+  
+  <article class="display-when-two-columns spacer">
+    <div class="card card-content toc-card">
+      <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>TOC</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8%E6%80%BB%E7%BB%93"><span class="toc-text">哈希表总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="toc-text">哈希表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8%E4%B8%8D%E5%8F%AF%E9%81%BF%E5%85%8D%E5%86%B2%E7%AA%81%EF%BC%88collision%EF%BC%89%E7%8E%B0%E8%B1%A1%EF%BC%9A"><span class="toc-text">哈希表不可避免冲突（collision）现象：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%A3%E5%88%97%E8%A1%A8%E6%9F%A5%E6%89%BE%E6%AD%A5%E9%AA%A4"><span class="toc-text">散列表查找步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0%E7%9A%84%E7%89%B9%E6%AE%8A%E6%80%A7"><span class="toc-text">哈希函数的特殊性:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%A3%E5%88%97%E5%87%BD%E6%95%B0%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95"><span class="toc-text">散列函数构造方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E5%AE%9A%E5%9D%80%E6%B3%95"><span class="toc-text">直接定址法:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E5%88%86%E6%9E%90%E6%B3%95"><span class="toc-text">数字分析法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%98%E5%8F%A0%E6%B3%95"><span class="toc-text">折叠法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%99%A4%E6%B3%95%E6%95%A3%E5%88%97%E6%B3%95"><span class="toc-text">除法散列法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B9%98%E6%B3%95%E6%95%A3%E5%88%97%E6%B3%95"><span class="toc-text">乘法散列法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B9%B3%E6%96%B9%E5%8F%96%E4%B8%AD%E6%B3%95"><span class="toc-text">平方取中法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%95%B0%E6%B3%95"><span class="toc-text">随机数法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E6%95%A3%E5%88%97%E5%86%B2%E7%AA%81%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">处理散列冲突的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E6%94%BE%E5%9C%B0%E5%9D%80%E6%B3%95"><span class="toc-text">开放地址法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E6%8E%A2%E6%B5%8B%E6%B3%95"><span class="toc-text">线性探测法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%8C%E6%AC%A1%E6%8E%A2%E6%B5%8B%E6%B3%95"><span class="toc-text">二次探测法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%8E%A2%E6%B5%8B%E6%B3%95"><span class="toc-text">随机探测法</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%8D%E5%93%88%E5%B8%8C%E6%B3%95"><span class="toc-text">再哈希法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%93%BE%E5%9C%B0%E5%9D%80%E6%B3%95"><span class="toc-text">链地址法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%AC%E5%85%B1%E6%BA%A2%E5%87%BA%E5%8C%BA%E6%B3%95"><span class="toc-text">公共溢出区法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%A3%E5%88%97%E8%A1%A8%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95-%E7%BA%BF%E6%80%A7%E6%8E%A2%E6%B5%8B%E6%B3%95"><span class="toc-text">散列表查找算法(线性探测法)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%A3%E5%88%97%E8%A1%A8%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90"><span class="toc-text">散列表性能分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8"><span class="toc-text">实际应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结:</span></a></li></ol></li></ol>
+    </div>
+  </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header"><i class="iconfont icon-fenlei" style="padding-right: 2px;"></i>Categories</div>
+  <div class="categories-list">
+    
+      <a href="/categories/-数据结构和算法-体系">
+        <div class="categories-list-item">
+          -数据结构和算法-体系
+          <span class="categories-list-item-badge">9</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-前端">
+        <div class="categories-list-item">
+          -前端
+          <span class="categories-list-item-badge">10</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-JDBC">
+        <div class="categories-list-item">
+          -JDBC
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-JQuery">
+        <div class="categories-list-item">
+          -JQuery
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-JavaScript">
+        <div class="categories-list-item">
+          -JavaScript
+          <span class="categories-list-item-badge">5</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-算法">
+        <div class="categories-list-item">
+          -算法
+          <span class="categories-list-item-badge">60</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-javase">
+        <div class="categories-list-item">
+          -javase
+          <span class="categories-list-item-badge">31</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-工具栏">
+        <div class="categories-list-item">
+          -工具栏
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-操作系统">
+        <div class="categories-list-item">
+          -操作系统
+          <span class="categories-list-item-badge">8</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-计算机网络">
+        <div class="categories-list-item">
+          -计算机网络
+          <span class="categories-list-item-badge">8</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header"><i class="iconfont icon-biaoqian" style="padding-right: 2px;"></i>hot tags</div>
+  <div class="tags-list">
+    
+    <a href="\tags\LeetCode" title="LeetCode"><div class="tags-list-item">LeetCode</div></a>
+    
+    <a href="\tags\基础" title="基础"><div class="tags-list-item">基础</div></a>
+    
+    <a href="\tags\java" title="java"><div class="tags-list-item">java</div></a>
+    
+    <a href="\tags\面试" title="面试"><div class="tags-list-item">面试</div></a>
+    
+    <a href="\tags\排序" title="排序"><div class="tags-list-item">排序</div></a>
+    
+    <a href="\tags\十大排序" title="十大排序"><div class="tags-list-item">十大排序</div></a>
+    
+    <a href="\tags\数据结构" title="数据结构"><div class="tags-list-item">数据结构</div></a>
+    
+    <a href="\tags\网络" title="网络"><div class="tags-list-item">网络</div></a>
+    
+    <a href="\tags\双指针" title="双指针"><div class="tags-list-item">双指针</div></a>
+    
+    <a href="\tags\二叉树" title="二叉树"><div class="tags-list-item">二叉树</div></a>
+    
+    <a href="\tags\链表" title="链表"><div class="tags-list-item">链表</div></a>
+    
+    <a href="\tags\常用10种算法" title="常用10种算法"><div class="tags-list-item">常用10种算法</div></a>
+    
+    <a href="\tags\链表反转" title="链表反转"><div class="tags-list-item">链表反转</div></a>
+    
+    <a href="\tags\JavaWeb" title="JavaWeb"><div class="tags-list-item">JavaWeb</div></a>
+    
+    <a href="\tags\JavaScript" title="JavaScript"><div class="tags-list-item">JavaScript</div></a>
+    
+    <a href="\tags\CSS" title="CSS"><div class="tags-list-item">CSS</div></a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+          </aside>
+          <aside class="right-column">
+            <div class="sticky-widescreen">
+  
+  
+  <article class="card card-content toc-card">
+    <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>TOC</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8%E6%80%BB%E7%BB%93"><span class="toc-text">哈希表总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="toc-text">哈希表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8%E4%B8%8D%E5%8F%AF%E9%81%BF%E5%85%8D%E5%86%B2%E7%AA%81%EF%BC%88collision%EF%BC%89%E7%8E%B0%E8%B1%A1%EF%BC%9A"><span class="toc-text">哈希表不可避免冲突（collision）现象：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%A3%E5%88%97%E8%A1%A8%E6%9F%A5%E6%89%BE%E6%AD%A5%E9%AA%A4"><span class="toc-text">散列表查找步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0%E7%9A%84%E7%89%B9%E6%AE%8A%E6%80%A7"><span class="toc-text">哈希函数的特殊性:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%A3%E5%88%97%E5%87%BD%E6%95%B0%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95"><span class="toc-text">散列函数构造方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E5%AE%9A%E5%9D%80%E6%B3%95"><span class="toc-text">直接定址法:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E5%88%86%E6%9E%90%E6%B3%95"><span class="toc-text">数字分析法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%98%E5%8F%A0%E6%B3%95"><span class="toc-text">折叠法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%99%A4%E6%B3%95%E6%95%A3%E5%88%97%E6%B3%95"><span class="toc-text">除法散列法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B9%98%E6%B3%95%E6%95%A3%E5%88%97%E6%B3%95"><span class="toc-text">乘法散列法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B9%B3%E6%96%B9%E5%8F%96%E4%B8%AD%E6%B3%95"><span class="toc-text">平方取中法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%95%B0%E6%B3%95"><span class="toc-text">随机数法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E6%95%A3%E5%88%97%E5%86%B2%E7%AA%81%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">处理散列冲突的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E6%94%BE%E5%9C%B0%E5%9D%80%E6%B3%95"><span class="toc-text">开放地址法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E6%8E%A2%E6%B5%8B%E6%B3%95"><span class="toc-text">线性探测法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%8C%E6%AC%A1%E6%8E%A2%E6%B5%8B%E6%B3%95"><span class="toc-text">二次探测法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%8E%A2%E6%B5%8B%E6%B3%95"><span class="toc-text">随机探测法</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%8D%E5%93%88%E5%B8%8C%E6%B3%95"><span class="toc-text">再哈希法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%93%BE%E5%9C%B0%E5%9D%80%E6%B3%95"><span class="toc-text">链地址法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%AC%E5%85%B1%E6%BA%A2%E5%87%BA%E5%8C%BA%E6%B3%95"><span class="toc-text">公共溢出区法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%A3%E5%88%97%E8%A1%A8%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95-%E7%BA%BF%E6%80%A7%E6%8E%A2%E6%B5%8B%E6%B3%95"><span class="toc-text">散列表查找算法(线性探测法)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%A3%E5%88%97%E8%A1%A8%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90"><span class="toc-text">散列表性能分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8"><span class="toc-text">实际应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结:</span></a></li></ol></li></ol>
+  </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header"><i class="iconfont icon-wenzhang_huaban" style="padding-right: 2px;"></i>Recent Posts</div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-08</div>
+        <a href="/2021/01/08/JQuery-02/"><div class="recent-posts-item-content">JQuery-02JQuery选择器(重点)</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-07</div>
+        <a href="/2021/01/07/JQuery-01/"><div class="recent-posts-item-content">JQuery-01概论</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-06</div>
+        <a href="/2021/01/06/常用正则/"><div class="recent-posts-item-content">常用正则写法</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-05</div>
+        <a href="/2021/01/05/JS-05/"><div class="recent-posts-item-content">JS-05-JavaScript 正则表达式</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>Copyright ©
+          
+          2020 -
+          
+          2021
+        </span>
+        &nbsp;
+        <a href="/" class="footer-link">theme-kaze demo </a>
+      </div>
+    </div>
+
+    
+    <div class="footer-dsc">
+      
+      Powered by
+      <a href="https://hexo.io/" class="footer-link" target="_blank" rel="nofollow noopener noreferrer">&nbsp;Hexo </a>
+      
+      
+      <span>&nbsp;|&nbsp;</span>
+      
+      
+      Theme -
+      <a href="https://github.com/theme-kaze" class="footer-link" target="_blank"
+        rel="nofollow noopener noreferrer">&nbsp;Kaze</a>
+      
+    </div>
+    
+    
+    
+    
+</footer>
+  <a role="button" id="scrollbutton" class="basebutton"  aria-label="回到顶部">
+  <i class="iconfont icon-arrowleft button-icon"></i>
+</a>
+<a role="button" id="menubutton" class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a role="button" id="popbutton" class="basebutton" aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a role="button" id="darkbutton" class="basebutton darkwidget" aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a role="button" id="searchbutton" class="basebutton searchwidget" aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a>
+
+  
+  
+  
+  <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img');
+    var i;
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a');
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'));
+      wrapper.setAttribute('aria-label', 'illustration');
+      wrapper.style.cssText = 'width: 100%; display: flex; justify-content: center;';
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt;
+      wrapper.dataset.nolink = true;
+      img[i].before(wrapper);
+      wrapper.append(img[i]);
+      var divWrap = document.createElement('div');
+      divWrap.classList.add('gallery');
+      wrapper.before(divWrap);
+      divWrap.append(wrapper);
+    }
+    baguetteBox.run('.gallery');
+  }
+</script>
+<script>loadScript("/js/lib/lightbox/baguetteBox.min.js", addImgLayout)</script>
+  
+  
+  
+<script src="/js/main.js"></script>
+
+  
+  
+  <script>
+    var addLazyload = function () {
+      var observer = lozad('.lozad', {
+        load: function (el) {
+          el.srcset = el.getAttribute('data-src');
+        },
+        loaded: function (el) {
+          el.classList.add('loaded');
+        }
+      });
+      observer.observe();
+    }
+  </script>
+  <script>loadScript("/js/lib/lozad.min.js", addLazyload)</script>
+  
+  
+</body>
+
+</html>

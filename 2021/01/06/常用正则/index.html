@@ -1,53 +1,593 @@
-extends widget/base
-block append head
-  link(rel='stylesheet', href= url_for('/style/post.css'))
-  link(rel='stylesheet', href= url_for('/style/highlight-theme-light.css'))
-  script(src= url_for("/jslib/highlight.pack.js"))
-block topic
-    div#postTopic.is-full-height
-        - var title = truncate( page.title, {length: 65, omission: '..'} ) || ''
-        p.is-full-height.is-flex-shrink-0.is-flex.is-align-items-center.is-justify-content-center= title
-        p.is-full-height.is-flex-shrink-0.is-flex.is-align-items-center.is-justify-content-center= __('click_back_to_the_top')
+<!DOCTYPE html>
+<html  lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#fff" id="theme-color">
+  <meta name="description" content="当咸鱼,不存在!!!">
+  <link rel="icon" href="/img/Kaze.png">
+  <title>常用正则写法</title>
+  
+  
+  <meta property="og:title" content="常用正则写法">
+  
+  
+  <meta property="og:url" content="http://example.com/2021/01/06/%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99/index.html">
+  
+  
+  <meta property="og:img" content="/img/Kaze.png">
+  
+  
+  <meta property="og:img" content="&lt;h2 id=&#34;常用正则规则&#34;&gt;&lt;a href=&#34;#常用正则规则&#34; class=&#34;headerlink&#34; title=&#34;常用正则规则&#34;&gt;&lt;/a&gt;常用正则规则&lt;/h2&gt;">
+  
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:published_time" content="2021-01-06">
+  <meta property="og:article:modified_time" content="2021-01-09">
+  <meta property="og:article:author" content="theme-kaze">
+  
+  
+  <meta property="og:article:tag" content="正则表达式">
+  
+  <meta property="og:article:tag" content="工具栏">
+  
+  
+  
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+    var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+      }
+    };
+    setDarkmode();
+  </script>
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  </script>
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  
+  <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+  <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+  <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/main.css">
 
-block content
-    - var tocContent = toc(page.content, {list_number: false})
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
 
-    main.container.is-max-widescreen.content.section.post-page.pt-4.px-4
-        .columns.is-flex-desktop.is-justify-content-center.is-flex-direction-row-reverse
-            .column.is-3.is-hidden-mobile(class= tocContent.length < 1 && 'is-hidden')!= tocContent
-            .column.is-9
-                header.my-4
-                    if page.tags && page.tags.length > 0
-                        each tag in page.tags.toArray()
-                            a(href= url_for(`/tags/${tag.name}`))
-                                i.tag.post-item-tag= tag.name
-                h1.mt-0.mb-1.is-family-serif#postTitle= page.title
-                if page.date
-                    time.has-text-grey(datetime=page.date.toJSON())= date(page.date, date_format)
-                article.mt-2.post-content!= page.content
-                section.jump-container.is-flex.is-justify-content-space-between.my-6
-                    // em is empty placeholder
-                    if page.prev
-                        - var preContent= `${ __('prev') }: ${ page.prev.title }`
-                        a.button.is-small.is-default.py-4(href= url_for(page.prev.path) title= page.prev.title)
-                            i.iconfont.icon-prev.mr-2.has-text-grey
-                            span.has-text-weight-semibold= preContent
-                    else
-                        em
-                    if page.next
-                        - var nextContent= `${ __('next') }: ${ page.next.title }`
-                        a.button.is-small.is-default.py-4(href= url_for(page.next.path) title= page.next.title)
-                            span.has-text-weight-semibold= nextContent
-                            i.iconfont.icon-next.ml-2.has-text-grey
-                if theme.comment_utteranc && theme.comment_utteranc.enable
-                    article.mt-6.comment-container
-                        script(
-                            async
-                            repo= theme.comment_utteranc.repo
-                            src= "https://utteranc.es/client.js"
-                            label= theme.comment_utteranc.label
-                            issue-term= theme.comment_utteranc.issue_term || "pathname"
-                            theme= theme.comment_utteranc.theme || "preferred-color-scheme"
-                        )
-block script
-    script(src= url_for("/js/post.js"))
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+
+  
+  
+<link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <div class="wrapper">
+    
+    <nav class="navbar">
+  <div class="navbar-logo">
+    <span class="navbar-logo-main">
+      
+      <img class="navbar-logo-img" src="/img/Kaze.png" alt="logo">
+      
+      <span class="navbar-logo-dsc">theme-kaze demo</span>
+    </span>
+  </div>
+  <div class="navbar-menu">
+    
+    <a href="/" class="navbar-menu-item">
+    
+    Home
+    
+    </a>
+    
+    <a href="/archives" class="navbar-menu-item">
+    
+    Archive
+    
+    </a>
+    
+    <a href="/tags" class="navbar-menu-item">
+    
+    Tags
+    
+    </a>
+    
+    <a href="/categories" class="navbar-menu-item">
+    
+    Categories
+    
+    </a>
+    
+    <a href="/about" class="navbar-menu-item">
+    
+    About
+    
+    </a>
+    
+    <a href="/links" class="navbar-menu-item">
+    
+    Friends
+    
+    </a>
+    
+    <a class="navbar-menu-item darknavbar" id="dark"><i class="iconfont icon-weather"></i></a>
+    <a class="navbar-menu-item searchnavbar" id="search"><i class="iconfont icon-search" style="font-size: 1.2rem; font-weight: 400;"></i></a>
+  </div>
+</nav>
+    
+    <div id="local-search" style="display: none;">
+      <input class="navbar-menu-item" id="search-input" placeholder="请输入搜索内容...">
+      <div id="search-content"></div>
+    </div>
+    
+    <div class="section-wrap">
+      <div class="container">
+        <div class="columns">
+          <main class="main-column">
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      常用正则写法
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2021-01-06T11:15:50.000Z">
+      <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+      <span>2021-01-06</span>
+    </time>
+    
+    <span class="dot"></span>
+    
+    <a href="/categories/工具栏/" class="post-meta-link">-工具栏</a>
+    
+    
+    
+    <span class="dot"></span>
+    <span>2.4k words</span>
+    
+  </div>
+  
+  <div class="post-meta post-show-meta" style="margin-top: -10px;">
+    <div style="display: flex; align-items: center;">
+      <i class="iconfont icon-biaoqian" style="margin-right: 2px; font-size: 1.15rem;"></i>
+      
+      
+        <a href="/tags/正则表达式/" class="post-meta-link">正则表达式</a>
+      
+      
+      <span class="dot"></span>
+      
+        <a href="/tags/工具栏/" class="post-meta-link">工具栏</a>
+      
+    </div>
+  </div>
+  
+  </header>
+  <div id="section" class="post-content">
+    <h2 id="常用正则规则"><a href="#常用正则规则" class="headerlink" title="常用正则规则"></a>常用正则规则</h2><a id="more"></a>
+
+<pre class="highlight"><span class="line">整数或者小数：^[0-9]+\.&#123;0,1&#125;[0-9]&#123;0,2&#125;$</span><br><span class="line">只能输入数字：”^[0-9]*$”</span><br><span class="line">只能输入n位的数字：”^\d&#123;n&#125;$”</span><br><span class="line">只能输入至少n位的数字：”^\d&#123;n,&#125;$”</span><br><span class="line">只能输入m~n位的数字：”^\d&#123;m,n&#125;$”</span><br><span class="line">只能输入零和非零开头的数字：”^(0|[1-9][0-9]*)$”。</span><br><span class="line">只能输入有两位小数的正实数：”^[0-9]+(.[0-9]&#123;2&#125;)?$”。</span><br><span class="line">只能输入有1~3位小数的正实数：”^[0-9]+(.[0-9]&#123;1,3&#125;)?$”。</span><br><span class="line">只能输入非零的正整数：”^\+?[1-9][0-9]*$”。</span><br><span class="line">只能输入非零的负整数：”^\-[1-9][]0-9″*$。</span><br><span class="line">只能输入长度为3的字符：”^.&#123;3&#125;$”。</span><br><span class="line">只能输入由26个英文字母组成的字符串：”^[A-Za-z]+$”。</span><br><span class="line">只能输入由26个大写英文字母组成的字符串：”^[A-Z]+$”。</span><br><span class="line">只能输入由26个小写英文字母组成的字符串：”^[a-z]+$”。</span><br><span class="line">只能输入由数字和26个英文字母组成的字符串：”^[A-Za-z0-9]+$”。</span><br><span class="line">只能输入由数字、26个英文字母或者下划线组成的字符串：”^\w+$”。</span><br><span class="line">验证用户密码：”^[a-zA-Z]\w&#123;5,17&#125;$”</span><br><span class="line">正确格式为：以字母开头，长度在6~18之间，只能包含字符、数字和下划线。验证是否含有^%&amp;’,;&#x3D;?$\”等字符：”[^%&amp;&#39;,;&#x3D;?$\x22]+”。</span><br><span class="line">只能输入汉字：”^[\u4e00-\u9fa5]&#123;0,&#125;$”</span><br><span class="line">验证Email地址：”^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$”。</span><br><span class="line">验证InternetURL：”^http:&#x2F;&#x2F;([\w-]+\.)+[\w-]+(&#x2F;[\w-.&#x2F;?%&amp;&#x3D;]*)?$”。</span><br><span class="line">验证电话号码：”^(\(\d&#123;3,4&#125;-)|\d&#123;3.4&#125;-)?\d&#123;7,8&#125;$”</span><br><span class="line">正确格式为：”XXX-XXXXXXX”、”XXXX-XXXXXXXX”、”XXX-XXXXXXX”、”XXX-XXXXXXXX”、”XXXXXXX”和”XXXXXXXX”。</span><br><span class="line">验证身份证号（15位或18位数字）：”^\d&#123;15&#125;|\d&#123;18&#125;$”。</span><br><span class="line">验证一年的12个月：”^(0?[1-9]|1[0-2])$”</span><br><span class="line">正确格式为：”01″～”09″和”1″～”12″。</span><br><span class="line">验证一个月的31天：”^((0?[1-9])|((1|2)[0-9])|30|31)$”</span><br><span class="line">正确格式为；”01″～”09″和”1″～”31″。</span><br><span class="line">匹配中文字符的正则表达式： [\u4e00-\u9fa5]</span><br><span class="line">匹配双字节字符(包括汉字在内)：[^\x00-\xff]</span><br><span class="line">应用：计算字符串的长度（一个双字节字符长度计2，ASCII字符计1）String.prototype.len&#x3D;function()&#123;return this.replace(&#x2F;[^\x00-\xff]&#x2F;g,”aa”).length;&#125;</span><br><span class="line">匹配空行的正则表达式：\n[\s| ]*\r</span><br><span class="line">匹配html标签的正则表达式：&lt;(.*)&gt;(.*)&lt;\&#x2F;(.*)&gt;|&lt;(.*)\&#x2F;&gt;</span><br><span class="line">匹配首尾空格的正则表达式：(^\s*)|(\s*$)</span><br><span class="line">应用：javascript中没有像vbscript那样的trim函数，我们就可以利用这个表达式来实现，如下：String.prototype.trim &#x3D; function()&#123;return this.replace(&#x2F;(^\s*)|(\s*$)&#x2F;g, “”);&#125;</span><br><span class="line">利用正则表达式分解和转换IP地址：</span><br><span class="line">下面是利用正则表达式匹配IP地址，并将IP地址转换成对应数值的Javascript程序：</span><br><span class="line">function IP2V(ip)&#123;re&#x3D;&#x2F;(\d+)\.(\d+)\.(\d+)\.(\d+)&#x2F;g &#x2F;&#x2F;匹配IP地址的正则表达式</span><br><span class="line">if(re.test(ip))&#123;return RegExp.$1*Math.pow(255,3))+RegExp.$2*Math.pow(255,2))+RegExp.$3*255+RegExp.$4*1&#125;else&#123;throw new Error(“Not a valid IP address!”)&#125;&#125;</span><br><span class="line"></span><br><span class="line">不过上面的程序如果不用正则表达式，而直接用split函数来分解可能更简单，程序如下：</span><br><span class="line">var ip&#x3D;”10.100.20.168″ip&#x3D;ip.split(“.”)alert(“IP值是：”+(ip[0]*255*255*255+ip[1]*255*255+ip[2]*255+ip[3]*1))</span><br><span class="line">匹配Email地址的正则表达式：\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*</span><br><span class="line">匹配网址URL的正则表达式：http:&#x2F;&#x2F;([\w-]+\.)+[\w-]+(&#x2F;[\w- .&#x2F;?%&amp;&#x3D;]*)?</span><br><span class="line">利用正则表达式限制网页表单里的文本框输入内容：</span><br><span class="line">用正则表达式限制只能输入中文：onkeyup&#x3D;”value&#x3D;value.replace(&#x2F;[^\u4E00-\u9FA5]&#x2F;g,”)” onbeforepaste&#x3D;”clipboardData.setData(‘text’,clipboardData.getData(‘text’).replace(&#x2F;[^\u4E00-\u9FA5]&#x2F;g,”))”</span><br><span class="line">用正则表达式限制只能输入全角字符： onkeyup&#x3D;”value&#x3D;value.replace(&#x2F;[^\uFF00-\uFFFF]&#x2F;g,”)” onbeforepaste&#x3D;”clipboardData.setData(‘text’,clipboardData.getData(‘text’).replace(&#x2F;[^\uFF00-\uFFFF]&#x2F;g,”))”</span><br><span class="line">用正则表达式限制只能输入数字：onkeyup&#x3D;”value&#x3D;value.replace(&#x2F;[^\d]&#x2F;g,”) “onbeforepaste&#x3D;”clipboardData.setData(‘text’,clipboardData.getData(‘text’).replace(&#x2F;[^\d]&#x2F;g,”))”</span><br><span class="line">用正则表达式限制只能输入数字和英文：onkeyup&#x3D;”value&#x3D;value.replace(&#x2F;[\W]&#x2F;g,”) “onbeforepaste&#x3D;”clipboardData.setData(‘text’,clipboardData.getData(‘text’).replace(&#x2F;[^\d]&#x2F;g,”))”</span><br><span class="line">匹配中文字符的正则表达式： [\u4e00-\u9fa5]</span><br><span class="line">评注：匹配中文还真是个头疼的事，有了这个表达式就好办了匹配双字节字符(包括汉字在内)：[^\x00-\xff]</span><br><span class="line">评注：可以用来计算字符串的长度（一个双字节字符长度计2，ASCII字符计1）匹配空白行的正则表达式：\n\s*\r</span><br><span class="line">评注：可以用来删除空白行匹配HTML标记的正则表达式：&lt;(\S*?)[^&gt;]*&gt;.*?|&lt;.*? &#x2F;&gt;</span><br><span class="line">评注：网上流传的版本太糟糕，上面这个也仅仅能匹配部分，对于复杂的嵌套标记依旧无能为力匹配首尾空白字符的正则表达式：^\s*|\s*$</span><br><span class="line">评注：可以用来删除行首行尾的空白字符(包括空格、制表符、换页符等等)，非常有用的表达式匹配Email地址的正则表达式：\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*</span><br><span class="line">评注：表单验证时很实用匹配网址URL的正则表达式：[a-zA-z]+:&#x2F;&#x2F;[^\s]*</span><br><span class="line">评注：网上流传的版本功能很有限，上面这个基本可以满足需求匹配帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线)：^[a-zA-Z][a-zA-Z0-9_]&#123;4,15&#125;$</span><br><span class="line">评注：表单验证时很实用匹配国内电话号码：\d&#123;3&#125;-\d&#123;8&#125;|\d&#123;4&#125;-\d&#123;7&#125;评注：匹配形式如 0511-4405222 或 021-87888822匹配腾讯QQ号：[1-9][0-9]&#123;4,&#125;</span><br><span class="line">评注：腾讯QQ号从10000开始匹配中国邮政编码：[1-9]\d&#123;5&#125;(?!\d)</span><br><span class="line">评注：中国邮政编码为6位数字匹配身份证：\d&#123;15&#125;|\d&#123;18&#125;</span><br><span class="line">评注：中国的身份证为15位或18位匹配ip地址：\d+\.\d+\.\d+\.\d+</span><br><span class="line">评注：提取ip地址时有用匹配特定数字：^[1-9]\d*$</span><br><span class="line">&#x2F;&#x2F;匹配正整数^-[1-9]\d*$</span><br><span class="line">&#x2F;&#x2F;匹配负整数^-?[1-9]\d*$</span><br><span class="line">&#x2F;&#x2F;匹配整数^[1-9]\d*|0$</span><br><span class="line">&#x2F;&#x2F;匹配非负整数（正整数 + 0）^-[1-9]\d*|0$</span><br><span class="line">&#x2F;&#x2F;匹配非正整数（负整数 + 0）^[1-9]\d*\.\d*|0\.\d*[1-9]\d*$</span><br><span class="line">&#x2F;&#x2F;匹配正浮点数^-([1-9]\d*\.\d*|0\.\d*[1-9]\d*)$</span><br><span class="line">&#x2F;&#x2F;匹配负浮点数^-?([1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0)$</span><br><span class="line">&#x2F;&#x2F;匹配浮点数^[1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0$</span><br><span class="line">&#x2F;&#x2F;匹配非负浮点数（正浮点数 + 0）^(-([1-9]\d*\.\d*|0\.\d*[1-9]\d*))|0?\.0+|0$　　&#x2F;&#x2F;匹配非正浮点数（负浮点数 + 0）评注：处理大量数据时有用，具体应用时注意修正匹配特定字符串：^[A-Za-z]+$</span><br><span class="line">&#x2F;&#x2F;匹配由26个英文字母组成的字符串^[A-Z]+$</span><br><span class="line">&#x2F;&#x2F;匹配由26个英文字母的大写组成的字符串^[a-z]+$</span><br><span class="line">&#x2F;&#x2F;匹配由26个英文字母的小写组成的字符串^[A-Za-z0-9]+$</span><br><span class="line">&#x2F;&#x2F;匹配由数字和26个英文字母组成的字符串^\w+$</span><br><span class="line">&#x2F;&#x2F;匹配由数字、26个英文字母或者下划线组成的字符串评注：最基本也是最常用的一些表达式整理出来的一些常用的正则表达式 所属分类: JScript</span><br><span class="line">(三)</span><br><span class="line">Email : &#x2F;^\w+([-+.]\w+)*@\w+([-.]\\w+)*\.\w+([-.]\w+)*$&#x2F;</span><br><span class="line">isEmail1 : &#x2F;^\w+([\.\-]\w+)*\@\w+([\.\-]\w+)*\.\w+$&#x2F;;</span><br><span class="line">isEmail2 : &#x2F;^.*@[^_]*$&#x2F;;</span><br><span class="line">Phone : &#x2F;^((\(\d&#123;3&#125;\))|(\d&#123;3&#125;\-))?(\(0\d&#123;2,3&#125;\)|0\d&#123;2,3&#125;-)?[1-9]\d&#123;6,7&#125;$&#x2F;</span><br><span class="line">Mobile : &#x2F;^((\(\d&#123;3&#125;\))|(\d&#123;3&#125;\-))?13\d&#123;9&#125;$&#x2F;</span><br><span class="line">Url : &#x2F;^http:\&#x2F;\&#x2F;[A-Za-z0-9]+\.[A-Za-z0-9]+[\&#x2F;&#x3D;\?%\-&amp;_~&#96;@[\]\’:+!]*([^&lt;&gt;\&quot;\&quot;])*$&#x2F;</span><br><span class="line">IdCard : &#x2F;^\d&#123;15&#125;(\d&#123;2&#125;[A-Za-z0-9])?$&#x2F;</span><br><span class="line">Currency : &#x2F;^\d+(\.\d+)?$&#x2F;</span><br><span class="line">Number : &#x2F;^\d+$&#x2F;</span><br><span class="line">Code : &#x2F;^[1-9]\d&#123;5&#125;$&#x2F;</span><br><span class="line">QQ : &#x2F;^[1-9]\d&#123;4,8&#125;$&#x2F;</span><br><span class="line">Integer : &#x2F;^[-\+]?\d+$&#x2F;</span><br><span class="line">Double : &#x2F;^[-\+]?\d+(\.\d+)?$&#x2F;</span><br><span class="line">English : &#x2F;^[A-Za-z]+$&#x2F;</span><br><span class="line">Chinese : &#x2F;^[\u0391-\uFFE5]+$&#x2F;</span><br><span class="line">UnSafe : &#x2F;^(([A-Z]*|[a-z]*|\d*|[-_\~!@#\$%\^&amp;\*\.\(\)\[\]\&#123;\&#125;&lt;&gt;\?\\\&#x2F;\’\”]*)|.&#123;0,5&#125;)$|\s&#x2F;</span><br><span class="line">PassWord :^[\\w]&#123;6,12&#125;$</span><br><span class="line">ZipCode : ^[\\d]&#123;6&#125;&#x2F;^(\+\d+ )?(\(\d+\) )?[\d ]+$&#x2F;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;这个是国际通用的电话号码判断&#x2F;^(1[0-2]\d|\d&#123;1,2&#125;)$&#x2F;;</span><br><span class="line">&#x2F;&#x2F;这个是年龄的判断&#x2F;^\d+\.\d&#123;2&#125;$&#x2F;;</span><br><span class="line">&#x2F;&#x2F;这个是判断输入的是否为货币值</span><br><span class="line">应用：计算字符串的长度（一个双字节字符长度计2，ASCII字符计1）String.prototype.len&#x3D;function()&#123;return this.replace([^\x00-\xff]&#x2F;g,”aa”).length;&#125;</span><br><span class="line">应用：javascript中没有像vbscript那样的trim函数，我们就可以利用这个表达式来实现，如下：String.prototype.trim &#x3D; function()&#123;return this.replace(&#x2F;(^\s*)|(\s*$)&#x2F;g, “”);&#125;</span><br><span class="line">匹配空行的正则表达式：\n[\s| ]*\r</span><br><span class="line">匹配HTML标记的正则表达式：&#x2F;&lt;(.*)&gt;.*&lt;\&#x2F;\1&gt;|&lt;(.*) \&#x2F;&gt;&#x2F;</span><br><span class="line">匹配首尾空格的正则表达式：(^\s*)|(\s*$)</span><br><span class="line">匹配Email地址的正则表达式：\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*</span><br><span class="line">匹配网址URL的正则表达式：http:&#x2F;&#x2F;([\w-]+\.)+[\w-]+(&#x2F;[\w- .&#x2F;?%&amp;&#x3D;]*)?^\d+$　　&#x2F;&#x2F;</span><br><span class="line">匹配非负整数（正整数 + 0）^[0-9]*[1-9][0-9]*$　　&#x2F;&#x2F;</span><br><span class="line">匹配正整数^((-\d+)|(0+))$　　&#x2F;&#x2F;</span><br><span class="line">匹配非正整数（负整数 + 0）^-[0-9]*[1-9][0-9]*$　　&#x2F;&#x2F;</span><br><span class="line">匹配负整数^-?\d+$　　　　&#x2F;&#x2F;</span><br><span class="line">匹配整数^\d+(\.\d+)?$　　&#x2F;&#x2F;</span><br><span class="line">匹配非负浮点数（正浮点数 + 0）^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$　&#x2F;&#x2F;</span><br><span class="line">匹配正浮点数^((-\d+(\.\d+)?)|(0+(\.0+)?))$　　&#x2F;&#x2F;</span><br><span class="line">匹配非正浮点数（负浮点数 + 0）^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$ &#x2F;&#x2F;</span><br><span class="line">匹配负浮点数^(-?\d+)(\.\d+)?$</span><br><span class="line"></span><br></pre>
+
+
+
+
+  </div>
+  <div>
+  
+  <div class="post-note note-warning copyright" style="margin-top: 42px">
+    <p><span style="font-weight: bold;">作者：</span><a target="_blank" rel="nofollow noopener noreferrer" href="http://example.com/about">theme-kaze</a></p>
+    <p><span style="font-weight: bold;">文章链接：</span><a target="_blank" rel="nofollow noopener noreferrer" href="http://example.com/2021/01/06/%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99/">http://example.com/2021/01/06/%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99/</a></p>
+    <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+  </div>
+  
+  </div>
+</article>
+<div class="nav">
+  
+  <div class="nav-item-prev">
+    <a href="/2021/01/07/JQuery-01/" class="nav-link">
+      <i class="iconfont icon-left nav-prev-icon"></i>
+      <div>
+        <div class="nav-label">Prev</div>
+        
+        <div class="nav-title">JQuery-01概论 </div>
+        
+      </div>
+    </a>
+  </div>
+  
+  
+  <div class="nav-item-next">
+    <a href="/2021/01/05/JS-05/" class="nav-link">
+      <div>
+        <div class="nav-label">Next</div>
+        
+        <div class="nav-title">JS-05-JavaScript 正则表达式 </div>
+        
+      </div>
+      <i class="iconfont icon-right nav-next-icon"></i>
+    </a>
+  </div>
+  
+</div>
+
+<div class="card card-content toc-card" id="mobiletoc">
+  <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>TOC</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99%E8%A7%84%E5%88%99"><span class="toc-text">常用正则规则</span></a></li></ol>
+</div></main>
+          <aside class="left-column">
+            
+            <div class="card card-author">
+              
+<img src="/img/Kaze.png" class="author-img">
+
+<p class="author-name">theme-kaze</p>
+<p class="author-description">designed by theme-kaze</p>
+<div class="author-message">
+  <a class="author-posts-count" href="/archives">
+    <span>138</span>
+    <span>Posts</span>
+  </a>
+  <a class="author-categories-count" href="/categories">
+    <span>10</span>
+    <span>Categories</span>
+  </a>
+  <a class="author-tags-count" href="/tags">
+    <span>62</span>
+    <span>Tags</span>
+  </a>
+</div>
+
+            </div>
+            
+            <div class="sticky-tablet">
+  
+  
+  <article class="display-when-two-columns spacer">
+    <div class="card card-content toc-card">
+      <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>TOC</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99%E8%A7%84%E5%88%99"><span class="toc-text">常用正则规则</span></a></li></ol>
+    </div>
+  </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header"><i class="iconfont icon-fenlei" style="padding-right: 2px;"></i>Categories</div>
+  <div class="categories-list">
+    
+      <a href="/categories/-数据结构和算法-体系">
+        <div class="categories-list-item">
+          -数据结构和算法-体系
+          <span class="categories-list-item-badge">9</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-前端">
+        <div class="categories-list-item">
+          -前端
+          <span class="categories-list-item-badge">10</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-JDBC">
+        <div class="categories-list-item">
+          -JDBC
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-JQuery">
+        <div class="categories-list-item">
+          -JQuery
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-JavaScript">
+        <div class="categories-list-item">
+          -JavaScript
+          <span class="categories-list-item-badge">5</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-算法">
+        <div class="categories-list-item">
+          -算法
+          <span class="categories-list-item-badge">60</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-javase">
+        <div class="categories-list-item">
+          -javase
+          <span class="categories-list-item-badge">31</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-工具栏">
+        <div class="categories-list-item">
+          -工具栏
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-操作系统">
+        <div class="categories-list-item">
+          -操作系统
+          <span class="categories-list-item-badge">8</span>
+        </div>
+      </a>
+    
+      <a href="/categories/-计算机网络">
+        <div class="categories-list-item">
+          -计算机网络
+          <span class="categories-list-item-badge">8</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header"><i class="iconfont icon-biaoqian" style="padding-right: 2px;"></i>hot tags</div>
+  <div class="tags-list">
+    
+    <a href="\tags\LeetCode" title="LeetCode"><div class="tags-list-item">LeetCode</div></a>
+    
+    <a href="\tags\基础" title="基础"><div class="tags-list-item">基础</div></a>
+    
+    <a href="\tags\java" title="java"><div class="tags-list-item">java</div></a>
+    
+    <a href="\tags\面试" title="面试"><div class="tags-list-item">面试</div></a>
+    
+    <a href="\tags\排序" title="排序"><div class="tags-list-item">排序</div></a>
+    
+    <a href="\tags\十大排序" title="十大排序"><div class="tags-list-item">十大排序</div></a>
+    
+    <a href="\tags\数据结构" title="数据结构"><div class="tags-list-item">数据结构</div></a>
+    
+    <a href="\tags\网络" title="网络"><div class="tags-list-item">网络</div></a>
+    
+    <a href="\tags\双指针" title="双指针"><div class="tags-list-item">双指针</div></a>
+    
+    <a href="\tags\二叉树" title="二叉树"><div class="tags-list-item">二叉树</div></a>
+    
+    <a href="\tags\链表" title="链表"><div class="tags-list-item">链表</div></a>
+    
+    <a href="\tags\常用10种算法" title="常用10种算法"><div class="tags-list-item">常用10种算法</div></a>
+    
+    <a href="\tags\链表反转" title="链表反转"><div class="tags-list-item">链表反转</div></a>
+    
+    <a href="\tags\JavaWeb" title="JavaWeb"><div class="tags-list-item">JavaWeb</div></a>
+    
+    <a href="\tags\JavaScript" title="JavaScript"><div class="tags-list-item">JavaScript</div></a>
+    
+    <a href="\tags\CSS" title="CSS"><div class="tags-list-item">CSS</div></a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+          </aside>
+          <aside class="right-column">
+            <div class="sticky-widescreen">
+  
+  
+  <article class="card card-content toc-card">
+    <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>TOC</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99%E8%A7%84%E5%88%99"><span class="toc-text">常用正则规则</span></a></li></ol>
+  </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header"><i class="iconfont icon-wenzhang_huaban" style="padding-right: 2px;"></i>Recent Posts</div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-08</div>
+        <a href="/2021/01/08/JQuery-02/"><div class="recent-posts-item-content">JQuery-02JQuery选择器(重点)</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-07</div>
+        <a href="/2021/01/07/JQuery-01/"><div class="recent-posts-item-content">JQuery-01概论</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-06</div>
+        <a href="/2021/01/06/常用正则/"><div class="recent-posts-item-content">常用正则写法</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-01-05</div>
+        <a href="/2021/01/05/JS-05/"><div class="recent-posts-item-content">JS-05-JavaScript 正则表达式</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>Copyright ©
+          
+          2020 -
+          
+          2021
+        </span>
+        &nbsp;
+        <a href="/" class="footer-link">theme-kaze demo </a>
+      </div>
+    </div>
+
+    
+    <div class="footer-dsc">
+      
+      Powered by
+      <a href="https://hexo.io/" class="footer-link" target="_blank" rel="nofollow noopener noreferrer">&nbsp;Hexo </a>
+      
+      
+      <span>&nbsp;|&nbsp;</span>
+      
+      
+      Theme -
+      <a href="https://github.com/theme-kaze" class="footer-link" target="_blank"
+        rel="nofollow noopener noreferrer">&nbsp;Kaze</a>
+      
+    </div>
+    
+    
+    
+    
+</footer>
+  <a role="button" id="scrollbutton" class="basebutton"  aria-label="回到顶部">
+  <i class="iconfont icon-arrowleft button-icon"></i>
+</a>
+<a role="button" id="menubutton" class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a role="button" id="popbutton" class="basebutton" aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a role="button" id="darkbutton" class="basebutton darkwidget" aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a role="button" id="searchbutton" class="basebutton searchwidget" aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a>
+
+  
+  
+  
+  <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img');
+    var i;
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a');
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'));
+      wrapper.setAttribute('aria-label', 'illustration');
+      wrapper.style.cssText = 'width: 100%; display: flex; justify-content: center;';
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt;
+      wrapper.dataset.nolink = true;
+      img[i].before(wrapper);
+      wrapper.append(img[i]);
+      var divWrap = document.createElement('div');
+      divWrap.classList.add('gallery');
+      wrapper.before(divWrap);
+      divWrap.append(wrapper);
+    }
+    baguetteBox.run('.gallery');
+  }
+</script>
+<script>loadScript("/js/lib/lightbox/baguetteBox.min.js", addImgLayout)</script>
+  
+  
+  
+<script src="/js/main.js"></script>
+
+  
+  
+  <script>
+    var addLazyload = function () {
+      var observer = lozad('.lozad', {
+        load: function (el) {
+          el.srcset = el.getAttribute('data-src');
+        },
+        loaded: function (el) {
+          el.classList.add('loaded');
+        }
+      });
+      observer.observe();
+    }
+  </script>
+  <script>loadScript("/js/lib/lozad.min.js", addLazyload)</script>
+  
+  
+</body>
+
+</html>
