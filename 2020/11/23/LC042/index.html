@@ -1,459 +1,54 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>LC042-接雨水 | WenZhao</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  <meta name="keywords" content="LeetCode数组单调栈" />
-  
-  
-  
-  
-  <meta name="description" content="42. 接雨水官方解说视频 给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。    示例 1： 123输入：height &#x3D; [0,1,0,2,1,0,1,3,2,1,2,1]输出：6解释：上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="LC042-接雨水">
-<meta property="og:url" content="http://example.com/2020/11/23/LC042/index.html">
-<meta property="og:site_name" content="WenZhao">
-<meta property="og:description" content="42. 接雨水官方解说视频 给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。    示例 1： 123输入：height &#x3D; [0,1,0,2,1,0,1,3,2,1,2,1]输出：6解释：上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2020/11/23/LC042/123123.png">
-<meta property="og:image" content="http://example.com/2020/11/23/LC042/232.png">
-<meta property="og:image" content="http://example.com/2020/11/23/LC042/222222.png">
-<meta property="article:published_time" content="2020-11-23T10:08:38.000Z">
-<meta property="article:modified_time" content="2020-11-23T10:12:24.964Z">
-<meta property="article:author" content="niewenzhao">
-<meta property="article:tag" content="LeetCode">
-<meta property="article:tag" content="数组">
-<meta property="article:tag" content="单调栈">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2020/11/23/LC042/123123.png">
-  
-    <link rel="alternate" href="/atom.xml" title="WenZhao" type="application/atom+xml">
-  
-  <link rel="icon" href="/css/images/favicon.ico">
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
-  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-  <style type="text/css">
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
-    
-  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
-
-  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
-  
-<link rel="stylesheet" href="/css/style.css">
-
-
-  
-<script src="/js/jquery-3.1.1.min.js"></script>
-
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="/css/bootstrap.css" >
-  <link rel="stylesheet" href="/css/fashion.css" >
-  <link rel="stylesheet" href="/css/glyphs.css" >
-
-<meta name="generator" content="Hexo 5.2.0"></head>
-
-
-
-  <body data-spy="scroll" data-target="#toc" data-offset="50">
-
-
-  
-  
-  <div class="site-header-image">
-    <img id="originBg" width="100%" alt="Hike News" src="">
-  </div>
-
-  <div id="header-blur" class="site-header-image blur" style="position: absolute; top:0; height: 207px; min-height: 207px; min-width: 100%;">
-    <img id="blurBg" width="100%" style="top: 96%" alt="Hike News" src="">
-  </div>
-
-  <script>
-        var imgUrls = "css/images/pose01.jpg,https://source.unsplash.com/collection/954550/1920x1080,https://source.unsplash.com/collection/954550/1920x1081".split(",");
-        var random = Math.floor((Math.random() * imgUrls.length ));
-        if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
-          document.getElementById("originBg").src=imgUrls[random];
-          document.getElementById("blurBg").src=imgUrls[random];
-        } else {
-          document.getElementById("originBg").src='/' + imgUrls[random];
-          document.getElementById("blurBg").src='/' + imgUrls[random];
-        }
-    </script>
-
-
-
-
-<header id="allheader" class="site-header" role="banner" 
-   style="width: 100%; position: absolute; top:0; background: rgba(255,255,255,.8);"  >
-  <div class="clearfix container">
-      <div class="site-branding">
-
-          <h1 class="site-title">
-            
-              <a href="/" title="WenZhao" rel="home"> WenZhao </a>
-            
-          </h1>
-          
-          
-            <div class="site-description">当咸鱼,不存在!!!</div>
-          
-            
-          <nav id="main-navigation" class="main-navigation" role="navigation">
-            <a class="nav-open">Menu</a>
-            <a class="nav-close">Close</a>
-
-            <div class="clearfix sf-menu">
-              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="/"> <a class="" href="/">Home</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="archives"> <a class="" href="/archives">Archives</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="categories"> <a class="" href="/categories">Categories</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="tags"> <a class="" href="/tags">Tags</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="about"> <a class="" href="/about">About</a> </li>
-                    
-              </ul>
-            </div>
-          </nav>
-
-      </div>
-  </div>
-</header>
-
-
-  <div id="container">
-    <div id="wrap">
-            
-      <div id="content" class="outer">
-        
-          <section id="main" style="float:none;"><article id="post-LC042" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" class="article-title" itemprop="name">
-      LC042-接雨水
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2020/11/23/LC042/" class="article-date">
-	  <time datetime="2020-11-23T10:08:38.000Z" itemprop="datePublished">November 23, 2020</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
- 
-      
-	<span id="busuanzi_container_page_pv">
-	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-	</span>
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="42-接雨水"><a href="#42-接雨水" class="headerlink" title="42. 接雨水"></a>42. 接雨水</h1><p><a href="ghttps://leetcode-cn.com/problems/trapping-rain-water/solution/jie-yu-shui-by-leetcode/">官方解说视频</a></p>
-<p>给定 <em>n</em> 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。</p>
- <img src="/2020/11/23/LC042/123123.png" alt="123123" style="zoom:80%;">
-
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：height &#x3D; [0,1,0,2,1,0,1,3,2,1,2,1]</span><br><span class="line">输出：6</span><br><span class="line">解释：上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。 </span><br></pre></td></tr></table></figure>
-
-  <a id="more"></a> 
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：height &#x3D; [4,2,0,3,2,5]</span><br><span class="line">输出：9</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h3 id="方法一暴力"><a href="#方法一暴力" class="headerlink" title="方法一暴力"></a>方法一<strong>暴力</strong></h3><p>思想</p>
-<p>遍历出每一个柱子,所对应左右最大的高度,等于两边最大高度的较小值减去当前高度的值</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; height.length; i++) &#123;</span><br><span class="line">        <span class="comment">// 第一个柱子和最后一个柱子不接雨水</span></span><br><span class="line">        <span class="keyword">if</span> (i == <span class="number">0</span> || i == height.length - <span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">int</span> rHeight = height[i]; <span class="comment">// 记录右边柱子的最高高度</span></span><br><span class="line">        <span class="keyword">int</span> lHeight = height[i]; <span class="comment">// 记录左边柱子的最高高度</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> r = i + <span class="number">1</span>; r &lt; height.length; r++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (height[r] &gt; rHeight) rHeight = height[r];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> l = i - <span class="number">1</span>; l &gt;= <span class="number">0</span>; l--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (height[l] &gt; lHeight) lHeight = height[l];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> h = Math.min(lHeight, rHeight) - height[i];</span><br><span class="line">        <span class="keyword">if</span> (h &gt; <span class="number">0</span>) sum += h;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="方法二动态规划"><a href="#方法二动态规划" class="headerlink" title="方法二动态规划"></a>方法二<strong>动态规划</strong></h3><ul>
-<li>找到数组中从下标 最后  到最左端最高的条形块高度 left_max。</li>
-<li>找到数组中从下标 0     到最右端最高的条形块高度right_max。</li>
-<li>ans += Math.min(left_max[i], right_max[i]) - height[i];</li>
-</ul>
-<img src="/2020/11/23/LC042/232.png" alt="232" style="zoom:80%;">
-
-
-
-<img src="/2020/11/23/LC042/222222.png" alt="222222" style="zoom:150%;">
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (height.length &lt;= <span class="number">2</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span>[] max_left = <span class="keyword">new</span> <span class="keyword">int</span>[height.length];</span><br><span class="line">    <span class="keyword">int</span>[] max_right = <span class="keyword">new</span> <span class="keyword">int</span>[height.length];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; height.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="comment">//相对于左边  最大值 进行遍历</span></span><br><span class="line">        max_left[i] = Math.max(max_left[i - <span class="number">1</span>], height[i - <span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = height.length - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="comment">////相对于右边  最大值 进行遍历</span></span><br><span class="line">        max_right[i] = Math.max(max_right[i + <span class="number">1</span>], height[i + <span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; height.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> min = Math.min(max_left[i], max_right[i]);</span><br><span class="line">        <span class="keyword">if</span> (min &gt; height[i]) &#123;</span><br><span class="line">            sum = sum + (min - height[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>复杂度:</p>
-<p>时间复杂度：O(n)</p>
-<p>​                    存储最大高度数组，需要两次遍历，每次 O(n)<br>​                    最终使用存储的数据更新ans ，O(n)<br>空间复杂度：O(n) 额外空间。</p>
-<h3 id="栈的应用"><a href="#栈的应用" class="headerlink" title="栈的应用"></a>栈的应用</h3><p>使用单调栈</p>
-<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/largest-rectangle-in-histogram/solution/bao-li-jie-fa-zhan-by-liweiwei1419/">单调栈的应用</a></p>
-<p>单调递减栈</p>
-<ul>
-<li>当后面的柱子高度比前面的低时，是无法接雨水的 当找到一根比前面高的柱子，就可以计算接到的雨水<br>所以使用单调递减栈</li>
-</ul>
-<p>对更低的柱子入栈</p>
-<ul>
-<li><p>更低的柱子以为这后面如果能找到高柱子，这里就能接到雨水，所以入栈把它保存起来</p>
-</li>
-<li><p>平地相当于高度 0 的柱子，没有什么特别影响</p>
-</li>
-<li><p>当出现高于栈顶的柱子时</p>
-</li>
-<li><p>说明可以对前面的柱子结算了 计算已经到手的雨水，然后出栈前面更低的柱子</p>
-</li>
-</ul>
-<p>计算雨水的时候需要注意的是</p>
-<ul>
-<li>雨水区域的右边 r 指的自然是当前索引 i</li>
-<li>底部是栈顶 st.top() ，因为遇到了更高的右边，所以它即将出栈，使用 cur 来记录它，并让它出栈</li>
-<li>左边 l 就是新的栈顶 st.top()</li>
-<li>雨水的区域全部确定了，水坑的高度就是左右两边更低的一边减去底部，宽度是在左右中间</li>
-<li>使用乘法即可计算面积</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/trapping-rain-water/solution/jie-yu-shui-by-leetcode/">相关解说视频</a></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    <span class="keyword">int</span> current = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (current &lt; height.length) &#123;</span><br><span class="line">        <span class="comment">//如果栈部位空的话,并且指向的高度大于栈顶高度就一直循环</span></span><br><span class="line">        <span class="keyword">while</span> (!stack.empty() &amp;&amp; height[current] &gt; height[stack.peek()]) &#123;</span><br><span class="line">            <span class="keyword">int</span> h = height[stack.peek()];<span class="comment">//取出要出栈的元素</span></span><br><span class="line">            stack.pop();</span><br><span class="line">            <span class="keyword">if</span> (stack.empty()) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> dis = current - stack.peek() - <span class="number">1</span>; <span class="comment">//两堵墙之前的距离。</span></span><br><span class="line">            <span class="keyword">int</span> min = Math.min(height[stack.peek()], height[current]);</span><br><span class="line">            sum = sum + dis * (min - h);</span><br><span class="line">        &#125;</span><br><span class="line">        stack.push(current); <span class="comment">//当前指向的墙入栈</span></span><br><span class="line">        current++; <span class="comment">//指针后移</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h3><p>和方法 2 相比，我们不从左和从右分开计算，我们想办法一次完成遍历。</p>
-<ul>
-<li>left_max：左边的最大值，它是从左往右遍历找到的<br>right_max：右边的最大值，它是从右往左遍历找到的<br>left：从左往右处理的当前下标<br>right：从右往左处理的当前下标</li>
-<li>定理一：在某个位置i处，它能存的水，取决于它左右两边的最大值中较小的一个。</li>
-<li>定理二：当我们从左往右处理到left下标时，左边的最大值left_max对它而言是可信的，但right_max对它而言是不可信的。（见下图，由于中间状况未知，对于left下标而言，right_max未必就是它右边最大的值）</li>
-<li>定理三：当我们从右往左处理到right下标时，右边的最大值right_max对它而言是可信的，但left_max对它而言是不可信的。</li>
-<li>对于位置left而言，它左边最大值一定是left_max，右边最大值“大于等于”right_max，这时候，如果left_max&lt;right_max成立，那么它就知道自己能存多少水了。无论右边将来会不会出现更大的right_max，都不影响这个结果。 所以当left_max&lt;right_max时，我们就希望去处理left下标，反之，我们希望去处理right下标。</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line"><span class="comment">//确定左右指针</span></span><br><span class="line">      <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">int</span> right = height.length - <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">      <span class="comment">//确定左右指针</span></span><br><span class="line">      <span class="keyword">int</span> leftMax = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">int</span> rightMax = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">          <span class="keyword">if</span> (height[left] &lt; height[right]) &#123;</span><br><span class="line">              <span class="keyword">if</span> (height[left] &gt;= leftMax) &#123;</span><br><span class="line">                  leftMax = height[left];</span><br><span class="line">              &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                  ans += (leftMax - height[left]);</span><br><span class="line">              &#125;</span><br><span class="line">              ++left;</span><br><span class="line"></span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              <span class="keyword">if</span> (height[right] &gt;= rightMax) &#123;</span><br><span class="line">                  rightMax = height[right];</span><br><span class="line">              &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                  ans += (rightMax - height[right]);</span><br><span class="line">              &#125;</span><br><span class="line">              --right;</span><br><span class="line"></span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> ans;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<p>时间复杂度：O(N)。遍历了一遍数组。<br>空间复杂度：O(1)。使用了有限的 left, right, ans, maxleft, maxright。</p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%95%E8%B0%83%E6%A0%88/" rel="tag">单调栈</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a></li></ul>
-
-      
-        
-	<div id="comment">
-		<!-- 来必力City版安装代码 -->
-		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
-		<script type="text/javascript">
-		   (function(d, s) {
-		       var j, e = d.getElementsByTagName(s)[0];
-
-		       if (typeof LivereTower === 'function') { return; }
-
-		       j = d.createElement(s);
-		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-		       j.async = true;
-
-		       e.parentNode.insertBefore(j, e);
-		   })(document, 'script');
-		</script>
-		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
-		</div>
-		<!-- City版安装代码已完成 -->
-	</div>
-
-
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2020/11/25/LC084/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          LC084-柱状图中最大的矩形
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/11/20/LC143/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">LC143-重排链表</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-<!-- Table of Contents -->
-
-  <aside id="sidebar">
-    <div id="toc" class="toc-article">
-    <strong class="toc-title">Contents</strong>
-    
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#42-%E6%8E%A5%E9%9B%A8%E6%B0%B4"><span class="nav-number">1.</span> <span class="nav-text">42. 接雨水</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%E6%9A%B4%E5%8A%9B"><span class="nav-number">1.0.1.</span> <span class="nav-text">方法一暴力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">1.0.2.</span> <span class="nav-text">方法二动态规划</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%88%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">1.0.3.</span> <span class="nav-text">栈的应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8C%E6%8C%87%E9%92%88"><span class="nav-number">1.0.4.</span> <span class="nav-text">双指针</span></a></li></ol></li></ol></li></ol>
-    
-    </div>
-  </aside>
-</section>
-        
-      </div>
-
-    </div>
-    <!-- <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-    <a href="/categories" class="mobile-nav-link">Categories</a>
-  
-    <a href="/tags" class="mobile-nav-link">Tags</a>
-  
-    <a href="/about" class="mobile-nav-link">About</a>
-  
-</nav> -->
-    <footer id="footer" class="site-footer">
-  
-
-  <div class="clearfix container">
-      <div class="site-info">
-	      &copy; 2021 WenZhao All Rights Reserved.
-        
-            <span id="busuanzi_container_site_uv">
-              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
-              本站总访问量<span id="busuanzi_value_site_pv"></span>次
-            </span>
-          
-      </div>
-      <div class="site-credit">
-        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
-      </div>
-  </div>
-</footer>
-
-
-<!-- min height -->
-
-<script>
-    var wrapdiv = document.getElementById("wrap");
-    var contentdiv = document.getElementById("content");
-
-    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
-    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
-
-
-    <!-- headerblur min height -->
-    
-      var headerblur = document.getElementById("header-blur");
-      headerblur.style.minHeight = window.getComputedStyle(document.getElementById("allheader"), null).height;
-    
-    
-</script>
-    
-<div style="display: none;">
-  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
-</div>
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-<script src="/js/bootstrap.js"></script>
-
-
-<script src="/js/main.js"></script>
-
-
-
-
-
-
-
-
-  <div style="display: none;">
-    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
-  </div>
-
-
-
-	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-	</script>
-
-
-
-
-
-
-  </div>
-
-  <a id="rocket" href="#top" class=""></a>
-  <script type="text/javascript" src="/js/totop.js" async=""></script>
-</body>
-</html>
+extends base
+
+block title
+  title= page.title + ' | ' + config.title
+
+block content
+  .post
+    h1.post-title= page.title
+    .post-meta= page.date.format(config.date_format)
+      if page.categories.length > 0
+        span= ' | '
+        span.category
+          for category in page.categories.toArray()
+            a(href=url_for(category.path))= category.name
+      if theme.busuanzi == true
+        script(src='https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js', async)
+        span#busuanzi_container_page_pv= ' | '
+          span#busuanzi_value_page_pv
+          span= ' ' + __('Hits')
+      if theme.wordcount == true
+        include _partial/wordcount.pug
+    if theme.disqus
+      a.disqus-comment-count(data-disqus-identifier=page.path, href=url_for(page.path) + '#disqus_thread')
+    if theme.changyan
+      a.ds-thread-count(href=url_for(page.path) + '#SOHUCS')
+        span#changyan_count_unit(style='font-size: 15px; color: #6E7173;') 0
+        span= ' ' + __('Comment')
+      script(src='https://assets.changyan.sohu.com/upload/plugins/plugins.count.js', async)
+    if theme.valine.enable
+      a.disqus-comment-count( href=url_for(page.path) + '#vcomment')
+        span.valine-comment-count(data-xid=url_for(page.path))
+        span= ' ' + __('Comment')
+    if page.toc
+      div(class='clear')
+        div(id='toc' class='toc-article')
+          div(class='toc-title')= __('contents')
+          != toc(page.content, {list_number: theme.toc_number})
+    .post-content
+      != page.content
+    if theme.donate.enable == true && page.donate != false
+      include _widget/donate.pug
+
+    if theme.post_copyright.enable == true && page.copyright != false
+      include _widget/copyright.pug
+
+    if theme.shareto == true
+      script(type='text/javascript', src=url_for(theme.js) + '/share.js' + '?v=' + theme.version, async)
+      a.article-share-link(data-url=page.permalink, data-id=page._id, data-qrcode=qrcode(page.permalink))= __('shareto')
+
+    include _partial/tag.pug
+    include _partial/post_nav.pug
+
+    if page.comments
+      include _partial/comments.pug

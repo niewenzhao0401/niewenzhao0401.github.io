@@ -1,423 +1,54 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>java中的时间和日期 | WenZhao</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  <meta name="keywords" content="面试" />
-  
-  
-  
-  
-  <meta name="description" content="如何取得年月日、小时分钟秒？">
-<meta property="og:type" content="article">
-<meta property="og:title" content="java中的时间和日期">
-<meta property="og:url" content="http://example.com/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-%E6%97%B6%E9%97%B4%E5%92%8C%E6%97%A5%E6%9C%9F[%E8%8D%89%E7%A8%BF]/index.html">
-<meta property="og:site_name" content="WenZhao">
-<meta property="og:description" content="如何取得年月日、小时分钟秒？">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-09-24T07:40:18.000Z">
-<meta property="article:modified_time" content="2020-09-24T08:18:03.939Z">
-<meta property="article:author" content="niewenzhao">
-<meta property="article:tag" content="面试">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="WenZhao" type="application/atom+xml">
-  
-  <link rel="icon" href="/css/images/favicon.ico">
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
-  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-  <style type="text/css">
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
-    
-  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
-
-  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
-  
-<link rel="stylesheet" href="/css/style.css">
-
-
-  
-<script src="/js/jquery-3.1.1.min.js"></script>
-
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="/css/bootstrap.css" >
-  <link rel="stylesheet" href="/css/fashion.css" >
-  <link rel="stylesheet" href="/css/glyphs.css" >
-
-<meta name="generator" content="Hexo 5.2.0"></head>
-
-
-
-  <body data-spy="scroll" data-target="#toc" data-offset="50">
-
-
-  
-  
-  <div class="site-header-image">
-    <img id="originBg" width="100%" alt="Hike News" src="">
-  </div>
-
-  <div id="header-blur" class="site-header-image blur" style="position: absolute; top:0; height: 207px; min-height: 207px; min-width: 100%;">
-    <img id="blurBg" width="100%" style="top: 96%" alt="Hike News" src="">
-  </div>
-
-  <script>
-        var imgUrls = "css/images/pose01.jpg,https://source.unsplash.com/collection/954550/1920x1080,https://source.unsplash.com/collection/954550/1920x1081".split(",");
-        var random = Math.floor((Math.random() * imgUrls.length ));
-        if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
-          document.getElementById("originBg").src=imgUrls[random];
-          document.getElementById("blurBg").src=imgUrls[random];
-        } else {
-          document.getElementById("originBg").src='/' + imgUrls[random];
-          document.getElementById("blurBg").src='/' + imgUrls[random];
-        }
-    </script>
-
-
-
-
-<header id="allheader" class="site-header" role="banner" 
-   style="width: 100%; position: absolute; top:0; background: rgba(255,255,255,.8);"  >
-  <div class="clearfix container">
-      <div class="site-branding">
-
-          <h1 class="site-title">
-            
-              <a href="/" title="WenZhao" rel="home"> WenZhao </a>
-            
-          </h1>
-          
-          
-            <div class="site-description">当咸鱼,不存在!!!</div>
-          
-            
-          <nav id="main-navigation" class="main-navigation" role="navigation">
-            <a class="nav-open">Menu</a>
-            <a class="nav-close">Close</a>
-
-            <div class="clearfix sf-menu">
-              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="/"> <a class="" href="/">Home</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="archives"> <a class="" href="/archives">Archives</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="categories"> <a class="" href="/categories">Categories</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="tags"> <a class="" href="/tags">Tags</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="about"> <a class="" href="/about">About</a> </li>
-                    
-              </ul>
-            </div>
-          </nav>
-
-      </div>
-  </div>
-</header>
-
-
-  <div id="container">
-    <div id="wrap">
-            
-      <div id="content" class="outer">
-        
-          <section id="main" style="float:none;"><article id="post-javase20-0924基础-时间和日期[草稿]" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" class="article-title" itemprop="name">
-      java中的时间和日期
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-%E6%97%B6%E9%97%B4%E5%92%8C%E6%97%A5%E6%9C%9F%5B%E8%8D%89%E7%A8%BF%5D/" class="article-date">
-	  <time datetime="2020-09-24T07:40:18.000Z" itemprop="datePublished">September 24, 2020</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javase/">-javase</a>
- 
-      
-	<span id="busuanzi_container_page_pv">
-	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-	</span>
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="如何取得年月日、小时分钟秒？"><a href="#如何取得年月日、小时分钟秒？" class="headerlink" title="如何取得年月日、小时分钟秒？"></a>如何取得年月日、小时分钟秒？</h4><a id="more"></a>  
-
-
-
-<ol>
-<li><pre><code class="java">1. public class DateTimeTest &#123;
-2. public static void main(String[] args) &#123;
-3. Calendar cal = Calendar.getInstance();
-4. System.out.println(cal.get(Calendar.YEAR));
-5. System.out.println(cal.get(Calendar.MONTH)); // 0 - 11
-6. System.out.println(cal.get(Calendar.DATE));
-7. System.out.println(cal.get(Calendar.HOUR_OF_DAY));
-8. System.out.println(cal.get(Calendar.MINUTE));
-9. System.out.println(cal.get(Calendar.SECOND));
-10. // Java 8
-11. LocalDateTime dt = LocalDateTime.now();
-12. System.out.println(dt.getYear());
-13. System.out.println(dt.getMonthValue()); // 1 - 12
-14. System.out.println(dt.getDayOfMonth());
-15. System.out.println(dt.getHour());
-16. System.out.println(dt.getMinute());
-17. System.out.println(dt.getSecond());
-18. &#125;
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">#### 如何取得从 1970 年 1 月 1 日 0 时 0 分 0 秒到现在的毫秒数？ </span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;java</span><br><span class="line">1. Calendar.getInstance().getTimeInMillis(); &#x2F;&#x2F;第一种方式</span><br><span class="line">2. System.currentTimeMillis(); &#x2F;&#x2F;第二种方式</span><br><span class="line">3. &#x2F;&#x2F; Java 8</span><br><span class="line">4. Clock.systemDefaultZone().millis()</span><br></pre></td></tr></table></figure>
-</code></pre>
-</li>
-</ol>
-<h4 id="如何取得某月的最后一天？"><a href="#如何取得某月的最后一天？" class="headerlink" title="如何取得某月的最后一天？"></a>如何取得某月的最后一天？</h4><p>获取当前月第一天： </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> Calendar c = Calendar.getInstance();</span><br><span class="line"><span class="number">2.</span> c.add(Calendar.MONTH, <span class="number">0</span>);</span><br><span class="line"><span class="number">3.</span> c.set(Calendar.DAY_OF_MONTH,<span class="number">1</span>);<span class="comment">//设置为 1 号,当前日期既为本月第一天</span></span><br><span class="line"><span class="number">4.</span> String first = format.format(c.getTime());</span><br><span class="line"><span class="number">5.</span> System.out.println(<span class="string">&quot;===============first:&quot;</span>+first);</span><br></pre></td></tr></table></figure>
-
-<p>获取当前月最后一天 </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> Calendar ca = Calendar.getInstance();</span><br><span class="line"><span class="number">2.</span> ca.set(Calendar.DAY_OF_MONTH, ca.getActualMaximum(Calendar.DAY_OF_MONTH));</span><br><span class="line"><span class="number">3.</span> String last = format.format(ca.getTime());</span><br><span class="line"><span class="number">4.</span> System.out.println(<span class="string">&quot;===============last:&quot;</span>+last); </span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">15.</span> LocalDate today = LocalDate.now();</span><br><span class="line"><span class="number">16.</span> <span class="comment">//本月的第一天</span></span><br><span class="line"><span class="number">17.</span> LocalDate firstday = LocalDate.of(today.getYear(),today.getMonth(),<span class="number">1</span>);</span><br><span class="line"><span class="number">18.</span> <span class="comment">//本月的最后一天</span></span><br><span class="line"><span class="number">19.</span> LocalDate lastDay =today.with(TemporalAdjusters.lastDayOfMonth());</span><br><span class="line"><span class="number">20.</span> System.out.println(<span class="string">&quot;本月的第一天&quot;</span>+firstday);</span><br><span class="line"><span class="number">21.</span> System.out.println(<span class="string">&quot;本月的最后一天&quot;</span>+lastDay); </span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="如何格式化日期？"><a href="#如何格式化日期？" class="headerlink" title="如何格式化日期？"></a>如何格式化日期？</h4><ul>
-<li><p>Java.text.DataFormat 的子类（如 SimpleDateFormat 类）中的 format(Date)方法可将日期格式化。</p>
-</li>
-<li><p>Java 8 中可以用 java.time.format.DateTimeFormatter 来格式化时间日期，代码如下所示： </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> <span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="number">2.</span> <span class="keyword">import</span> java.time.LocalDate;</span><br><span class="line"><span class="number">3.</span> <span class="keyword">import</span> java.time.format.DateTimeFormatter;</span><br><span class="line"><span class="number">4.</span> <span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="number">5.</span> <span class="class"><span class="keyword">class</span> <span class="title">DateFormatTest</span></span></span><br><span class="line"><span class="class">   </span>&#123; <span class="number">6.</span></span><br><span class="line"><span class="number">6.</span> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"><span class="number">7.</span> SimpleDateFormat oldFormatter = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy/MM/dd&quot;</span>);</span><br><span class="line"><span class="number">8.</span> Date date1 = <span class="keyword">new</span> Date();</span><br><span class="line"><span class="number">9.</span> System.out.println(oldFormatter.format(date1));</span><br><span class="line">   <span class="number">11.</span></span><br><span class="line"><span class="number">10.</span> <span class="comment">// Java 8</span></span><br><span class="line"><span class="number">11.</span> DateTimeFormatter newFormatter = DateTimeFormatter.ofPattern(<span class="string">&quot;yyyy/MM/dd&quot;</span>);</span><br><span class="line"><span class="number">12.</span> LocalDate date2 = LocalDate.now();</span><br><span class="line"><span class="number">13.</span> System.out.println(date2.format(newFormatter));</span><br><span class="line"><span class="number">14.</span> &#125;</span><br><span class="line"><span class="number">15.</span> &#125;</span><br></pre></td></tr></table></figure>
-<p>​         <strong>补充：</strong> Java 的时间日期 API 一直以来都是被诟病的东西，为了解决这一问题， Java 8 中引入了新的时间日期 API，其中包括 LocalDate、 LocalTime、 LocalDateTime、 Clock、 Instant 等类，这些的类的设计都使用了不变模式，因此是线程安全的设计。 </p>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javase/">-javase</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
-
-      
-        
-	<div id="comment">
-		<!-- 来必力City版安装代码 -->
-		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
-		<script type="text/javascript">
-		   (function(d, s) {
-		       var j, e = d.getElementsByTagName(s)[0];
-
-		       if (typeof LivereTower === 'function') { return; }
-
-		       j = d.createElement(s);
-		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-		       j.async = true;
-
-		       e.parentNode.insertBefore(j, e);
-		   })(document, 'script');
-		</script>
-		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
-		</div>
-		<!-- City版安装代码已完成 -->
-	</div>
-
-
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2020/09/24/%E7%AE%97%E6%B3%95-%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95001-%E4%BA%8C%E5%88%86/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          十大算法——二分查找算法
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/09/24/javase20-0924%E5%9F%BA%E7%A1%80-intern/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">javase-intern（）</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-<!-- Table of Contents -->
-
-  <aside id="sidebar">
-    <div id="toc" class="toc-article">
-    <strong class="toc-title">Contents</strong>
-    
-      <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%8F%96%E5%BE%97%E5%B9%B4%E6%9C%88%E6%97%A5%E3%80%81%E5%B0%8F%E6%97%B6%E5%88%86%E9%92%9F%E7%A7%92%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">如何取得年月日、小时分钟秒？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%8F%96%E5%BE%97%E6%9F%90%E6%9C%88%E7%9A%84%E6%9C%80%E5%90%8E%E4%B8%80%E5%A4%A9%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">如何取得某月的最后一天？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%97%A5%E6%9C%9F%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">如何格式化日期？</span></a></li></ol>
-    
-    </div>
-  </aside>
-</section>
-        
-      </div>
-
-    </div>
-    <!-- <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-    <a href="/categories" class="mobile-nav-link">Categories</a>
-  
-    <a href="/tags" class="mobile-nav-link">Tags</a>
-  
-    <a href="/about" class="mobile-nav-link">About</a>
-  
-</nav> -->
-    <footer id="footer" class="site-footer">
-  
-
-  <div class="clearfix container">
-      <div class="site-info">
-	      &copy; 2021 WenZhao All Rights Reserved.
-        
-            <span id="busuanzi_container_site_uv">
-              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
-              本站总访问量<span id="busuanzi_value_site_pv"></span>次
-            </span>
-          
-      </div>
-      <div class="site-credit">
-        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
-      </div>
-  </div>
-</footer>
-
-
-<!-- min height -->
-
-<script>
-    var wrapdiv = document.getElementById("wrap");
-    var contentdiv = document.getElementById("content");
-
-    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
-    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
-
-
-    <!-- headerblur min height -->
-    
-      var headerblur = document.getElementById("header-blur");
-      headerblur.style.minHeight = window.getComputedStyle(document.getElementById("allheader"), null).height;
-    
-    
-</script>
-    
-<div style="display: none;">
-  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
-</div>
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-<script src="/js/bootstrap.js"></script>
-
-
-<script src="/js/main.js"></script>
-
-
-
-
-
-
-
-
-  <div style="display: none;">
-    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
-  </div>
-
-
-
-	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-	</script>
-
-
-
-
-
-
-  </div>
-
-  <a id="rocket" href="#top" class=""></a>
-  <script type="text/javascript" src="/js/totop.js" async=""></script>
-</body>
-</html>
+extends base
+
+block title
+  title= page.title + ' | ' + config.title
+
+block content
+  .post
+    h1.post-title= page.title
+    .post-meta= page.date.format(config.date_format)
+      if page.categories.length > 0
+        span= ' | '
+        span.category
+          for category in page.categories.toArray()
+            a(href=url_for(category.path))= category.name
+      if theme.busuanzi == true
+        script(src='https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js', async)
+        span#busuanzi_container_page_pv= ' | '
+          span#busuanzi_value_page_pv
+          span= ' ' + __('Hits')
+      if theme.wordcount == true
+        include _partial/wordcount.pug
+    if theme.disqus
+      a.disqus-comment-count(data-disqus-identifier=page.path, href=url_for(page.path) + '#disqus_thread')
+    if theme.changyan
+      a.ds-thread-count(href=url_for(page.path) + '#SOHUCS')
+        span#changyan_count_unit(style='font-size: 15px; color: #6E7173;') 0
+        span= ' ' + __('Comment')
+      script(src='https://assets.changyan.sohu.com/upload/plugins/plugins.count.js', async)
+    if theme.valine.enable
+      a.disqus-comment-count( href=url_for(page.path) + '#vcomment')
+        span.valine-comment-count(data-xid=url_for(page.path))
+        span= ' ' + __('Comment')
+    if page.toc
+      div(class='clear')
+        div(id='toc' class='toc-article')
+          div(class='toc-title')= __('contents')
+          != toc(page.content, {list_number: theme.toc_number})
+    .post-content
+      != page.content
+    if theme.donate.enable == true && page.donate != false
+      include _widget/donate.pug
+
+    if theme.post_copyright.enable == true && page.copyright != false
+      include _widget/copyright.pug
+
+    if theme.shareto == true
+      script(type='text/javascript', src=url_for(theme.js) + '/share.js' + '?v=' + theme.version, async)
+      a.article-share-link(data-url=page.permalink, data-id=page._id, data-qrcode=qrcode(page.permalink))= __('shareto')
+
+    include _partial/tag.pug
+    include _partial/post_nav.pug
+
+    if page.comments
+      include _partial/comments.pug

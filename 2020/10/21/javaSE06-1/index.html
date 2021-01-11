@@ -1,478 +1,54 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>javaSE-07-对象与引用-static关键字 | WenZhao</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  <meta name="keywords" content="基础java" />
-  
-  
-  
-  
-  <meta name="description" content="面向对象2对象与引用引用对象:Java语言中除基本数据类型之外的变量类型都称为引用类型. java中的对象是通过引用对其操作的 例如:我们有一个自定义类为Car（汽车类） 12345class Car&amp;#123;	String color;       	String name;	String model;&amp;#125;  Car car&#x3D; new Car();通常把这条语句的动作称之为创建一个对象">
-<meta property="og:type" content="article">
-<meta property="og:title" content="javaSE-07-对象与引用-static关键字">
-<meta property="og:url" content="http://example.com/2020/10/21/javaSE06-1/index.html">
-<meta property="og:site_name" content="WenZhao">
-<meta property="og:description" content="面向对象2对象与引用引用对象:Java语言中除基本数据类型之外的变量类型都称为引用类型. java中的对象是通过引用对其操作的 例如:我们有一个自定义类为Car（汽车类） 12345class Car&amp;#123;	String color;       	String name;	String model;&amp;#125;  Car car&#x3D; new Car();通常把这条语句的动作称之为创建一个对象">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2020/10/21/javaSE06-1/%E6%97%A0%E6%A0%87%E9%A2%98.png">
-<meta property="og:image" content="http://example.com/2020/10/21/javaSE06-1/1.png">
-<meta property="og:image" content="http://example.com/2020/10/21/javaSE06-1/2.png">
-<meta property="article:published_time" content="2020-10-21T14:44:18.000Z">
-<meta property="article:modified_time" content="2020-10-21T15:10:48.445Z">
-<meta property="article:author" content="niewenzhao">
-<meta property="article:tag" content="基础">
-<meta property="article:tag" content="java">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2020/10/21/javaSE06-1/%E6%97%A0%E6%A0%87%E9%A2%98.png">
-  
-    <link rel="alternate" href="/atom.xml" title="WenZhao" type="application/atom+xml">
-  
-  <link rel="icon" href="/css/images/favicon.ico">
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
-  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-  <style type="text/css">
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
-    
-  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
-
-  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
-  
-<link rel="stylesheet" href="/css/style.css">
-
-
-  
-<script src="/js/jquery-3.1.1.min.js"></script>
-
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="/css/bootstrap.css" >
-  <link rel="stylesheet" href="/css/fashion.css" >
-  <link rel="stylesheet" href="/css/glyphs.css" >
-
-<meta name="generator" content="Hexo 5.2.0"></head>
-
-
-
-  <body data-spy="scroll" data-target="#toc" data-offset="50">
-
-
-  
-  
-  <div class="site-header-image">
-    <img id="originBg" width="100%" alt="Hike News" src="">
-  </div>
-
-  <div id="header-blur" class="site-header-image blur" style="position: absolute; top:0; height: 207px; min-height: 207px; min-width: 100%;">
-    <img id="blurBg" width="100%" style="top: 96%" alt="Hike News" src="">
-  </div>
-
-  <script>
-        var imgUrls = "css/images/pose01.jpg,https://source.unsplash.com/collection/954550/1920x1080,https://source.unsplash.com/collection/954550/1920x1081".split(",");
-        var random = Math.floor((Math.random() * imgUrls.length ));
-        if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
-          document.getElementById("originBg").src=imgUrls[random];
-          document.getElementById("blurBg").src=imgUrls[random];
-        } else {
-          document.getElementById("originBg").src='/' + imgUrls[random];
-          document.getElementById("blurBg").src='/' + imgUrls[random];
-        }
-    </script>
-
-
-
-
-<header id="allheader" class="site-header" role="banner" 
-   style="width: 100%; position: absolute; top:0; background: rgba(255,255,255,.8);"  >
-  <div class="clearfix container">
-      <div class="site-branding">
-
-          <h1 class="site-title">
-            
-              <a href="/" title="WenZhao" rel="home"> WenZhao </a>
-            
-          </h1>
-          
-          
-            <div class="site-description">当咸鱼,不存在!!!</div>
-          
-            
-          <nav id="main-navigation" class="main-navigation" role="navigation">
-            <a class="nav-open">Menu</a>
-            <a class="nav-close">Close</a>
-
-            <div class="clearfix sf-menu">
-              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="/"> <a class="" href="/">Home</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="archives"> <a class="" href="/archives">Archives</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="categories"> <a class="" href="/categories">Categories</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="tags"> <a class="" href="/tags">Tags</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="about"> <a class="" href="/about">About</a> </li>
-                    
-              </ul>
-            </div>
-          </nav>
-
-      </div>
-  </div>
-</header>
-
-
-  <div id="container">
-    <div id="wrap">
-            
-      <div id="content" class="outer">
-        
-          <section id="main" style="float:none;"><article id="post-javaSE06-1" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" class="article-title" itemprop="name">
-      javaSE-07-对象与引用-static关键字
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2020/10/21/javaSE06-1/" class="article-date">
-	  <time datetime="2020-10-21T14:44:18.000Z" itemprop="datePublished">October 21, 2020</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javase/">-javase</a>
- 
-      
-	<span id="busuanzi_container_page_pv">
-	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-	</span>
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="面向对象2"><a href="#面向对象2" class="headerlink" title="面向对象2"></a>面向对象2</h1><h2 id="对象与引用"><a href="#对象与引用" class="headerlink" title="对象与引用"></a>对象与引用</h2><p>引用对象:Java语言中除基本数据类型之外的变量类型都称为引用类型.</p>
-<p>java中的对象是通过引用对其操作的</p>
-<p>例如:我们有一个自定义类为Car（汽车类）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span></span>&#123;</span><br><span class="line">	String color;       </span><br><span class="line">	String name;</span><br><span class="line">	String model;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Car car= new Car();<br>通常把这条语句的动作称之为创建一个对象，其实，它包含了三个动作。</p>
-<p><strong>解释</strong></p>
-<a id="more"></a>
-
-<ul>
-<li>右边的” new Car()” 是以car类为模板,调用car类的构造函数,在对空间里创建一个car类对象</li>
-<li>左边”car car” 创建一个car类引用变量,所谓Car类的引用,就是以后可以用来指向car对象的对象引用</li>
-<li>= 操作使对象引用指向刚创建的那个car对象</li>
-</ul>
-<p>Car car;一是对象引用变量，<br>car= new Car();一是对象本身。</p>
-<p><img src="/2020/10/21/javaSE06-1/%E6%97%A0%E6%A0%87%E9%A2%98.png" alt="无标题"></p>
-<h3 id="基本类型和引用类型的区别"><a href="#基本类型和引用类型的区别" class="headerlink" title="基本类型和引用类型的区别"></a>基本类型和引用类型的区别</h3><table>
-<thead>
-<tr>
-<th></th>
-<th>基本数据类型</th>
-<th>引用数据类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>概念</td>
-<td>变量(单纯的值)</td>
-<td>对象(引用)</td>
-</tr>
-<tr>
-<td>储存位置</td>
-<td>在栈中存值</td>
-<td>在栈中存引用,在堆中存具体对象的属性值</td>
-</tr>
-</tbody></table>
-<h4 id="值传递与引用传递"><a href="#值传递与引用传递" class="headerlink" title="值传递与引用传递"></a>值传递与引用传递</h4><h5 id="值传递："><a href="#值传递：" class="headerlink" title="值传递："></a>值传递：</h5><p>(形式参数类型是基本数据类型)实参传递给形参的是值  <strong>形参和实参在内存上是两个独立的变量</strong> 对形参做任何修改不会影响实参</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo1</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">int</span> b =<span class="number">20</span>;</span><br><span class="line">                change(b);<span class="comment">// 实参  实际上的参数</span></span><br><span class="line">                System.out.println(b);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;<span class="comment">//形参  形式上的参数</span></span><br><span class="line">                a=<span class="number">100</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>结果：20</p>
-<p>可以理解为:小明去餐厅吃饭，看见别人点的红烧肉挺好吃，九把服务员叫过来，说我要一份红烧肉，服务员从后厨拿来一份红烧肉，小明吃完了，但是他吃的红烧肉跟旁边那个人吃的是一份吗？当然不是。</p>
-<p><img src="/2020/10/21/javaSE06-1/1.png" alt="1"></p>
-<h5 id="引用传递"><a href="#引用传递" class="headerlink" title="引用传递:"></a>引用传递:</h5><p>实参传递给形参的是参数,   对于堆内存上的引用地址,  <strong>实参和形参在内存上指向了同一块区域</strong>  对形参的修改会影响实参</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Demo1 &#123;</span><br><span class="line">        public static void main(String[] args) &#123;</span><br><span class="line">                int [] a&#x3D;&#123;1,2,3&#125;;</span><br><span class="line">                System.out.println(a[0]);</span><br><span class="line">                change(a);</span><br><span class="line">                System.out.println(a[0]);</span><br><span class="line">        &#125;</span><br><span class="line">        public static void change(int[] a )&#123;</span><br><span class="line">                a[0]&#x3D;100;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>结果：1    100</p>
-<p>由于引用传递，传递的是地址，方法改变的都是同一个地址中的值，</p>
-<p>原来a[0]指向0x13地址，值是1，</p>
-<p>后来在a[0] 指向的也是0x13地址，将值变成了100</p>
-<p>所以，再查询a[0]的值的时候，值自然变成了100</p>
-<p><img src="/2020/10/21/javaSE06-1/2.png" alt="2"></p>
-<p>通俗点的讲法就是：</p>
-<p>小明回到家，他妻子说：冰箱二层有一只鸡，你去做了；</p>
-<p>小明做好了，叫妻子过来吃饭。</p>
-<p>这个时候，他妻子现在看见的鸡和她买回来的一样吗？</p>
-<p>当然不一样，都做熟了；</p>
-<p>什么意思呢？</p>
-<p>鸡就是数据</p>
-<p>冰箱二层就是存储数据的地址</p>
-<p>把鸡做熟了就是相当于把值改变了</p>
-<p>地方还是那个地方，就是鸡变了。</p>
-<h2 id="static-关键字"><a href="#static-关键字" class="headerlink" title="static 关键字"></a>static 关键字</h2><p>static被称为静态,可以用来修饰类的属性,方法,代码块,内部类.</p>
-<ul>
-<li>修饰的成员,被所有对象所共享</li>
-<li>不创建对象,直接被调用</li>
-<li>优先于对象存在<strong>静态优先于非静态</strong></li>
-<li>类加载时执行</li>
-</ul>
-<p><strong>1.可直接通过类名访问 也可以通过对象名访问</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> String school</span><br></pre></td></tr></table></figure>
-
-<p>如过不是静态,每一个对象都要复制一份变量,浪费空间,</p>
-<p>当所有对象的某一个值都相同时,加一个static使其为静态,在内存中只有一份,所有对象共享</p>
-<ul>
-<li>静态方法只能访问 静态的变量</li>
-<li>成员方法可以方法可以访问 成员变量 还可以方法静态变量</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nie.day2.Demo1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticTest</span> </span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="keyword">int</span> age;</span><br><span class="line">    <span class="keyword">static</span> String school;<span class="comment">//可直接通过类名访问 也可以通过对象名访问</span></span><br><span class="line">    <span class="comment">//static</span></span><br><span class="line">    <span class="comment">//修饰的成员,被所有对象所共享</span></span><br><span class="line">    <span class="comment">//不创建对象,直接被调用</span></span><br><span class="line">    <span class="comment">//优先于对象存在o</span></span><br><span class="line">    <span class="comment">//随着加载而加载</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(name + <span class="string">&quot;\t&quot;</span> + age + <span class="string">&quot;\t&quot;</span> + school);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nie.day2.Demo1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        StaticTest.school = <span class="string">&quot;陕西&quot;</span>;<span class="comment">//可直接通过类名访问 </span></span><br><span class="line">        StaticTest b = <span class="keyword">new</span> StaticTest();</span><br><span class="line">        b.age = <span class="number">12</span>;</span><br><span class="line">        b.name = <span class="string">&quot;sfdsf&quot;</span>;</span><br><span class="line">        b.work();</span><br><span class="line"></span><br><span class="line">        StaticTest c = <span class="keyword">new</span> StaticTest();</span><br><span class="line">        c.age = <span class="number">33</span>;</span><br><span class="line">        c.name = <span class="string">&quot;花花&quot;</span>;</span><br><span class="line">        c.work();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>输出:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sfdsf	12	陕西</span><br><span class="line">花花	33	陕西</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h3><p>代码分实例块和静态块</p>
-<ul>
-<li>静态变量优先于于非静态,</li>
-<li><strong>类加载时自动调用，仅一次，与是否创建对象无关。</strong></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">package com.nie.day2.Demo1;</span><br><span class="line"></span><br><span class="line">public class Demo &#123;</span><br><span class="line">    static int num &#x3D; 10;</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(&quot;实例代码块&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    static &#123;</span><br><span class="line">        System.out.println(&quot;静态代码块&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        new Demo();&#x2F;&#x2F; 先加载类 然后创建对象</span><br><span class="line">        new Demo();</span><br><span class="line"></span><br><span class="line">        System.out.println(Demo.num);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>输出:</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">静态代码块</span><br><span class="line">实例代码块</span><br><span class="line">实例代码块</span><br><span class="line"><span class="number">10</span></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javase/">-javase</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
-
-      
-        
-	<div id="comment">
-		<!-- 来必力City版安装代码 -->
-		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
-		<script type="text/javascript">
-		   (function(d, s) {
-		       var j, e = d.getElementsByTagName(s)[0];
-
-		       if (typeof LivereTower === 'function') { return; }
-
-		       j = d.createElement(s);
-		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-		       j.async = true;
-
-		       e.parentNode.insertBefore(j, e);
-		   })(document, 'script');
-		</script>
-		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
-		</div>
-		<!-- City版安装代码已完成 -->
-	</div>
-
-
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2020/10/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F00-5/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          操作系统01-4-存储器-缓存
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/10/21/LC283-1021-%E7%A7%BB%E5%8A%A8%E9%9B%B6/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">LC283-1021-移动零</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-<!-- Table of Contents -->
-
-  <aside id="sidebar">
-    <div id="toc" class="toc-article">
-    <strong class="toc-title">Contents</strong>
-    
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A12"><span class="nav-number">1.</span> <span class="nav-text">面向对象2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E4%B8%8E%E5%BC%95%E7%94%A8"><span class="nav-number">1.1.</span> <span class="nav-text">对象与引用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.1.1.</span> <span class="nav-text">基本类型和引用类型的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%80%BC%E4%BC%A0%E9%80%92%E4%B8%8E%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">值传递与引用传递</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%80%BC%E4%BC%A0%E9%80%92%EF%BC%9A"><span class="nav-number">1.1.1.1.1.</span> <span class="nav-text">值传递：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92"><span class="nav-number">1.1.1.1.2.</span> <span class="nav-text">引用传递:</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#static-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">1.2.</span> <span class="nav-text">static 关键字</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="nav-number">1.2.1.</span> <span class="nav-text">代码块</span></a></li></ol></li></ol></li></ol>
-    
-    </div>
-  </aside>
-</section>
-        
-      </div>
-
-    </div>
-    <!-- <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-    <a href="/categories" class="mobile-nav-link">Categories</a>
-  
-    <a href="/tags" class="mobile-nav-link">Tags</a>
-  
-    <a href="/about" class="mobile-nav-link">About</a>
-  
-</nav> -->
-    <footer id="footer" class="site-footer">
-  
-
-  <div class="clearfix container">
-      <div class="site-info">
-	      &copy; 2021 WenZhao All Rights Reserved.
-        
-            <span id="busuanzi_container_site_uv">
-              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
-              本站总访问量<span id="busuanzi_value_site_pv"></span>次
-            </span>
-          
-      </div>
-      <div class="site-credit">
-        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
-      </div>
-  </div>
-</footer>
-
-
-<!-- min height -->
-
-<script>
-    var wrapdiv = document.getElementById("wrap");
-    var contentdiv = document.getElementById("content");
-
-    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
-    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
-
-
-    <!-- headerblur min height -->
-    
-      var headerblur = document.getElementById("header-blur");
-      headerblur.style.minHeight = window.getComputedStyle(document.getElementById("allheader"), null).height;
-    
-    
-</script>
-    
-<div style="display: none;">
-  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
-</div>
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-<script src="/js/bootstrap.js"></script>
-
-
-<script src="/js/main.js"></script>
-
-
-
-
-
-
-
-
-  <div style="display: none;">
-    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
-  </div>
-
-
-
-	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-	</script>
-
-
-
-
-
-
-  </div>
-
-  <a id="rocket" href="#top" class=""></a>
-  <script type="text/javascript" src="/js/totop.js" async=""></script>
-</body>
-</html>
+extends base
+
+block title
+  title= page.title + ' | ' + config.title
+
+block content
+  .post
+    h1.post-title= page.title
+    .post-meta= page.date.format(config.date_format)
+      if page.categories.length > 0
+        span= ' | '
+        span.category
+          for category in page.categories.toArray()
+            a(href=url_for(category.path))= category.name
+      if theme.busuanzi == true
+        script(src='https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js', async)
+        span#busuanzi_container_page_pv= ' | '
+          span#busuanzi_value_page_pv
+          span= ' ' + __('Hits')
+      if theme.wordcount == true
+        include _partial/wordcount.pug
+    if theme.disqus
+      a.disqus-comment-count(data-disqus-identifier=page.path, href=url_for(page.path) + '#disqus_thread')
+    if theme.changyan
+      a.ds-thread-count(href=url_for(page.path) + '#SOHUCS')
+        span#changyan_count_unit(style='font-size: 15px; color: #6E7173;') 0
+        span= ' ' + __('Comment')
+      script(src='https://assets.changyan.sohu.com/upload/plugins/plugins.count.js', async)
+    if theme.valine.enable
+      a.disqus-comment-count( href=url_for(page.path) + '#vcomment')
+        span.valine-comment-count(data-xid=url_for(page.path))
+        span= ' ' + __('Comment')
+    if page.toc
+      div(class='clear')
+        div(id='toc' class='toc-article')
+          div(class='toc-title')= __('contents')
+          != toc(page.content, {list_number: theme.toc_number})
+    .post-content
+      != page.content
+    if theme.donate.enable == true && page.donate != false
+      include _widget/donate.pug
+
+    if theme.post_copyright.enable == true && page.copyright != false
+      include _widget/copyright.pug
+
+    if theme.shareto == true
+      script(type='text/javascript', src=url_for(theme.js) + '/share.js' + '?v=' + theme.version, async)
+      a.article-share-link(data-url=page.permalink, data-id=page._id, data-qrcode=qrcode(page.permalink))= __('shareto')
+
+    include _partial/tag.pug
+    include _partial/post_nav.pug
+
+    if page.comments
+      include _partial/comments.pug

@@ -1,456 +1,54 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>javaSE-15-正则表达式 | WenZhao</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  <meta name="keywords" content="正则表达式基础java" />
-  
-  
-  
-  
-  <meta name="description" content="正则表达式 正则表达式,即规则表达式 模式匹配的语法,用特定的符号,表示某种规则,取匹配某个字符串 如果字符串与规则相匹配,返回true,否则返回false  1s.matches(&quot;\\d&quot;);&#x2F;&#x2F;匹配   \\d   匹配数字 [4-9] 控制区间  [4567] 只能匹配出现数字的一次  X?  一次或者一次也没有  X*  零次或者多次  X+  一次或者多次[即不能为">
-<meta property="og:type" content="article">
-<meta property="og:title" content="javaSE-15-正则表达式">
-<meta property="og:url" content="http://example.com/2020/11/08/javaSE15/index.html">
-<meta property="og:site_name" content="WenZhao">
-<meta property="og:description" content="正则表达式 正则表达式,即规则表达式 模式匹配的语法,用特定的符号,表示某种规则,取匹配某个字符串 如果字符串与规则相匹配,返回true,否则返回false  1s.matches(&quot;\\d&quot;);&#x2F;&#x2F;匹配   \\d   匹配数字 [4-9] 控制区间  [4567] 只能匹配出现数字的一次  X?  一次或者一次也没有  X*  零次或者多次  X+  一次或者多次[即不能为">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-11-08T04:42:39.000Z">
-<meta property="article:modified_time" content="2020-11-08T04:46:52.392Z">
-<meta property="article:author" content="niewenzhao">
-<meta property="article:tag" content="正则表达式">
-<meta property="article:tag" content="基础">
-<meta property="article:tag" content="java">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="WenZhao" type="application/atom+xml">
-  
-  <link rel="icon" href="/css/images/favicon.ico">
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
-  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-  <style type="text/css">
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
-    
-  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
-
-  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
-  
-<link rel="stylesheet" href="/css/style.css">
-
-
-  
-<script src="/js/jquery-3.1.1.min.js"></script>
-
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="/css/bootstrap.css" >
-  <link rel="stylesheet" href="/css/fashion.css" >
-  <link rel="stylesheet" href="/css/glyphs.css" >
-
-<meta name="generator" content="Hexo 5.2.0"></head>
-
-
-
-  <body data-spy="scroll" data-target="#toc" data-offset="50">
-
-
-  
-  
-  <div class="site-header-image">
-    <img id="originBg" width="100%" alt="Hike News" src="">
-  </div>
-
-  <div id="header-blur" class="site-header-image blur" style="position: absolute; top:0; height: 207px; min-height: 207px; min-width: 100%;">
-    <img id="blurBg" width="100%" style="top: 96%" alt="Hike News" src="">
-  </div>
-
-  <script>
-        var imgUrls = "css/images/pose01.jpg,https://source.unsplash.com/collection/954550/1920x1080,https://source.unsplash.com/collection/954550/1920x1081".split(",");
-        var random = Math.floor((Math.random() * imgUrls.length ));
-        if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
-          document.getElementById("originBg").src=imgUrls[random];
-          document.getElementById("blurBg").src=imgUrls[random];
-        } else {
-          document.getElementById("originBg").src='/' + imgUrls[random];
-          document.getElementById("blurBg").src='/' + imgUrls[random];
-        }
-    </script>
-
-
-
-
-<header id="allheader" class="site-header" role="banner" 
-   style="width: 100%; position: absolute; top:0; background: rgba(255,255,255,.8);"  >
-  <div class="clearfix container">
-      <div class="site-branding">
-
-          <h1 class="site-title">
-            
-              <a href="/" title="WenZhao" rel="home"> WenZhao </a>
-            
-          </h1>
-          
-          
-            <div class="site-description">当咸鱼,不存在!!!</div>
-          
-            
-          <nav id="main-navigation" class="main-navigation" role="navigation">
-            <a class="nav-open">Menu</a>
-            <a class="nav-close">Close</a>
-
-            <div class="clearfix sf-menu">
-              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="/"> <a class="" href="/">Home</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="archives"> <a class="" href="/archives">Archives</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="categories"> <a class="" href="/categories">Categories</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="tags"> <a class="" href="/tags">Tags</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="about"> <a class="" href="/about">About</a> </li>
-                    
-              </ul>
-            </div>
-          </nav>
-
-      </div>
-  </div>
-</header>
-
-
-  <div id="container">
-    <div id="wrap">
-            
-      <div id="content" class="outer">
-        
-          <section id="main" style="float:none;"><article id="post-javaSE15" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" class="article-title" itemprop="name">
-      javaSE-15-正则表达式
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2020/11/08/javaSE15/" class="article-date">
-	  <time datetime="2020-11-08T04:42:39.000Z" itemprop="datePublished">November 8, 2020</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javase/">-javase</a>
- 
-      
-	<span id="busuanzi_container_page_pv">
-	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-	</span>
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><ul>
-<li>正则表达式,即规则表达式</li>
-<li>模式匹配的语法,用特定的符号,表示某种规则,取匹配某个字符串</li>
-<li>如果字符串与规则相匹配,返回true,否则返回false</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.matches(<span class="string">&quot;\\d&quot;</span>);<span class="comment">//匹配</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>\\d   匹配数字</p>
-<pre><code>[4-9] 控制区间
- [4567] 只能匹配出现数字的一次
- X?  一次或者一次也没有
- X*  零次或者多次
- X+  一次或者多次[即不能为空] </code></pre>
-<a id="more"></a> 
-</li>
-<li><p>//表示次数<br>   X{n] 恰好n次<br>   X{n,}  至少n次<br>   x{n,m}  至少n次,最多m次</p>
-</li>
-</ul>
-<hr>
-
-<p> *<em>\\d   匹配数字   X</em>  零次或者多次**</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String s1 = <span class="string">&quot;13667890876&quot;</span>;</span><br><span class="line"><span class="keyword">boolean</span> c1= s1.matches(<span class="string">&quot;\\d*&quot;</span>);<span class="comment">//匹配//X*  零次或者多次</span></span><br><span class="line">System.out.println(c1);<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-
-<p>*<em>X?  一次或者一次也没有  X</em>  零次或者多次**</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String s2=<span class="string">&quot;1&quot;</span>;</span><br><span class="line"><span class="keyword">boolean</span> c2=s2.matches(<span class="string">&quot;\\d?&quot;</span>);<span class="comment">//X?  一次或者一次也没有</span></span><br><span class="line">System.out.println(c2);<span class="comment">//true</span></span><br><span class="line">String s3=<span class="string">&quot;111&quot;</span>;</span><br><span class="line"><span class="keyword">boolean</span> c3=s3.matches(<span class="string">&quot;\\d+&quot;</span>);<span class="comment">// X*  零次或者多次</span></span><br><span class="line">System.out.println(c3);<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-
-<p><strong>匹配11位电话号  只能1开头,  第二位只能是35789</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boolean</span> c2 = s1.matches(<span class="string">&quot;[1][35789]\\d&#123;9&#125;&quot;</span>);</span><br><span class="line">System.out.println(c2);<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-
-<p><strong>//[4-9] 控制区间</strong><br><strong>//[4567] 只能匹配出现数字的一次</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String s4 = <span class="string">&quot;9&quot;</span>;</span><br><span class="line"><span class="keyword">boolean</span> c4 = s4.matches(<span class="string">&quot;[4-9]&quot;</span>); <span class="comment">//左边 右边 闭合</span></span><br><span class="line">System.out.println(c4);<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-
-<p><strong>五到九位的qq号</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String s4=<span class="string">&quot;1443906329&quot;</span>;</span><br><span class="line"><span class="keyword">boolean</span> c4=s4.matches(<span class="string">&quot;[1-9]\\d&#123;5,9&#125;&quot;</span>);</span><br><span class="line">System.out.println(<span class="string">&quot;QQQQqq&quot;</span>);</span><br><span class="line">System.out.println(c4);</span><br></pre></td></tr></table></figure>
-
-<hr>
-
-<hr>
-
-<ul>
-<li>\d  数字:[\1-9]<br>\D  非数字:[^0-9]<br>\s  空白字符<br>\S  非空白字符<br>\w  单词字符<br>\W  非单词字符</li>
-</ul>
-<hr>
-
-<p>*<em>空白字符   \s</em> 多个**</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String d1 = <span class="string">&quot;   &quot;</span>;</span><br><span class="line"><span class="keyword">boolean</span> e1 = d1.matches(<span class="string">&quot;\\s*&quot;</span>);<span class="comment">//小写字母  // 空白字符   \\s* 多个</span></span><br><span class="line">System.out.println(<span class="string">&quot;空白字符&quot;</span>);</span><br><span class="line">System.out.println(e1);<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-
-<p><strong>非空白字符</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String d2 = <span class="string">&quot;fadsda&quot;</span>;</span><br><span class="line"><span class="keyword">boolean</span> e2 = d2.matches(<span class="string">&quot;\\S*&quot;</span>);<span class="comment">//大写字母// 非空白字符</span></span><br><span class="line">System.out.println(<span class="string">&quot;非空白字符&quot;</span>);</span><br><span class="line">System.out.println(e2);<span class="comment">//true</span></span><br><span class="line">System.out.println(<span class="string">&quot;----&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<hr>
-
-<p><strong>//\w 单词字符：[a-zA-Z_0-9]</strong><br><strong>//\W 非单词字符：[^\w]</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">String d3 = <span class="string">&quot;werwer&quot;</span>;</span><br><span class="line"><span class="keyword">boolean</span> e3 = d3.matches(<span class="string">&quot;\\w*&quot;</span>);<span class="comment">// 单词字符</span></span><br><span class="line">System.out.println(<span class="string">&quot;单词字符&quot;</span>);</span><br><span class="line">System.out.println(e3);</span><br><span class="line">System.out.println(<span class="string">&quot;----&quot;</span>);</span><br><span class="line"></span><br><span class="line">String d4 = <span class="string">&quot;@#$@#$@#$@#%@#%&quot;</span>;</span><br><span class="line"><span class="keyword">boolean</span> e4 = d4.matches(<span class="string">&quot;\\W*&quot;</span>);<span class="comment">// 非单词字符</span></span><br><span class="line">System.out.println(<span class="string">&quot;非单词字符&quot;</span>);</span><br><span class="line">System.out.println(e4);</span><br><span class="line">System.out.println(<span class="string">&quot;----&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<hr>
-
-<p><strong>通用邮箱</strong></p>
-<ul>
-<li>//  .  表示任意字符</li>
-<li>//需要时对其转义  \.</li>
-<li>//(com|com.cn)表示com 或者 com.cn</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String s5 = <span class="string">&quot;123sas231@qq.com.cn&quot;</span>;</span><br><span class="line"><span class="comment">//  .  表示任意字符</span></span><br><span class="line"><span class="comment">//需要时对其转义  \\.</span></span><br><span class="line"><span class="comment">//(com|com.cn)表示com 或者 com.cn</span></span><br><span class="line"><span class="keyword">boolean</span> c5 = s5.matches(<span class="string">&quot;\\w&#123;6,15&#125;@\\w&#123;2,6&#125;\\.(com|com.cn)&quot;</span>);</span><br><span class="line">System.out.println(<span class="string">&quot;youxiang&quot;</span>);</span><br><span class="line">System.out.println(c5);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String s6 = <span class="string">&quot;asada23j424k231&quot;</span>;</span><br><span class="line">String[] c6 = s6.split(<span class="string">&quot;\\d&quot;</span>);</span><br><span class="line">System.out.println(Arrays.toString(c6));</span><br><span class="line">System.out.println(s6.replaceFirst(<span class="string">&quot;\\d&quot;</span>, <span class="string">&quot;W&quot;</span>));<span class="comment">//转换第一个</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javase/">-javase</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li></ul>
-
-      
-        
-	<div id="comment">
-		<!-- 来必力City版安装代码 -->
-		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
-		<script type="text/javascript">
-		   (function(d, s) {
-		       var j, e = d.getElementsByTagName(s)[0];
-
-		       if (typeof LivereTower === 'function') { return; }
-
-		       j = d.createElement(s);
-		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-		       j.async = true;
-
-		       e.parentNode.insertBefore(j, e);
-		   })(document, 'script');
-		</script>
-		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
-		</div>
-		<!-- City版安装代码已完成 -->
-	</div>
-
-
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2020/11/08/javaSE16/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          javaSE-16-包装类
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/11/08/javaSE14/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">javaSE-14-StringBuffer,StringBuilder</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-<!-- Table of Contents -->
-
-  <aside id="sidebar">
-    <div id="toc" class="toc-article">
-    <strong class="toc-title">Contents</strong>
-    
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">正则表达式</span></a></li></ol>
-    
-    </div>
-  </aside>
-</section>
-        
-      </div>
-
-    </div>
-    <!-- <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-    <a href="/categories" class="mobile-nav-link">Categories</a>
-  
-    <a href="/tags" class="mobile-nav-link">Tags</a>
-  
-    <a href="/about" class="mobile-nav-link">About</a>
-  
-</nav> -->
-    <footer id="footer" class="site-footer">
-  
-
-  <div class="clearfix container">
-      <div class="site-info">
-	      &copy; 2021 WenZhao All Rights Reserved.
-        
-            <span id="busuanzi_container_site_uv">
-              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
-              本站总访问量<span id="busuanzi_value_site_pv"></span>次
-            </span>
-          
-      </div>
-      <div class="site-credit">
-        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
-      </div>
-  </div>
-</footer>
-
-
-<!-- min height -->
-
-<script>
-    var wrapdiv = document.getElementById("wrap");
-    var contentdiv = document.getElementById("content");
-
-    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
-    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
-
-
-    <!-- headerblur min height -->
-    
-      var headerblur = document.getElementById("header-blur");
-      headerblur.style.minHeight = window.getComputedStyle(document.getElementById("allheader"), null).height;
-    
-    
-</script>
-    
-<div style="display: none;">
-  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
-</div>
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-<script src="/js/bootstrap.js"></script>
-
-
-<script src="/js/main.js"></script>
-
-
-
-
-
-
-
-
-  <div style="display: none;">
-    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
-  </div>
-
-
-
-	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-	</script>
-
-
-
-
-
-
-  </div>
-
-  <a id="rocket" href="#top" class=""></a>
-  <script type="text/javascript" src="/js/totop.js" async=""></script>
-</body>
-</html>
+extends base
+
+block title
+  title= page.title + ' | ' + config.title
+
+block content
+  .post
+    h1.post-title= page.title
+    .post-meta= page.date.format(config.date_format)
+      if page.categories.length > 0
+        span= ' | '
+        span.category
+          for category in page.categories.toArray()
+            a(href=url_for(category.path))= category.name
+      if theme.busuanzi == true
+        script(src='https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js', async)
+        span#busuanzi_container_page_pv= ' | '
+          span#busuanzi_value_page_pv
+          span= ' ' + __('Hits')
+      if theme.wordcount == true
+        include _partial/wordcount.pug
+    if theme.disqus
+      a.disqus-comment-count(data-disqus-identifier=page.path, href=url_for(page.path) + '#disqus_thread')
+    if theme.changyan
+      a.ds-thread-count(href=url_for(page.path) + '#SOHUCS')
+        span#changyan_count_unit(style='font-size: 15px; color: #6E7173;') 0
+        span= ' ' + __('Comment')
+      script(src='https://assets.changyan.sohu.com/upload/plugins/plugins.count.js', async)
+    if theme.valine.enable
+      a.disqus-comment-count( href=url_for(page.path) + '#vcomment')
+        span.valine-comment-count(data-xid=url_for(page.path))
+        span= ' ' + __('Comment')
+    if page.toc
+      div(class='clear')
+        div(id='toc' class='toc-article')
+          div(class='toc-title')= __('contents')
+          != toc(page.content, {list_number: theme.toc_number})
+    .post-content
+      != page.content
+    if theme.donate.enable == true && page.donate != false
+      include _widget/donate.pug
+
+    if theme.post_copyright.enable == true && page.copyright != false
+      include _widget/copyright.pug
+
+    if theme.shareto == true
+      script(type='text/javascript', src=url_for(theme.js) + '/share.js' + '?v=' + theme.version, async)
+      a.article-share-link(data-url=page.permalink, data-id=page._id, data-qrcode=qrcode(page.permalink))= __('shareto')
+
+    include _partial/tag.pug
+    include _partial/post_nav.pug
+
+    if page.comments
+      include _partial/comments.pug

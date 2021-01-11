@@ -1,474 +1,54 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>自顶向下-第一章复习知识点 | WenZhao</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  <meta name="keywords" content="面试网络" />
-  
-  
-  
-  
-  <meta name="description" content="一、什么是因特网？ 因特网是一个世界范围内的计算机网络，即它是一个互联了遍及全世界的数以亿计的计算设备的系统。 可通过基本硬件和软件设备组件（端系统、通信链路、运行网络应用）以及分布式应用提供服务的联网基础设施(通信基础设施使能分布式应用，提供给应用通信服务)来描述。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="自顶向下-第一章复习知识点">
-<meta property="og:url" content="http://example.com/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B501/index.html">
-<meta property="og:site_name" content="WenZhao">
-<meta property="og:description" content="一、什么是因特网？ 因特网是一个世界范围内的计算机网络，即它是一个互联了遍及全世界的数以亿计的计算设备的系统。 可通过基本硬件和软件设备组件（端系统、通信链路、运行网络应用）以及分布式应用提供服务的联网基础设施(通信基础设施使能分布式应用，提供给应用通信服务)来描述。">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-09-22T11:05:38.000Z">
-<meta property="article:modified_time" content="2020-09-22T12:02:23.483Z">
-<meta property="article:author" content="niewenzhao">
-<meta property="article:tag" content="面试">
-<meta property="article:tag" content="网络">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="WenZhao" type="application/atom+xml">
-  
-  <link rel="icon" href="/css/images/favicon.ico">
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
-  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-  <style type="text/css">
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
-    
-  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
-
-  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
-  
-<link rel="stylesheet" href="/css/style.css">
-
-
-  
-<script src="/js/jquery-3.1.1.min.js"></script>
-
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="/css/bootstrap.css" >
-  <link rel="stylesheet" href="/css/fashion.css" >
-  <link rel="stylesheet" href="/css/glyphs.css" >
-
-<meta name="generator" content="Hexo 5.2.0"></head>
-
-
-
-  <body data-spy="scroll" data-target="#toc" data-offset="50">
-
-
-  
-  
-  <div class="site-header-image">
-    <img id="originBg" width="100%" alt="Hike News" src="">
-  </div>
-
-  <div id="header-blur" class="site-header-image blur" style="position: absolute; top:0; height: 207px; min-height: 207px; min-width: 100%;">
-    <img id="blurBg" width="100%" style="top: 96%" alt="Hike News" src="">
-  </div>
-
-  <script>
-        var imgUrls = "css/images/pose01.jpg,https://source.unsplash.com/collection/954550/1920x1080,https://source.unsplash.com/collection/954550/1920x1081".split(",");
-        var random = Math.floor((Math.random() * imgUrls.length ));
-        if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
-          document.getElementById("originBg").src=imgUrls[random];
-          document.getElementById("blurBg").src=imgUrls[random];
-        } else {
-          document.getElementById("originBg").src='/' + imgUrls[random];
-          document.getElementById("blurBg").src='/' + imgUrls[random];
-        }
-    </script>
-
-
-
-
-<header id="allheader" class="site-header" role="banner" 
-   style="width: 100%; position: absolute; top:0; background: rgba(255,255,255,.8);"  >
-  <div class="clearfix container">
-      <div class="site-branding">
-
-          <h1 class="site-title">
-            
-              <a href="/" title="WenZhao" rel="home"> WenZhao </a>
-            
-          </h1>
-          
-          
-            <div class="site-description">当咸鱼,不存在!!!</div>
-          
-            
-          <nav id="main-navigation" class="main-navigation" role="navigation">
-            <a class="nav-open">Menu</a>
-            <a class="nav-close">Close</a>
-
-            <div class="clearfix sf-menu">
-              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="/"> <a class="" href="/">Home</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="archives"> <a class="" href="/archives">Archives</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="categories"> <a class="" href="/categories">Categories</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="tags"> <a class="" href="/tags">Tags</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663" linktext="about"> <a class="" href="/about">About</a> </li>
-                    
-              </ul>
-            </div>
-          </nav>
-
-      </div>
-  </div>
-</header>
-
-
-  <div id="container">
-    <div id="wrap">
-            
-      <div id="content" class="outer">
-        
-          <section id="main" style="float:none;"><article id="post-网络概念01" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" class="article-title" itemprop="name">
-      自顶向下-第一章复习知识点
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B501/" class="article-date">
-	  <time datetime="2020-09-22T11:05:38.000Z" itemprop="datePublished">September 22, 2020</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a>
- 
-      
-	<span id="busuanzi_container_page_pv">
-	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-	</span>
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>一、什么是因特网？</strong></p>
-<p>因特网是一个世界范围内的计算机网络，即它是一个互联了遍及全世界的数以亿计的计算设备的系统。</p>
-<p>可通过基本硬件和软件设备组件（端系统、通信链路、运行网络应用）以及分布式应用提供服务的联网基础设施(通信基础设施使能分布式应用，提供给应用通信服务)来描述。</p>
-  <a id="more"></a>  
-
-<p><strong>二、因特网的部件有哪些（软件方面、硬件方面）？</strong>   </p>
-<p>硬件方面：</p>
-<p>主机或端系统：数以百万计互联的计算设备。</p>
-<p>端系统的连接部件：通信链路（双绞铜线，光纤，无线电频谱等），分组交换机（路由器，链路层交换机），通信链路和分组交换机组成的路径。</p>
-<p>软件方面：</p>
-<p>硬件是载体，软件是灵魂：软件：数据+算法</p>
-<p>协议：描述通信双方交互信息的方式，控制报文发送接受，以字节流的形式体现。</p>
-<p>因特网标准：因特网工程任务组（IETF）：RFC请求评论、因特网TCP\IP协议。</p>
-<p>因特网是网络的网络。</p>
-<p><strong>三、什么是端系统、主机、ISP（因特网服务提供商）、ICP(因特网内容提供商)？什么是协议？</strong></p>
-<p>端系统（主机）：与因特网相连的计算机和其他设备。</p>
-<p>ISP：因特网服务提供商，每个ISP是一个由多个分组交换机和多端通信链路组成的网络。</p>
-<p>ICP：因特网内容提供商，向广大用户综合提供互联网信息业务和增值业务的电信运营商。</p>
-<p>协议：一个协议定义了在两个或多个通信实体之间交换的报文格式和次序，以及报文发送或接收一条报文或其他事件所采取的动作。</p>
-<p><strong>四、网络边缘、网络核心；客户机和服务器。端系统包括？</strong></p>
-<p>网络边缘：1.应用程序和主机 2.接入网络、物理媒体</p>
-<p>网络核心：1.互联的路由器 2.网络的网络</p>
-<p>客户机和服务器：客户机非正式等同于桌面PC、智能手机等，服务器非正式等同于更为强大的机器。</p>
-<p>端系统包括：桌面计算机（桌面PC、Mac和linux盒）、服务器（web和电子邮件服务器）和移动计算机（便携机、智能手机和平板电脑）</p>
-<p><strong>五、</strong> <strong>电路交换和分组交换的特点</strong></p>
-<p>电路交换：非共享、性能有保障、效率低，需要建立连接</p>
-<p>分组交换：共享，效率高，有时延</p>
-<p>分组交换和电路交换各有优缺点。</p>
-<p>分组交换的优缺点：</p>
-<p>1、它提供了比电路交换更好的带宽共享；同样的网络资源可以容纳更多的用户，比电路交换的资源利用率高；</p>
-<p>2、与电路交换相比，分组交换技术要简单、有效、容易实现，成本低无需建立连接，分组交换无需维护连接状态等</p>
-<p>3、缺点:</p>
-<p>分组交换因它的端到端时延是变动的和不可预测的(主要是因为排队时延的变动和不可预测所致)，故而不适合实时服务(例如，电话和视频会议)。</p>
-<p><strong>六、接入网的类型，接入网的多种技术；物理媒体分类与常见的物理媒体及其特点。</strong></p>
-<p>接入网：将端系统连接到其边缘路由器（端系统到任何其他远程端系统的路径上的第一台路由器）的物理链路</p>
-<p>接入网的多种技术：</p>
-<p>家庭接入：DSL、电缆、FTTH、拨号和卫星</p>
-<p>企业接入：以太网和WiFi</p>
-<p>广域无限接入：3G和LTE</p>
-<p>物理媒体分类：</p>
-<p>导引型媒体：电波沿固体媒体前行，如光缆、双绞铜线、电缆。</p>
-<p>非导引型媒体：电波在空气或外层空气中传播，如在无线局域网，或者数字卫星频道中。</p>
-<p>常见的物理媒体及其特点</p>
-<p>1.双绞铜线：最便宜且使用最为简便；常用在建筑物内的计算机网络中，即在局域网中。</p>
-<p>2.同轴电缆：由两个同心而不并行的铜导体组成，。具有较高的数据传输速率；在电缆电视系统中相当普遍。</p>
-<p>3.光纤：光纤是一种细而柔软的、能够导引光脉冲的媒体，每个脉冲表示一个比特，支持极高的比特速率，不受电磁干扰，且光缆信号衰减极低，并且很难窃听。用于长途引导型传输媒体，特别是跨海链路。</p>
-<p>4.陆地无线电通道：无线电信道承载电磁频谱中的信号。它不需要安装物理线路，并具有穿透墙壁，提供与移动用户的连接以及长距离承载信号的能力。</p>
-<p>5.卫星无线电信道：同步卫星和近地轨道卫星</p>
-<p><strong>七、分组交换网络中的4种类型的时延及其特点；吞吐量。</strong></p>
-<p>1.结点处理时延：检查比特差错，决定输出链路，高速路由器的处理时延通常为微秒或更低数量级。</p>
-<p>2.排队时延：等待链路的可用时间，取决于前面的正在排队等待链路传输的分组数量</p>
-<p>3.传输时延：R= 链路带宽 (bps)；L= 分组长度 (比特)；发送比特进入链路的时间= L/R</p>
-<p>实际时间为毫秒到微秒级。（传输时延是路由器将分组推出所需要的时间）</p>
-<p>4.传播时延：d = 物理链路的长度取决于链路的物理材质；s = 在媒体中传播的速度 (2x108 ~3x108 m/sec)；传播时延 = d/s；广域网中为毫秒级</p>
-<p>5.端到端的时延包括节点处理时延、传输时延、传播时延和排队时延。节点处理时延、传输时延、传播时延是固定的，排队时延是变化的。</p>
-<p>吞吐量：接受比特/用去的时间</p>
-<p><strong>八、因特网协议栈自顶向下的5个层次及各层的主要功能。各层数据单元的名称是？相关层的协议分析。</strong></p>
-<p>应用层：</p>
-<p>完成一个端系统与另一个端系统之间的信息交换。包含大量应用普遍需要的协议，支持网络应用</p>
-<p>数据单元：报文</p>
-<p>相关协议分析：FTP、SMTP、HTTP </p>
-<p>运输层：</p>
-<p>在应用程序端点之间传送应用报文。主机到主机数据传输，负责从应用层接收报文段（ segment ），并传输应用层的报文，到达目的后将消息上交给应用。</p>
-<p>数据单元：报文段</p>
-<p>相关协议分析：TCP、UDP</p>
-<p>网络层：</p>
-<p>在完成网络中一台主机与另一台主机之间的通信。从源到目的地数据报（datagram）的选路</p>
-<p>数据单元：数据报</p>
-<p>相关协议分析：IP、选路协议</p>
-<p>链路层：为网络层将分组从一个节点移动到下一个节点。在邻近网元之间传输数据</p>
-<p>数据单元：帧</p>
-<p>相关协议分析：PPP、以太网</p>
-<p>物理层：将链路层一帧中一个一个比特从一个节点移动到下一个节点。物理层负责将链路层帧中的每一位(bit)从链路的一端传输到另一端。</p>
-<p>数据单元：比特。</p>
-<p>相关协议分析：无。</p>
-<p><strong>九、OSI参考模型的七层结构及各层的主要功能。TCP/IP四层模型的结构及各层的主要功能。</strong></p>
-<p>应用层、表示层、会话层、传输层、网络层、链路层、物理层</p>
-<p>表示层：使通信的应用程序能够解释交换数据的含义（如数据加密、压缩、描述）</p>
-<p>会话层：数据交换的定界、同步，包括建立检查点和恢复方案的方法</p>
-<p>（因特网协议栈中没有这两层，如果需要这些服务，必须在应用层中实现）</p>
-<p>TCP/IP四层模型：应用层、传输层、互联层、主机-网络层。</p>
-<p><strong>十、作业补充</strong></p>
-<p>1.各种处理因特网协议栈中层次：</p>
-<p>路由器处理第一层到第三层（也就是物理层、数据链路层和网络层）；链路交换机处理第一层和第二层（也就是物理层和数据链路层）；主机处理所有的5层（也就是物理层、数据链路层、网络层、传输层和应用层）。</p>
-<p>2.与分组交换网络相比，电路交换优点，TDM比FDM的优点。</p>
-<p>电路交换网络具有带宽的保证、时延的保证，而分组交换网络一般不能保证带宽和时延。分组交换更简单，通信效率更高。</p>
-<p>FDM（频分复用Frequency Division Multiplexing)</p>
-<p>是将整个传输频带划分为若干个频率通道，每个用 户占用一个通道。频率通道之间留有防护频带；</p>
-<p>TDM（时分复用Time Division Multiplexing）是将时间分割成小的时间片，每个时间片又分为若干个通道(时隙），每个用户占用一个通道传输数据。</p>
-<p>TDM与FDM对比分析时，由于TDM适用于数字信号传输，FDM适用于模拟信号传输，而目前的通信技术中绝倒多数情况下都使用数字通信，因此就体现出了TDM的优势。</p>
-<p>3.</p>
-<p>应用层报文：应用程序要发出的在传输层上传递的数据；</p>
-<p>传输层报文段：将应用层报文加上传输层包头，由传输层管理和封装的信息；</p>
-<p>网络层数据报：将传输层报文段加上网络层包头之后封装；</p>
-<p>链路层帧：将网络层数据报加上链路层包头之后封装。</p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
-
-      
-        
-	<div id="comment">
-		<!-- 来必力City版安装代码 -->
-		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
-		<script type="text/javascript">
-		   (function(d, s) {
-		       var j, e = d.getElementsByTagName(s)[0];
-
-		       if (typeof LivereTower === 'function') { return; }
-
-		       j = d.createElement(s);
-		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-		       j.async = true;
-
-		       e.parentNode.insertBefore(j, e);
-		   })(document, 'script');
-		</script>
-		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
-		</div>
-		<!-- City版安装代码已完成 -->
-	</div>
-
-
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B503/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          自顶向下-第三章复习知识点
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/09/22/index%20-%20%E5%89%AF%E6%9C%AC%20(2)/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">javase</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-<!-- Table of Contents -->
-
-  <aside id="sidebar">
-    <div id="toc" class="toc-article">
-    <strong class="toc-title">Contents</strong>
-    
-      <ol class="nav">None</ol>
-    
-    </div>
-  </aside>
-</section>
-        
-      </div>
-
-    </div>
-    <!-- <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-    <a href="/categories" class="mobile-nav-link">Categories</a>
-  
-    <a href="/tags" class="mobile-nav-link">Tags</a>
-  
-    <a href="/about" class="mobile-nav-link">About</a>
-  
-</nav> -->
-    <footer id="footer" class="site-footer">
-  
-
-  <div class="clearfix container">
-      <div class="site-info">
-	      &copy; 2021 WenZhao All Rights Reserved.
-        
-            <span id="busuanzi_container_site_uv">
-              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
-              本站总访问量<span id="busuanzi_value_site_pv"></span>次
-            </span>
-          
-      </div>
-      <div class="site-credit">
-        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
-      </div>
-  </div>
-</footer>
-
-
-<!-- min height -->
-
-<script>
-    var wrapdiv = document.getElementById("wrap");
-    var contentdiv = document.getElementById("content");
-
-    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
-    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
-
-
-    <!-- headerblur min height -->
-    
-      var headerblur = document.getElementById("header-blur");
-      headerblur.style.minHeight = window.getComputedStyle(document.getElementById("allheader"), null).height;
-    
-    
-</script>
-    
-<div style="display: none;">
-  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
-</div>
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-<script src="/js/bootstrap.js"></script>
-
-
-<script src="/js/main.js"></script>
-
-
-
-
-
-
-
-
-  <div style="display: none;">
-    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
-  </div>
-
-
-
-	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-	</script>
-
-
-
-
-
-
-  </div>
-
-  <a id="rocket" href="#top" class=""></a>
-  <script type="text/javascript" src="/js/totop.js" async=""></script>
-</body>
-</html>
+extends base
+
+block title
+  title= page.title + ' | ' + config.title
+
+block content
+  .post
+    h1.post-title= page.title
+    .post-meta= page.date.format(config.date_format)
+      if page.categories.length > 0
+        span= ' | '
+        span.category
+          for category in page.categories.toArray()
+            a(href=url_for(category.path))= category.name
+      if theme.busuanzi == true
+        script(src='https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js', async)
+        span#busuanzi_container_page_pv= ' | '
+          span#busuanzi_value_page_pv
+          span= ' ' + __('Hits')
+      if theme.wordcount == true
+        include _partial/wordcount.pug
+    if theme.disqus
+      a.disqus-comment-count(data-disqus-identifier=page.path, href=url_for(page.path) + '#disqus_thread')
+    if theme.changyan
+      a.ds-thread-count(href=url_for(page.path) + '#SOHUCS')
+        span#changyan_count_unit(style='font-size: 15px; color: #6E7173;') 0
+        span= ' ' + __('Comment')
+      script(src='https://assets.changyan.sohu.com/upload/plugins/plugins.count.js', async)
+    if theme.valine.enable
+      a.disqus-comment-count( href=url_for(page.path) + '#vcomment')
+        span.valine-comment-count(data-xid=url_for(page.path))
+        span= ' ' + __('Comment')
+    if page.toc
+      div(class='clear')
+        div(id='toc' class='toc-article')
+          div(class='toc-title')= __('contents')
+          != toc(page.content, {list_number: theme.toc_number})
+    .post-content
+      != page.content
+    if theme.donate.enable == true && page.donate != false
+      include _widget/donate.pug
+
+    if theme.post_copyright.enable == true && page.copyright != false
+      include _widget/copyright.pug
+
+    if theme.shareto == true
+      script(type='text/javascript', src=url_for(theme.js) + '/share.js' + '?v=' + theme.version, async)
+      a.article-share-link(data-url=page.permalink, data-id=page._id, data-qrcode=qrcode(page.permalink))= __('shareto')
+
+    include _partial/tag.pug
+    include _partial/post_nav.pug
+
+    if page.comments
+      include _partial/comments.pug
