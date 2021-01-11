@@ -1,22 +1,726 @@
-{% extends '_layout.swig' %}
+<!DOCTYPE html>
 
-{% block pageCss %}
-    {{ css('scss/views/page/post') }}
-{% endblock %}
 
-{% block header %}
-    {% include './_partial/common/small-header.swig' %}
-{% endblock %}
+<html lang="en">
 
-{% block main %}
-    {% include './_partial/post/main.swig' %}
-{% endblock %}
 
-{% block pagejs %}
-    {{ js('js/page/post.js') }}
-{% endblock %}
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="当咸鱼,不存在!!!" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    JQuery-02JQuery选择器(重点) |  当咸鱼,不存在!!!
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
 
-{% block other %}
-    {% include './_partial/common/comment.swig' %}
-    {% include './_partial/post/post-statistical.swig' %}
-{% endblock %}
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-JQuery-02"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  JQuery-02JQuery选择器(重点)
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/01/08/JQuery-02/" class="article-date">
+  <time datetime="2021-01-08T11:15:50.000Z" itemprop="datePublished">2021-01-08</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JQuery/">-JQuery</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">3.6k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">17 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="JQuery选择器-重点"><a href="#JQuery选择器-重点" class="headerlink" title="JQuery选择器(重点)"></a>JQuery选择器(重点)</h1><h2 id="基本选择器-重点"><a href="#基本选择器-重点" class="headerlink" title="基本选择器(重点)"></a>基本选择器(重点)</h2><blockquote>
+<p>#ID             选择器: 根据id查找标签对象</p>
+<p>.class         选择器: 根据class查找标签对象</p>
+<p>element     选择器: 根据标签名查找标签对象</p>
+<p>*                  选择器 表示任意的,所有元素</p>
+<p>selector1，selector2 组合选择器：合并选择器 1，选择器 2 的结果并返回</p>
+</blockquote>
+<h2 id="层级选择器-重点"><a href="#层级选择器-重点" class="headerlink" title="层级选择器(重点)"></a>层级选择器(重点)</h2><a id="more"></a>
+
+<blockquote>
+<p>ancestor descendant 后代选择器 ：在给定的祖先元素下匹配所有的后代元素 </p>
+<p>parent&gt; child 子选择器: 在给定的父元素下匹配所有子元素</p>
+<p>prev + next     相邻元素选择器：匹配所有紧接在 prev 元素后的 next 元素 </p>
+<p>prev~ sibings 之后的元素选择器:匹配 prev 元素之后的所有 siblings 元素</p>
+</blockquote>
+<h2 id="过滤选择器"><a href="#过滤选择器" class="headerlink" title="过滤选择器"></a>过滤选择器</h2><blockquote>
+<p>:first                     获取第一个元素</p>
+<p>: last                     获取最后一个元素</p>
+<p>: not(selector)     去除所有与给定选择器匹配的元素 </p>
+<p>:even                 匹配所有索引值为偶数的元素，从 0 开始计数</p>
+<p>:odd                     匹配所有索引值为奇数的元素，从 0 开始计数</p>
+<p>:eq(index)         匹配一个给定索引值的元素</p>
+<p>:gt(index)         匹配所有大于给定索引值的元素</p>
+<p>:lt(index)         匹配所有小于给定索引值的元素</p>
+<p>:header        匹配如 h1, h2, h3 </p>
+<p>:animated   匹配所有正在执行动画效果的元素</p>
+</blockquote>
+<h2 id="内容过滤器"><a href="#内容过滤器" class="headerlink" title="内容过滤器"></a>内容过滤器</h2><blockquote>
+<p>:contions(text)          匹配包含给定文本的元素</p>
+<p>: empty                     匹配所有不包含子元素或者文本的空元素</p>
+<p>:parent                     匹配含有子元素或者文本的元素</p>
+<p>:has(selector)         匹配含有选择器所匹配的元素的元素</p>
+</blockquote>
+<h2 id="属性过滤器"><a href="#属性过滤器" class="headerlink" title="属性过滤器"></a>属性过滤器</h2><blockquote>
+<p>[attribute]                    匹配包含给定属性的元素。</p>
+<p>[attribute=value]         匹配给定的属性是某个特定值的元素</p>
+<p>[attribute!=value]     匹配所有不含有指定的属性，或者属性不等于特定值的元素。 </p>
+<p>[attribute^=value]     匹配给定的属性是以某些值开始的元素 </p>
+<p>[attribute$=value]     匹配给定的属性是以某些值结尾的元素 </p>
+<p>[attribute*=value]     匹配给定的属性是以包含某些值的元素 </p>
+<p>[attrSel1][attrSel2][attrSelN]     复合属性选择器，需要同时满足多个条件时使用</p>
+</blockquote>
+<h2 id="表单过滤器"><a href="#表单过滤器" class="headerlink" title="表单过滤器"></a>表单过滤器</h2><blockquote>
+<p>:input             匹配所有 input, textarea, select 和 button 元素 </p>
+<p><strong>:text</strong>                 匹配所有 文本输入框 </p>
+<p><strong>:password</strong>     匹配所有的密码输入框 </p>
+<p><strong>:radio</strong>             匹配所有的单选框 </p>
+<p>**:checkbox    **     匹配所有的复选框 </p>
+<p>:submit             匹配所有提交按钮 </p>
+<p>:image             匹配所有 img 标签 </p>
+<p>:reset             匹配所有重置按钮 </p>
+<p>:button             匹配所有 input type=button <button>按钮 </button></p>
+<p>:file             匹配所有 input type=file 文件上传 </p>
+<p>:hidden             匹配所有不可见元素 display:none 或 input type=hidden</p>
+</blockquote>
+<h2 id="表单对象属性过滤器"><a href="#表单对象属性过滤器" class="headerlink" title="表单对象属性过滤器"></a>表单对象属性过滤器</h2><blockquote>
+<p>:enabled     匹配所有可用元素 </p>
+<p>:disabled     匹配所有不可用元素 </p>
+<p><strong>:checked</strong>     <strong>匹配所有选中的单选，复选，和下拉列表中选中的</strong> <strong>option</strong> <strong>标签对象</strong> </p>
+<p><strong>:selected    ** **匹配所有选中的</strong> <strong>option</strong></p>
+</blockquote>
+<h2 id="jQuery-元素筛选"><a href="#jQuery-元素筛选" class="headerlink" title="jQuery 元素筛选"></a>jQuery 元素筛选</h2><blockquote>
+<p>eq()             获取给定索引的元素                 功能跟 :eq() 一样 </p>
+<p>first()         获取第一个元素                         功能跟 :first 一样 </p>
+<p>last()         获取最后一个元素                     功能跟 :last 一样 </p>
+<p>filter(exp) 留下匹配的元素 </p>
+<p>is(exp)         判断是否匹配给定的选择器，只要有一个匹配就返回，true </p>
+<p>has(exp)         返回包含有匹配选择器的元素的元素             功能跟 :has 一 样</p>
+<p>not(exp)         删除匹配选择器的元素                                     功能跟 :not 一样     </p>
+<p>children(exp) 返回匹配给定选择器的子元素                         功能跟 parent&gt;child 一样 </p>
+<p>find(exp)         返回匹配给定选择器的后代元素                     功能跟 ancestor descendant 一样</p>
+<p>next()             返回当前元素的下一个兄弟元素                     功能跟 prev + next 功能一样 </p>
+<p>nextAll()         返回当前元素后面所有的兄弟元素                 功能跟 prev ~ siblings 功能一样 </p>
+<p>nextUntil()     返回当前元素到指定匹配的元素为止的后面元素 </p>
+<p>parent()         返回父元素 </p>
+<p>prev(exp)     返回当前元素的上一个兄弟元素 </p>
+<p>prevAll()         返回当前元素前面所有的兄弟元素 </p>
+<p>prevUnit(exp) 返回当前元素到指定匹配的元素为止的前面元素 </p>
+<p>siblings(exp) 返回所有兄弟元素 </p>
+<p>add() 把 add 匹配的选择器的元素添加到当前 jquery 对象中</p>
+</blockquote>
+<h1 id="对应代码案例"><a href="#对应代码案例" class="headerlink" title="对应代码案例"></a>对应代码案例</h1><h3 id="基本选择器"><a href="#基本选择器" class="headerlink" title="基本选择器"></a>基本选择器</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">&quot;text/javascript&quot;</span> src=<span class="string">&quot;../script/jquery-1.7.2.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><br><span class="line">    $(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//1.选择 id 为 one 的元素 &quot;background-color&quot;,&quot;#bbffaa&quot;</span></span><br><span class="line">        $(<span class="string">&quot;#btn1&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">//css() 方法可以设置和获取方式</span></span><br><span class="line">            $(<span class="string">&quot;#one&quot;</span>).css(<span class="string">&quot;background-color&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//2.选择 class 为 mini 的所有元素</span></span><br><span class="line"></span><br><span class="line">        $(<span class="string">&quot;#btn2&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            $(<span class="string">&quot;.mini&quot;</span>).css(<span class="string">&quot;background-color&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3.选择 元素名是 div 的所有元素</span></span><br><span class="line"></span><br><span class="line">        $(<span class="string">&quot;#btn3&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            $(<span class="string">&quot;div&quot;</span>).css(<span class="string">&quot;background-color&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="comment">//4.选择所有的元素</span></span><br><span class="line"></span><br><span class="line">        $(<span class="string">&quot;#btn4&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            $(<span class="string">&quot;*&quot;</span>).css(<span class="string">&quot;background-color&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="comment">//5.选择所有的 span 元素和id为two的元素</span></span><br><span class="line"></span><br><span class="line">        $(<span class="string">&quot;#btn5&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            $(<span class="string">&quot;span, #two&quot;</span>).css(<span class="string">&quot;background-color&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="层次选择器"><a href="#层次选择器" class="headerlink" title="层次选择器"></a>层次选择器</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">&quot;text/javascript&quot;</span> src=<span class="string">&quot;../script/jquery-1.7.2.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line">		&lt;script type=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><br><span class="line">			$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">				<span class="comment">//1.选择 body 内的所有 div 元素 </span></span><br><span class="line">				$(<span class="string">&quot;#btn1&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">					$(<span class="string">&quot;body div&quot;</span>).css(<span class="string">&quot;background&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">				&#125;);</span><br><span class="line"></span><br><span class="line">				<span class="comment">//2.在 body 内, 选择div子元素  </span></span><br><span class="line">				$(<span class="string">&quot;#btn2&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">					$(<span class="string">&quot;body&gt;div&quot;</span>).css(<span class="string">&quot;background&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">				&#125;);</span><br><span class="line"></span><br><span class="line">				<span class="comment">//3.选择 id 为 one 的下一个 div 元素 </span></span><br><span class="line">				$(<span class="string">&quot;#btn3&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">					$(<span class="string">&quot;#one + div&quot;</span>).css(<span class="string">&quot;background&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">				&#125;);</span><br><span class="line"></span><br><span class="line">				<span class="comment">//4.选择 id 为 two 的元素后面的所有 div 兄弟元素</span></span><br><span class="line">				$(<span class="string">&quot;#btn4&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">					$(<span class="string">&quot;#two~div&quot;</span>).css(<span class="string">&quot;background&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>java);</span><br><span class="line">				&#125;);</span><br><span class="line">			&#125;);</span><br><span class="line">		&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="基本过滤选择器"><a href="#基本过滤选择器" class="headerlink" title="基本过滤选择器"></a>基本过滤选择器</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">&quot;text/javascript&quot;</span> src=<span class="string">&quot;../script/jquery-1.7.2.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line">   &lt;script type=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><br><span class="line">       $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">           <span class="function"><span class="keyword">function</span> <span class="title">anmateIt</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">               $(<span class="string">&quot;#mover&quot;</span>).slideToggle(<span class="string">&quot;slow&quot;</span>, anmateIt);</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           anmateIt();</span><br><span class="line">       &#125;);</span><br><span class="line"></span><br><span class="line">       $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">           <span class="comment">//1.选择第一个 div 元素</span></span><br><span class="line">           $(<span class="string">&quot;#btn1&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">               $(<span class="string">&quot;div:first&quot;</span>).css(<span class="string">&quot;background&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">           &#125;);</span><br><span class="line"></span><br><span class="line">           <span class="comment">//2.选择最后一个 div 元素</span></span><br><span class="line">           $(<span class="string">&quot;#btn2&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">               $(<span class="string">&quot;div:last&quot;</span>).css(<span class="string">&quot;background&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">           &#125;);</span><br><span class="line"></span><br><span class="line">           <span class="comment">//3.选择class不为 one 的所有 div 元素</span></span><br><span class="line">           $(<span class="string">&quot;#btn3&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">               $(<span class="string">&quot;div:not(.one)&quot;</span>).css(<span class="string">&quot;background&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">           &#125;);</span><br><span class="line"></span><br><span class="line">           <span class="comment">//4.选择索引值为偶数的 div 元素</span></span><br><span class="line">           $(<span class="string">&quot;#btn4&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">               $(<span class="string">&quot;div:even&quot;</span>).css(<span class="string">&quot;background&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">           &#125;);</span><br><span class="line"></span><br><span class="line">           <span class="comment">//5.选择索引值为奇数的 div 元素</span></span><br><span class="line">           $(<span class="string">&quot;#btn5&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">               $(<span class="string">&quot;div:odd&quot;</span>).css(<span class="string">&quot;background&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">           &#125;);</span><br><span class="line"></span><br><span class="line">           <span class="comment">//6.选择索引值为大于 3 的 div 元素</span></span><br><span class="line">           $(<span class="string">&quot;#btn6&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">               $(<span class="string">&quot;div:eq(3)&quot;</span>).css(<span class="string">&quot;background&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">           &#125;);</span><br><span class="line"></span><br><span class="line">           <span class="comment">//7.选择索引值为等于 3 的 div 元素</span></span><br><span class="line">           $(<span class="string">&quot;#btn7&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">               $(<span class="string">&quot;div:gt(3)&quot;</span>).css(<span class="string">&quot;background&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">           &#125;);</span><br><span class="line"></span><br><span class="line">           <span class="comment">//8.选择索引值为小于 3 的 div 元素</span></span><br><span class="line">           $(<span class="string">&quot;#btn8&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">               $(<span class="string">&quot;div:lt(3)&quot;</span>).css(<span class="string">&quot;background&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">           &#125;);</span><br><span class="line"></span><br><span class="line">           <span class="comment">//9.选择所有的标题元素</span></span><br><span class="line">           $(<span class="string">&quot;#btn9&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">               $(<span class="string">&quot;:header&quot;</span>).css(<span class="string">&quot;background&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">           &#125;);</span><br><span class="line"></span><br><span class="line">           <span class="comment">//10.选择当前正在执行动画的所有元素</span></span><br><span class="line">           $(<span class="string">&quot;#btn10&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">               $(<span class="string">&quot;:animated&quot;</span>).css(<span class="string">&quot;background&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">           &#125;);</span><br><span class="line"></span><br><span class="line">           <span class="comment">//11 选择没有执行动画的最后一个div</span></span><br><span class="line">           $(<span class="string">&quot;#btn11&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">               $(<span class="string">&quot;div:not(:animated):last&quot;</span>).css(<span class="string">&quot;background&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">           &#125;);</span><br><span class="line">       &#125;);</span><br><span class="line">   &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="内容选择器"><a href="#内容选择器" class="headerlink" title="内容选择器"></a>内容选择器</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">&quot;text/javascript&quot;</span> src=<span class="string">&quot;../script/jquery-1.7.2.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><br><span class="line">	$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">anmateIt</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			$(<span class="string">&quot;#mover&quot;</span>).slideToggle(<span class="string">&quot;slow&quot;</span>, anmateIt);</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">		anmateIt();				</span><br><span class="line">	&#125;);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/** </span></span><br><span class="line"><span class="comment">	:contains(text)   </span></span><br><span class="line"><span class="comment">	:empty 			  </span></span><br><span class="line"><span class="comment">	:has(selector) 	</span></span><br><span class="line"><span class="comment">	:parent 			</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="comment">//1.选择 含有文本 &#x27;di&#x27; 的 div 元素</span></span><br><span class="line">		$(<span class="string">&quot;#btn1&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			$(<span class="string">&quot;div:contains(&#x27;id&#x27;)&quot;</span>).css(<span class="string">&quot;background&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">		&#125;);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//2.选择不包含子元素(或者文本元素) 的 div 空元素</span></span><br><span class="line">		$(<span class="string">&quot;#btn2&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			$(<span class="string">&quot;div:empty&quot;</span>).css(<span class="string">&quot;background&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">		&#125;);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//3.选择含有 class 为 mini 元素的 div 元素</span></span><br><span class="line">		$(<span class="string">&quot;#btn3&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			$(<span class="string">&quot;div:has(.mini)&quot;</span>).css(<span class="string">&quot;background&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">		&#125;);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//4.选择含有子元素(或者文本元素)的div元素</span></span><br><span class="line">		$(<span class="string">&quot;#btn4&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			$(<span class="string">&quot;div:parent&quot;</span>).css(<span class="string">&quot;background&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="属性过滤选择器"><a href="#属性过滤选择器" class="headerlink" title="属性过滤选择器"></a>属性过滤选择器</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">&quot;text/javascript&quot;</span> src=<span class="string">&quot;../script/jquery-1.7.2.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line">  &lt;script type=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><br><span class="line">      <span class="comment">/**</span></span><br><span class="line"><span class="comment">       [attribute]</span></span><br><span class="line"><span class="comment">       [attribute=value]</span></span><br><span class="line"><span class="comment">       [attribute!=value]</span></span><br><span class="line"><span class="comment">       [attribute^=value]</span></span><br><span class="line"><span class="comment">       [attribute$=value]</span></span><br><span class="line"><span class="comment">       [attribute*=value]</span></span><br><span class="line"><span class="comment">       [attrSel1][attrSel2][attrSelN]</span></span><br><span class="line"><span class="comment">       */</span></span><br><span class="line">      $(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">          <span class="comment">//1.选取含有 属性title 的div元素</span></span><br><span class="line">          $(<span class="string">&quot;#btn1&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">              $(<span class="string">&quot;div[title]&quot;</span>).css(<span class="string">&quot;background&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">          &#125;);</span><br><span class="line">          <span class="comment">//2.选取 属性title值等于&#x27;test&#x27;的div元素</span></span><br><span class="line">          $(<span class="string">&quot;#btn2&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">              $(<span class="string">&quot;div[title=&#x27;test&#x27;]&quot;</span>).css(<span class="string">&quot;background&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">          &#125;);</span><br><span class="line">          <span class="comment">//3.选取 属性title值不等于&#x27;test&#x27;的div元素(*没有属性title的也将被选中)</span></span><br><span class="line">          $(<span class="string">&quot;#btn3&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">              $(<span class="string">&quot;div[title!=&#x27;test&#x27;]&quot;</span>).css(<span class="string">&quot;background&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">          &#125;);</span><br><span class="line">          <span class="comment">//4.选取 属性title值 以&#x27;te&#x27;开始 的div元素</span></span><br><span class="line">          $(<span class="string">&quot;#btn4&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">              $(<span class="string">&quot;div[title^=&#x27;te&#x27;]&quot;</span>).css(<span class="string">&quot;background&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">          &#125;);</span><br><span class="line">          <span class="comment">//5.选取 属性title值 以&#x27;est&#x27;结束 的div元素</span></span><br><span class="line">          $(<span class="string">&quot;#btn5&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">              $(<span class="string">&quot;div[title$=&#x27;est&#x27;]&quot;</span>).css(<span class="string">&quot;background&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">          &#125;);</span><br><span class="line">          <span class="comment">//6.选取 属性title值 含有&#x27;es&#x27;的div元素</span></span><br><span class="line">          $(<span class="string">&quot;#btn6&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">              $(<span class="string">&quot;div[title*=&#x27;es&#x27;]&quot;</span>).css(<span class="string">&quot;background&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">          &#125;);</span><br><span class="line"></span><br><span class="line">          <span class="comment">//7.首先选取有属性id的div元素，然后在结果中 选取属性title值 含有&#x27;es&#x27;的 div 元素</span></span><br><span class="line">          $(<span class="string">&quot;#btn7&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">              $(<span class="string">&quot;div[id][title*=&#x27;es&#x27;]&quot;</span>).css(<span class="string">&quot;background&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">          &#125;);</span><br><span class="line">          <span class="comment">//8.选取 含有 title 属性值, 且title 属性值不等于 test 的 div 元素</span></span><br><span class="line">          $(<span class="string">&quot;#btn8&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">              $(<span class="string">&quot;div[title][title!=&#x27;test&#x27;]&quot;</span>).css(<span class="string">&quot;background&quot;</span>, <span class="string">&quot;#bbffaa&quot;</span>);</span><br><span class="line">          &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">  &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="表单对象属性过滤选择器"><a href="#表单对象属性过滤选择器" class="headerlink" title="表单对象属性过滤选择器"></a>表单对象属性过滤选择器</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">&quot;text/javascript&quot;</span> src=<span class="string">&quot;../script/jquery-1.7.2.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line"> &lt;script type=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><br><span class="line">     $(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">         </span><br><span class="line">         <span class="comment">/**</span></span><br><span class="line"><span class="comment">          :input</span></span><br><span class="line"><span class="comment">          :text</span></span><br><span class="line"><span class="comment">          :password</span></span><br><span class="line"><span class="comment">          :radio</span></span><br><span class="line"><span class="comment">          :checkbox</span></span><br><span class="line"><span class="comment">          :submit</span></span><br><span class="line"><span class="comment">          :image</span></span><br><span class="line"><span class="comment">          :reset</span></span><br><span class="line"><span class="comment">          :button</span></span><br><span class="line"><span class="comment">          :file</span></span><br><span class="line"><span class="comment">          :hidden</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">          表单对象的属性</span></span><br><span class="line"><span class="comment">          :enabled</span></span><br><span class="line"><span class="comment">          :disabled</span></span><br><span class="line"><span class="comment">          :checked</span></span><br><span class="line"><span class="comment">          :selected</span></span><br><span class="line"><span class="comment">          */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">         <span class="comment">//1.对表单内 可用input 赋值操作</span></span><br><span class="line">         $(<span class="string">&quot;#btn1&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">             $(<span class="string">&quot;:text:enabled&quot;</span>).val(<span class="string">&quot;New Value&quot;</span>);</span><br><span class="line">         &#125;);</span><br><span class="line">         <span class="comment">//2.对表单内 不可用input 赋值操作</span></span><br><span class="line">         $(<span class="string">&quot;#btn2&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">             $(<span class="string">&quot;:text:disabled&quot;</span>).val(<span class="string">&quot;New Value Too&quot;</span>);</span><br><span class="line">         &#125;);</span><br><span class="line">         <span class="comment">//3.获取多选框选中的个数  使用size()方法获取选取到的元素集合的元素个数</span></span><br><span class="line">         $(<span class="string">&quot;#btn3&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">             alert($(<span class="string">&quot;:checkbox:checked&quot;</span>).size())</span><br><span class="line">         &#125;);</span><br><span class="line">         <span class="comment">//4.获取多选框，每个选中的value值</span></span><br><span class="line">         $(<span class="string">&quot;#btn4&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">             <span class="comment">//获取全部选中的复选框标签内容</span></span><br><span class="line">             <span class="keyword">var</span> $check = $(<span class="string">&quot;:checkbox:checked&quot;</span>);</span><br><span class="line">             <span class="comment">//老式遍历</span></span><br><span class="line">             <span class="comment">// for (var i = 0; i &lt; $check.length; i++)&#123;</span></span><br><span class="line">             <span class="comment">// 	alert( $check[i].value );</span></span><br><span class="line">             <span class="comment">// &#125;</span></span><br><span class="line">             alert($check.length)</span><br><span class="line">             $check.each(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                 alert(<span class="built_in">this</span>.value);</span><br><span class="line"></span><br><span class="line">             &#125;)</span><br><span class="line">         &#125;);</span><br><span class="line">         <span class="comment">//5.获取下拉框选中的内容</span></span><br><span class="line">         $(<span class="string">&quot;#btn5&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">             <span class="comment">//获取选中的option标签对象</span></span><br><span class="line">             <span class="keyword">var</span> $option = $(<span class="string">&quot;select option:selected&quot;</span>);</span><br><span class="line">             <span class="comment">//遍历获取文本内容</span></span><br><span class="line">             $option.each(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                 <span class="comment">//在each遍历时的function函数中,有一个this对象 这个this对象是当前正在遍历的dom对象</span></span><br><span class="line">                 alert(<span class="built_in">this</span>.innerHTML)</span><br><span class="line">             &#125;)</span><br><span class="line">         &#125;);</span><br><span class="line">     &#125;)</span><br><span class="line"> &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="元素筛选法"><a href="#元素筛选法" class="headerlink" title="元素筛选法"></a>元素筛选法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">&quot;text/javascript&quot;</span> src=<span class="string">&quot;../script/jquery-1.7.2.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><br><span class="line">    $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">anmateIt</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            $(<span class="string">&quot;#mover&quot;</span>).slideToggle(<span class="string">&quot;slow&quot;</span>, anmateIt);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        anmateIt();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">         过滤</span></span><br><span class="line"><span class="comment">         eq(index|-index)</span></span><br><span class="line"><span class="comment">         first()</span></span><br><span class="line"><span class="comment">         last()</span></span><br><span class="line"><span class="comment">         hasClass(class)</span></span><br><span class="line"><span class="comment">         filter(expr|obj|ele|fn)</span></span><br><span class="line"><span class="comment">         is(expr|obj|ele|fn)1.6*</span></span><br><span class="line"><span class="comment">         has(expr|ele)</span></span><br><span class="line"><span class="comment">         not(expr|ele|fn)</span></span><br><span class="line"><span class="comment">         slice(start,[end])</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">         查找</span></span><br><span class="line"><span class="comment">         children([expr])</span></span><br><span class="line"><span class="comment">         closest(expr,[con]|obj|ele)1.6*</span></span><br><span class="line"><span class="comment">         find(expr|obj|ele)</span></span><br><span class="line"><span class="comment">         next([expr])</span></span><br><span class="line"><span class="comment">         nextall([expr])</span></span><br><span class="line"><span class="comment">         nextUntil([exp|ele][,fil])1.6*</span></span><br><span class="line"><span class="comment">         parent([expr])</span></span><br><span class="line"><span class="comment">         parents([expr])</span></span><br><span class="line"><span class="comment">         parentsUntil([exp|ele][,fil])1.6*</span></span><br><span class="line"><span class="comment">         prev([expr])</span></span><br><span class="line"><span class="comment">         prevall([expr])</span></span><br><span class="line"><span class="comment">         prevUntil([exp|ele][,fil])1.6*</span></span><br><span class="line"><span class="comment">         siblings([expr])</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">         串联</span></span><br><span class="line"><span class="comment">         add(expr|ele|html|obj[,con])</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//(1)eq()  选择索引值为等于 3 的 div 元素</span></span><br><span class="line">        $(<span class="string">&quot;#btn1&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            $(<span class="string">&quot;div&quot;</span>).eq(<span class="number">3</span>).css(<span class="string">&quot;background-color&quot;</span>, <span class="string">&quot;#bfa&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//(2)first()选择第一个 div 元素</span></span><br><span class="line">        $(<span class="string">&quot;#btn2&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">//first()   选取第一个元素</span></span><br><span class="line">            $(<span class="string">&quot;div&quot;</span>).first().css(<span class="string">&quot;background-color&quot;</span>, <span class="string">&quot;#bfa&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//(3)last()选择最后一个 div 元素</span></span><br><span class="line">        $(<span class="string">&quot;#btn3&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">//last()  选取最后一个元素</span></span><br><span class="line">            $(<span class="string">&quot;div&quot;</span>).last().css(<span class="string">&quot;background-color&quot;</span>, <span class="string">&quot;#bfa&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//(4)filter()在div中选择索引为偶数的</span></span><br><span class="line">        $(<span class="string">&quot;#btn4&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">//filter()  过滤   传入的是选择器字符串</span></span><br><span class="line">            $(<span class="string">&quot;div&quot;</span>).filter(<span class="string">&quot;:even&quot;</span>).css(<span class="string">&quot;background-color&quot;</span>, <span class="string">&quot;#bfa&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//(5)is()判断#one是否为:empty或:parent</span></span><br><span class="line">        <span class="comment">//is用来检测jq对象是否符合指定的选择器</span></span><br><span class="line">        $(<span class="string">&quot;#btn5&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            alert($(<span class="string">&quot;#one&quot;</span>).is(<span class="string">&quot;:empty&quot;</span>));</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//(6)has()选择div中包含.mini的</span></span><br><span class="line">        $(<span class="string">&quot;#btn6&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">//has(selector)  选择器字符串    是否包含selector</span></span><br><span class="line">            $(<span class="string">&quot;div&quot;</span>).has(<span class="string">&quot;.mini&quot;</span>).css(<span class="string">&quot;background-color&quot;</span>, <span class="string">&quot;#bfa&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//(7)not()选择div中class不为one的</span></span><br><span class="line">        $(<span class="string">&quot;#btn7&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">//not(selector)  选择不是selector的元素</span></span><br><span class="line">            $(<span class="string">&quot;div&quot;</span>).not(<span class="string">&#x27;.one&#x27;</span>).css(<span class="string">&quot;background-color&quot;</span>, <span class="string">&quot;#bfa&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//(8)children()在body中选择所有class为one的div子元素</span></span><br><span class="line">        $(<span class="string">&quot;#btn8&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">//children()  选出所有的子元素</span></span><br><span class="line">            $(<span class="string">&quot;body&quot;</span>).children(<span class="string">&quot;div.one&quot;</span>).css(<span class="string">&quot;background-color&quot;</span>, <span class="string">&quot;#bfa&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//(9)find()在body中选择所有class为mini的div元素</span></span><br><span class="line">        $(<span class="string">&quot;#btn9&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">//find()  选出所有的后代元素</span></span><br><span class="line">            $(<span class="string">&quot;body&quot;</span>).find(<span class="string">&quot;div.mini&quot;</span>).css(<span class="string">&quot;background-color&quot;</span>, <span class="string">&quot;#bfa&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//(10)next() #one的下一个div</span></span><br><span class="line">        $(<span class="string">&quot;#btn10&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">//next()  选择下一个兄弟元素</span></span><br><span class="line">            $(<span class="string">&quot;#one&quot;</span>).next(<span class="string">&quot;div&quot;</span>).css(<span class="string">&quot;background-color&quot;</span>, <span class="string">&quot;#bfa&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//(11)nextAll() #one后面所有的span元素</span></span><br><span class="line">        $(<span class="string">&quot;#btn11&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">//nextAll()   选出后面所有的元素</span></span><br><span class="line">            $(<span class="string">&quot;#one&quot;</span>).nextAll(<span class="string">&quot;span&quot;</span>).css(<span class="string">&quot;background-color&quot;</span>, <span class="string">&quot;#bfa&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//(12)nextUntil() #one和span之间的元素</span></span><br><span class="line">        $(<span class="string">&quot;#btn12&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">//</span></span><br><span class="line">            $(<span class="string">&quot;#one&quot;</span>).next(<span class="string">&quot;div&quot;</span>).css(<span class="string">&quot;background-color&quot;</span>, <span class="string">&quot;#bfa&quot;</span>)</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//(13)parent() .mini的父元素</span></span><br><span class="line">        $(<span class="string">&quot;#btn13&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            $(<span class="string">&quot;.mini&quot;</span>).parent().css(<span class="string">&quot;background-color&quot;</span>, <span class="string">&quot;#bfa&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//(14)prev() #two的上一个div</span></span><br><span class="line">        $(<span class="string">&quot;#btn14&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">//prev()</span></span><br><span class="line">            $(<span class="string">&quot;#two&quot;</span>).prev(<span class="string">&quot;div&quot;</span>).css(<span class="string">&quot;background-color&quot;</span>, <span class="string">&quot;#bfa&quot;</span>)</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//(15)prevAll() span前面所有的div</span></span><br><span class="line">        $(<span class="string">&quot;#btn15&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">//prevAll()   选出前面所有的元素</span></span><br><span class="line">            $(<span class="string">&quot;span&quot;</span>).prevAll(<span class="string">&quot;div&quot;</span>).css(<span class="string">&quot;background-color&quot;</span>, <span class="string">&quot;#bfa&quot;</span>)</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//(16)prevUntil() span向前直到#one的元素</span></span><br><span class="line">        $(<span class="string">&quot;#btn16&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">//prevUntil(exp)   找到之前所有的兄弟元素直到找到exp停止</span></span><br><span class="line">            $(<span class="string">&quot;span&quot;</span>).prevUntil(<span class="string">&quot;#one&quot;</span>).css(<span class="string">&quot;background-color&quot;</span>, <span class="string">&quot;#bfa&quot;</span>)</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//(17)siblings() #two的所有兄弟元素</span></span><br><span class="line">        $(<span class="string">&quot;#btn17&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">//siblings()    找到所有的兄弟元素，包括前面的和后面的</span></span><br><span class="line">            $(<span class="string">&quot;#two&quot;</span>).siblings().css(<span class="string">&quot;background-color&quot;</span>, <span class="string">&quot;#bfa&quot;</span>)</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//(18)add()选择所有的 span 元素和id为two的元素</span></span><br><span class="line">        $(<span class="string">&quot;#btn18&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">          <span class="comment">//</span></span><br><span class="line">            $(<span class="string">&quot;span&quot;</span>).add(<span class="string">&quot;#two&quot;</span>).add(<span class="string">&quot;#one&quot;</span>).css(<span class="string">&quot;background-color&quot;</span>, <span class="string">&quot;#bfa&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2021/01/08/JQuery-02/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JQuery/" rel="tag">JQuery</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2021/01/07/JQuery-01/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">JQuery-01概论</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "",
+    app_key: "",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2019-2021
+        <i class="ri-heart-fill heart_icon"></i> niewenzhao
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="WenZhao"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" target="_blank" rel="noopener" href="http://shenyu-vip.lofter.com">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44236958">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=1491585&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+</body>
+
+</html>
