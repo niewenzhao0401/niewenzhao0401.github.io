@@ -1,22 +1,28 @@
-{% extends '_layout.swig' %}
+extends partial/layout
 
-{% block pageCss %}
-    {{ css('scss/views/page/post') }}
-{% endblock %}
+block site_title
+    if is_current('tags')
+        !=  "标签 · " + config.title
+    else
+        != page.title + " · " + config.title
 
-{% block header %}
-    {% include './_partial/common/small-header.swig' %}
-{% endblock %}
+block description
+    - var desc = page.desc || strip_html(page.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 150);
+    meta(name="description", content=desc)
 
-{% block main %}
-    {% include './_partial/post/main.swig' %}
-{% endblock %}
+block content
 
-{% block pagejs %}
-    {{ js('js/page/post.js') }}
-{% endblock %}
-
-{% block other %}
-    {% include './_partial/common/comment.swig' %}
-    {% include './_partial/post/post-statistical.swig' %}
-{% endblock %}
+    if is_current('tags')
+        .autopagerize_page_element: .content
+            .tag_box
+                script(type="text/javascript" charset="utf-8" src="/js/tagcloud.js")
+                script(type="text/javascript" charset="utf-8" src="/js/tagcanvas.js")
+                #myCanvasContainer.widget.tagcloud(align='center')
+                    canvas#resCanvas()
+                        != tagcloud()
+    else
+        .autopagerize_page_element: .content: .post-page
+            include mixins
+            +make_post(page, true)
+            if page.comments
+                include partial/comments

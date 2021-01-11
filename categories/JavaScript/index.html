@@ -1,13 +1,16 @@
-{% extends '_layout.swig' %}
+extends partial/layout
 
-{% block pageCss %}
-    {{ css('scss/views/page/category') }}
-{% endblock %}
+block site_title
+    !=  "归档 · " + config.title
 
-{% block header %}
-    {% include './_partial/common/small-header.swig' %}
-{% endblock %}
+block description
+    - var desc = '归档页面 - ' + config.title;
+    meta(name="description", content=desc)
 
-{% block main %}
-    {% include './_partial/category/main.swig' %}
-{% endblock %}
+block content
+    .autopagerize_page_element: .content
+      .archive.animated.fadeInDown
+        ul.list-with-title
+          include mixins
+          +postList()
+          +make_pager(__('prev'), __('next'))
