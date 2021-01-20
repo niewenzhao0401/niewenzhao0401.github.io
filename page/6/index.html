@@ -601,6 +601,193 @@
         <!-- 置顶 -->
         
 
+            <a href="/2020/12/06/LC141-LC142/">
+              
+                    <header class="post-header">
+                      
+                        <h1 class="post-title">
+                          <span>LC141_LC142环形链表 1 2</span>
+                        </h1>
+                    </header>
+            </a>
+
+
+            <section class="post-info">
+              <span class="post-date">发布于
+                <span class="post-date-text"> 2020-12-06</span>
+              </span>
+  
+              
+                <span class="post-category">
+                  <a class="post-category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
+                </span>
+                
+                  
+                    <span class="post-tags">
+                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/" rel="tag">环形链表</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a></li></ul>
+                    </span>
+                    
+                    
+            </section>
+
+
+            <div class="post-main">
+              <div class="post-item">
+                <section class="post-abstract">
+                  
+                    141. 环形链表关于链表的小总结
+
+利用集合存放数据,不在就就存放数据,进行遍历
+                      
+                            
+                </section>
+    
+              
+                        <span class="read-more btn"><a href="/2020/12/06/LC141-LC142/" >阅读更多...</a></span>
+               
+              </div>
+  
+  
+              
+            </div>
+
+      
+      </article>
+      
+      <article class="list-item">
+
+
+        <!-- 置顶 -->
+        
+
+            <a href="/2020/12/06/LC070/">
+              
+                    <header class="post-header">
+                      
+                        <h1 class="post-title">
+                          <span>LC070-爬楼梯</span>
+                        </h1>
+                    </header>
+            </a>
+
+
+            <section class="post-info">
+              <span class="post-date">发布于
+                <span class="post-date-text"> 2020-12-06</span>
+              </span>
+  
+              
+                <span class="post-category">
+                  <a class="post-category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
+                </span>
+                
+                  
+                    <span class="post-tags">
+                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91/" rel="tag">斐波那契</a></li></ul>
+                    </span>
+                    
+                    
+            </section>
+
+
+            <div class="post-main">
+              <div class="post-item">
+                <section class="post-abstract">
+                  
+                    70. 爬楼梯https://leetcode-cn.com/problems/climbing-stairs/
+
+//该数组每个元素的指针对应的是台阶数,元素的值存放的是台阶数对应的方法数
+
+不管怎样,数组下标指针肯定是从0开始的,所以要考虑0.有0个台阶,不需要爬,所以没有方法数(但从斐波那契角度,dp[0]=1)
+
+dp[1] = 1; //1阶台阶,只有一种方式(1)
+
+2阶台阶,有两种方式(1+1, 2), 因为题目设定n是正整数,所以n最小是1,此时如果定义dp的长度是int[n + 1],则length=2
+而dp[2]实际对应的是第三个元素,超出length了,所以定义new int[n + 2]更合理
+
+从第三个台阶开始遍历,第三个台阶,是第二个台阶的方法和第一个台阶的方法之和,,,第四个台阶,是第三个台阶和第二个台阶方法之和,依此论推….
+
+
+                      
+                            
+                </section>
+    
+              
+                        <span class="read-more btn"><a href="/2020/12/06/LC070/" >阅读更多...</a></span>
+               
+              </div>
+  
+  
+              
+            </div>
+
+      
+      </article>
+      
+      <article class="list-item">
+
+
+        <!-- 置顶 -->
+        
+
+            <a href="/2020/12/06/LC066/">
+              
+                    <header class="post-header">
+                      
+                        <h1 class="post-title">
+                          <span>LC066-加一</span>
+                        </h1>
+                    </header>
+            </a>
+
+
+            <section class="post-info">
+              <span class="post-date">发布于
+                <span class="post-date-text"> 2020-12-06</span>
+              </span>
+  
+              
+                <span class="post-category">
+                  <a class="post-category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
+                </span>
+                
+                  
+                    <span class="post-tags">
+                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li></ul>
+                    </span>
+                    
+                    
+            </section>
+
+
+            <div class="post-main">
+              <div class="post-item">
+                <section class="post-abstract">
+                  
+                    66. 加一示例 1：
+123输入：digits = [1,2,3]输出：[1,2,4]解释：输入数组表示数字 123。
+                      
+                            
+                </section>
+    
+              
+                        <span class="read-more btn"><a href="/2020/12/06/LC066/" >阅读更多...</a></span>
+               
+              </div>
+  
+  
+              
+            </div>
+
+      
+      </article>
+      
+      <article class="list-item">
+
+
+        <!-- 置顶 -->
+        
+
             <a href="/2020/12/06/LC021-LC088/">
               
                     <header class="post-header">
@@ -1039,198 +1226,10 @@ File对象无法操作文件的具体数据,既不能直接对文件进行读写
       
       </article>
       
-      <article class="list-item">
-
-
-        <!-- 置顶 -->
-        
-
-            <a href="/2020/11/28/javaSE20/">
-              
-                    <header class="post-header">
-                      
-                        <h1 class="post-title">
-                          <span>javaSE-20-Collection集合概述</span>
-                        </h1>
-                    </header>
-            </a>
-
-
-            <section class="post-info">
-              <span class="post-date">发布于
-                <span class="post-date-text"> 2020-11-28</span>
-              </span>
-  
-              
-                <span class="post-category">
-                  <a class="post-category-link" href="/categories/javase/">-javase</a>
-                </span>
-                
-                  
-                    <span class="post-tags">
-                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/%E9%9B%86%E5%90%88/" rel="tag">集合</a></li></ul>
-                    </span>
-                    
-                    
-            </section>
-
-
-            <div class="post-main">
-              <div class="post-item">
-                <section class="post-abstract">
-                  
-                    Collection集合概述最强Java集合合集
-集合是用来储存引用类型数据的容器
-集合分为两类:
-
-Collection集合: 存取数据时是单个存取,
-Map集合: 是按&lt;键,值&gt;对的形式存取数据, &lt;”lisi”,18&gt;  &lt;”feifei”, 28&gt;
-
-最强Java集合合集
-                      
-                            
-                </section>
-    
-              
-                        <span class="read-more btn"><a href="/2020/11/28/javaSE20/" >阅读更多...</a></span>
-               
-              </div>
-  
-  
-              
-            </div>
-
-      
-      </article>
-      
-      <article class="list-item">
-
-
-        <!-- 置顶 -->
-        
-
-            <a href="/2020/11/28/java%E5%B8%B8%E7%94%A8%E5%AD%97%E7%AC%A6%E8%BD%AC%E6%8D%A2/">
-              
-                    <header class="post-header">
-                      
-                        <h1 class="post-title">
-                          <span>java常用字符转换</span>
-                        </h1>
-                    </header>
-            </a>
-
-
-            <section class="post-info">
-              <span class="post-date">发布于
-                <span class="post-date-text"> 2020-11-28</span>
-              </span>
-  
-              
-                <span class="post-category">
-                  <a class="post-category-link" href="/categories/javase/">-javase</a>
-                </span>
-                
-                  
-                    <span class="post-tags">
-                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
-                    </span>
-                    
-                    
-            </section>
-
-
-            <div class="post-main">
-              <div class="post-item">
-                <section class="post-abstract">
-                  
-                    常用的字符转换
-
-int–&gt;String1234int num = 123;String str = &quot;&quot; + num;//字符串与基本类型连接,会先把基本类型转换为字符串再连接String str1 = String.valueOf(num);//参数的字符串表示形式。String str2 = Integer.toString(num);//返回一个表示指定整数的 String 对象。
-
-
-                      
-                            
-                </section>
-    
-              
-                        <span class="read-more btn"><a href="/2020/11/28/java%E5%B8%B8%E7%94%A8%E5%AD%97%E7%AC%A6%E8%BD%AC%E6%8D%A2/" >阅读更多...</a></span>
-               
-              </div>
-  
-  
-              
-            </div>
-
-      
-      </article>
-      
-      <article class="list-item">
-
-
-        <!-- 置顶 -->
-        
-
-            <a href="/2020/11/28/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F05%E5%BF%AB%E9%80%9F/">
-              
-                    <header class="post-header">
-                      
-                        <h1 class="post-title">
-                          <span>十大排序05快速</span>
-                        </h1>
-                    </header>
-            </a>
-
-
-            <section class="post-info">
-              <span class="post-date">发布于
-                <span class="post-date-text"> 2020-11-28</span>
-              </span>
-  
-              
-                <span class="post-category">
-                  <a class="post-category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
-                </span>
-                
-                  
-                    <span class="post-tags">
-                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F/" rel="tag">十大排序</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag">排序</a></li></ul>
-                    </span>
-                    
-                    
-            </section>
-
-
-            <div class="post-main">
-              <div class="post-item">
-                <section class="post-abstract">
-                  
-                    快速排序（Quick Sort）快速排序是冒泡排序的一种改进,
-基本思想(分治):
-通过一趟排序将要排序的数据分割成独立的两个部分,
-其中一部分的所有数据都比另外的一部分的所有数据都要小,
-然而按此方法对两部分数据进行分别进行快速排序,
-整个排序过程可以递归进行,因此可以达到目的
-
-                      
-                            
-                </section>
-    
-              
-                        <span class="read-more btn"><a href="/2020/11/28/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F05%E5%BF%AB%E9%80%9F/" >阅读更多...</a></span>
-               
-              </div>
-  
-  
-              
-            </div>
-
-      
-      </article>
-      
       
   
     <div class="pagination">
-      <a class="extend prev" rel="prev" href="/page/5/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/7/">下一页</a>
+      <a class="extend prev" rel="prev" href="/page/5/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/7/">下一页</a>
     </div>
   
 
@@ -1269,7 +1268,7 @@ int–&gt;String1234int num = 123;String str = &quot;&quot; + num;//字符串与
        <div class="widget">
 			  <div class="categories-list">
 						
-						   <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JDBC/">-JDBC</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JQuery/">-JQuery</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">-JavaScript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">-Mysql</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javase/">-javase</a><span class="category-list-count">31</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">-前端</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7%E6%A0%8F/">-工具栏</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">-操作系统</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95-%E4%BD%93%E7%B3%BB/">-数据结构和算法-体系</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a><span class="category-list-count">61</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a><span class="category-list-count">8</span></li></ul>
+						   <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JDBC/">-JDBC</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JQuery/">-JQuery</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">-JavaScript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">-Mysql</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javase/">-javase</a><span class="category-list-count">31</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">-前端</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7%E6%A0%8F/">-工具栏</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">-操作系统</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95-%E4%BD%93%E7%B3%BB/">-数据结构和算法-体系</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a><span class="category-list-count">61</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a><span class="category-list-count">8</span></li></ul>
 						
 			  </div>
        </div>
@@ -1304,19 +1303,19 @@ int–&gt;String1234int num = 123;String str = &quot;&quot; + num;//字符串与
           </li>
         
           <li>
+            <a href="/2021/01/20/JDBC-%E5%B7%A5%E5%85%B71/">JDBC-JDBCUtils</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/20/JDBC2/">JDBC2-获取数据库连接</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/20/JDBC1/">JDBC1-jdbc概述</a>
+          </li>
+        
+          <li>
             <a href="/2021/01/20/mysql-06/">mysql-06-多表设计-关联查询</a>
-          </li>
-        
-          <li>
-            <a href="/2021/01/18/LC105/">LC105-从前序与中序遍历序列构造二叉树</a>
-          </li>
-        
-          <li>
-            <a href="/2021/01/17/mysql-04/">mysql-04-DQL-基础查询-条件-模糊-数量-分组-子查询</a>
-          </li>
-        
-          <li>
-            <a href="/2021/01/16/mysql-03/">mysql-03-DML数据操作语言-DQL-基础查询(初)</a>
           </li>
         
       </ul>
