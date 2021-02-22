@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    JavaWeb-01--JavaWeb的概念--Servlet 技术-- ServletConfig类--ServletContext 类- HTTP协议--get,post区别 | WenZhao
+  </title>
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta name="theme-color" content="#4184f3">
+  
+  
+  <link href="https://shuxhan-imgbed.oss-cn-hangzhou.aliyuncs.com/img/20210108143023.png" rel="icon" />
+  
+
+  
+<link rel="stylesheet" href="/css/highlight.light.css">
+
+  
+<link rel="stylesheet" href="/css/prism-customize.css">
+
+  
+<link rel="stylesheet" href="/css/nav-icon.css">
+
+  
+<link rel="stylesheet" href="/css/waves.min.css">
+
+  
+<link rel="stylesheet" href="/css/jquery.tocify.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/nav-indicator.css">
+
+  
+<link rel="stylesheet" href="/css/twikoo.css">
+
+  
+<link rel="stylesheet" href="/css/search.css">
+
+  
+  
+
+  
+
+  </meta>
+  </meta>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+  
+<script src="/js/comment.js"></script>
+
+  
+<script src="/js/copy.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+    <header>
+        <!-- cover image or sth. -->
+    </header>
+    <div id="main" class="m-scene">
+        
+<div class="nav-wrapper" id="header">
+
+    <div class="container">
+        <nav>
+            
+            
+            <div class="logo wave">
+                <a href="/" id="logo">
+                    大钊的博客
+                </a>
+            </div>
+
+            <!-- 春节主题 按钮 -->
+<!-- <a onclick="switchThemes()" id="switchspring">
+    <img class="chunjiepic" src="https://nekodeng.gitee.io/medias/spring-img/caishen.png" title="节日模式">
+</a> -->
+<!-- 春节主题 小挂件 -->
+<div class="caishendeng">
+    <div class="caishenxian">
+        <img class="caishenpic lala" src="https://nekodeng.gitee.io/medias/spring-img/caishen.png">
+    </div>
+</div>
+
+
+<style>
+    /*春节模式 */
+    #switchspring {
+        background: #dc8f03;
+        width: 38px;
+        height: 38px;
+        display: block;
+        position: fixed;
+        border-radius: 50%;
+        right: 15px;
+        bottom: 10px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+        cursor: pointer;
+    }
+
+    .chunjiepic {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        position: absolute;
+        bottom: 0px;
+    }
+
+    /*春节主题 挂件吊线*/
+    .caishenxianleft {
+        left: 16% !important;
+        position: absolute;
+        top: 0px;
+        width: 2px;
+        height: 20px;
+        background: #dc8f03;
+        transform-origin: 50% -100px;
+        animation: swing 3.5s infinite ease-in-out;
+        -webkit-transform-origin: 50% -100px;
+        -webkit-animation: swing 3.5s infinite ease-in-out;
+    }
+
+    .caishenxian {
+        position: absolute;
+        top: 0px;
+        right: 36%;
+        width: 2px;
+        height: 20px;
+        background: #dc8f03;
+        transform-origin: 50% -100px;
+        animation: swing 3.5s infinite ease-in-out;
+        -webkit-transform-origin: 50% -100px;
+        -webkit-animation: swing 3.5s infinite ease-in-out;
+    }
+
+    .guguxian {
+        position: absolute;
+        top: 0px;
+        left: 20%;
+        width: 2px;
+        height: 20px;
+        background: #dc8f03;
+        transform-origin: 50% -100px;
+        animation: swing 3.5s infinite ease-in-out;
+        -webkit-transform-origin: 50% -100px;
+        -webkit-animation: swing 3.5s infinite ease-in-out;
+    }
+
+    .wenzhangxian {
+        left: 50% !important;
+        z-index: 998;
+    }
+
+    /*春节主题 挂件*/
+    .fudai {
+        top: 14px !important;
+        left: -22px !important;
+    }
+
+    .caishenpic {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        position: absolute;
+        top: 12px;
+        right: -22px;
+        z-index: 9;
+        /* transform-origin: 50% -100px; */
+        animation: swing 3.5s infinite ease-in-out;
+        /* -webkit-transform-origin: 50% -100px; */
+        -webkit-animation: swing 3.5s infinite ease-in-out;
+    }
+
+    .lala {
+        width: 32px !important;
+        height: 32px !important;
+        opacity: 1 !important;
+        left: -4px !important;
+        top: 14px !important;
+    }
+
+    .chunp {
+        width: 216px !important;
+        height: 96px !important;
+        left: -80px !important;
+        top: 6px !important;
+    }
+
+    .fudao {
+        width: 38px;
+        height: 38px;
+        top: 18px !important;
+        left: -19px !important;
+    }
+
+    /* 点击显示或者隐藏总样式开始 */
+    /* .caishendeng,
+    .xiaomaozitx,
+    .labelmz,
+    .friendmz {
+        display: none;
+    } */
+
+    body.themespring .caishendeng,
+    body.themespring .xiaomaozitx,
+    body.themespring .labelmz,
+    body.themespring .friendmz {
+        display: block;
+    }
+
+    /* 点击显示或者隐藏总样式结束 */
+    .toupic {
+        position: relative;
+    }
+
+    .xiaomaozitx {
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        top: -127px;
+        right: 25%;
+        transform: rotate(40deg);
+        position: absolute;
+        z-index: 99;
+        -webkit-animation: mzanimate 1.2s infinite ease-in-out;
+    }
+
+    .labelmz {
+        width: 34px;
+        height: 34px;
+        position: absolute;
+        top: 7px;
+        right: -84px;
+        transform: rotate(40deg);
+        position: absolute;
+        z-index: 99;
+        -webkit-transform-origin: 50% -100px;
+        -webkit-animation: mzanimate 1.8s infinite ease-in-out;
+    }
+
+    .weilemz {
+        position: relative;
+    }
+
+    .friendmz {
+        width: 50px !important;
+        height: 50px !important;
+        position: absolute;
+        top: 8px;
+        right: -90px;
+        transform: rotate(44deg);
+        position: absolute;
+        z-index: 99;
+        -webkit-transform-origin: 50% -100px;
+        -webkit-animation: mzanimate 1.8s infinite ease-in-out;
+    }
+
+    .lions {
+        width: 32px !important;
+        height: 32px !important;
+        opacity: 1 !important;
+        left: -15px !important;
+        top: 14px !important;
+    }
+
+    .fenleiss {
+        position: absolute;
+        top: -64px;
+        left: 20%;
+        width: 2px;
+        height: 20px;
+        background: #dc8f03;
+        transform-origin: 50% -100px;
+        animation: swing 3.5s infinite ease-in-out;
+        -webkit-transform-origin: 50% -100px;
+        -webkit-animation: swing 3.5s infinite ease-in-out;
+    }
+
+    .gugus {
+        width: 32px !important;
+        height: 32px !important;
+        opacity: 1 !important;
+        left: -15px !important;
+        top: 9px !important;
+    }
+
+    .huadengpic {
+        width: 40px !important;
+        height: 40px !important;
+        opacity: 1 !important;
+        left: -18px !important;
+        top: 9px !important;
+    }
+
+    .shanzipic {
+        width: 40px !important;
+        height: 40px !important;
+        opacity: 1 !important;
+        left: -18px !important;
+        top: 18px !important;
+    }
+
+    /* .denglong {
+        display: none;
+    } */
+
+    body.themespring .denglong {
+        display: block;
+    }
+
+    @media only screen and (min-width: 1124px) {
+        .nav-menu {
+            padding-right: 0px;
+        }
+
+        body.themespring .nav-menu {
+            padding-right: 96px;
+        }
+    }
+
+    @media only screen and (max-width: 760px) {
+
+        .deng-box,
+        .deng-box1 {
+            width: 40%;
+        }
+
+        body.themespring .right {
+            float: left !important;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+        .right {
+            float: left !important;
+        }
+    }
+
+    .deng-box {
+        position: fixed;
+        top: -40px;
+        right: -20px;
+        z-index: 999;
+    }
+
+    .deng-box1 {
+        position: fixed;
+        top: -30px;
+        right: 10px;
+        z-index: 999;
+    }
+
+    .deng-box1 .deng {
+        position: relative;
+        width: 120px;
+        height: 90px;
+        margin: 50px;
+        background: #d8000f;
+        background: rgba(216, 0, 15, 0.8);
+        border-radius: 50% 50%;
+        -webkit-transform-origin: 50% -100px;
+        -webkit-animation: swing 5s infinite ease-in-out;
+        box-shadow: -5px 5px 30px 4px rgba(252, 144, 61, 1);
+    }
+
+    .deng {
+        position: relative;
+        width: 120px;
+        height: 90px;
+        margin: 50px;
+        background: #d8000f;
+        background: rgba(216, 0, 15, 0.8);
+        border-radius: 50% 50%;
+        -webkit-transform-origin: 50% -100px;
+        -webkit-animation: swing 3s infinite ease-in-out;
+        box-shadow: -5px 5px 50px 4px rgba(250, 108, 0, 1);
+    }
+
+    .deng-a {
+        width: 100px;
+        height: 90px;
+        background: #d8000f;
+        background: rgba(216, 0, 15, 0.1);
+        margin: 12px 8px 8px 10px;
+        border-radius: 50% 50%;
+        border: 2px solid #dc8f03;
+    }
+
+    .deng-b {
+        width: 45px;
+        height: 90px;
+        background: #d8000f;
+        background: rgba(216, 0, 15, 0.1);
+        margin: -4px 8px 8px 26px;
+        border-radius: 50% 50%;
+        border: 2px solid #dc8f03;
+    }
+
+    .xian {
+        position: absolute;
+        top: -20px;
+        left: 60px;
+        width: 2px;
+        height: 20px;
+        background: #dc8f03;
+    }
+
+    .shui-a {
+        position: relative;
+        width: 5px;
+        height: 20px;
+        margin: -5px 0 0 59px;
+        -webkit-animation: swing 4s infinite ease-in-out;
+        -webkit-transform-origin: 50% -45px;
+        background: #ffa500;
+        border-radius: 0 0 5px 5px;
+    }
+
+    .shui-b {
+        position: absolute;
+        top: 14px;
+        left: -2px;
+        width: 10px;
+        height: 10px;
+        background: #dc8f03;
+        border-radius: 50%;
+    }
+
+    .shui-c {
+        position: absolute;
+        top: 18px;
+        left: -2px;
+        width: 10px;
+        height: 35px;
+        background: #ffa500;
+        border-radius: 0 0 0 5px;
+    }
+
+    .deng:before {
+        position: absolute;
+        top: -7px;
+        left: 29px;
+        height: 12px;
+        width: 60px;
+        content: " ";
+        display: block;
+        z-index: 999;
+        border-radius: 5px 5px 0 0;
+        border: solid 1px #dc8f03;
+        background: #ffa500;
+        background: linear-gradient(to right, #dc8f03, #ffa500, #dc8f03, #ffa500, #dc8f03);
+    }
+
+    .deng:after {
+        position: absolute;
+        bottom: -7px;
+        left: 10px;
+        height: 12px;
+        width: 60px;
+        content: " ";
+        display: block;
+        margin-left: 20px;
+        border-radius: 0 0 5px 5px;
+        border: solid 1px #dc8f03;
+        background: #ffa500;
+        background: linear-gradient(to right, #dc8f03, #ffa500, #dc8f03, #ffa500, #dc8f03);
+    }
+
+    .deng-t {
+        font-family: 华文行楷;
+        font-size: 26px;
+        color: #dc8f03;
+        font-weight: bold;
+        line-height: 44px;
+        text-align: center;
+    }
+
+    .night .deng-t,
+    .night .deng-box,
+    .night .deng-box1 {
+        background: transparent !important;
+    }
+
+    @-moz-keyframes swing {
+        0% {
+            -moz-transform: rotate(-10deg)
+        }
+
+        50% {
+            -moz-transform: rotate(10deg)
+        }
+
+        100% {
+            -moz-transform: rotate(-10deg)
+        }
+    }
+
+    @-webkit-keyframes swing {
+        0% {
+            -webkit-transform: rotate(-10deg)
+        }
+
+        50% {
+            -webkit-transform: rotate(10deg)
+        }
+
+        100% {
+            -webkit-transform: rotate(-10deg)
+        }
+    }
+</style>
+
+<script>
+    // 网站主题切换模式开始
+    if (localStorage.getItem('themespring') === '1') {
+        document.body.classList.add('themespring');
+    }
+    else if (matchMedia('(prefers-color-scheme: themespring)').matches) {
+        document.body.classList.add('themespring');
+    }
+
+    function switchThemes() {
+        var body = document.body;
+        if (body.classList.contains('themespring')) {
+            document.body.classList.remove('themespring');
+            localStorage.setItem('themespring', '0');
+            return;
+        } else {
+            document.body.classList.add('themespring');
+            localStorage.setItem('themespring', '1');
+            return;
+        }
+    };
+// 网站主题切换模式结束
+
+</script>
+
+            <div class="nav-toggle-icon" >
+                <div class="material-hamburger">
+                    <span>
+                    </span>
+                    <span>
+                    </span>
+                    <span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="menu-wrapper">
+                <div class="nav-indicator">
+                </div>
+                <ul class="menus">
+                    
+                     
+                        <li>
+                            <a class="wave " href="/">
+                                首页
+                            </a>
+                        </li>
+                     
+                        <li>
+                            <a class="wave " href="/archives">
+                                归档
+                            </a>
+                        </li>
+                     
+                        <li>
+                            <a class="wave " href="/categories">
+                                分类
+                            </a>
+                        </li>
+                     
+                        <li>
+                            <a class="wave " href="/about">
+                                关于我
+                            </a>
+                        </li>
+                     
+                    
+                   
+                </ul>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+            <div class="container content">
+                <div class="scene_element scene_element--fadein">
+                    <div class="row">
+  <div class="main main-article">
+    <article>
+
+      
+            <header class="post-header">
+              
+            </header>
+
+            <h1 class="post-title">
+              JavaWeb-01--JavaWeb的概念--Servlet 技术-- ServletConfig类--ServletContext 类- HTTP协议--get,post区别
+            </h1>
+
+            <section class="post-info post-info-bottom">
+
+              <span class="post-date">发布于
+                <span class="post-date-text">
+                   2021-02-12
+                </span>
+              </span>
+
+
+
+
+              
+                <span class="post-category">分类:
+                  <a class="article-category-link" href="/categories/JavaWeb%E9%A1%B9%E7%9B%AE/">-JavaWeb项目</a>
+                </span>
+                
+                  
+                    <span class="post-tags">
+                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/HTTP%E5%8D%8F%E8%AE%AE/" rel="tag">HTTP协议</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/JavaWeb%E9%A1%B9%E7%9B%AE/" rel="tag">JavaWeb项目</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/servlet/" rel="tag">servlet</a></li></ul>
+                    </span>
+                    
+
+                      <!-- 阅读量统计 -->
+                      
+
+
+            </section>
+
+            <section class="post-content">
+
+              <h1 id="1-JavaWeb的概念"><a href="#1-JavaWeb的概念" class="headerlink" title="1.JavaWeb的概念"></a>1.JavaWeb的概念</h1><ul>
+<li>什么是JavaWeb</li>
+</ul>
+<blockquote>
+<p>JavaWeb 是指，所有通过 Java 语言编写可以通过浏览器访问的程序的总称，叫 JavaWeb。 </p>
+<p>javaWeb 是基于请求和响应来开发的。</p>
+</blockquote>
+<ul>
+<li><p>什么是请求:</p>
+<p>请求是指客户端给服务器发送数据,,叫Request。</p>
+</li>
+<li><p><strong>什么是响应</strong> </p>
+<p>响应是指服务器给客户端回传数据，叫响应 Response。 </p>
+</li>
+<li><p><strong>请求和响应的关系</strong> </p>
+<p>请求和响应是成对出现的，有请求就有响应。</p>
+</li>
+</ul>
+<h2 id="Web-资源的分类"><a href="#Web-资源的分类" class="headerlink" title="Web 资源的分类"></a><strong>Web</strong> <strong>资源的分类</strong></h2><p>web 资源按实现的技术和呈现的效果的不同，又分为静态资源和动态资源两种。</p>
+<blockquote>
+<p>静态资源： html、css、js、txt、mp4 视频 , jpg 图片 </p>
+<p>动态资源： jsp 页面、Servlet 程序 </p>
+</blockquote>
+<h2 id="常用的-Web-服务器"><a href="#常用的-Web-服务器" class="headerlink" title="常用的 Web 服务器"></a><strong>常用的</strong> <strong>Web</strong> <strong>服务器</strong></h2><a id="more"></a>
+
+
+
+<p>​       Tomcat：由 Apache 组织提供的一种 Web 服务器，提供对 jsp 和 Servlet 的支持。它是一种轻量级的 javaWeb 容器（服务器），也是当前应用最广的 JavaWeb 服务器（免费）。</p>
+<p><img src="/2021/02/12/web01-web%E6%A6%82%E5%BF%B5/01-1.png" alt="01-1"></p>
+<h3 id="Tomcat目录介绍"><a href="#Tomcat目录介绍" class="headerlink" title="Tomcat目录介绍"></a>Tomcat目录介绍</h3><h1 id="Servlet-技术"><a href="#Servlet-技术" class="headerlink" title="Servlet 技术"></a><strong>Servlet</strong> 技术</h1><h3 id="什么是servlet"><a href="#什么是servlet" class="headerlink" title="什么是servlet"></a>什么是servlet</h3><ol>
+<li>Servlet 是 JavaEE 规范之一。规范就是接口 它是servlet规范中定义的用来处理客户端请求的程序需要实现的顶级接口。</li>
+<li>Servlet 就 JavaWeb 三大组件之一。三大组件分别是：<strong>Servlet 程序、Filter 过滤器、Listener 监听器。</strong></li>
+<li>Servlet 是运行在服务器上的一个 java 小程序，<strong>它可以接收客户端发送过来的请求，并响应数据给客户端</strong></li>
+</ol>
+<h3 id="手动实现-Servlet-程序"><a href="#手动实现-Servlet-程序" class="headerlink" title="手动实现 Servlet 程序"></a><strong>手动实现</strong> <strong>Servlet</strong> 程序</h3><ol>
+<li><p>编写一个类去实现 Servlet 接口 </p>
+</li>
+<li><p>实现 service 方法，处理请求，并响应数据 </p>
+</li>
+<li><p>到 web.xml 中去配置 servlet 程序的访问地址</p>
+</li>
+</ol>
+<h2 id="url-地址到-Servlet-程序的访问"><a href="#url-地址到-Servlet-程序的访问" class="headerlink" title="url 地址到 Servlet 程序的访问"></a><strong>url</strong> <strong>地址到</strong> <strong>Servlet</strong> <strong>程序的访问</strong></h2><p><img src="/2021/02/12/web01-web%E6%A6%82%E5%BF%B5/01-2.png" alt="01-1"></p>
+<h2 id="Servlet-的生命周期"><a href="#Servlet-的生命周期" class="headerlink" title="Servlet 的生命周期"></a><strong>Servlet</strong> 的生命周期</h2><ol>
+<li><p>执行<code>servlet</code>程序                       实例化</p>
+</li>
+<li><p>执行<code>init</code>初始化方法                  初始化</p>
+<p><strong>第一、二步，是在第一次访问的时候创建 <code>Servlet </code>程序会调用</strong></p>
+</li>
+<li><p>执行<code>service</code>方法                       请求处理</p>
+<p><strong>第三步，每次访问都会调用。</strong></p>
+</li>
+<li><p>执行<code>destory</code>销毁方法                服务结束</p>
+<p><strong>第四步，在<code> web</code> 工程停止的时候调用</strong></p>
+</li>
+</ol>
+<h2 id="Servlet和CGI的区别？"><a href="#Servlet和CGI的区别？" class="headerlink" title="Servlet和CGI的区别？"></a>Servlet和CGI的区别？</h2><ul>
+<li>Servlet处于服务器进程中，它通过<strong>多线程运行service()方法</strong>，一个实例可以服务于多个请求，并且实例一般不会被销毁；</li>
+<li>而CGI对每个请求都产生一个新的进程，服务完成后就销毁，所有效率低于Servlet</li>
+</ul>
+<h2 id="Servlet接口中有哪些方法？"><a href="#Servlet接口中有哪些方法？" class="headerlink" title="Servlet接口中有哪些方法？"></a><strong>Servlet接口中有哪些方法？</strong></h2><p>Servlet接口定义了5个方法：</p>
+<ol>
+<li>void init(ServletConfig config) throws ServletException</li>
+<li>void service(ServletRequest req, ServletResponse resp) throws ServletException, java.io.IOException</li>
+<li>void destory()</li>
+<li>java.lang.String getServletInfo()</li>
+<li>ServletConfig getServletConfig()  <code> Config</code>:配置</li>
+</ol>
+<blockquote>
+<p>Web容器加载Servlet并将其实例化后，Servlet生命周期开始，容器运行其init()方法进行Servlet的初始化；请求到达时调用Servlet的service()方法，service()方法会根据需要调用与请求对应的doGet或doPost等方法；当服务器关闭或项目被卸载时服务器会将Servlet实例销毁，此时会调用Servlet的destroy()方法</p>
+</blockquote>
+<h2 id="通过继承-HttpServlet-实现-Servlet-程序"><a href="#通过继承-HttpServlet-实现-Servlet-程序" class="headerlink" title="通过继承 HttpServlet 实现 Servlet 程序"></a>通过继承 HttpServlet <strong>实现</strong> <strong>Servlet</strong> <strong>程序</strong></h2><p>般在实际项目开发中，都是使用继承 HttpServlet 类的方式去实现 Servlet 程序。</p>
+<ol>
+<li>编写一个类去继承 HttpServlet 类 </li>
+<li>根据业务需要重写 doGet 或 doPost 方法 </li>
+<li>到 web.xml 中的配置 Servlet 程序的访问地址</li>
+</ol>
+<h2 id="Servlet-类的继承体系"><a href="#Servlet-类的继承体系" class="headerlink" title="Servlet 类的继承体系"></a><strong>Servlet</strong> <strong>类的继承体系</strong></h2><p><img src="/2021/02/12/web01-web%E6%A6%82%E5%BF%B5/01-3.png" alt="01-1"></p>
+<h1 id="ServletConfig-类"><a href="#ServletConfig-类" class="headerlink" title="ServletConfig 类"></a><strong>ServletConfig</strong> <strong>类</strong></h1><p>servletCofing类从类名上来看，就知道是 Servlet 程序的配置信息类。 </p>
+<p>Servlet 程序和 ServletConfig 对象都是由 Tomcat 负责创建，我们负责使用。</p>
+<p>Servlet 程序默认是第一次访问的时候创建，ServletConfig 是每个 Servlet 程序创建时，就创建一个对应的 ServletConfig 对象</p>
+<h2 id="ServletConfig-类的三大作用"><a href="#ServletConfig-类的三大作用" class="headerlink" title="ServletConfig 类的三大作用"></a><strong>ServletConfig</strong> <strong>类的三大作用</strong></h2><ol>
+<li>可以获取 Servlet 程序的别名 servlet-name 的值</li>
+<li>获取初始化参数 init-param</li>
+<li>获取 ServletContext 对象</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1、可以获取 Servlet 程序的别名 servlet-name 的值</span></span><br><span class="line">System.out.println(<span class="string">&quot;HelloServlet 程序的别名是:&quot;</span> + servletConfig.getServletName()); </span><br><span class="line"><span class="comment">// 2、获取初始化参数 </span></span><br><span class="line">init-param System.out.println(<span class="string">&quot;初始化参数 username 的值是;&quot;</span> + servletConfig.getInitParameter(<span class="string">&quot;username&quot;</span>));</span><br><span class="line">System.out.println(<span class="string">&quot;初始化参数 url 的值是;&quot;</span> + servletConfig.getInitParameter(<span class="string">&quot;url&quot;</span>)); </span><br><span class="line"><span class="comment">// 3、获取 ServletContext 对象 </span></span><br><span class="line">System.out.println(servletConfig.getServletContext());</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="ServletContext-类"><a href="#ServletContext-类" class="headerlink" title="ServletContext 类"></a>ServletContext <strong>类</strong></h1><h3 id="什么是ServletContext"><a href="#什么是ServletContext" class="headerlink" title="什么是ServletContext?"></a>什么是ServletContext?</h3><ol>
+<li>ServletContext 是一个接口，它表示 Servlet 上下文对象</li>
+<li>一个 web 工程，只有一个 ServletContext 对象实例。</li>
+<li>ServletContext <strong>对象是一个域对象</strong>。</li>
+<li>ServletContext 是在 web 工程部署启动的时候创建。在 web 工程停止的时候销毁。 </li>
+</ol>
+<h3 id="什么是域对象"><a href="#什么是域对象" class="headerlink" title="什么是域对象?"></a>什么是域对象?</h3><blockquote>
+<p>域对象，是可以像 Map 一样存取数据的对象，叫域对象。 </p>
+<p>这里的域指的是存取数据的操作范围，整个 web 工程。 </p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>存数据</th>
+<th>取数据</th>
+<th>删除数据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Map</td>
+<td>put()</td>
+<td>get()</td>
+<td>remove()</td>
+</tr>
+<tr>
+<td>域对象</td>
+<td>setAttribute()</td>
+<td>getAttribute()</td>
+<td>removeAttribute();</td>
+</tr>
+</tbody></table>
+<h3 id="ServletContext类的四个作用"><a href="#ServletContext类的四个作用" class="headerlink" title="ServletContext类的四个作用"></a>ServletContext类的四个作用</h3><ol>
+<li>获取 web.xml 中配置的上下文参数 context-param</li>
+<li>获取当前的工程路径，格式: /工程路径</li>
+<li>获取工程部署后在服务器硬盘上的绝对路径</li>
+<li>像 Map 一样存取数据 </li>
+</ol>
+<h4 id="ServletContext-演示代码："><a href="#ServletContext-演示代码：" class="headerlink" title="ServletContext 演示代码："></a>ServletContext 演示代码：</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//      1、获取web.xml 中配置的上下文参数context-param</span></span><br><span class="line">ServletContext context = getServletConfig().getServletContext();</span><br><span class="line">protected <span class="keyword">void</span> doGet(HttpServletRequest request, HttpServletResponse response) throws</span><br><span class="line">ServletException, IOException &#123;</span><br><span class="line"><span class="built_in">String</span> username = context.getInitParameter(<span class="string">&quot;username&quot;</span>);</span><br><span class="line">System.out.println(<span class="string">&quot;context-param 参数 username 的值是:&quot;</span> + username);</span><br><span class="line">System.out.println(<span class="string">&quot;context-param 参数 password 的值是:&quot;</span> +</span><br><span class="line">context.getInitParameter(<span class="string">&quot;password&quot;</span>));</span><br><span class="line"><span class="comment">//      2、获取当前的工程路径，格式: /工程路径</span></span><br><span class="line"></span><br><span class="line">System.out.println( <span class="string">&quot;当前工程路径:&quot;</span> + context.getContextPath() );</span><br><span class="line"><span class="comment">//     3、获取工程部署后在服务器硬盘上的绝对路径</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* / 斜杠被服务器解析地址为:http://ip:port/工程名/ 映射到IDEA 代码的web 目录&lt;br/&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">System.out.println(<span class="string">&quot;工程部署的路径是:&quot;</span> + context.getRealPath(<span class="string">&quot;/&quot;</span>));</span><br><span class="line">System.out.println(<span class="string">&quot;工程下 css 目录的绝对路径是:&quot;</span> + context.getRealPath(<span class="string">&quot;/css&quot;</span>));</span><br><span class="line">System.out.println(<span class="string">&quot;工程下 imgs 目录 1.jpg 的绝对路径是:&quot;</span> + context.getRealPath(<span class="string">&quot;/imgs/1.jpg&quot;</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="web-xml-中的配置"><a href="#web-xml-中的配置" class="headerlink" title="web.xml 中的配置"></a>web.xml 中的配置</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--context-param 是上下文参数(它属于整个web 工程)--&gt;</span><br><span class="line">&lt;context-param&gt;</span><br><span class="line">&lt;param-name&gt;username&lt;/param-name&gt;</span><br><span class="line">&lt;param-value&gt;context&lt;/param-value&gt;</span><br><span class="line">&lt;/context-param&gt;</span><br><span class="line">&lt;!--context-param 是上下文参数(它属于整个web 工程)--&gt;</span><br><span class="line">&lt;context-param&gt;</span><br><span class="line">&lt;param-name&gt;password&lt;/param-name&gt;</span><br><span class="line">&lt;param-value&gt;root&lt;/param-value&gt;</span><br><span class="line">&lt;/context-param&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="ServletContext-像-Map-一样存取数据："><a href="#ServletContext-像-Map-一样存取数据：" class="headerlink" title="ServletContext 像 Map 一样存取数据："></a>ServletContext 像 Map 一样存取数据：</h4><p>ContextServlet1 代码：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">ContextServlet1</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">protected <span class="keyword">void</span> doGet(HttpServletRequest request, HttpServletResponse response) throws</span><br><span class="line">ServletException, IOException &#123;</span><br><span class="line"><span class="comment">// 获取ServletContext 对象</span></span><br><span class="line">ServletContext context = getServletContext();</span><br><span class="line">System.out.println(context);</span><br><span class="line">System.out.println(<span class="string">&quot;保存之前: Context1 获取 key1 的值是:&quot;</span>+ context.getAttribute(<span class="string">&quot;key1&quot;</span>));</span><br><span class="line">context.setAttribute(<span class="string">&quot;key1&quot;</span>, <span class="string">&quot;value1&quot;</span>);</span><br><span class="line">System.out.println(<span class="string">&quot;Context1 中获取域数据 key1 的值是:&quot;</span>+ context.getAttribute(<span class="string">&quot;key1&quot;</span>));</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>ContextServlet2 代码  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">protected <span class="keyword">void</span> doGet(HttpServletRequest request, HttpServletResponse response) throws </span><br><span class="line">ServletException,</span><br><span class="line">IOException &#123;</span><br><span class="line">ServletContext context = getServletContext();</span><br><span class="line"></span><br><span class="line">System.out.println(context);</span><br><span class="line">System.out.println(<span class="string">&quot;Context2 中获取域数据 key1 的值是:&quot;</span>+ context.getAttribute(<span class="string">&quot;key1&quot;</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="HTTP-协议"><a href="#HTTP-协议" class="headerlink" title="HTTP 协议"></a><strong>HTTP</strong> <strong>协议</strong></h1><h3 id="什么是HTTP协议"><a href="#什么是HTTP协议" class="headerlink" title="什么是HTTP协议"></a>什么是<strong>HTTP协议</strong></h3><p>什么是协议? </p>
+<blockquote>
+<p>协议是指双方，或多方，相互约定好，大家都需要遵守的规则，叫协议。</p>
+</blockquote>
+<p>所谓 HTTP 协议，就是指，客户端和服务器之间通信时，发送的数据，需要遵守的规则，叫 HTTP 协议HTTP 协议中的数据又叫报文</p>
+<p><strong>客户端给服务器发送数据叫请求。</strong> </p>
+<p><strong>服务器给客户端回传数据叫响应。</strong></p>
+<h3 id="请求又分为-GET-请求，和-POST-请求两种"><a href="#请求又分为-GET-请求，和-POST-请求两种" class="headerlink" title="请求又分为 GET 请求，和 POST 请求两种"></a>请求又分为 GET 请求，和 POST 请求两种</h3><ol>
+<li>get请求用来从服务器上获得资源，而post是用来向服务器提交数据；</li>
+<li>get将表单中数据按照name=value的形式，添加到action 所指向的URL 后面，并且两者使用”?”连接，而各个变量之间使用”&amp;”连接；post是将表单中的数据放在HTTP协议的请求头或消息体中，传递到action所指向URL；</li>
+<li>get传输的数据要受到URL长度限制（1024字节）；而post可以传输大量的数据，上传文件通常要使用post方式；</li>
+<li>使用get时参数会显示在地址栏上，如果这些数据不是敏感数据，那么可以使用get；对于敏感数据还是应用使用post；</li>
+<li>get使用MIME类型application/x-www-form-urlencoded的URL编码（也叫百分号编码）文本的格式传递参数，保证被传送的参数由遵循规范的文本组成，例如一个空格的编码是”%20”。</li>
+</ol>
+<h4 id="i-GET-请求"><a href="#i-GET-请求" class="headerlink" title="i. GET 请求"></a><strong>i. GET</strong> <strong>请求</strong></h4><p>1、请求行 </p>
+<ul>
+<li>(1) 请求的方式              GET </li>
+<li>(2) 请求的资源路径[+?+请求参数] </li>
+<li>(3) 请求的协议的版本号                    HTTP/1.1 </li>
+</ul>
+<p>2、请求头           key : value        组成          不同的键值对，表示不同的含义。</p>
+<h4 id="ii-POST-请求"><a href="#ii-POST-请求" class="headerlink" title="ii. POST 请求"></a><strong>ii. POST</strong> <strong>请求</strong></h4><p>1、请求行</p>
+<ul>
+<li>(1) 请求的方式               POST </li>
+<li>(2) 请求的资源路径[+?+请求参数] </li>
+<li>(3) 请求的协议的版本号                HTTP/1.1 </li>
+</ul>
+<p>2、请求头         </p>
+<ul>
+<li><p>key : value                 不同的请求头，有不同的含义 </p>
+<p>空行</p>
+<p>3、请求体 ===&gt;&gt;&gt; 就是发送给服务器的数据</p>
+</li>
+</ul>
+<h3 id="iii-常用请求头的说明"><a href="#iii-常用请求头的说明" class="headerlink" title="iii. 常用请求头的说明"></a><strong>iii.</strong> <strong>常用请求头的说明</strong></h3><ul>
+<li>Accept: 表示客户端可以接收的数据类型 </li>
+<li>Accpet-Languege: 表示客户端可以接收的语言类型 </li>
+<li>User-Agent: 表示客户端浏览器的信息 </li>
+<li>Host： 表示请求时的服务器 ip 和端口号 </li>
+</ul>
+<h3 id="哪些是GET请求，哪些是-POST请求"><a href="#哪些是GET请求，哪些是-POST请求" class="headerlink" title="哪些是GET请求，哪些是 POST请求"></a>哪些是GET请求，哪些是 POST请求</h3><h5 id="GET-请求有哪些："><a href="#GET-请求有哪些：" class="headerlink" title="GET 请求有哪些："></a>GET 请求有哪些：</h5><p>1、form 标签 method=get </p>
+<p>2、a 标签 </p>
+<p>3、link 标签引入 css </p>
+<p>4、Script 标签引入 js 文件 </p>
+<p>5、img 标签引入图片 </p>
+<p>6、iframe 引入 html 页面 </p>
+<p>7、在浏览器地址栏中输入地址后敲回车 </p>
+<h5 id="POST-请求有哪些："><a href="#POST-请求有哪些：" class="headerlink" title="POST 请求有哪些："></a>POST 请求有哪些：</h5><p>8、form 标签 method=post </p>
+<p><strong>响应的</strong> <strong>HTTP</strong> <strong>协议格式</strong> </p>
+<p>1、响应行 </p>
+<ul>
+<li>(1) 响应的协议和版本号 </li>
+<li>(2) 响应状态码 </li>
+<li>(3) 响应状态描述符 </li>
+</ul>
+<p>2、响应头 </p>
+<ul>
+<li>(1) key : value </li>
+</ul>
+<p>不同的响应头，有其不同含义 </p>
+<p>​                <strong>空行</strong> </p>
+<p>3、响应体    —-&gt;&gt;&gt;   就是回传给客户端的数据</p>
+<h3 id="常用的响应码说明"><a href="#常用的响应码说明" class="headerlink" title="常用的响应码说明"></a><strong>常用的响应码说明</strong></h3><ul>
+<li>200         表示请求成功 </li>
+<li>302         表示请求重定向（明天讲） </li>
+<li>404         表示请求服务器已经收到了，但是你要的数据不存在（请求地址错误） </li>
+<li>500         表示服务器已经收到请求，但是服务器内部错误（代码错误） </li>
+</ul>
+
+            </section>
+    </article>
+    
+
+
+        <!-- 版权声明 -->
+        
+<div class="post-copyright">
+    <div>
+        <strong>本文作者：</strong>
+        <span>大钊</span>
+    </div>
+    <div>
+        <strong>本文链接：</strong>
+        <a href="http://example.com/web01-web概念">
+            http://example.com/web01-web概念
+        </a>
+    </div>
+    <div>
+        <span>欢迎任何形式的转载，但请务必注明出处。</span>
+    </div>
+    <div>
+        <span>由于笔者水平有限，如果文章或代码有表述不当之处，还请不吝赐教。</span>
+    </div>
+</div>
+
+
+
+
+
+
+<style>
+    .post-copyright {
+        background-color: #fff;
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.05);
+        display: block;
+        margin: 20px auto;
+        margin-bottom: 15px;
+        padding: 10px;
+        font-size: 15px;
+        color: #2e2d2d;
+        word-break: break-all;
+        line-height: 1.8;
+    }
+
+
+    .post-copyright a {
+        color: #2e2d2d;
+        border-bottom: 1px solid #999; 
+    }
+
+    .post-copyright a:hover {
+        color: #2e2d2d;
+        border-bottom: 1px solid #000; 
+    }
+</style>
+
+          <!-- comments -->
+          <div class="comments">
+    <h3 id="commenttitle" style="margin-top: 20px;margin-left: 10px;">评论区</h3>
+    <div id="tcomment"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/twikoo@0.6.0/dist/twikoo.all.min.js"></script>
+<script>twikoo.init({ envId: '', el: '#tcomment' })</script>
+
+            <div class="right-icon">
+              <div id="to-valine" class="right-icon-item">
+                <a href="#commenttitle">评论</a>
+              </div>
+            </div>
+
+  </div>
+
+
+  <aside>
+    <div class="aside-wrap">
+    
+        <section class="widget-wrap">
+    <h3 class="widget-title">简介</h3>
+    <div class="widget">
+        <div class="notice">
+            <img class="notice-img" src="https://shuxhan-imgbed.oss-cn-hangzhou.aliyuncs.com/img/20210108164434.jpg">
+            <p>路漫漫其修远兮，<br>吾将上下而求索!<br></p>
+            
+            <p class="notice-item">
+                <!-- github -->
+                <span><a target="_blank" href="https://github.com/niewenzhao0401"><img src="https://shuxhan-imgbed.oss-cn-hangzhou.aliyuncs.com/img/20210108165043.jpg" alt="Github"></a></span>
+                <!-- juejin -->
+          <!--      <span><a target="_blank" href=""><img src="https://shuxhan-imgbed.oss-cn-hangzhou.aliyuncs.com/img/20210108165800.png" alt="掘金社区"></a></span> -->
+                <!-- zhihu -->
+          <!--       <span><a target="_blank" href=""><img src="https://shuxhan-imgbed.oss-cn-hangzhou.aliyuncs.com/img/20210108172745.ico" alt="知乎"></a></span>-->
+                <!-- csdn -->
+                <span><a target="_blank" href="https://blog.csdn.net/qq_44236958"><img src="https://shuxhan-imgbed.oss-cn-hangzhou.aliyuncs.com/img/20210108172932.ico" alt="CSDN"></a></span>
+            </p>
+            
+        </div>
+    </div>
+</section>
+
+
+    
+        
+  <section class="widget-wrap">
+    <h3 class="widget-title">文章分类</h3>
+       <div class="widget">
+			  <div class="categories-list">
+						
+						   <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JDBC/">-JDBC</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JQuery/">-JQuery</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">-JavaScript</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaWeb%E9%A1%B9%E7%9B%AE/">-JavaWeb项目</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">-Mysql</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javase/">-javase</a><span class="category-list-count">31</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">-前端</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7%E6%A0%8F/">-工具栏</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">-操作系统</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95-%E4%BD%93%E7%B3%BB/">-数据结构和算法-体系</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a><span class="category-list-count">72</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a><span class="category-list-count">8</span></li></ul>
+						
+			  </div>
+       </div>
+     
+    </div>
+  </section>
+
+
+
+
+
+
+    
+        
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/01%E8%83%8C%E5%8C%85/" rel="tag">01背包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BFS/" rel="tag">BFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BeanUtils%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="tag">BeanUtils的使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DFS/" rel="tag">DFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM%E6%A8%A1%E5%9E%8B/" rel="tag">DOM模型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/EE%E9%A1%B9%E7%9B%AE%E7%9A%84%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84/" rel="tag">EE项目的三层架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/EL-%E8%A1%A8%E8%BE%BE%E5%BC%8F-JSTL-%E6%A0%87%E7%AD%BE%E5%BA%93/" rel="tag">EL 表达式 & JSTL 标签库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP%E5%8D%8F%E8%AE%AE/" rel="tag">HTTP协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IO/" rel="tag">IO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JQuery/" rel="tag">JQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E4%BA%8B%E4%BB%B6/" rel="tag">JS事件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaWeb/" rel="tag">JavaWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaWeb%E9%A1%B9%E7%9B%AE/" rel="tag">JavaWeb项目</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVC/" rel="tag">MVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/" rel="tag">Mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/" rel="tag">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String%E7%B1%BB/" rel="tag">String类</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hash/" rel="tag">hash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hashTable/" rel="tag">hashTable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jsp/" rel="tag">jsp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/map/" rel="tag">map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/servlet/" rel="tag">servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%89%E6%8C%87%E9%92%88/" rel="tag">三指针</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B9%A6%E5%9F%8E%E7%B3%BB%E7%BB%9Fweb%E9%A1%B9%E7%9B%AE/" rel="tag">书城系统web项目</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86/" rel="tag">事务处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" rel="tag">二分查找</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="tag">二叉树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%85%E9%83%A8%E7%B1%BB/" rel="tag">内部类</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%92%E6%B3%A1%E4%BA%8B%E4%BB%B6/" rel="tag">冒泡事件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%87%8F%E6%94%AF/" rel="tag">减支</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%85%E8%A3%85%E7%B1%BB/" rel="tag">包装类</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F/" rel="tag">十大排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%95%E8%B0%83%E6%A0%88/" rel="tag">单调栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" rel="tag">双指针</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8D%E5%B0%84/" rel="tag">反射</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%9E%E6%BA%AF/" rel="tag">回溯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7%E6%A0%8F/" rel="tag">工具栏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95/" rel="tag">常用10种算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%82%E5%B8%B8/" rel="tag">异常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" rel="tag">快速排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag">排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" rel="tag">数据库连接池</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91/" rel="tag">斐波那契</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7/" rel="tag">有效括号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9F%A5%E6%89%BE/" rel="tag">查找</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%88/" rel="tag">栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/" rel="tag">环形链表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%80%E7%96%8F%E6%95%B0%E7%BB%84/" rel="tag">稀疏数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A9%B7%E4%B8%BE%E6%B3%95/" rel="tag">穷举法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B/" rel="tag">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E7%B4%A2%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="tag">线索化二叉树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/" rel="tag">表单验证</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A1%A8%E6%A0%BC/" rel="tag">表格</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E5%8F%91%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91/" rel="tag">转发和重定向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E7%A8%8B/" rel="tag">进程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%92%E5%BD%92/" rel="tag">递归</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8%E5%8F%8D%E8%BD%AC/" rel="tag">链表反转</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8%E5%90%88%E5%B9%B6/" rel="tag">链表合并</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%9F%E5%88%97/" rel="tag">队列</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E5%90%88/" rel="tag">集合</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+    
+        
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul class="recent-posts">
+        
+          <li>
+            <a href="/2021/02/22/web06-book3/">JavaWEB07--book03---MVC 概念--删除修改图书</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/21/web06-book2/">JavaWEB06--book02--利用反射合并 LoginServlet 和 RegistServlet 程序为 UserServlet 程序</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/19/web05-EL%E8%A1%A8%E8%BE%BE%E5%BC%8F-JSTL%E6%A0%87%E7%AD%BE%E5%BA%93/">JavaWEB-05---EL 表达式 &amp; JSTL 标签库</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/18/web03-jsp/">JavaWEB-03--JSP-- jsp 九大内置对象--jsp 四大域对象--JSP和Servlet是什么关系</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/16/web04-book01-%E7%99%BB%E5%BD%95/">JavaWEB--03--book01-登录</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+        
+  <section class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
+    </div>
+  </section>
+
+
+    
+        
+  <section class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div>
+      <ul class="widget-links">
+          
+          <li>
+              <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44236958" title="">
+                  我的CSDN
+              </a>
+          </li>
+          
+      </ul>
+    </div>
+  </section>
+
+
+<style>
+  .widget-links {
+    list-style: none;
+    padding-left: 10px;
+  }
+  .widget-links >li > a:hover {
+    color: #f40;
+    text-decoration: underline;
+  }
+</style>
+    
+        <section class="widget-wrap">
+    <div class="widget">
+        <div class="notice attention">
+            <p>本博客主题采用的是基于 hexo 打造的 <a href="https://github.com/shuxhan/hexo-theme-simple99" target="_blank">simple99</a>，主题已上架 hexo 官网。</p>
+            <p>如有其他问题，请发一封邮件给我，我的邮箱地址：niewenzhao01@163.com</p>
+            
+        </div>
+    </div>
+</section>
+
+    
+    
+</div>
+
+
+      <!-- 目录 -->
+      
+</div>
+
+
+<script>
+  $('#to-top').click(function () { $('html,body').animate({ scrollTop: '0px' }, 500); return false; });
+
+</script>
+                </div>
+            </div>
+            <div class="right-icon">
+                <div id="to-top" class="right-icon-item">
+                  <a>
+                    <span class="top-left"></span>
+                    <span class="top-right"></span>
+                  </a>
+                </div>
+              </div>
+    </div>
+    <footer class="footer">
+  <div class="links-wrap-wrap">
+    <div class="links-wrap">
+    
+      
+        <section class="link-wrap">
+          <h3 class="link-title">导航</h3>
+          <div>
+            <ul class="link-item-wrap">
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="https://cn.bing.com" title="">
+                        必应搜索(bing)
+                    </a>
+                </li>
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="https://github.com" title="">
+                        GitHub
+                    </a>
+                </li>
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="https://gitee.com" title="">
+                        Gitee
+                    </a>
+                </li>
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="https://www.aliyun.com/" title="">
+                        阿里云
+                    </a>
+                </li>
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="https://cloud.tencent.com" title="">
+                        腾讯云
+                    </a>
+                </li>
+                
+            </ul>
+          </div>
+        </section>
+      
+
+
+      
+        <section class="link-wrap">
+          <h3 class="link-title">社区论坛</h3>
+          <div>
+            <ul class="link-item-wrap">
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="https://www.csdn.net" title="">
+                        CSDN
+                    </a>
+                </li>
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="https://juejin.cn" title="">
+                        掘金
+                    </a>
+                </li>
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="https://segmentfault.com" title="">
+                        segmentfault思否
+                    </a>
+                </li>
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="https://www.cnblogs.com" title="">
+                        博客园
+                    </a>
+                </li>
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="https://www.v2ex.com/" title="">
+                        V2EX
+                    </a>
+                </li>
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="https://discord.com" title="">
+                        Discord
+                    </a>
+                </li>
+                
+            </ul>
+          </div>
+        </section>
+      
+
+
+      
+        <section class="link-wrap">
+          <h3 class="link-title">文档</h3>
+          <div>
+            <ul class="link-item-wrap">
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="https://react.docschina.org" title="">
+                        React官方中文文档
+                    </a>
+                </li>
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="https://hexo.io" title="">
+                        hexo官网
+                    </a>
+                </li>
+                
+                <li class="link-item">
+                    <a target="_blank" rel="noopener" href="http://lesscss.cn" title="">
+                        less中文网
+                    </a>
+                </li>
+                
+            </ul>
+          </div>
+        </section>
+      
+
+    </div>
+  </div>
+  
+    <div class="copyright-wrap">
+      <span>&copy; 2019-2021 大钊</span>
+      <span id="timeDate">载入天数...</span>
+      
+    </div>
+    <span id="busuanzi_container_site_pv">
+      本站总访问量<span id="busuanzi_value_site_pv"></span>次
+    </span>
+    <span id="busuanzi_container_site_uv">
+      ，本站访客数<span id="busuanzi_value_site_uv"></span>人次
+    </span>
+    
+</footer>
+
+<script>
+    var now = new Date();
+    function createtime() {
+      var grt = new Date("06/14/2019 12:00:00");//此处修改你的建站时间或者网站上线时间 
+      now.setTime(now.getTime() + 250);
+      days = (now - grt) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+      document.getElementById("timeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+    }
+    setInterval("createtime()", 1000);
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/lib/jquery.js"></script>
+
+
+<script src="/lib/waves.js"></script>
+
+
+<script src="/lib/jquery-ui.js"></script>
+
+
+<script src="/lib/jquery.tocify.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+        
+<style>
+  .copy-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 20px;
+    color: rgb(206, 206, 206);
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: 3px;
+    user-select: none;
+    outline: 0;
+  }
+
+  .copy-btn:hover {
+    color: #888
+  }
+
+  .highlight-wrap .copy-btn {
+    padding: 2px 6px;
+    position: absolute;
+    right: 10px;
+    top: 1px;
+    z-index: 1;
+  }
+
+
+
+  .highlight-wrap {
+    position: relative;
+  }
+
+  #copysuccess {
+    width: 200px;
+    height: 75px;
+    position: fixed;
+    right: 50%;
+    margin-right: -100px;
+    top: 40%;
+    margin-top: -40px;
+    color: #fff;
+    font-weight: 600;
+    background: #444444d8;
+    display: none;
+    z-index: 99999;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 30px;
+    padding-top: 10px;
+    user-select: none;
+  }
+</style>
+
+<script>
+  addLoadEvent(() => {
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<div>').addClass('copy-btn').append('复制代码').on('click', function (e) {
+        var copysuccess = document.getElementById('copysuccess');
+        copysuccess.style.display = 'block'
+        setTimeout(function () {
+          copysuccess.style.display = 'none'
+        }, 2000)
+        var code = $(this).parent().find(".code")[0].innerText
+          
+                var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+          
+                  if (result) $(this).text('复制成功')
+            else $(this).text('复制失败')
+              
+                $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制代码')
+        }, 1000)
+      }).append(e)
+    })
+  })
+</script>
+
+            <div id="copysuccess">复制成功<br>欢迎阅读文章~</div>
+</body>
+
+</html>
+
+<script>
+    $('#to-top').click(function () { $('html,body').animate({ scrollTop: '0px' }, 500); return false; });
+</script>

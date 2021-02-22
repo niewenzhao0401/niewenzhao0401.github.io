@@ -601,6 +601,601 @@
         <!-- 置顶 -->
         
 
+            <a href="/2021/01/25/JDBC7/">
+              
+                    <header class="post-header">
+                      
+                        <h1 class="post-title">
+                          <span>JDBC7-JDBC批量执行SQL语句</span>
+                        </h1>
+                    </header>
+            </a>
+
+
+            <section class="post-info">
+              <span class="post-date">发布于
+                <span class="post-date-text"> 2021-01-25</span>
+              </span>
+  
+              
+                <span class="post-category">
+                  <a class="post-category-link" href="/categories/JDBC/">-JDBC</a>
+                </span>
+                
+                  
+                    <span class="post-tags">
+                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/Mysql/" rel="tag">Mysql</a></li></ul>
+                    </span>
+                    
+                    
+            </section>
+
+
+            <div class="post-main">
+              <div class="post-item">
+                <section class="post-abstract">
+                  
+                    批量插入批量执行SQL语句当需要成批执行插入或者更新记录时,可以采用java的批量更新机制,这一机制允许多条语句一次性提交给数据库批量处理。通常情况下比单独提交处理更有效率
+JDBC的批量处理语句包括下面三个方法:
+addBatch(String): 添加需要批量处理的SQL语句或是参数
+executeBath(): 执行批量处理语句
+clearBath();    清空缓存的数据
+
+通常我们会遇到两种批量执行SQL语句的情况
+多条SQL语句的批处理
+一条SQL语句的批传参
+
+                      
+                            
+                </section>
+    
+              
+                        <span class="read-more btn"><a href="/2021/01/25/JDBC7/" >阅读更多...</a></span>
+               
+              </div>
+  
+  
+              
+            </div>
+
+      
+      </article>
+      
+      <article class="list-item">
+
+
+        <!-- 置顶 -->
+        
+
+            <a href="/2021/01/24/LC46-LC47/">
+              
+                    <header class="post-header">
+                      
+                        <h1 class="post-title">
+                          <span>LC46-全排列---LC47- 全排列 II</span>
+                        </h1>
+                    </header>
+            </a>
+
+
+            <section class="post-info">
+              <span class="post-date">发布于
+                <span class="post-date-text"> 2021-01-24</span>
+              </span>
+  
+              
+                <span class="post-category">
+                  <a class="post-category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
+                </span>
+                
+                  
+                    <span class="post-tags">
+                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/%E5%9B%9E%E6%BA%AF/" rel="tag">回溯</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/%E9%80%92%E5%BD%92/" rel="tag">递归</a></li></ul>
+                    </span>
+                    
+                    
+            </section>
+
+
+            <div class="post-main">
+              <div class="post-item">
+                <section class="post-abstract">
+                  
+                    46. 全排列难度中等1089
+给定一个 没有重复 数字的序列，返回其所有可能的全排列。
+示例:
+12345678910输入: [1,2,3]输出:[  [1,2,3],  [1,3,2],  [2,1,3],  [2,3,1],  [3,1,2],  [3,2,1]]
+
+回溯法:
+以数组 [1, 2, 3] 的全排列为例。
+先写以 11 开头的全排列，它们是：[1, 2, 3], [1, 3, 2]，即 1 + [2, 3] 的全排列（注意：递归结构体现在这里）；再写以 22 开头的全排列，它们是：[2, 1, 3], [2, 3, 1]，即 2 + [1, 3] 的全排列；最后写以 33 开头的全排列，它们是：[3, 1, 2], [3, 2, 1]，即 3 + [1, 2] 的全排列。
+递归的终止条件是： 一个排列中的数字已经选够了 
+                      
+                            
+                </section>
+    
+              
+                        <span class="read-more btn"><a href="/2021/01/24/LC46-LC47/" >阅读更多...</a></span>
+               
+              </div>
+  
+  
+              
+            </div>
+
+      
+      </article>
+      
+      <article class="list-item">
+
+
+        <!-- 置顶 -->
+        
+
+            <a href="/2021/01/24/LC77/">
+              
+                    <header class="post-header">
+                      
+                        <h1 class="post-title">
+                          <span>LC77-组合</span>
+                        </h1>
+                    </header>
+            </a>
+
+
+            <section class="post-info">
+              <span class="post-date">发布于
+                <span class="post-date-text"> 2021-01-24</span>
+              </span>
+  
+              
+                <span class="post-category">
+                  <a class="post-category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
+                </span>
+                
+                  
+                    <span class="post-tags">
+                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/%E5%9B%9E%E6%BA%AF/" rel="tag">回溯</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/%E9%80%92%E5%BD%92/" rel="tag">递归</a></li></ul>
+                    </span>
+                    
+                    
+            </section>
+
+
+            <div class="post-main">
+              <div class="post-item">
+                <section class="post-abstract">
+                  
+                    77. 组合难度中等471给定两个整数 n 和 k，返回 1 … n 中所有可能的 k 个数的组合。
+示例:
+12345678910输入: n &#x3D; 4, k &#x3D; 2输出:[  [2,4],  [3,4],  [2,3],  [1,2],  [1,3],  [1,4],]
+
+回溯法:  是在一棵树上深度优先遍历(欣慰找到所有的解,,所以要遍历)
+根据搜索起点画出二叉树
+                      
+                            
+                </section>
+    
+              
+                        <span class="read-more btn"><a href="/2021/01/24/LC77/" >阅读更多...</a></span>
+               
+              </div>
+  
+  
+              
+            </div>
+
+      
+      </article>
+      
+      <article class="list-item">
+
+
+        <!-- 置顶 -->
+        
+
+            <a href="/2021/01/24/JDBC6/">
+              
+                    <header class="post-header">
+                      
+                        <h1 class="post-title">
+                          <span>JDBC6-JDBC操作BLOB类型字段</span>
+                        </h1>
+                    </header>
+            </a>
+
+
+            <section class="post-info">
+              <span class="post-date">发布于
+                <span class="post-date-text"> 2021-01-24</span>
+              </span>
+  
+              
+                <span class="post-category">
+                  <a class="post-category-link" href="/categories/JDBC/">-JDBC</a>
+                </span>
+                
+                  
+                    <span class="post-tags">
+                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/Mysql/" rel="tag">Mysql</a></li></ul>
+                    </span>
+                    
+                    
+            </section>
+
+
+            <div class="post-main">
+              <div class="post-item">
+                <section class="post-abstract">
+                  
+                    JDBC操作BLOB类型字段Mysql BLob类型
+Mysql中,BLoB是一个二进制大型对象,可以储存大量数据的容器,它可以容纳不同大小的数据
+插入BLob类型的数据必须使用PreparedStatement,,因为BLOB类型的数据无法使用字符串拼接
+mysql的四种BLOB类型(除了在存储的最大信息量上不同外，他们是等同的)
+
+
+
+
+类型
+大小(单位:字节)
+
+
+
+TinyBlob
+最大 255
+
+
+BLob
+最大 65K
+
+
+MediumBlob
+最大  16M
+
+
+LongBlob
+最大  4G
+
+
+
+实际使用中根据需要存入的数据大小定义不同的BLOB类型。
+需要注意的是：如果存储的文件过大，数据库的性能会下降。
+如果在指定了相关的BLOB类型以后,,还报错:xxx too large,那么在MYSQL的安装目录下,,找my.ini文件上加上如下的配置参数: max_allowed_packet=16M:::  修改之后一定要重启服务器
+
+                      
+                            
+                </section>
+    
+              
+                        <span class="read-more btn"><a href="/2021/01/24/JDBC6/" >阅读更多...</a></span>
+               
+              </div>
+  
+  
+              
+            </div>
+
+      
+      </article>
+      
+      <article class="list-item">
+
+
+        <!-- 置顶 -->
+        
+
+            <a href="/2021/01/21/JDBC5/">
+              
+                    <header class="post-header">
+                      
+                        <h1 class="post-title">
+                          <span>JDBC5-使用PreparedStatement实现通用的增、删、改,查的方法：version 1.0</span>
+                        </h1>
+                    </header>
+            </a>
+
+
+            <section class="post-info">
+              <span class="post-date">发布于
+                <span class="post-date-text"> 2021-01-21</span>
+              </span>
+  
+              
+                <span class="post-category">
+                  <a class="post-category-link" href="/categories/JDBC/">-JDBC</a>
+                </span>
+                
+                  
+                    <span class="post-tags">
+                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7%E6%A0%8F/" rel="tag">工具栏</a></li></ul>
+                    </span>
+                    
+                    
+            </section>
+
+
+            <div class="post-main">
+              <div class="post-item">
+                <section class="post-abstract">
+                  
+                    使用PreparedStatement实现通用的增、删、改的方法：version 1.0通用的增删改操作—version 1.0
+                      
+                            
+                </section>
+    
+              
+                        <span class="read-more btn"><a href="/2021/01/21/JDBC5/" >阅读更多...</a></span>
+               
+              </div>
+  
+  
+              
+            </div>
+
+      
+      </article>
+      
+      <article class="list-item">
+
+
+        <!-- 置顶 -->
+        
+
+            <a href="/2021/01/21/JDBC4/">
+              
+                    <header class="post-header">
+                      
+                        <h1 class="post-title">
+                          <span>JDBC4-使用PreparedStatement实现CRUD操作-PreparedStatement vs Statement-ResultSet与ResultSetMetaData</span>
+                        </h1>
+                    </header>
+            </a>
+
+
+            <section class="post-info">
+              <span class="post-date">发布于
+                <span class="post-date-text"> 2021-01-21</span>
+              </span>
+  
+              
+                <span class="post-category">
+                  <a class="post-category-link" href="/categories/JDBC/">-JDBC</a>
+                </span>
+                
+                  
+                    <span class="post-tags">
+                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li></ul>
+                    </span>
+                    
+                    
+            </section>
+
+
+            <div class="post-main">
+              <div class="post-item">
+                <section class="post-abstract">
+                  
+                    使用PreparedStatement实现CRUD操作访问和操作数据库
+
+数据库连接被用于向数据库服务器发送命令和sql语句,并接受数据库服务器返回来的结果,其实一个数据库连接就是一个socket连接
+
+在java.sql包中由3 个接口分别定义了对数据库的调用的不同方式：
+
+Statement：用于执行静态sql语句,并返回它所生成结果的对象。
+PrepatedStatement:sql语句别预编译并储存在对象中,可以使用次对象多次高效的执行该语句
+CallableStatement：用于执行 SQL 存储过程
+
+
+
+                      
+                            
+                </section>
+    
+              
+                        <span class="read-more btn"><a href="/2021/01/21/JDBC4/" >阅读更多...</a></span>
+               
+              </div>
+  
+  
+              
+            </div>
+
+      
+      </article>
+      
+      <article class="list-item">
+
+
+        <!-- 置顶 -->
+        
+
+            <a href="/2021/01/21/JDBC3/">
+              
+                    <header class="post-header">
+                      
+                        <h1 class="post-title">
+                          <span>JDBC3-JDBCUtils-1</span>
+                        </h1>
+                    </header>
+            </a>
+
+
+            <section class="post-info">
+              <span class="post-date">发布于
+                <span class="post-date-text"> 2021-01-21</span>
+              </span>
+  
+              
+                <span class="post-category">
+                  <a class="post-category-link" href="/categories/JDBC/">-JDBC</a>
+                </span>
+                
+                  
+                    <span class="post-tags">
+                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li></ul>
+                    </span>
+                    
+                    
+            </section>
+
+
+            <div class="post-main">
+              <div class="post-item">
+                <section class="post-abstract">
+                  
+                    JDBCUtils操作数据库的工类
+获取数据库连接
+ 关闭资源操作
+                      
+                            
+                </section>
+    
+              
+                        <span class="read-more btn"><a href="/2021/01/21/JDBC3/" >阅读更多...</a></span>
+               
+              </div>
+  
+  
+              
+            </div>
+
+      
+      </article>
+      
+      <article class="list-item">
+
+
+        <!-- 置顶 -->
+        
+
+            <a href="/2021/01/20/JDBC-%E5%B7%A5%E5%85%B71/">
+              
+                    <header class="post-header">
+                      
+                        <h1 class="post-title">
+                          <span>JDBC-JDBCUtils</span>
+                        </h1>
+                    </header>
+            </a>
+
+
+            <section class="post-info">
+              <span class="post-date">发布于
+                <span class="post-date-text"> 2021-01-20</span>
+              </span>
+  
+              
+                <span class="post-category">
+                  <a class="post-category-link" href="/categories/%E5%B7%A5%E5%85%B7%E6%A0%8F/">-工具栏</a>
+                </span>
+                
+                  
+                    <span class="post-tags">
+                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7%E6%A0%8F/" rel="tag">工具栏</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li></ul>
+                    </span>
+                    
+                    
+            </section>
+
+
+            <div class="post-main">
+              <div class="post-item">
+                <section class="post-abstract">
+                  
+                    JDBCUtils操作数据库的工类
+获取数据库连接
+ 关闭资源操作
+                      
+                            
+                </section>
+    
+              
+                        <span class="read-more btn"><a href="/2021/01/20/JDBC-%E5%B7%A5%E5%85%B71/" >阅读更多...</a></span>
+               
+              </div>
+  
+  
+              
+            </div>
+
+      
+      </article>
+      
+      <article class="list-item">
+
+
+        <!-- 置顶 -->
+        
+
+            <a href="/2021/01/20/JDBC2/">
+              
+                    <header class="post-header">
+                      
+                        <h1 class="post-title">
+                          <span>JDBC2-获取数据库连接</span>
+                        </h1>
+                    </header>
+            </a>
+
+
+            <section class="post-info">
+              <span class="post-date">发布于
+                <span class="post-date-text"> 2021-01-20</span>
+              </span>
+  
+              
+                <span class="post-category">
+                  <a class="post-category-link" href="/categories/JDBC/">-JDBC</a>
+                </span>
+                
+                  
+                    <span class="post-tags">
+                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li></ul>
+                    </span>
+                    
+                    
+            </section>
+
+
+            <div class="post-main">
+              <div class="post-item">
+                <section class="post-abstract">
+                  
+                    获取数据库连接要素一：Driver接口实现类Driver接口实现类Driver接口介绍
+
+java.sql.Driver接口是所有JDBC驱动程序需要实现的接口..这个接口是提供给数据库厂使用的,不同的不同数据库厂商提供不同的实现。
+在程序中不需要直接访问实现了Driver接口类,而是由驱动程序管理类,(java.sql.DriverManager)去调用这些Driver实现。
+
+
+Oracle的驱动：oracle.jdbc.driver.OracleDriver
+mySql的驱动： com.mysql.jdbc.Driver
+
+注册加载驱动加载驱动:加载JDBC驱动需调动class类的静态方法forName,向其传递要加载的jdbc驱动的类名
+
+Class.forName(“com.mysql.jdbc.Driver”);
+
+                      
+                            
+                </section>
+    
+              
+                        <span class="read-more btn"><a href="/2021/01/20/JDBC2/" >阅读更多...</a></span>
+               
+              </div>
+  
+  
+              
+            </div>
+
+      
+      </article>
+      
+      <article class="list-item">
+
+
+        <!-- 置顶 -->
+        
+
             <a href="/2021/01/20/JDBC1/">
               
                     <header class="post-header">
@@ -657,612 +1252,6 @@ JDBC的理解JDBC(Java Database Connectivity)是一个独立于特定数据库�
       
       </article>
       
-      <article class="list-item">
-
-
-        <!-- 置顶 -->
-        
-
-            <a href="/2021/01/20/mysql-06/">
-              
-                    <header class="post-header">
-                      
-                        <h1 class="post-title">
-                          <span>mysql-06-多表设计-关联查询</span>
-                        </h1>
-                    </header>
-            </a>
-
-
-            <section class="post-info">
-              <span class="post-date">发布于
-                <span class="post-date-text"> 2021-01-20</span>
-              </span>
-  
-              
-                <span class="post-category">
-                  <a class="post-category-link" href="/categories/Mysql/">-Mysql</a>
-                </span>
-                
-                  
-                    <span class="post-tags">
-                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/Mysql/" rel="tag">Mysql</a></li></ul>
-                    </span>
-                    
-                    
-            </section>
-
-
-            <div class="post-main">
-              <div class="post-item">
-                <section class="post-abstract">
-                  
-                    多表设计关联查询含义: 又称多表查询,当查询的字段来自多个表时,就会用到连接查询
-笛卡尔乘积现象：表1有m行，表2有n行，结果=m*n
-
-发生原因: 没有有效的连接条件
-如何避免: 添加有效的连接条件
-
-按能功能分类:
- 内连接
-
-等着连接
-非等值连接
-自连接
-
-外连接
-
-左外连接
-右外连接
-
-交叉连接 
-                      
-                            
-                </section>
-    
-              
-                        <span class="read-more btn"><a href="/2021/01/20/mysql-06/" >阅读更多...</a></span>
-               
-              </div>
-  
-  
-              
-            </div>
-
-      
-      </article>
-      
-      <article class="list-item">
-
-
-        <!-- 置顶 -->
-        
-
-            <a href="/2021/01/19/mysql-05/">
-              
-                    <header class="post-header">
-                      
-                        <h1 class="post-title">
-                          <span>mysql-05-多表设计-范式-表之间关系</span>
-                        </h1>
-                    </header>
-            </a>
-
-
-            <section class="post-info">
-              <span class="post-date">发布于
-                <span class="post-date-text"> 2021-01-19</span>
-              </span>
-  
-              
-                <span class="post-category">
-                  <a class="post-category-link" href="/categories/Mysql/">-Mysql</a>
-                </span>
-                
-                  
-                    <span class="post-tags">
-                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/Mysql/" rel="tag">Mysql</a></li></ul>
-                    </span>
-                    
-                    
-            </section>
-
-
-            <div class="post-main">
-              <div class="post-item">
-                <section class="post-abstract">
-                  
-                    多表设计设计表时,先确定表存储那类的信息,学生表,定义类,数据类型,约束
-范式为了建立冗余较小,结构合理的数据库,设计数据库时必须遵循一定的规则
-目前有五种范式:第一范式（1NF）、第二范式（2NF）、第三范式（3NF）、巴斯-科德范式（BCNF）、第四范式(4NF）和第五范式（5NF，又称完美范式）
-一般的数据库满足第三范式就行.
-                      
-                            
-                </section>
-    
-              
-                        <span class="read-more btn"><a href="/2021/01/19/mysql-05/" >阅读更多...</a></span>
-               
-              </div>
-  
-  
-              
-            </div>
-
-      
-      </article>
-      
-      <article class="list-item">
-
-
-        <!-- 置顶 -->
-        
-
-            <a href="/2021/01/18/LC105/">
-              
-                    <header class="post-header">
-                      
-                        <h1 class="post-title">
-                          <span>LC105-从前序与中序遍历序列构造二叉树</span>
-                        </h1>
-                    </header>
-            </a>
-
-
-            <section class="post-info">
-              <span class="post-date">发布于
-                <span class="post-date-text"> 2021-01-18</span>
-              </span>
-  
-              
-                <span class="post-category">
-                  <a class="post-category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
-                </span>
-                
-                  
-                    <span class="post-tags">
-                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="tag">二叉树</a></li></ul>
-                    </span>
-                    
-                    
-            </section>
-
-
-            <div class="post-main">
-              <div class="post-item">
-                <section class="post-abstract">
-                  
-                    105. 从前序与中序遍历序列构造二叉树难度中等829
-根据一棵树的前序遍历与中序遍历构造二叉树。
-注意:你可以假设树中没有重复的元素。
-例如，给出
-12前序遍历 preorder &#x3D; [3,9,20,15,7]中序遍历 inorder &#x3D; [9,3,15,20,7]
-
-返回如下的二叉树：
-12345  3 &#x2F; \9  20  &#x2F;  \ 15   7
-
-引题:
-
-二叉树相关得很多问题得解决思路都有分治法得思想在里面.
-
-                      
-                            
-                </section>
-    
-              
-                        <span class="read-more btn"><a href="/2021/01/18/LC105/" >阅读更多...</a></span>
-               
-              </div>
-  
-  
-              
-            </div>
-
-      
-      </article>
-      
-      <article class="list-item">
-
-
-        <!-- 置顶 -->
-        
-
-            <a href="/2021/01/17/mysql-04/">
-              
-                    <header class="post-header">
-                      
-                        <h1 class="post-title">
-                          <span>mysql-04-DQL-基础查询-条件-模糊-数量-分组-子查询</span>
-                        </h1>
-                    </header>
-            </a>
-
-
-            <section class="post-info">
-              <span class="post-date">发布于
-                <span class="post-date-text"> 2021-01-17</span>
-              </span>
-  
-              
-                <span class="post-category">
-                  <a class="post-category-link" href="/categories/Mysql/">-Mysql</a>
-                </span>
-                
-                  
-                    <span class="post-tags">
-                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/Mysql/" rel="tag">Mysql</a></li></ul>
-                    </span>
-                    
-                    
-            </section>
-
-
-            <div class="post-main">
-              <div class="post-item">
-                <section class="post-abstract">
-                  
-                    DQL-基础查询条件查询使用where子句,不满足条件的行过滤掉,where子句紧随from子句
-语法:select &lt;结果&gt; from &lt;表名&gt; where &lt;条件&gt;
-比较
-​    =,  != 或&lt;&gt;,  &gt;,  &lt;,  &gt;=,  &lt;=
-逻辑运算     and    与    or     或    not    非
-                      
-                            
-                </section>
-    
-              
-                        <span class="read-more btn"><a href="/2021/01/17/mysql-04/" >阅读更多...</a></span>
-               
-              </div>
-  
-  
-              
-            </div>
-
-      
-      </article>
-      
-      <article class="list-item">
-
-
-        <!-- 置顶 -->
-        
-
-            <a href="/2021/01/16/mysql-03/">
-              
-                    <header class="post-header">
-                      
-                        <h1 class="post-title">
-                          <span>mysql-03-DML数据操作语言-DQL-基础查询(初)</span>
-                        </h1>
-                    </header>
-            </a>
-
-
-            <section class="post-info">
-              <span class="post-date">发布于
-                <span class="post-date-text"> 2021-01-16</span>
-              </span>
-  
-              
-                <span class="post-category">
-                  <a class="post-category-link" href="/categories/Mysql/">-Mysql</a>
-                </span>
-                
-                  
-                    <span class="post-tags">
-                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/Mysql/" rel="tag">Mysql</a></li></ul>
-                    </span>
-                    
-                    
-            </section>
-
-
-            <div class="post-main">
-              <div class="post-item">
-                <section class="post-abstract">
-                  
-                    DML数据操作语言
-数据库操作语言DML(Data Manipulation Language )
-常用语句: insert dateta update
-
-插入数据INSERT INTO t_student VALUE(111,&#39;聂&#39;,&#39;男&#39;,&#39;1999-01-01&#39; ,122.1, 12311231,NOW());  
-方式一: INSERT INTO 表名(列1,列2……,列n) VALUES(值1,值2…..,值n);
-1INSERT INTO t_student(stu_num ,stu_name ,stu_sex) VALUE(111,&#x27;聂&#x27;,&#x27;男&#x27;);
-
-方式二:INSERT INTO 表名 set 列名1=值1,..列名n=值n;
-1INSERT INTO t_student SET stu_birth &#x3D;&#39;1999-01-01&#39;;
-
-方式三:INSERT INTO 表名(列1,列2……,列n) VALUES(值1,值2…..,值n),(值1,值2…..,值n);
-                      
-                            
-                </section>
-    
-              
-                        <span class="read-more btn"><a href="/2021/01/16/mysql-03/" >阅读更多...</a></span>
-               
-              </div>
-  
-  
-              
-            </div>
-
-      
-      </article>
-      
-      <article class="list-item">
-
-
-        <!-- 置顶 -->
-        
-
-            <a href="/2021/01/15/JQuery-07/">
-              
-                    <header class="post-header">
-                      
-                        <h1 class="post-title">
-                          <span>JQuery-07-JQuery事件操作-javaScript事件对象-图片跟随</span>
-                        </h1>
-                    </header>
-            </a>
-
-
-            <section class="post-info">
-              <span class="post-date">发布于
-                <span class="post-date-text"> 2021-01-15</span>
-              </span>
-  
-              
-                <span class="post-category">
-                  <a class="post-category-link" href="/categories/JQuery/">-JQuery</a>
-                </span>
-                
-                  
-                    <span class="post-tags">
-                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/JQuery/" rel="tag">JQuery</a></li></ul>
-                    </span>
-                    
-                    
-            </section>
-
-
-            <div class="post-main">
-              <div class="post-item">
-                <section class="post-abstract">
-                  
-                    JQuery事件操作
-$(function(){})
-和
-window.onload=function(){}
-
-他们分别是在什么时候触发?
-JQuery的页面加载完成之后是浏览器的内核解析完页面的标签创建好DOM对象之后就会马上执行
-原生JS的页面加载完成之后,除了要等浏览器内核解析完标签创建好 DOM 对象.还要等标签显示时需要的类容加载完成
-
-他们的触发顺序?
-JQuery页面加载完成之后先执行
-原生JS的页面加载完成之后
-
-                      
-                            
-                </section>
-    
-              
-                        <span class="read-more btn"><a href="/2021/01/15/JQuery-07/" >阅读更多...</a></span>
-               
-              </div>
-  
-  
-              
-            </div>
-
-      
-      </article>
-      
-      <article class="list-item">
-
-
-        <!-- 置顶 -->
-        
-
-            <a href="/2021/01/14/JQuery-06/">
-              
-                    <header class="post-header">
-                      
-                        <h1 class="post-title">
-                          <span>JQuery-06-CSS样式操作-JQuery动画-CSS动画 品牌展示</span>
-                        </h1>
-                    </header>
-            </a>
-
-
-            <section class="post-info">
-              <span class="post-date">发布于
-                <span class="post-date-text"> 2021-01-14</span>
-              </span>
-  
-              
-                <span class="post-category">
-                  <a class="post-category-link" href="/categories/JQuery/">-JQuery</a>
-                </span>
-                
-                  
-                    <span class="post-tags">
-                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/JQuery/" rel="tag">JQuery</a></li></ul>
-                    </span>
-                    
-                    
-            </section>
-
-
-            <div class="post-main">
-              <div class="post-item">
-                <section class="post-abstract">
-                  
-                    CSS样式操作
-addclass   添加样式
-removeClass  删除样式
-toggleClass    有就删除  没有就添加样式
-offset 获取和设置元素的坐标
-
-JQuery动画基本动画
-show()      将隐藏的元素显示
-hide()        将可见的元素隐藏
-toggle()     可见的隐藏,不可见就显示
-
-
-以上动画方法可以添加参数
-
-第一个参数是 动画 执行哦那个的时长以毫秒为单位
-第二个参数是动画的回调函数(动画完成后自动调用函数)
-
-
-                      
-                            
-                </section>
-    
-              
-                        <span class="read-more btn"><a href="/2021/01/14/JQuery-06/" >阅读更多...</a></span>
-               
-              </div>
-  
-  
-              
-            </div>
-
-      
-      </article>
-      
-      <article class="list-item">
-
-
-        <!-- 置顶 -->
-        
-
-            <a href="/2021/01/13/JQuery-05/">
-              
-                    <header class="post-header">
-                      
-                        <h1 class="post-title">
-                          <span>JQuery-05-DOM的增删该-从左到右，从右到左练习--动态添加、删除表格记录</span>
-                        </h1>
-                    </header>
-            </a>
-
-
-            <section class="post-info">
-              <span class="post-date">发布于
-                <span class="post-date-text"> 2021-01-13</span>
-              </span>
-  
-              
-                <span class="post-category">
-                  <a class="post-category-link" href="/categories/JQuery/">-JQuery</a>
-                </span>
-                
-                  
-                    <span class="post-tags">
-                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/JQuery/" rel="tag">JQuery</a></li></ul>
-                    </span>
-                    
-                    
-            </section>
-
-
-            <div class="post-main">
-              <div class="post-item">
-                <section class="post-abstract">
-                  
-                    DOM的增删该内部插入:
-appendTo()      a. appendTo(b)  把a插入到b子元素末尾,成成为最后一给元素
-prependTo()     a,prependTo(b) 把 a 插到 b 所有子元素前面，成为第一个子元素
-
-外部插入:
-insertAfter()     a.insertAfter(b) 得到ba
-insertBefore()     a.insertBefore(b)     得到 ab
-
-替换:
-replaceWith()      a.replaceWith(b)   用 b 替换掉 a
-replaceAll()          a.replaceAll(b)     用 a 替换掉所有 b 
-
-                      
-                            
-                </section>
-    
-              
-                        <span class="read-more btn"><a href="/2021/01/13/JQuery-05/" >阅读更多...</a></span>
-               
-              </div>
-  
-  
-              
-            </div>
-
-      
-      </article>
-      
-      <article class="list-item">
-
-
-        <!-- 置顶 -->
-        
-
-            <a href="/2021/01/12/JQuery-04/">
-              
-                    <header class="post-header">
-                      
-                        <h1 class="post-title">
-                          <span>JQuery-04-Jquery练习..全选，全不选，反选</span>
-                        </h1>
-                    </header>
-            </a>
-
-
-            <section class="post-info">
-              <span class="post-date">发布于
-                <span class="post-date-text"> 2021-01-12</span>
-              </span>
-  
-              
-                <span class="post-category">
-                  <a class="post-category-link" href="/categories/JQuery/">-JQuery</a>
-                </span>
-                
-                  
-                    <span class="post-tags">
-                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/JQuery/" rel="tag">JQuery</a></li></ul>
-                    </span>
-                    
-                    
-            </section>
-
-
-            <div class="post-main">
-              <div class="post-item">
-                <section class="post-abstract">
-                  
-                    Jquery练习全选，全不选，反选
-给全选绑定单击事件123$(&quot;#checkedAllBtn&quot;).click(function () &#123;			$(&quot;:checkbox&quot;).prop(&quot;checked&quot;,true);		&#125;);
-
-给全不选绑定单击事件123$(&quot;#checkedNoBtn&quot;).click(function () &#123;		$(&quot;:checkbox&quot;).prop(&quot;checked&quot;,false);	&#125;)
-
-反选单击事件
-                      
-                            
-                </section>
-    
-              
-                        <span class="read-more btn"><a href="/2021/01/12/JQuery-04/" >阅读更多...</a></span>
-               
-              </div>
-  
-  
-              
-            </div>
-
-      
-      </article>
-      
       
   
     <div class="pagination">
@@ -1305,7 +1294,7 @@ replaceAll()          a.replaceAll(b)     用 a 替换掉所有 b
        <div class="widget">
 			  <div class="categories-list">
 						
-						   <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JDBC/">-JDBC</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JQuery/">-JQuery</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">-JavaScript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">-Mysql</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javase/">-javase</a><span class="category-list-count">31</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">-前端</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7%E6%A0%8F/">-工具栏</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">-操作系统</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95-%E4%BD%93%E7%B3%BB/">-数据结构和算法-体系</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a><span class="category-list-count">72</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a><span class="category-list-count">8</span></li></ul>
+						   <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JDBC/">-JDBC</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JQuery/">-JQuery</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">-JavaScript</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaWeb%E9%A1%B9%E7%9B%AE/">-JavaWeb项目</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">-Mysql</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javase/">-javase</a><span class="category-list-count">31</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">-前端</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7%E6%A0%8F/">-工具栏</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">-操作系统</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95-%E4%BD%93%E7%B3%BB/">-数据结构和算法-体系</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a><span class="category-list-count">72</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a><span class="category-list-count">8</span></li></ul>
 						
 			  </div>
        </div>
@@ -1323,7 +1312,7 @@ replaceAll()          a.replaceAll(b)     用 a 替换掉所有 b
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/01%E8%83%8C%E5%8C%85/" rel="tag">01背包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BFS/" rel="tag">BFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DFS/" rel="tag">DFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM%E6%A8%A1%E5%9E%8B/" rel="tag">DOM模型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IO/" rel="tag">IO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JQuery/" rel="tag">JQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E4%BA%8B%E4%BB%B6/" rel="tag">JS事件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaWeb/" rel="tag">JavaWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/" rel="tag">Mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String%E7%B1%BB/" rel="tag">String类</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hash/" rel="tag">hash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hashTable/" rel="tag">hashTable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/map/" rel="tag">map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%89%E6%8C%87%E9%92%88/" rel="tag">三指针</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86/" rel="tag">事务处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" rel="tag">二分查找</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="tag">二叉树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%85%E9%83%A8%E7%B1%BB/" rel="tag">内部类</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%87%8F%E6%94%AF/" rel="tag">减支</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%85%E8%A3%85%E7%B1%BB/" rel="tag">包装类</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F/" rel="tag">十大排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%95%E8%B0%83%E6%A0%88/" rel="tag">单调栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" rel="tag">双指针</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8D%E5%B0%84/" rel="tag">反射</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%9E%E6%BA%AF/" rel="tag">回溯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7%E6%A0%8F/" rel="tag">工具栏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95/" rel="tag">常用10种算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%82%E5%B8%B8/" rel="tag">异常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" rel="tag">快速排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag">排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" rel="tag">数据库连接池</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91/" rel="tag">斐波那契</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7/" rel="tag">有效括号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9F%A5%E6%89%BE/" rel="tag">查找</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%88/" rel="tag">栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/" rel="tag">环形链表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%80%E7%96%8F%E6%95%B0%E7%BB%84/" rel="tag">稀疏数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A9%B7%E4%B8%BE%E6%B3%95/" rel="tag">穷举法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B/" rel="tag">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E7%B4%A2%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="tag">线索化二叉树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/" rel="tag">表单验证</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A1%A8%E6%A0%BC/" rel="tag">表格</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E7%A8%8B/" rel="tag">进程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%92%E5%BD%92/" rel="tag">递归</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8%E5%8F%8D%E8%BD%AC/" rel="tag">链表反转</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8%E5%90%88%E5%B9%B6/" rel="tag">链表合并</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%9F%E5%88%97/" rel="tag">队列</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E5%90%88/" rel="tag">集合</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/01%E8%83%8C%E5%8C%85/" rel="tag">01背包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BFS/" rel="tag">BFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BeanUtils%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="tag">BeanUtils的使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DFS/" rel="tag">DFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM%E6%A8%A1%E5%9E%8B/" rel="tag">DOM模型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/EE%E9%A1%B9%E7%9B%AE%E7%9A%84%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84/" rel="tag">EE项目的三层架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/EL-%E8%A1%A8%E8%BE%BE%E5%BC%8F-JSTL-%E6%A0%87%E7%AD%BE%E5%BA%93/" rel="tag">EL 表达式 & JSTL 标签库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP%E5%8D%8F%E8%AE%AE/" rel="tag">HTTP协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IO/" rel="tag">IO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JQuery/" rel="tag">JQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E4%BA%8B%E4%BB%B6/" rel="tag">JS事件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaWeb/" rel="tag">JavaWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaWeb%E9%A1%B9%E7%9B%AE/" rel="tag">JavaWeb项目</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVC/" rel="tag">MVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/" rel="tag">Mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/" rel="tag">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String%E7%B1%BB/" rel="tag">String类</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hash/" rel="tag">hash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hashTable/" rel="tag">hashTable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jsp/" rel="tag">jsp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/map/" rel="tag">map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/servlet/" rel="tag">servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%89%E6%8C%87%E9%92%88/" rel="tag">三指针</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B9%A6%E5%9F%8E%E7%B3%BB%E7%BB%9Fweb%E9%A1%B9%E7%9B%AE/" rel="tag">书城系统web项目</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86/" rel="tag">事务处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" rel="tag">二分查找</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="tag">二叉树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%85%E9%83%A8%E7%B1%BB/" rel="tag">内部类</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%92%E6%B3%A1%E4%BA%8B%E4%BB%B6/" rel="tag">冒泡事件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%87%8F%E6%94%AF/" rel="tag">减支</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%85%E8%A3%85%E7%B1%BB/" rel="tag">包装类</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F/" rel="tag">十大排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%95%E8%B0%83%E6%A0%88/" rel="tag">单调栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" rel="tag">双指针</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8D%E5%B0%84/" rel="tag">反射</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%9E%E6%BA%AF/" rel="tag">回溯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7%E6%A0%8F/" rel="tag">工具栏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B8%B8%E7%94%A810%E7%A7%8D%E7%AE%97%E6%B3%95/" rel="tag">常用10种算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%82%E5%B8%B8/" rel="tag">异常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" rel="tag">快速排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag">排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" rel="tag">数据库连接池</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91/" rel="tag">斐波那契</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7/" rel="tag">有效括号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9F%A5%E6%89%BE/" rel="tag">查找</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%88/" rel="tag">栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/" rel="tag">环形链表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%80%E7%96%8F%E6%95%B0%E7%BB%84/" rel="tag">稀疏数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A9%B7%E4%B8%BE%E6%B3%95/" rel="tag">穷举法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B/" rel="tag">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E7%B4%A2%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="tag">线索化二叉树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/" rel="tag">表单验证</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A1%A8%E6%A0%BC/" rel="tag">表格</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E5%8F%91%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91/" rel="tag">转发和重定向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E7%A8%8B/" rel="tag">进程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%92%E5%BD%92/" rel="tag">递归</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8%E5%8F%8D%E8%BD%AC/" rel="tag">链表反转</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8%E5%90%88%E5%B9%B6/" rel="tag">链表合并</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%9F%E5%88%97/" rel="tag">队列</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E5%90%88/" rel="tag">集合</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
     </div>
   </div>
 
@@ -1336,23 +1325,23 @@ replaceAll()          a.replaceAll(b)     用 a 替换掉所有 b
       <ul class="recent-posts">
         
           <li>
-            <a href="/2021/02/01/LC104/">LC104--二叉树的最大深度</a>
+            <a href="/2021/02/22/web06-book3/">JavaWEB07--book03---MVC 概念--删除修改图书</a>
           </li>
         
           <li>
-            <a href="/2021/02/01/LC226/">LC226--翻转二叉树</a>
+            <a href="/2021/02/21/web06-book2/">JavaWEB06--book02--利用反射合并 LoginServlet 和 RegistServlet 程序为 UserServlet 程序</a>
           </li>
         
           <li>
-            <a href="/2021/02/01/LC297/">LC297--二叉树的序列化与反序列化</a>
+            <a href="/2021/02/19/web05-EL%E8%A1%A8%E8%BE%BE%E5%BC%8F-JSTL%E6%A0%87%E7%AD%BE%E5%BA%93/">JavaWEB-05---EL 表达式 &amp; JSTL 标签库</a>
           </li>
         
           <li>
-            <a href="/2021/01/31/LC98/">LC98--验证二叉搜索树</a>
+            <a href="/2021/02/18/web03-jsp/">JavaWEB-03--JSP-- jsp 九大内置对象--jsp 四大域对象--JSP和Servlet是什么关系</a>
           </li>
         
           <li>
-            <a href="/2021/01/31/LC22/">LC22--括号生成</a>
+            <a href="/2021/02/16/web04-book01-%E7%99%BB%E5%BD%95/">JavaWEB--03--book01-登录</a>
           </li>
         
       </ul>
