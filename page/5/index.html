@@ -601,6 +601,96 @@
         <!-- 置顶 -->
         
 
+            <a href="/2021/01/24/JDBC6/">
+              
+                    <header class="post-header">
+                      
+                        <h1 class="post-title">
+                          <span>JDBC6-JDBC操作BLOB类型字段</span>
+                        </h1>
+                    </header>
+            </a>
+
+
+            <section class="post-info">
+              <span class="post-date">发布于
+                <span class="post-date-text"> 2021-01-24</span>
+              </span>
+  
+              
+                <span class="post-category">
+                  <a class="post-category-link" href="/categories/JDBC/">-JDBC</a>
+                </span>
+                
+                  
+                    <span class="post-tags">
+                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/Mysql/" rel="tag">Mysql</a></li></ul>
+                    </span>
+                    
+                    
+            </section>
+
+
+            <div class="post-main">
+              <div class="post-item">
+                <section class="post-abstract">
+                  
+                    JDBC操作BLOB类型字段Mysql BLob类型
+Mysql中,BLoB是一个二进制大型对象,可以储存大量数据的容器,它可以容纳不同大小的数据
+插入BLob类型的数据必须使用PreparedStatement,,因为BLOB类型的数据无法使用字符串拼接
+mysql的四种BLOB类型(除了在存储的最大信息量上不同外，他们是等同的)
+
+
+
+
+类型
+大小(单位:字节)
+
+
+
+TinyBlob
+最大 255
+
+
+BLob
+最大 65K
+
+
+MediumBlob
+最大  16M
+
+
+LongBlob
+最大  4G
+
+
+
+实际使用中根据需要存入的数据大小定义不同的BLOB类型。
+需要注意的是：如果存储的文件过大，数据库的性能会下降。
+如果在指定了相关的BLOB类型以后,,还报错:xxx too large,那么在MYSQL的安装目录下,,找my.ini文件上加上如下的配置参数: max_allowed_packet=16M:::  修改之后一定要重启服务器
+
+                      
+                            
+                </section>
+    
+              
+                        <span class="read-more btn"><a href="/2021/01/24/JDBC6/" >阅读更多...</a></span>
+               
+              </div>
+  
+  
+              
+            </div>
+
+      
+      </article>
+      
+      <article class="list-item">
+
+
+        <!-- 置顶 -->
+        
+
             <a href="/2021/01/21/JDBC5/">
               
                     <header class="post-header">
@@ -1173,67 +1263,6 @@ JDBC的理解JDBC(Java Database Connectivity)是一个独立于特定数据库�
       
       </article>
       
-      <article class="list-item">
-
-
-        <!-- 置顶 -->
-        
-
-            <a href="/2021/01/17/mysql-04/">
-              
-                    <header class="post-header">
-                      
-                        <h1 class="post-title">
-                          <span>mysql-04-DQL-基础查询-条件-模糊-数量-分组-子查询</span>
-                        </h1>
-                    </header>
-            </a>
-
-
-            <section class="post-info">
-              <span class="post-date">发布于
-                <span class="post-date-text"> 2021-01-17</span>
-              </span>
-  
-              
-                <span class="post-category">
-                  <a class="post-category-link" href="/categories/Mysql/">-Mysql</a>
-                </span>
-                
-                  
-                    <span class="post-tags">
-                      <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/Mysql/" rel="tag">Mysql</a></li></ul>
-                    </span>
-                    
-                    
-            </section>
-
-
-            <div class="post-main">
-              <div class="post-item">
-                <section class="post-abstract">
-                  
-                    DQL-基础查询条件查询使用where子句,不满足条件的行过滤掉,where子句紧随from子句
-语法:select &lt;结果&gt; from &lt;表名&gt; where &lt;条件&gt;
-比较
-​    =,  != 或&lt;&gt;,  &gt;,  &lt;,  &gt;=,  &lt;=
-逻辑运算     and    与    or     或    not    非
-                      
-                            
-                </section>
-    
-              
-                        <span class="read-more btn"><a href="/2021/01/17/mysql-04/" >阅读更多...</a></span>
-               
-              </div>
-  
-  
-              
-            </div>
-
-      
-      </article>
-      
       
   
     <div class="pagination">
@@ -1276,7 +1305,7 @@ JDBC的理解JDBC(Java Database Connectivity)是一个独立于特定数据库�
        <div class="widget">
 			  <div class="categories-list">
 						
-						   <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JDBC/">-JDBC</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JQuery/">-JQuery</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">-JavaScript</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaWeb%E9%A1%B9%E7%9B%AE/">-JavaWeb项目</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">-Mysql</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javase/">-javase</a><span class="category-list-count">31</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">-前端</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7%E6%A0%8F/">-工具栏</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">-操作系统</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95-%E4%BD%93%E7%B3%BB/">-数据结构和算法-体系</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a><span class="category-list-count">88</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a><span class="category-list-count">8</span></li></ul>
+						   <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JDBC/">-JDBC</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JQuery/">-JQuery</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">-JavaScript</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaWeb%E9%A1%B9%E7%9B%AE/">-JavaWeb项目</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">-Mysql</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javase/">-javase</a><span class="category-list-count">32</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">-前端</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7%E6%A0%8F/">-工具栏</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">-操作系统</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95-%E4%BD%93%E7%B3%BB/">-数据结构和算法-体系</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a><span class="category-list-count">88</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">-计算机网络</a><span class="category-list-count">8</span></li></ul>
 						
 			  </div>
        </div>
@@ -1307,6 +1336,10 @@ JDBC的理解JDBC(Java Database Connectivity)是一个独立于特定数据库�
       <ul class="recent-posts">
         
           <li>
+            <a href="/2021/03/16/javaSE%E5%8F%8D%E5%B0%84-1/">javaSE反射-概念详细篇幅</a>
+          </li>
+        
+          <li>
             <a href="/2021/03/14/LC130/">LC130--被围绕的区域</a>
           </li>
         
@@ -1320,10 +1353,6 @@ JDBC的理解JDBC(Java Database Connectivity)是一个独立于特定数据库�
         
           <li>
             <a href="/2021/03/09/LC208/">LC208-实现 Trie (前缀树)</a>
-          </li>
-        
-          <li>
-            <a href="/2021/03/08/LC200/">LC200--岛屿数量</a>
           </li>
         
       </ul>
